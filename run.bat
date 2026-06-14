@@ -1,27 +1,19 @@
 @echo off
-REM Security+ SY0-701 Study App launcher (Windows)
 cd /d "%~dp0"
 
+python --version >nul 2>&1
+if errorlevel 1 (
+  powershell -Command "Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('Python 3 is required. Download it from https://www.python.org/ and check Add Python to PATH during installation.', 'Security+ Study App')"
+  exit /b 1
+)
+
 set PORT=8080
-set URL=http://localhost:%PORT%
+set "SCRIPT_DIR=%~dp0"
 
-echo Starting Security+ Study App on %URL% ...
+:: Start Python server silently in background via VBScript
+echo python -m http.server %PORT% > "%TEMP%\start_server.bat"
+wscript.exe "%SCRIPT_DIR%launch.vbs" "%TEMP%\start_server.bat"
 
-REM Open the browser shortly after the server starts
-start "" cmd /c "timeout /t 1 >nul & start %URL%"
-
-REM Prefer python, fall back to py launcher
-where python >nul 2>nul
-if %ERRORLEVEL%==0 (
-    python -m http.server %PORT%
-    goto :eof
-)
-
-where py >nul 2>nul
-if %ERRORLEVEL%==0 (
-    py -m http.server %PORT%
-    goto :eof
-)
-
-echo Python 3 is required but was not found. Install it from https://www.python.org/
-pause
+:: Wait 1.5 seconds then open browser
+timeout /t 2 >nul
+start "" "http://localhost:%PORT%"
