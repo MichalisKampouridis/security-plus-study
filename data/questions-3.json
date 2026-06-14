@@ -1,0 +1,526 @@
+[
+  {
+    "id": "D3-001",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Secure Protocols - Port Numbers",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "The well-known TCP port number used by LDAPS (LDAP over SSL/TLS) is ___.",
+    "blank_answer": "636",
+    "acceptable_answers": ["636", "Port 636", "TCP 636", "TCP/636"],
+    "explanation": "LDAPS, the secure variant of the Lightweight Directory Access Protocol that encrypts directory queries using SSL/TLS, operates on TCP port 636. This differs from standard unencrypted LDAP, which uses port 389.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-002",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network Appliances - Firewall Types",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company wants to deploy a security appliance that inspects HTTP/HTTPS traffic destined for its public-facing web application and blocks requests containing SQL injection and cross-site scripting (XSS) payloads. Which type of appliance is BEST suited for this purpose?",
+    "options": {
+      "A": "Web application firewall (WAF)",
+      "B": "Layer 4 firewall",
+      "C": "Unified threat management (UTM) appliance",
+      "D": "Next-generation firewall (NGFW)"
+    },
+    "answer": "A",
+    "explanation": "A WAF operates at Layer 7 and is purpose-built to inspect the content of web application traffic (HTTP/HTTPS requests) for application-layer attacks such as SQL injection and XSS, and to block malicious requests before they reach the application. A Layer 4 firewall (B) filters based on IP addresses and ports only, without inspecting application payloads. A UTM (C) bundles multiple security functions (firewall, antivirus, content filtering) but is not specifically optimized for deep web application payload inspection. An NGFW (D) provides application awareness and intrusion prevention but a WAF remains the purpose-built tool for protecting a specific web application from injection-style attacks.",
+    "comptia_logic_note": "Both NGFW and WAF operate with some application-layer awareness, which can make this question tricky. CompTIA expects the 'BEST' answer to be the most specialized tool for the described use case: when the scenario specifically calls out protecting a web application from SQL injection/XSS, the WAF is the purpose-built answer, even though an NGFW could provide partial protection."
+  },
+  {
+    "id": "D3-003",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Cloud Responsibility (IaaS)",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "In the Infrastructure as a Service (IaaS) cloud model, which of the following is the customer's responsibility, rather than the cloud provider's?",
+    "options": {
+      "A": "Patching the guest operating system",
+      "B": "Maintaining physical security of the data center",
+      "C": "Maintaining the physical network hardware",
+      "D": "Providing electrical power and cooling for servers"
+    },
+    "answer": "A",
+    "explanation": "In IaaS, the cloud provider manages the underlying physical infrastructure (hardware, networking, power, cooling, physical security), while the customer is responsible for managing everything above the hypervisor, including the guest operating system, patching, applications, and data. Options B, C, and D all describe physical infrastructure responsibilities that remain with the cloud provider under the shared responsibility model.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-004",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Cloud Responsibility (SaaS)",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company migrates its email and productivity tools to a Software as a Service (SaaS) suite. Under the shared responsibility model for SaaS, which security task remains the responsibility of the customer?",
+    "options": {
+      "A": "Managing user accounts and access permissions",
+      "B": "Patching the application's underlying operating system",
+      "C": "Maintaining the physical servers running the application",
+      "D": "Securing the network infrastructure hosting the application"
+    },
+    "answer": "A",
+    "explanation": "In a SaaS model, the provider manages nearly the entire stack, including the operating system, application code, physical servers, and network infrastructure. The customer's primary remaining responsibilities are managing user accounts, access permissions, and the data they put into the service. Options B, C, and D describe responsibilities that shift almost entirely to the SaaS provider.",
+    "comptia_logic_note": "This question tests understanding that the shared responsibility model shifts more responsibility to the provider as services move from IaaS to PaaS to SaaS. Regardless of the model, identity and access management for the customer's own users remains a customer responsibility."
+  },
+  {
+    "id": "D3-005",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Serverless Computing",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following are characteristics of a serverless computing architecture? (Choose TWO.)",
+    "options": {
+      "A": "The cloud provider automatically manages the underlying servers and scaling",
+      "B": "The customer must provision and patch dedicated virtual machines",
+      "C": "Code execution is typically billed based on actual usage rather than fixed server costs",
+      "D": "The customer must install and maintain a hypervisor",
+      "E": "The customer manages the guest operating system"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Serverless computing abstracts away server management entirely; the cloud provider automatically provisions, scales, and patches the underlying compute resources, and billing is typically based on actual execution time and usage rather than fixed allocated servers. Options B, D, and E all describe responsibilities the customer would have in an IaaS model with virtual machines, which is the opposite of the serverless approach.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-006",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Infrastructure as Code",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization defines its server configurations, network settings, and security policies in version-controlled text files that are used to automatically provision identical environments for development, testing, and production. Which architectural concept does this BEST describe?",
+    "options": {
+      "A": "Infrastructure as code (IaC)",
+      "B": "Software as a Service (SaaS)",
+      "C": "Virtual desktop infrastructure (VDI)",
+      "D": "Network function virtualization (NFV)"
+    },
+    "answer": "A",
+    "explanation": "Infrastructure as code (IaC) involves defining and managing infrastructure through machine-readable, version-controlled configuration files, enabling consistent, repeatable, and automated deployment of environments. SaaS (B) refers to a cloud service delivery model for applications, not infrastructure provisioning. VDI (C) refers to hosting desktop environments centrally for remote access. NFV (D) refers to virtualizing network functions such as routers and firewalls, which is related but distinct from defining infrastructure configurations as code.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-007",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Microservices",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "A development team breaks a large monolithic application into a collection of small, independently deployable services, each responsible for a single business function (such as authentication, billing, and inventory), communicating with each other over APIs. A single API gateway handles incoming requests and routes them to the appropriate service.",
+    "stem": "Which architectural model is being described?",
+    "options": {
+      "A": "Microservices architecture",
+      "B": "Virtual desktop infrastructure",
+      "C": "Serverless architecture",
+      "D": "Software-defined networking"
+    },
+    "answer": "A",
+    "explanation": "A microservices architecture breaks an application into small, independently deployable services that each handle a specific business function and communicate over well-defined APIs, often coordinated through an API gateway, exactly as described. Virtual desktop infrastructure (B) refers to centrally hosted desktop environments. Serverless architecture (C) refers to running code without managing servers, which could host microservices but is not the architectural pattern being described here. Software-defined networking (D) refers to centralizing network control and management, not application decomposition.",
+    "comptia_logic_note": "Serverless and microservices are related but distinct concepts that students often confuse. Microservices describes how an application is decomposed into independent services; serverless describes how compute resources for those services are provisioned and billed. A microservices application can be deployed on serverless infrastructure, but the scenario here is describing the decomposition pattern, which is microservices."
+  },
+  {
+    "id": "D3-008",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Containers vs Virtual Machines",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Containers share the host operating system's kernel, whereas virtual machines each run their own complete guest operating system on top of a hypervisor.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Containers are lightweight because multiple containers share the host OS kernel while isolating applications and their dependencies, whereas each virtual machine includes its own full guest operating system running on top of a hypervisor, making VMs heavier but more isolated.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-009",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture Models - Software-Defined Networking",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A network administrator implements an architecture in which the control plane, which makes decisions about where traffic is sent, is centralized in software and decoupled from the underlying physical switches and routers that simply forward traffic based on instructions from that central controller. Which architectural concept does this describe?",
+    "options": {
+      "A": "Software-defined networking (SDN)",
+      "B": "Virtual private network (VPN)",
+      "C": "Network access control (NAC)",
+      "D": "Software-defined wide area network (SD-WAN) only"
+    },
+    "answer": "A",
+    "explanation": "Software-defined networking (SDN) decouples the network's control plane (decision-making) from the data plane (traffic forwarding), centralizing control logic in software so that network behavior can be managed and automated independently of the physical hardware. A VPN (B) creates an encrypted tunnel between endpoints, unrelated to control/data plane separation. NAC (C) controls which devices can connect to a network based on policy, not control plane architecture. SD-WAN (D) is actually a specific application of SDN principles to wide area networking, but the general concept being described, a centralized control plane decoupled from forwarding hardware, is SDN itself, of which SD-WAN is one use case.",
+    "comptia_logic_note": "SD-WAN can seem like a tempting answer because it is a popular real-world application of this concept, but SD-WAN is a specific implementation applied to WAN connections. SDN is the broader architectural concept of separating the control plane from the data plane, which is what this question describes in general terms."
+  },
+  {
+    "id": "D3-010",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Secure Protocols - Port Numbers",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "The well-known TCP port number used by SSH (Secure Shell) for encrypted remote command-line access is ___.",
+    "blank_answer": "22",
+    "acceptable_answers": ["22", "Port 22", "TCP 22", "TCP/22"],
+    "explanation": "SSH provides encrypted remote terminal access and file transfer capabilities and operates on TCP port 22. It is commonly used as a secure replacement for unencrypted protocols such as Telnet.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-011",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network Appliances - Jump Server",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization wants administrators to connect to a hardened, monitored intermediary server before being allowed to access any production servers via SSH or RDP, rather than connecting to production servers directly from their workstations. Which device BEST describes this intermediary server?",
+    "options": {
+      "A": "Jump server",
+      "B": "Load balancer",
+      "C": "Proxy server for web browsing",
+      "D": "Wireless access point"
+    },
+    "answer": "A",
+    "explanation": "A jump server, also called a bastion host, is a hardened, closely monitored system that administrators must connect through before accessing other systems on a more sensitive network segment, reducing direct exposure of production servers to administrator workstations. A load balancer (B) distributes traffic across multiple servers for performance and availability. A web proxy (C) is used to filter and cache outbound web traffic for end users. A wireless access point (D) provides Wi-Fi connectivity and is unrelated to administrative access control.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-012",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network Appliances - IDS vs IPS",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following statements correctly describe the difference between an intrusion detection system (IDS) and an intrusion prevention system (IPS)? (Choose TWO.)",
+    "options": {
+      "A": "An IPS is typically placed inline with traffic flow so it can actively block malicious traffic",
+      "B": "An IDS is typically placed inline with traffic flow so it can actively block malicious traffic",
+      "C": "An IDS passively monitors a copy of traffic and generates alerts without blocking it",
+      "D": "An IPS can only detect threats but cannot take any blocking action",
+      "E": "An IDS and an IPS are simply two different names for the exact same technology with no functional difference"
+    },
+    "answer": ["A", "C"],
+    "explanation": "An IPS is deployed inline, directly in the path of traffic, so that it can actively block or drop malicious traffic in real time, while an IDS is typically deployed out-of-band, monitoring a copy of traffic such as via a network tap or port mirror, and generating alerts without directly interfering with the traffic flow. Option B incorrectly reverses the IDS placement. Option D is incorrect because blocking is the defining capability of an IPS. Option E is incorrect because the inline/active versus passive/monitoring distinction is a meaningful functional difference between the two.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-013",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Secure Protocols - VPN Tunneling",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "A remote employee connects to the corporate VPN. Once connected, all of the employee's internet traffic, including general web browsing, is routed through the corporate network and inspected by corporate security tools, rather than going directly to the internet from the employee's home connection.",
+    "stem": "This VPN configuration is BEST described as which of the following?",
+    "options": {
+      "A": "Full tunnel",
+      "B": "Split tunnel",
+      "C": "Site-to-site VPN",
+      "D": "Clientless VPN"
+    },
+    "answer": "A",
+    "explanation": "In a full tunnel VPN configuration, all of the client's traffic, including general internet browsing, is routed through the encrypted tunnel to the corporate network, allowing centralized inspection and policy enforcement at the cost of additional bandwidth usage. A split tunnel (B) would route only traffic destined for corporate resources through the VPN, while general internet traffic would go directly out the employee's local connection. A site-to-site VPN (C) connects two networks, such as two office locations, rather than an individual remote user. A clientless VPN (D) provides browser-based access to specific applications without a full VPN client, which is not what is described.",
+    "comptia_logic_note": "Full tunnel and split tunnel are commonly confused. The key detail in this scenario is that ALL traffic, including general web browsing, is routed through the corporate network, which is the defining characteristic of a full tunnel. If only corporate resource traffic went through the VPN while general browsing went directly to the internet, that would be a split tunnel."
+  },
+  {
+    "id": "D3-014",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network Architecture - Screened Subnet (DMZ)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization wants to host a public-facing web server so that it is reachable from the internet, while ensuring that if the web server is compromised, the attacker still cannot directly reach the internal database servers and employee workstations on the internal network. Where should the web server BEST be placed?",
+    "options": {
+      "A": "On the internal LAN alongside workstations",
+      "B": "In a screened subnet (DMZ)",
+      "C": "Directly connected to the internet with no firewall",
+      "D": "On the same VLAN as the database servers"
+    },
+    "answer": "B",
+    "explanation": "A screened subnet, also known as a DMZ, is a separate network segment positioned between the internet and the internal network, with firewall rules controlling traffic in both directions. Placing the public-facing web server in the DMZ allows external users to reach it while preventing direct access from that server to the more sensitive internal network if it is compromised. Placing the server on the internal LAN (A) or the same VLAN as the database servers (D) would give a compromised web server a direct path to sensitive internal systems. Connecting it directly to the internet with no firewall (C) would leave it with no protective controls at all.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-015",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Data States (At Rest)",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A company encrypts the data stored on its database servers' hard drives so that if a drive is physically stolen, the data on it cannot be read without the encryption key. Which data state is being protected in this scenario?",
+    "options": {
+      "A": "Data at rest",
+      "B": "Data in transit",
+      "C": "Data in use",
+      "D": "Data in processing"
+    },
+    "answer": "A",
+    "explanation": "Data at rest refers to data stored on physical media, such as hard drives, databases, or backup tapes, and encrypting that storage protects the data if the physical media is lost or stolen. Data in transit (B) refers to data actively moving across a network and would be protected by protocols like TLS. Data in use (C) refers to data actively being processed in memory by an application. Data in processing (D) is not a standard term used to describe one of the three primary data states.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-016",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Tokenization vs Masking",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A retail company wants its customer support representatives to be able to verify a customer's identity using the last four digits of their credit card number, without ever having access to the full card number. The company replaces the full card number stored in its database with a randomly generated value that has no mathematical relationship to the original number, while a separate secure vault maps the random value back to the real card number only when needed for payment processing. Which data protection technique is being used?",
+    "options": {
+      "A": "Hashing",
+      "B": "Masking",
+      "C": "Tokenization",
+      "D": "Encryption"
+    },
+    "answer": "C",
+    "explanation": "Tokenization replaces sensitive data with a randomly generated, non-mathematically-related token, while the original value is stored separately in a secure token vault and can be retrieved only through that vault when needed, exactly as described. Hashing (A) produces a one-way mathematical transformation of data that cannot be reversed back to the original value. Masking (B) typically displays only part of the data, such as the last four digits, directly within the same dataset rather than substituting it with a separately vaulted token. Encryption (D) transforms data using a reversible mathematical algorithm and key, which is a different mechanism than substituting with an unrelated token value.",
+    "comptia_logic_note": "Tokenization and encryption can both be reversed to retrieve the original value, and tokenization and masking can both be used to hide sensitive data from view, making this question tricky. The key detail distinguishing tokenization here is the random, non-mathematically-related substitute value stored in a separate vault, rather than a value derived through an encryption algorithm (encryption) or a partially-visible version of the original data shown in place (masking)."
+  },
+  {
+    "id": "D3-017",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Data in Transit",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is implementing controls to protect data while it travels between a branch office and corporate headquarters over the internet. Which TWO of the following would help protect this data in transit? (Choose TWO.)",
+    "options": {
+      "A": "Establishing a site-to-site VPN between the two locations",
+      "B": "Storing the data in an encrypted database at headquarters",
+      "C": "Using TLS to encrypt the connection between applications at each site",
+      "D": "Applying full-disk encryption to laptops at the branch office",
+      "E": "Shredding paper documents containing the data before disposal"
+    },
+    "answer": ["A", "C"],
+    "explanation": "A site-to-site VPN encrypts traffic as it travels between the two locations over the internet, and TLS encrypts the communication channel between applications, both directly protecting data while it is in transit. Storing data in an encrypted database (B) and applying full-disk encryption to laptops (D) protect data at rest, not data in transit. Shredding paper documents (E) is a data disposal and destruction control and does not relate to data moving across a network.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-018",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Data Loss Prevention",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "___ is a set of tools and policies designed to detect and prevent unauthorized transmission or exfiltration of sensitive data, such as Social Security numbers or credit card numbers, outside of an organization.",
+    "blank_answer": "DLP",
+    "acceptable_answers": ["DLP", "Data Loss Prevention", "Data Leak Prevention"],
+    "explanation": "Data Loss Prevention (DLP) systems monitor and control the movement of sensitive data, such as by inspecting outgoing emails, file transfers, and USB device usage, and can block or alert on transmissions that violate policy, such as sending unencrypted Social Security numbers outside the organization.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-019",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Techniques Overview",
+    "format": "matching",
+    "difficulty": "medium",
+    "stem": "Match each data protection technique on the left with its correct description on the right.",
+    "pairs": [
+      { "term": "Hashing", "definition": "A one-way mathematical function that produces a fixed-length output used to verify data integrity but cannot be reversed to retrieve the original input" },
+      { "term": "Masking", "definition": "Hiding or obscuring part of a data value, such as displaying only the last four digits of an account number, while the rest remains in the same dataset" },
+      { "term": "Tokenization", "definition": "Replacing sensitive data with a randomly generated substitute value that has no mathematical relationship to the original, with the original stored separately in a secure vault" },
+      { "term": "Encryption", "definition": "Transforming data using a reversible algorithm and key so that it can only be read by parties possessing the correct decryption key" }
+    ],
+    "answer": "Each term matches the definition listed at the same position in the pairs array: Hashing -> definition 1 (one-way integrity check), Masking -> definition 2 (partial display obfuscation), Tokenization -> definition 3 (vaulted random substitute), Encryption -> definition 4 (reversible algorithm and key).",
+    "explanation": "Each of these techniques protects sensitive data differently: hashing provides one-way integrity verification, masking conceals portions of data for display purposes, tokenization substitutes data with an unrelated token managed through a separate vault, and encryption provides reversible protection through cryptographic keys.",
+    "comptia_logic_note": "These four terms are frequently confused because they all 'protect' data in some way, but the key differentiator is reversibility and mechanism: hashing is one-way and used for integrity, encryption and tokenization are both reversible but through different mechanisms (mathematical keys vs. vault lookup), and masking simply conceals data for display without necessarily protecting the underlying stored value."
+  },
+  {
+    "id": "D3-020",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - DLP Controls",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A data loss prevention (DLP) solution is configured to monitor outbound email and file transfers. An employee attempts to email a spreadsheet containing customer Social Security numbers to a personal Gmail account. The DLP system automatically blocks the email and generates an alert for the security team.",
+    "stem": "This DLP behavior is an example of which type of control?",
+    "options": {
+      "A": "Detective control only, with no preventive capability",
+      "B": "A technical control that both detects and prevents data exfiltration",
+      "C": "An administrative control implemented through written policy",
+      "D": "A physical control restricting access to data storage media"
+    },
+    "answer": "B",
+    "explanation": "This DLP configuration is a technical control because it is implemented through software, and it both detects the policy violation (sensitive data being sent to an external personal account) and prevents it by blocking the email before it leaves the organization, while also generating an alert. Option A is incorrect because the scenario explicitly describes blocking, which is a preventive action, not merely detection. Option C is incorrect because the control is enforced technically by software, not merely documented in policy. Option D is incorrect because this scenario involves email and network controls, not physical restrictions on storage media.",
+    "comptia_logic_note": "Students sometimes assume DLP is purely a detective control because it generates alerts, but a properly configured DLP solution that blocks the action in real time, as in this scenario, functions as both a detective AND preventive technical control simultaneously."
+  },
+  {
+    "id": "D3-021",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data Protection - Encryption at Rest",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Encrypting data at rest ensures that the data is protected even if an attacker gains physical possession of the storage device, as long as the attacker does not have the decryption key.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Encryption at rest renders stored data unreadable without the appropriate decryption key, so even if an attacker physically steals a hard drive or other storage media, the data remains protected as long as the key is not compromised along with it.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-022",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - RPO vs RTO",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "After a major system outage, an organization measures two key planning metrics: the maximum acceptable amount of data loss measured in time (how far back the most recent usable backup must be), and the maximum acceptable amount of time a system can be down before it must be restored. Which two terms correspond to these metrics, respectively?",
+    "options": {
+      "A": "RPO and RTO",
+      "B": "RTO and RPO",
+      "C": "MTBF and MTTR",
+      "D": "MTTR and MTBF"
+    },
+    "answer": "A",
+    "explanation": "The Recovery Point Objective (RPO) defines the maximum acceptable amount of data loss measured in time, essentially how far back the most recent usable backup or recovery point must be. The Recovery Time Objective (RTO) defines the maximum acceptable downtime before a system must be restored to operation. Option B reverses these definitions. MTBF (C, D) measures the average time between failures of a system, and MTTR measures the average time to repair a failed system, which are reliability metrics rather than disaster recovery planning targets for data loss and downtime tolerance.",
+    "comptia_logic_note": "RPO/RTO and MTBF/MTTR are easy to mix up because all four are time-based metrics related to outages. RPO and RTO are recovery planning targets defined by the business (how much loss and downtime is tolerable), while MTBF and MTTR are reliability metrics that describe how often a system fails and how long repairs typically take."
+  },
+  {
+    "id": "D3-023",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - Mean Time To Repair",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "After a server failure, the IT team restores the system to operation within 45 minutes. This 45-minute duration represents an actual measurement of the ___, the average time required to repair a failed system and return it to service.",
+    "blank_answer": "MTTR",
+    "acceptable_answers": ["MTTR", "Mean Time To Repair", "Mean Time To Recovery"],
+    "explanation": "Mean Time To Repair (MTTR) is the average time required to detect, diagnose, and repair a failure and restore a system to normal operation. It is a key metric used to evaluate maintainability and recovery efficiency.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-024",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - Recovery Site Types",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company maintains a fully equipped backup data center with servers, network equipment, and continuously replicated data that mirrors production, allowing operations to fail over within minutes of a disaster at the primary site. Which type of recovery site does this describe?",
+    "options": {
+      "A": "Hot site",
+      "B": "Warm site",
+      "C": "Cold site",
+      "D": "Mobile site"
+    },
+    "answer": "A",
+    "explanation": "A hot site is a fully equipped, continuously updated backup facility that can take over operations almost immediately after a disaster, minimizing downtime at the highest cost. A warm site (B) has hardware and connectivity in place but requires some data restoration and configuration before becoming operational, resulting in a longer recovery time than a hot site. A cold site (C) provides only basic facilities such as space, power, and cooling, requiring significant time to install equipment and restore data before becoming operational. A mobile site (D) refers to a transportable recovery facility, which is not what is described here.",
+    "comptia_logic_note": "Hot, warm, and cold sites are distinguished primarily by recovery time and cost. The key detail in this scenario is 'continuously replicated data' and failover within minutes, which is the defining characteristic of a hot site. If the data needed to be restored from recent backups before becoming usable, it would be a warm site."
+  },
+  {
+    "id": "D3-025",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - High Availability",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization wants to ensure that its web application remains available even if a single server fails, by distributing incoming traffic across multiple identical servers and automatically redirecting traffic away from any server that becomes unresponsive. Which TWO of the following technologies and concepts support this goal? (Choose TWO.)",
+    "options": {
+      "A": "Load balancing",
+      "B": "Clustering",
+      "C": "Single point of failure",
+      "D": "Cold site",
+      "E": "Tabletop exercise"
+    },
+    "answer": ["A", "B"],
+    "explanation": "Load balancing distributes incoming traffic across multiple servers and can detect and route around unhealthy nodes, while clustering groups multiple servers together so that they function as a single system with built-in redundancy and failover capability, both directly supporting high availability for the web application. A single point of failure (C) is the opposite concept, a component whose failure would cause the entire system to fail, which is what the organization is trying to avoid. A cold site (D) relates to disaster recovery facilities, not real-time application availability. A tabletop exercise (E) is a discussion-based exercise to test incident response plans, not a technical availability mechanism.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-026",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - Backup Types",
+    "format": "matching",
+    "difficulty": "medium",
+    "stem": "Match each backup type to its correct description.",
+    "pairs": [
+      { "term": "Full backup", "definition": "Copies all selected data in its entirety, regardless of whether it has changed since the last backup, resulting in the longest backup time but the simplest restoration process" },
+      { "term": "Incremental backup", "definition": "Copies only the data that has changed since the last backup of any type (full or incremental), resulting in faster backups but requiring the full backup plus every incremental since to restore" },
+      { "term": "Differential backup", "definition": "Copies all data that has changed since the last full backup, resulting in faster restoration than incremental backups because only the full backup plus the most recent differential are needed" },
+      { "term": "Snapshot", "definition": "Captures the state of a system or virtual machine at a specific point in time, often used to quickly revert changes or as a point-in-time recovery option" }
+    ],
+    "answer": "Each term matches the definition listed at the same position in the pairs array: Full backup -> definition 1, Incremental backup -> definition 2, Differential backup -> definition 3, Snapshot -> definition 4.",
+    "explanation": "Full backups copy everything and are the foundation for other backup types. Incremental backups are fast but require chaining multiple backups together for restoration. Differential backups balance speed and restoration simplicity by always referencing the last full backup. Snapshots provide point-in-time captures often used for quick rollback, particularly in virtualized environments.",
+    "comptia_logic_note": "Incremental and differential backups are commonly confused. The key distinction is what each one is measured against: incremental backups are based on changes since the last backup of ANY type, creating a chain, while differential backups are always based on changes since the last FULL backup, with no chain, making differential restoration simpler but the backups themselves larger over time."
+  },
+  {
+    "id": "D3-027",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - Elasticity",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "An e-commerce company's website experiences a surge in traffic during a holiday sale that is ten times its normal volume. The company's infrastructure automatically provisions additional virtual server instances to handle the increased load, and then de-provisions them after the sale ends and traffic returns to normal levels.",
+    "stem": "This capability is BEST described as which of the following?",
+    "options": {
+      "A": "Elasticity",
+      "B": "Redundancy",
+      "C": "High availability",
+      "D": "Non-persistence"
+    },
+    "answer": "A",
+    "explanation": "Elasticity refers to a system's ability to automatically scale resources up or down in response to changing demand, exactly as described with the automatic provisioning and de-provisioning of server instances during and after the traffic surge. Redundancy (B) refers to having duplicate components to eliminate single points of failure, not dynamically scaling capacity. High availability (C) refers to a system's ability to remain operational and accessible with minimal downtime, which is a related goal but does not specifically describe the scaling behavior. Non-persistence (D) refers to systems or virtual machines that are reset to a known state after each use, unrelated to capacity scaling.",
+    "comptia_logic_note": "Elasticity and high availability/scalability are related cloud concepts that can overlap. The key detail here is the automatic, bidirectional scaling (up during the surge, down afterward) based on demand, which is the defining characteristic of elasticity. High availability more broadly refers to minimizing downtime and may or may not involve dynamic scaling."
+  },
+  {
+    "id": "D3-028",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience - NIC Teaming and Multipath",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A server is configured with two network interface cards (NICs) connected to two separate switches, both providing network connectivity for the server. If one NIC or switch fails, traffic automatically continues to flow through the remaining NIC and switch without interruption. Which concept does this BEST illustrate?",
+    "options": {
+      "A": "NIC teaming for redundancy",
+      "B": "Load balancing across data centers",
+      "C": "Tokenization",
+      "D": "Geographic dispersion"
+    },
+    "answer": "A",
+    "explanation": "NIC teaming, also called network interface bonding, combines multiple physical network interfaces into a single logical interface, providing redundancy so that if one NIC or its connected switch fails, network connectivity continues through the remaining interface, exactly as described. Load balancing across data centers (B) refers to distributing traffic between geographically separate facilities, not redundant NICs on a single server. Tokenization (C) is a data protection technique unrelated to network connectivity. Geographic dispersion (D) refers to distributing systems across different physical locations to reduce the impact of a regional disaster, not local NIC redundancy.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-029",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Architecture - Secure Access Service Edge (SASE)",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization with a largely remote workforce wants to replace its traditional hub-and-spoke VPN architecture with a cloud-delivered service that combines SD-WAN networking with security functions such as secure web gateway, cloud access security broker, firewall-as-a-service, and zero trust network access, all enforced close to the user regardless of location. Which architecture model BEST describes this solution?",
+    "options": {
+      "A": "Secure Access Service Edge (SASE)",
+      "B": "Virtual private network (VPN) concentrator",
+      "C": "Network access control (NAC)",
+      "D": "Jump server"
+    },
+    "answer": "A",
+    "explanation": "SASE converges networking capabilities like SD-WAN with a suite of cloud-delivered security services, including secure web gateway, CASB, firewall-as-a-service, and zero trust network access, enforcing consistent policy close to the user rather than routing all traffic back through a central data center. A VPN concentrator (B) is a single device that terminates many VPN tunnels but does not provide the broader integrated security service stack described. NAC (C) controls which devices can connect to a network based on posture, a narrower function than the full SASE model. A jump server (D) is a hardened intermediary host used to access other systems, unrelated to this scenario.",
+    "comptia_logic_note": "SASE is often confused with a simple VPN replacement, but the key distinguishing detail is the convergence of networking AND multiple security services (CASB, SWG, FWaaS, ZTNA) delivered from the cloud, not just encrypted tunnels."
+  },
+  {
+    "id": "D3-030",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network Security - RDP Port",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An administrator needs to open a firewall rule to allow Remote Desktop Protocol (RDP) connections to a Windows server for remote administration. Which TCP port should be permitted?",
+    "options": {
+      "A": "3389",
+      "B": "22",
+      "C": "443",
+      "D": "23"
+    },
+    "answer": "A",
+    "explanation": "RDP uses TCP port 3389 by default to provide graphical remote access to Windows systems. Port 22 (B) is used by SSH for encrypted command-line remote access, typically on Linux/Unix systems. Port 443 (C) is used for HTTPS web traffic. Port 23 (D) is used by Telnet, an unencrypted remote administration protocol.",
+    "comptia_logic_note": "RDP (3389) and SSH (22) are both used for remote administration but serve different platforms and use different ports; exam scenarios often test whether a candidate can match the correct port to the correct remote access protocol."
+  }
+]

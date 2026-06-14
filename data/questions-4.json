@@ -1,0 +1,860 @@
+[
+  {
+    "id": "D4-001",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity and Access Management - Access Control Models",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A hospital wants to ensure that a patient's medical records can only be viewed by clinicians who are currently assigned to that patient's care team, with access automatically granted or revoked based on attributes such as department, shift schedule, and current patient assignments, rather than a fixed job-title-based role. Which access control model BEST meets this requirement?",
+    "options": {
+      "A": "Role-based access control (RBAC)",
+      "B": "Discretionary access control (DAC)",
+      "C": "Attribute-based access control (ABAC)",
+      "D": "Mandatory access control (MAC)"
+    },
+    "answer": "C",
+    "explanation": "ABAC grants access dynamically based on a combination of attributes (such as department, shift, location, and current assignment), which matches the scenario's requirement for access that changes based on multiple contextual factors. RBAC (A) assigns permissions based on a static job role and would not automatically adjust to per-patient assignments. DAC (B) allows resource owners to grant access at their discretion, which does not fit a centrally enforced clinical policy. MAC (D) relies on fixed security labels and clearances set by a central authority, which is too rigid for attribute-driven, context-based access.",
+    "comptia_logic_note": "RBAC is the most commonly correct answer for healthcare access scenarios, so candidates may default to it. However, when the scenario explicitly describes access that changes dynamically based on multiple contextual attributes (shift, assignment, department) rather than a single static role, ABAC is the better fit."
+  },
+  {
+    "id": "D4-002",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Email Security Protocols",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An administrator wants to reduce email spoofing of the company's domain by (1) specifying which mail servers are authorized to send email on behalf of the domain and (2) digitally signing outgoing messages so recipients can verify the message content was not altered in transit. Which TWO email security protocols should be implemented to achieve these two goals? (Choose TWO.)",
+    "options": {
+      "A": "Sender Policy Framework (SPF)",
+      "B": "DomainKeys Identified Mail (DKIM)",
+      "C": "Domain-based Message Authentication, Reporting and Conformance (DMARC)",
+      "D": "Internet Message Access Protocol (IMAP)",
+      "E": "Post Office Protocol version 3 (POP3)"
+    },
+    "answer": ["A", "B"],
+    "explanation": "SPF publishes a DNS record listing the mail servers authorized to send email for a domain, directly addressing the first goal. DKIM adds a cryptographic signature to outgoing messages, allowing recipients to verify that the message content has not been altered, directly addressing the second goal. DMARC (C) builds on SPF and DKIM to define a policy for handling messages that fail those checks, but it does not itself perform sender authorization or message signing. IMAP (D) and POP3 (E) are email retrieval protocols unrelated to anti-spoofing.",
+    "comptia_logic_note": "DMARC is closely associated with anti-spoofing and is often the first answer candidates think of, but DMARC is a policy/reporting layer that relies on the results of SPF and DKIM rather than performing the authorization or signing itself. When a question describes the two underlying mechanisms (authorized senders and message signing) rather than the reporting policy, SPF and DKIM are the correct pair."
+  },
+  {
+    "id": "D4-003",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Security Techniques - Secure Baselines",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security team documents the standard, approved configuration settings, including installed software, open ports, and security settings, that all newly deployed workstations must match before being placed into production. This documented standard configuration is known as a:",
+    "options": {
+      "A": "Secure baseline",
+      "B": "Penetration test",
+      "C": "Vulnerability scan",
+      "D": "Business impact analysis"
+    },
+    "answer": "A",
+    "explanation": "A secure baseline is a documented set of standard configuration settings that systems must be configured to match, providing a consistent and hardened starting point for deployment and a reference point for detecting unauthorized configuration drift. A penetration test (B) actively attempts to exploit vulnerabilities, not document a configuration standard. A vulnerability scan (C) identifies known weaknesses in systems. A business impact analysis (D) assesses the consequences of disruptions to business functions, unrelated to system configuration standards.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-004",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Security Techniques - Wireless Security Standards",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization is upgrading its wireless network and wants to use the most current Wi-Fi security standard, which provides stronger encryption and protects against offline dictionary attacks on captured handshakes compared to its predecessor. Which wireless security standard should the organization implement?",
+    "options": {
+      "A": "WEP",
+      "B": "WPA",
+      "C": "WPA2",
+      "D": "WPA3"
+    },
+    "answer": "D",
+    "explanation": "WPA3 is the most current Wi-Fi security standard and improves on WPA2 by using a more secure key exchange (SAE, Simultaneous Authentication of Equals) that protects against offline dictionary attacks on captured handshakes, in addition to stronger encryption. WEP (A) is an outdated and cryptographically broken standard. WPA (B) was an interim improvement over WEP but is also outdated. WPA2 (C) is widely used and more secure than WPA/WEP but remains vulnerable to offline dictionary attacks against captured 4-way handshakes, a weakness WPA3 specifically addresses.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-005",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Security Techniques - Mobile Device Hardening",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A company issues corporate smartphones to its sales team, who frequently access company email and customer data while traveling. Which TWO of the following mobile device hardening techniques would BEST protect company data if a device is lost or stolen? (Choose TWO.)",
+    "options": {
+      "A": "Full device encryption",
+      "B": "Disabling the device's lock screen for convenience",
+      "C": "Remote wipe capability",
+      "D": "Allowing unrestricted installation of apps from any source",
+      "E": "Disabling automatic operating system updates"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Full device encryption ensures that data stored on the device cannot be read without the correct credentials, even if the device's storage is removed and accessed directly. Remote wipe capability allows the organization to erase all data on a lost or stolen device remotely, preventing unauthorized access to company data. Disabling the lock screen (B) removes a basic access control, increasing risk. Allowing unrestricted app installation from any source (D) increases the risk of malware. Disabling automatic OS updates (E) leaves the device exposed to known vulnerabilities that patches would address.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-006",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Security Techniques - Hardening Constrained Devices",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "A manufacturing company deploys internet-connected sensors on its factory floor to monitor equipment temperature and vibration. These embedded devices have limited processing power, cannot run traditional endpoint protection software, and rarely receive firmware updates from the manufacturer.",
+    "stem": "Given these constraints, which of the following is the MOST appropriate way to reduce the risk these devices pose to the rest of the network?",
+    "options": {
+      "A": "Place the devices on an isolated network segment with restricted access to and from other systems",
+      "B": "Install a full endpoint detection and response (EDR) agent on each device",
+      "C": "Require the devices to use the same VLAN as corporate workstations for easier management",
+      "D": "Disable all logging on the devices to reduce their processing load"
+    },
+    "answer": "A",
+    "explanation": "When devices cannot be hardened directly through endpoint software or frequent patching due to hardware limitations, network segmentation and isolation limit their exposure and contain the impact if one of these devices is compromised, by restricting their communication to only what is necessary. Installing a full EDR agent (B) is not feasible given the devices' limited processing power, as stated in the scenario. Placing the devices on the same VLAN as corporate workstations (C) would increase risk by giving a compromised sensor a direct path to higher-value systems. Disabling logging (D) would reduce visibility into the devices' behavior, making detection of compromise harder, and is not a meaningful hardening technique.",
+    "comptia_logic_note": "When a scenario describes a device that cannot be patched or run security agents due to hardware constraints (common with embedded systems, ICS/SCADA, and IoT), compensating controls like network segmentation and isolation are typically the 'BEST' answer, since direct hardening of the device itself is not possible."
+  },
+  {
+    "id": "D4-007",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Security Techniques - Application Security",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A web application developer wants to ensure that data submitted through a web form, such as a username field, cannot be used to inject malicious script code that executes in other users' browsers when the data is later displayed on a page. Which security technique addresses this risk?",
+    "options": {
+      "A": "Input validation and output encoding",
+      "B": "Setting the Secure attribute on cookies",
+      "C": "Enabling full disk encryption on the web server",
+      "D": "Configuring a longer session timeout"
+    },
+    "answer": "A",
+    "explanation": "Input validation restricts the data submitted by users to expected formats and characters, while output encoding ensures that any data displayed back to users is rendered as plain text rather than executable code, both of which directly mitigate cross-site scripting (XSS) attacks where malicious script is injected through input fields. Setting the Secure attribute on cookies (B) ensures cookies are only transmitted over HTTPS, which protects against cookie interception but does not prevent script injection through input fields. Full disk encryption (C) protects data at rest on the server but does not address how submitted input is processed or displayed. A longer session timeout (D) is unrelated to input handling and would actually increase risk if a session is hijacked.",
+    "comptia_logic_note": "Cookie security attributes (Secure, HttpOnly) and input validation/output encoding are both web application security techniques, which can cause confusion. The key distinction is that input validation and output encoding address how user-supplied data is processed and rendered, preventing injection attacks like XSS, while cookie attributes address how session tokens are transmitted and accessed, preventing token theft."
+  },
+  {
+    "id": "D4-008",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset Management - Asset Inventory",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization maintains a centralized database that tracks every laptop, server, and mobile device it owns, including the assigned user, physical location, purchase date, and warranty status. This practice is BEST described as:",
+    "options": {
+      "A": "Asset inventory management",
+      "B": "Vulnerability scanning",
+      "C": "Incident response",
+      "D": "Penetration testing"
+    },
+    "answer": "A",
+    "explanation": "Asset inventory management involves tracking organizational hardware and software assets throughout their lifecycle, including ownership, location, and status information, which supports security efforts such as ensuring all devices receive patches and are accounted for. Vulnerability scanning (B) identifies security weaknesses in systems. Incident response (C) addresses security events after they occur. Penetration testing (D) actively tests defenses by simulating attacks. None of these describe maintaining a tracking database of organizational assets.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-009",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset Management - Data Classification",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company labels its documents as 'Public,' 'Internal,' 'Confidential,' or 'Restricted,' with handling requirements such as encryption and access restrictions becoming progressively stricter for each label. This practice is an example of:",
+    "options": {
+      "A": "Data classification",
+      "B": "Data sovereignty",
+      "C": "Data minimization",
+      "D": "Data masking"
+    },
+    "answer": "A",
+    "explanation": "Data classification assigns labels to data based on its sensitivity, which determines the handling, storage, and access controls required for that data, exactly as described with the progressively stricter requirements for each label. Data sovereignty (B) refers to data being subject to the laws of the country in which it is located, not sensitivity labeling. Data minimization (C) refers to collecting only the data necessary for a specific purpose. Data masking (D) refers to obscuring portions of data values, a technique that might be applied to certain classified data but is not itself the classification scheme.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-010",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset Management - Disposal and Sanitization",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is decommissioning a batch of old laptops that contained sensitive employee records. Which TWO of the following actions should be performed as part of secure asset disposal? (Choose TWO.)",
+    "options": {
+      "A": "Perform data sanitization on the storage drives before disposal",
+      "B": "Donate the laptops immediately without removing any data, since they are old",
+      "C": "Document the disposal process, including certificates of destruction where applicable",
+      "D": "Remove asset tags so the devices cannot be traced back to the organization",
+      "E": "Leave the laptops in a storage closet indefinitely without further action"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Sanitizing storage drives, through methods such as secure wiping, degaussing, or physical destruction, ensures that sensitive data cannot be recovered from disposed devices, and documenting the process with certificates of destruction provides an audit trail demonstrating compliance with data handling requirements. Donating laptops without removing data (B) would expose sensitive employee records to whoever receives the devices. Removing asset tags (D) does not address the data remaining on the drives and is not a standard disposal security step. Leaving laptops indefinitely in storage (E) does not constitute disposal and leaves sensitive data at risk of theft or loss.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-011",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset Management - Shadow IT",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "During an audit, a security team discovers that several employees in the marketing department have been using a personal, unapproved cloud file-sharing service to store and share company marketing materials and customer contact lists, without the IT department's knowledge or approval.",
+    "stem": "This discovery is BEST described as an example of which asset management concern?",
+    "options": {
+      "A": "Shadow IT",
+      "B": "Data sovereignty",
+      "C": "Asset tagging",
+      "D": "End-of-life hardware"
+    },
+    "answer": "A",
+    "explanation": "Shadow IT refers to the use of unauthorized hardware, software, or cloud services within an organization without the knowledge or approval of the IT or security department, exactly as described with the marketing department's use of an unapproved cloud service. Data sovereignty (B) refers to data being subject to the laws of the jurisdiction where it is stored, which is a separate concern. Asset tagging (C) refers to physically or digitally labeling owned assets for tracking, the opposite of the untracked situation described. End-of-life hardware (D) refers to equipment that is no longer supported by the manufacturer, unrelated to unauthorized cloud service usage.",
+    "comptia_logic_note": "Shadow IT is a key concern in asset management because unmanaged assets and services cannot be inventoried, patched, monitored, or included in security policy enforcement, creating blind spots for the security team. Recognizing 'unapproved/unknown to IT' language in a scenario is the strongest signal for this term."
+  },
+  {
+    "id": "D4-012",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset Management - Legal Hold vs Retention Policy",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization's data retention policy states that email records should be deleted after three years. However, the legal department notifies IT that the company is involved in pending litigation and that all emails related to a specific project, regardless of age, must be preserved and must not be deleted until the litigation concludes. Which concept BEST describes the legal department's instruction?",
+    "options": {
+      "A": "Legal hold",
+      "B": "Data minimization",
+      "C": "Right to be forgotten",
+      "D": "Data sovereignty"
+    },
+    "answer": "A",
+    "explanation": "A legal hold is a directive to preserve specific data that may be relevant to pending or anticipated litigation, which overrides normal data retention and deletion schedules until the legal hold is lifted. Data minimization (B) refers to collecting and retaining only the data necessary for a defined purpose, the opposite of an instruction to retain additional data. The right to be forgotten (C) is a privacy concept, often associated with regulations like GDPR, that allows individuals to request deletion of their personal data, which is unrelated to litigation-driven preservation. Data sovereignty (D) refers to data being subject to the laws of the jurisdiction where it resides, not a preservation directive tied to litigation.",
+    "comptia_logic_note": "A legal hold can seem to conflict with a standard retention policy, since it requires retaining data that the policy would normally require deleting. The key signal is the phrase 'pending litigation' combined with an instruction to preserve specific data beyond normal schedules, which always points to a legal hold overriding the standard retention policy for that specific data."
+  },
+  {
+    "id": "D4-013",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability Management - Scan Types",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security team runs a vulnerability scan using an account with valid login credentials on the target systems, allowing the scanner to check installed software versions, configuration settings, and local security policies in addition to network-facing services. This type of scan is known as a:",
+    "options": {
+      "A": "Credentialed scan",
+      "B": "Non-credentialed scan",
+      "C": "Penetration test",
+      "D": "Packet capture"
+    },
+    "answer": "A",
+    "explanation": "A credentialed scan uses valid login credentials to authenticate to the target systems, allowing the scanner to examine internal configuration details, installed software versions, and local security settings that would not be visible from an external, unauthenticated perspective, providing more accurate and detailed results. A non-credentialed scan (B) only assesses what is visible from outside the system without authentication, typically producing less detailed results and more false positives. A penetration test (C) goes beyond scanning to actively exploit vulnerabilities. A packet capture (D) records network traffic and is unrelated to vulnerability scanning.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-014",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability Management - CVSS",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "The ___ is a standardized framework that assigns a numerical score, typically from 0 to 10, to a vulnerability based on factors such as attack vector, complexity, and impact, helping organizations prioritize remediation efforts.",
+    "blank_answer": "CVSS",
+    "acceptable_answers": ["CVSS", "Common Vulnerability Scoring System"],
+    "explanation": "The Common Vulnerability Scoring System (CVSS) provides a standardized numerical score representing the severity of a vulnerability, based on metrics covering exploitability and impact, allowing organizations to prioritize which vulnerabilities to remediate first.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-015",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability Management - Process Activities",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following are typical activities within the vulnerability management process? (Choose TWO.)",
+    "options": {
+      "A": "Scanning systems to identify known vulnerabilities",
+      "B": "Permanently disabling all internet access for every system",
+      "C": "Prioritizing and remediating identified vulnerabilities based on risk",
+      "D": "Refusing to apply any vendor patches until the next major OS upgrade",
+      "E": "Deleting all vulnerability scan reports immediately after they are generated"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Vulnerability management is an ongoing cycle that includes identifying vulnerabilities through scanning and then prioritizing and remediating them based on risk, such as severity, exploitability, and asset criticality. Permanently disabling all internet access (B) is an extreme and impractical measure, not a standard vulnerability management activity. Refusing to apply patches until a major upgrade (D) would leave systems exposed to known vulnerabilities for extended periods, contradicting the goal of vulnerability management. Deleting scan reports immediately (E) would eliminate the documentation needed to track remediation progress and demonstrate due diligence.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-016",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability Management - False Positives",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "A vulnerability scan flags a web server as running a version of software with a known critical vulnerability. However, upon investigation, the security analyst discovers that the vendor's patch for this vulnerability was already applied two weeks ago, and the scanner's vulnerability definitions had not yet been updated to reflect this.",
+    "stem": "This scan result is BEST described as a:",
+    "options": {
+      "A": "False positive",
+      "B": "False negative",
+      "C": "True positive",
+      "D": "Zero-day vulnerability"
+    },
+    "answer": "A",
+    "explanation": "A false positive occurs when a scanner reports a vulnerability that does not actually exist on the target system, as in this case where the patch had already been applied but the scanner's outdated definitions caused it to still flag the issue. A false negative (B) would be the opposite, a real vulnerability that the scanner failed to detect. A true positive (C) would mean the vulnerability genuinely exists and was correctly identified, which is not the case here since the patch was already applied. A zero-day vulnerability (D) refers to a vulnerability that is unknown to the vendor and has no available patch, which does not describe this scenario.",
+    "comptia_logic_note": "Distinguishing false positives from false negatives is important: a false positive wastes analyst time investigating a non-issue, as in this scenario, while a false negative is more dangerous because a real vulnerability goes unnoticed. The key detail here is that the vulnerability had already been patched, meaning it no longer exists, but the scanner still reported it."
+  },
+  {
+    "id": "D4-017",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability Management - CVE vs CVSS",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A security analyst reviewing a vulnerability report sees a reference number in the format 'CVE-2024-12345' along with a severity score of 9.8 out of 10. Which statement BEST describes the relationship between these two pieces of information?",
+    "options": {
+      "A": "The CVE number is a unique identifier for the specific publicly known vulnerability, while the score of 9.8 is a CVSS rating describing its severity",
+      "B": "The CVE number is the severity score, and 9.8 is the unique vulnerability identifier",
+      "C": "Both numbers refer to the same scoring system and are interchangeable",
+      "D": "The CVE number indicates how many systems are affected, and 9.8 indicates the patch version"
+    },
+    "answer": "A",
+    "explanation": "A CVE (Common Vulnerabilities and Exposures) entry is a unique identifier assigned to a specific, publicly disclosed vulnerability, allowing it to be referenced consistently across tools and reports. CVSS (Common Vulnerability Scoring System) provides a numerical severity score, such as 9.8, based on factors like exploitability and impact. The two systems work together: the CVE identifies which vulnerability is being discussed, while the CVSS score indicates how severe it is. Options B, C, and D all incorrectly conflate or misattribute the purposes of these two distinct identifiers.",
+    "comptia_logic_note": "CVE and CVSS are easy to confuse because both appear together in vulnerability reports and both involve numbers. The key distinction is that CVE is an identifier (which vulnerability), while CVSS is a score (how severe). Remembering that CVE entries look like 'CVE-YEAR-NUMBER' while CVSS scores are always a number from 0.0 to 10.0 can help distinguish them quickly."
+  },
+  {
+    "id": "D4-018",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "Alerting and Monitoring - SIEM",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security operations center (SOC) uses a platform that collects log data from firewalls, servers, and endpoints across the organization, correlates events from these different sources, and generates alerts when suspicious patterns are detected across multiple systems. This platform is BEST described as a:",
+    "options": {
+      "A": "Security information and event management (SIEM) system",
+      "B": "Virtual private network (VPN) concentrator",
+      "C": "Wireless access point",
+      "D": "Load balancer"
+    },
+    "answer": "A",
+    "explanation": "A SIEM system aggregates and correlates log data from many different sources across an organization, enabling centralized analysis, alerting, and reporting on security events that might not be apparent when looking at any single source in isolation, exactly as described. A VPN concentrator (B) manages encrypted remote access connections. A wireless access point (C) provides Wi-Fi connectivity. A load balancer (D) distributes traffic across servers. None of these perform centralized log correlation and alerting.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-019",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "Alerting and Monitoring - SNMP",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "Network devices such as routers and switches often send status information and alerts to a centralized monitoring system using a protocol that, in its older versions, used UDP ports 161 and 162. This monitoring protocol is ___.",
+    "blank_answer": "SNMP",
+    "acceptable_answers": ["SNMP", "Simple Network Management Protocol"],
+    "explanation": "SNMP (Simple Network Management Protocol) is used to monitor and manage network devices, with agents on devices sending status information to a central manager. SNMP traditionally uses UDP port 161 for queries and UDP port 162 for traps, which are alerts sent from devices to the manager.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-020",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "Alerting and Monitoring - Log Aggregation",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization configures all of its servers, network devices, and applications to forward their log data to a single centralized logging server, where the logs are stored, indexed, and made searchable for security analysts. Which of the following BEST describes the primary security benefit of this practice?",
+    "options": {
+      "A": "It allows analysts to search and correlate events across multiple systems from a single location, which would be difficult if logs remained scattered across individual devices",
+      "B": "It eliminates the need for any access controls on the individual servers",
+      "C": "It guarantees that no security incidents will ever occur",
+      "D": "It automatically patches vulnerabilities on all connected devices"
+    },
+    "answer": "A",
+    "explanation": "Centralized log aggregation allows analysts to search, correlate, and analyze log data from many systems in one place, which is essential for detecting patterns of malicious activity that span multiple systems and would be extremely difficult to identify by manually reviewing logs on each individual device. Centralizing logs (B) does not eliminate the need for access controls on individual servers. No logging practice (C) can guarantee incidents will never occur; logging supports detection and investigation, not prevention. Centralized logging (D) does not patch vulnerabilities; it is a monitoring and visibility tool.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-021",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "Alerting and Monitoring - Alert Tuning",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A SOC analyst notices that a particular alert rule generates hundreds of alerts per day, the vast majority of which are determined to be benign after investigation, consuming significant analyst time. Which TWO of the following actions would help address this issue? (Choose TWO.)",
+    "options": {
+      "A": "Tune the alert thresholds or criteria to reduce the number of benign alerts",
+      "B": "Disable all alerting for the affected system entirely",
+      "C": "Review and adjust the rule logic to better distinguish malicious activity from normal behavior",
+      "D": "Ignore all future alerts from this rule without review",
+      "E": "Increase the sensitivity of the rule so that it generates even more alerts"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Tuning alert thresholds and adjusting rule logic to better distinguish malicious activity from normal behavior, often called alert tuning, reduces the volume of false positives and alert fatigue while preserving the ability to detect genuine threats. Disabling alerting entirely (B) would eliminate visibility into genuine threats from that system, creating a blind spot. Ignoring all future alerts without review (D) is dangerous because some of those alerts could represent real incidents. Increasing sensitivity (E) would worsen the problem by generating even more alerts, the opposite of the desired outcome.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-022",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "Alerting and Monitoring - File Integrity Monitoring",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A monitoring tool calculates and stores a cryptographic hash of critical system files, such as operating system binaries and configuration files, on a regular schedule. One night, the tool detects that the hash of a core system binary has changed, even though no authorized patch or update was scheduled, and immediately generates a high-priority alert.",
+    "stem": "This monitoring capability is BEST described as:",
+    "options": {
+      "A": "File integrity monitoring (FIM)",
+      "B": "Network flow analysis",
+      "C": "Vulnerability scanning",
+      "D": "Load balancing"
+    },
+    "answer": "A",
+    "explanation": "File integrity monitoring (FIM) works by establishing a baseline hash of critical files and periodically recalculating those hashes to detect unauthorized changes, such as a system binary being modified by malware, exactly as described in this scenario. Network flow analysis (B) examines metadata about network traffic patterns rather than file contents. Vulnerability scanning (C) identifies known weaknesses in software versions and configurations, not unexpected changes to specific files. Load balancing (D) distributes traffic across servers and is unrelated to file integrity.",
+    "comptia_logic_note": "FIM is particularly valuable for detecting unauthorized modifications to critical system files that might indicate malware, rootkits, or unauthorized changes by an attacker who has gained access, since such changes would not match the expected hash established during the baseline."
+  },
+  {
+    "id": "D4-023",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Enterprise Security Capabilities - DNS Filtering",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A company wants to prevent employees from accessing known malicious and inappropriate websites by blocking access based on the website's category, such as gambling or malware-hosting, before the connection is even established, regardless of which device or browser is used. Which technology is BEST suited for this purpose?",
+    "options": {
+      "A": "DNS filtering",
+      "B": "Full disk encryption",
+      "C": "Host-based firewall",
+      "D": "File integrity monitoring"
+    },
+    "answer": "A",
+    "explanation": "DNS filtering intercepts DNS queries and blocks resolution for domains categorized as malicious or inappropriate, preventing connections to those sites at the DNS lookup stage before any content is even requested, and can be applied network-wide regardless of device or browser. Full disk encryption (B) protects data stored on a device and is unrelated to web access. A host-based firewall (C) controls network connections to and from an individual host based on rules, but is not typically used for category-based website filtering across an organization. File integrity monitoring (D) detects unauthorized changes to files, unrelated to website access control.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-024",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Enterprise Security Capabilities - Disabling Unnecessary Protocols",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "As part of hardening a server, an administrator disables the unencrypted remote administration protocol that traditionally operates on TCP port ___, in favor of SSH, which provides encrypted remote access.",
+    "blank_answer": "23",
+    "acceptable_answers": ["23", "Port 23", "TCP 23", "TCP/23"],
+    "explanation": "Telnet, an unencrypted remote terminal protocol, traditionally operates on TCP port 23. Because Telnet transmits all data, including credentials, in cleartext, it is commonly disabled and replaced with SSH (TCP port 22), which encrypts the session.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-025",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Enterprise Security Capabilities - EDR vs Antivirus",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization replaces its traditional signature-based antivirus software with an endpoint detection and response (EDR) solution. Which TWO of the following capabilities does EDR typically add beyond traditional antivirus? (Choose TWO.)",
+    "options": {
+      "A": "Continuous behavioral monitoring of endpoint activity to detect suspicious patterns, even from previously unknown threats",
+      "B": "Detecting and quarantining files that match a database of known malware signatures",
+      "C": "The ability for analysts to investigate and respond to threats remotely, such as isolating an infected endpoint from the network",
+      "D": "Encrypting data stored on the endpoint's hard drive",
+      "E": "Filtering inbound network traffic based on IP address"
+    },
+    "answer": ["A", "C"],
+    "explanation": "EDR solutions go beyond signature-based detection by continuously monitoring endpoint behavior to identify suspicious activity patterns, including previously unknown (zero-day) threats, and by providing analysts with tools to investigate and respond to incidents directly, such as isolating a compromised endpoint from the network. Detecting known malware via signatures (B) describes traditional antivirus capability, which EDR typically includes but is not what differentiates it. Encrypting data on the hard drive (D) describes full disk encryption, a separate control. Filtering inbound network traffic by IP (E) describes firewall functionality, not EDR.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-026",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Enterprise Security Capabilities - Firewall Rule Ordering",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A firewall administrator creates an access control list (ACL) with the following rules, evaluated from top to bottom: Rule 1 allows traffic from any source to the web server on port 443. Rule 2 denies traffic from a specific known-malicious IP address to the web server on port 443. The administrator notices that traffic from the known-malicious IP address is still being allowed to reach the web server on port 443.",
+    "stem": "What is the MOST likely reason for this unexpected behavior?",
+    "options": {
+      "A": "Rule 1, which broadly allows traffic, is evaluated before and therefore takes precedence over Rule 2's deny statement",
+      "B": "The firewall does not support deny rules",
+      "C": "Port 443 cannot be filtered by firewalls",
+      "D": "The malicious IP address is using an encrypted connection, which bypasses all firewall rules"
+    },
+    "answer": "A",
+    "explanation": "Firewall ACLs are typically processed in order from top to bottom, and the first matching rule is applied; once a packet matches Rule 1, which broadly allows traffic on port 443, the firewall stops processing further rules for that packet, so the more specific deny rule placed below it never gets evaluated. The fix would be to place the more specific deny rule above the broader allow rule. Firewalls do support deny rules (B), so this is incorrect. Port 443 can absolutely be filtered by firewalls (C); it is a standard TCP port like any other. Encryption (D) does not bypass firewall rules, which typically filter based on IP address and port regardless of payload encryption.",
+    "comptia_logic_note": "Firewall ACL ordering is a common gotcha topic: rules are generally evaluated top-down with a first-match action, so a broad allow rule placed before a specific deny rule will make the deny rule unreachable for matching traffic. The general best practice is to place more specific rules above more general rules, ending with an implicit or explicit deny-all at the bottom."
+  },
+  {
+    "id": "D4-027",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity and Access Management - Multifactor Authentication",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A bank requires customers to log in to online banking using their password (something they know) and a one-time code generated by an app on their smartphone (something they have). This combination is an example of:",
+    "options": {
+      "A": "Multifactor authentication (MFA)",
+      "B": "Single sign-on (SSO)",
+      "C": "Federation",
+      "D": "Role-based access control"
+    },
+    "answer": "A",
+    "explanation": "Multifactor authentication requires two or more different categories (factors) of authentication, such as something you know (a password) and something you have (a one-time code from a registered device), to verify identity, exactly as described. Single sign-on (B) allows a user to authenticate once and access multiple systems without re-entering credentials, which is a different concept from combining multiple factors. Federation (C) allows identities to be trusted across different organizations or systems. Role-based access control (D) determines what an authenticated user is permitted to do, not how they prove their identity.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-028",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity and Access Management - Single Sign-On",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A company allows its employees to log in once to a central identity provider and then access multiple cloud applications, such as email, file storage, and a CRM system, without having to log in separately to each one. This capability is known as ___.",
+    "blank_answer": "SSO",
+    "acceptable_answers": ["SSO", "Single Sign-On"],
+    "explanation": "Single Sign-On (SSO) allows a user to authenticate once with a central identity provider and gain access to multiple independent applications and systems without re-entering credentials for each one, often implemented using protocols such as SAML or OAuth.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-029",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity and Access Management - Deprovisioning",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An employee is terminated from the company effective immediately. Which TWO of the following actions should be part of the account deprovisioning process? (Choose TWO.)",
+    "options": {
+      "A": "Disable or remove the employee's user accounts across all systems",
+      "B": "Leave the employee's accounts active for 90 days in case they need to retrieve personal files",
+      "C": "Revoke any access badges, VPN access, and remote access credentials",
+      "D": "Share the employee's account credentials with their manager for ongoing use",
+      "E": "Allow the employee's mobile device to retain access to corporate email indefinitely"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Promptly disabling or removing user accounts across all systems, and revoking physical access badges, VPN access, and other remote credentials, ensures that a terminated employee can no longer access company resources, reducing the risk of unauthorized access or data theft. Leaving accounts active for any period after termination (B) creates an unnecessary window for misuse. Sharing credentials with a manager (D) violates the principle that accounts should be tied to individual users and is a poor security practice. Allowing continued mobile access to corporate email (E) is the opposite of proper deprovisioning.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-030",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity and Access Management - Just-in-Time Privileged Access",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A database administrator normally has only standard, read-level access to a production database. When the administrator needs to perform a schema migration, they submit a request through a privileged access management (PAM) system, which grants them temporary elevated access for a defined time window, such as two hours, automatically revoking the elevated access once the window expires or the task is marked complete.",
+    "stem": "This approach to granting elevated access is BEST described as:",
+    "options": {
+      "A": "Just-in-time (JIT) privileged access",
+      "B": "Permanent privilege escalation",
+      "C": "Shared administrator account usage",
+      "D": "Mandatory access control"
+    },
+    "answer": "A",
+    "explanation": "Just-in-time (JIT) privileged access grants elevated permissions only for the specific time period needed to complete a task, with access automatically revoked afterward, minimizing the amount of time an account holds elevated privileges and reducing the attack surface associated with standing privileged access. Permanent privilege escalation (B) would mean the elevated access remains indefinitely, the opposite of the temporary, time-bound access described. Shared administrator account usage (C) refers to multiple users sharing one privileged account, which is not described here, since this is the individual administrator's own account being temporarily elevated. Mandatory access control (D) refers to a model where access is determined by fixed security labels and a central authority, not temporary privilege elevation.",
+    "comptia_logic_note": "Just-in-time access is a key privileged access management (PAM) concept tested on the exam. The key signals are 'temporary,' 'time-bound,' and 'automatically revoked,' which distinguish JIT access from standing or permanent privileged accounts that remain elevated indefinitely and pose a greater risk if compromised."
+  },
+  {
+    "id": "D4-031",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "Automation and Orchestration - Benefits",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization writes scripts that automatically apply the same security configuration settings to every newly deployed server, ensuring consistency across hundreds of servers without requiring an administrator to manually configure each one. Which benefit of automation does this BEST illustrate?",
+    "options": {
+      "A": "Enforcing standard, consistent configurations at scale",
+      "B": "Eliminating the need for any security monitoring",
+      "C": "Guaranteeing that no vulnerabilities will ever be introduced",
+      "D": "Removing the need for any human administrators entirely"
+    },
+    "answer": "A",
+    "explanation": "One of the key benefits of automation is the ability to consistently enforce standard configurations and security baselines across a large number of systems, reducing the risk of human error and configuration drift that could occur if each server were configured manually. Automation does not eliminate the need for monitoring (B), guarantee the absence of vulnerabilities (C), or remove the need for human administrators (D); it instead allows administrators to focus on higher-value tasks while routine, repetitive work is handled consistently and efficiently.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-032",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "Automation and Orchestration - Provisioning",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "When a new employee is added to the human resources system, a script automatically creates the employee's network account, mailbox, and assigns initial access permissions based on their department and job title, without requiring manual intervention by IT staff. This is an example of:",
+    "options": {
+      "A": "Automated user provisioning",
+      "B": "Manual access review",
+      "C": "Penetration testing",
+      "D": "Data sanitization"
+    },
+    "answer": "A",
+    "explanation": "Automated user provisioning uses scripts or workflows triggered by an event, such as a new hire being entered into the HR system, to automatically create accounts and assign appropriate initial access based on predefined rules, reducing delays and ensuring consistent application of access policies. Manual access review (B) involves periodically and manually verifying that existing access remains appropriate, a different, typically periodic process. Penetration testing (C) involves actively testing defenses by simulating attacks. Data sanitization (D) involves securely removing data from media, unrelated to account creation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-033",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "Automation and Orchestration - Risks and Considerations",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is evaluating the risks of relying heavily on automation and orchestration for its security operations. Which TWO of the following are valid considerations or risks associated with automation? (Choose TWO.)",
+    "options": {
+      "A": "A flaw in an automation script could be replicated across many systems very quickly, amplifying the impact of an error",
+      "B": "Automation completely eliminates the possibility of any security incidents",
+      "C": "Heavily automated processes can become a single point of failure if the automation platform itself fails or is compromised",
+      "D": "Automation guarantees that staff will never need to be trained on new tools",
+      "E": "Automation removes the need for any documentation of processes"
+    },
+    "answer": ["A", "C"],
+    "explanation": "Because automation applies the same logic across many systems quickly, a flaw or bug in an automation script can be replicated widely before it is caught, amplifying the impact of an error compared to manual processes applied one at a time. Additionally, if an organization becomes heavily dependent on a single automation platform, that platform itself can become a single point of failure, where its failure or compromise affects many downstream systems at once. Automation does not eliminate all security incidents (B); it changes how operations are performed but does not guarantee perfect security. Staff still need training to build, maintain, and troubleshoot automation (D), and documentation of automated processes remains important for maintainability and auditing (E).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-034",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "Automation and Orchestration - SOAR Playbooks",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "A security orchestration, automation, and response (SOAR) platform is configured with a playbook that, upon receiving a high-confidence malware alert from the endpoint detection and response (EDR) tool, automatically isolates the affected endpoint from the network, disables the affected user account, and creates a ticket for the SOC team to investigate, all within seconds of the alert being generated, without requiring a human to manually perform each step.",
+    "stem": "This automated workflow is BEST described as an example of:",
+    "options": {
+      "A": "A SOAR playbook automating incident response actions",
+      "B": "A manual incident response procedure",
+      "C": "A vulnerability scan",
+      "D": "A business continuity plan"
+    },
+    "answer": "A",
+    "explanation": "A SOAR playbook defines a predefined sequence of automated actions that are triggered in response to specific alert conditions, such as isolating an endpoint, disabling an account, and creating a ticket, allowing the organization to respond to threats far faster than a human analyst manually performing each step. A manual incident response procedure (B) would involve human analysts performing each step themselves, the opposite of what is described. A vulnerability scan (C) identifies weaknesses in systems and does not perform response actions. A business continuity plan (D) addresses how an organization continues operating during a disruption, a broader and different concept than an automated technical response to a malware alert.",
+    "comptia_logic_note": "SOAR playbooks are valued because they dramatically reduce response time (mean time to respond) for well-understood, high-confidence alert types, freeing analysts to focus on more complex or ambiguous incidents that require human judgment."
+  },
+  {
+    "id": "D4-035",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "Automation and Orchestration - Technical Debt",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization has relied for years on a complex set of custom automation scripts to provision new servers, written by an employee who has since left the company. No one currently on staff fully understands how the scripts work, and the scripts have not been updated to reflect changes in the company's security policies. Which concept BEST describes the risk this situation represents?",
+    "options": {
+      "A": "Technical debt",
+      "B": "Data minimization",
+      "C": "Non-repudiation",
+      "D": "Tokenization"
+    },
+    "answer": "A",
+    "explanation": "Technical debt refers to the accumulated cost and risk of relying on outdated, poorly documented, or poorly understood systems and code that become increasingly difficult and risky to maintain, update, or replace over time, exactly as described with the unmaintained automation scripts that no current staff fully understand and that no longer reflect current policy. Data minimization (B) refers to collecting only necessary data, unrelated to this scenario. Non-repudiation (C) refers to the inability to deny having performed an action, typically related to digital signatures and logging. Tokenization (D) is a data protection technique, unrelated to the maintainability of automation scripts.",
+    "comptia_logic_note": "Technical debt is an important consideration when evaluating automation: while automation provides efficiency benefits, scripts and tools that are not maintained, documented, or understood by current staff become a liability over time, potentially enforcing outdated configurations or breaking unexpectedly when underlying systems change."
+  },
+  {
+    "id": "D4-036",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident Response - Process Order",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization's incident response plan outlines a series of phases to follow when responding to a security incident. Which of the following correctly lists three of these phases in the order they typically occur?",
+    "options": {
+      "A": "Preparation, Detection and Analysis, Containment",
+      "B": "Containment, Preparation, Detection and Analysis",
+      "C": "Detection and Analysis, Containment, Preparation",
+      "D": "Recovery, Preparation, Containment"
+    },
+    "answer": "A",
+    "explanation": "The incident response process generally follows the order of preparation (establishing plans, tools, and training before an incident occurs), detection and analysis (identifying and understanding the incident), and containment (limiting the scope and impact of the incident), followed by eradication, recovery, and lessons learned. Options B, C, and D present these phases out of their logical order, such as placing containment or recovery before preparation and detection have occurred.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-037",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident Response - Chain of Custody",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "During a forensic investigation, an analyst documents every individual who handled a piece of digital evidence, the date and time each transfer occurred, and the purpose of each transfer, from the moment the evidence was collected through its presentation in any subsequent proceedings. This documentation is known as:",
+    "options": {
+      "A": "Chain of custody",
+      "B": "Legal hold",
+      "C": "Data classification",
+      "D": "Vulnerability scan report"
+    },
+    "answer": "A",
+    "explanation": "Chain of custody is the documented chronological record of who has handled a piece of evidence, when, and for what purpose, from collection through final disposition, which is essential for establishing that evidence has not been tampered with and remains admissible. A legal hold (B) is a directive to preserve data relevant to litigation, a related but distinct concept. Data classification (C) refers to labeling data based on sensitivity. A vulnerability scan report (D) documents identified weaknesses in systems, unrelated to evidence handling.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-038",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident Response - Tabletop Exercises and Simulations",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is planning exercises to test its incident response plan. Which TWO of the following statements about tabletop exercises and simulations are correct? (Choose TWO.)",
+    "options": {
+      "A": "A tabletop exercise is a discussion-based session where participants talk through their roles and responses to a hypothetical scenario without taking real actions on live systems",
+      "B": "A simulation involves participants actually performing response actions, potentially on test systems, to practice procedures in a more realistic setting",
+      "C": "Tabletop exercises and simulations are identical and the terms can be used interchangeably with no difference",
+      "D": "A tabletop exercise always requires taking production systems offline",
+      "E": "Simulations never provide any value because they are too disruptive to ever be conducted"
+    },
+    "answer": ["A", "B"],
+    "explanation": "A tabletop exercise is a low-impact, discussion-based exercise where participants walk through their roles and decision-making for a hypothetical incident scenario without performing actual technical actions, making it useful for testing communication and decision processes. A simulation goes further by having participants actually perform response actions, often in a controlled or test environment, providing more realistic practice of technical procedures. Tabletop exercises and simulations are not identical (C); they differ significantly in realism and resource commitment. Tabletop exercises do not require taking production systems offline (D), as they are discussion-based. Simulations do provide value (E) and are commonly conducted in controlled environments specifically to avoid disrupting production.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-039",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident Response - Root Cause Analysis",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "After containing and eradicating a malware infection that spread through the organization via a phishing email, the incident response team investigates how the malware was able to bypass existing email filtering and endpoint protections, and discovers that the email gateway's attachment scanning rules had not been updated in over a year.",
+    "stem": "This investigation into how the incident was able to occur is BEST described as:",
+    "options": {
+      "A": "Root cause analysis",
+      "B": "Chain of custody",
+      "C": "Data classification",
+      "D": "Tabletop exercise"
+    },
+    "answer": "A",
+    "explanation": "Root cause analysis is the process of investigating an incident to determine the underlying cause that allowed it to occur, such as outdated email filtering rules in this scenario, so that the underlying weakness can be addressed to prevent recurrence. Chain of custody (B) refers to documenting the handling of evidence, not investigating causes. Data classification (C) refers to labeling data by sensitivity. A tabletop exercise (D) is a planned, discussion-based test of the response plan conducted before or independent of an actual incident, not a post-incident investigation into what went wrong.",
+    "comptia_logic_note": "Root cause analysis typically occurs during the lessons learned phase of incident response, after containment and eradication, and focuses on identifying why the incident was able to happen, often pointing to a gap such as a missing patch, outdated configuration, or insufficient control, so the organization can implement permanent fixes."
+  },
+  {
+    "id": "D4-040",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident Response - Lessons Learned",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "After fully resolving a security incident, the incident response team holds a meeting to discuss what went well, what could have been handled better, and what changes to processes, tools, or training should be made to improve future responses. The team then documents these findings in a formal report. This activity is part of which incident response phase?",
+    "options": {
+      "A": "Lessons learned",
+      "B": "Preparation",
+      "C": "Detection and analysis",
+      "D": "Containment"
+    },
+    "answer": "A",
+    "explanation": "The lessons learned phase occurs after an incident has been fully resolved and involves reviewing the response to identify successes, gaps, and improvement opportunities, documenting them so that processes, tools, and training can be updated to strengthen future responses. Preparation (B) occurs before an incident and involves establishing plans, tools, and training, which may be informed by lessons learned from past incidents but is a distinct, forward-looking phase. Detection and analysis (C) occurs early in the response, when the incident is first identified and understood. Containment (D) occurs during the active incident to limit its spread and impact.",
+    "comptia_logic_note": "Lessons learned can seem similar to preparation since both can involve updating plans and training, but the key distinction is timing and purpose: lessons learned is a retrospective review conducted immediately after a specific incident concludes, while preparation is the ongoing, forward-looking phase of maintaining readiness, which lessons learned feeds into."
+  },
+  {
+    "id": "D4-041",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Firewall Logs",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security analyst investigating a suspected network intrusion wants to determine which external IP addresses a compromised workstation communicated with, and at what times. Which of the following data sources would be MOST useful for this purpose?",
+    "options": {
+      "A": "Firewall logs",
+      "B": "Employee badge access logs",
+      "C": "HVAC system logs",
+      "D": "Printer usage logs"
+    },
+    "answer": "A",
+    "explanation": "Firewall logs record connection information, including source and destination IP addresses, ports, and timestamps for traffic passing through the firewall, making them directly useful for identifying what external addresses a compromised workstation communicated with and when. Badge access logs (B) record physical building access, not network connections. HVAC system logs (C) relate to environmental controls. Printer usage logs (D) record print jobs, none of which provide the network communication data needed for this investigation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-042",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Indicators of Compromise",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "An analyst identifies a specific file hash, IP address, and registry key associated with a known malware family, and uses these artifacts to search across the environment for signs that other systems have also been compromised by the same malware. These artifacts are collectively known as ___.",
+    "blank_answer": "IoCs",
+    "acceptable_answers": ["IoCs", "IOC", "IOCs", "Indicators of Compromise", "Indicator of Compromise"],
+    "explanation": "Indicators of Compromise (IoCs) are forensic artifacts, such as file hashes, IP addresses, domain names, or registry keys, that are associated with known malicious activity and can be used to detect whether the same threat has affected other systems.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-043",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Dashboards and Packet Captures",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A security analyst is investigating a potential data exfiltration incident and wants to understand both the high-level trends in network traffic over the past week and the exact contents of suspicious packets sent to an external IP address. Which TWO of the following data sources would help achieve these two goals, respectively? (Choose TWO.)",
+    "options": {
+      "A": "A dashboard showing aggregated network traffic metrics and trends over time",
+      "B": "A full packet capture (PCAP) of traffic to and from the suspicious IP address",
+      "C": "The organization's employee handbook",
+      "D": "A printed copy of the company's organizational chart",
+      "E": "The building's fire evacuation plan"
+    },
+    "answer": ["A", "B"],
+    "explanation": "A dashboard showing aggregated network traffic metrics and trends provides the high-level visibility needed to identify unusual patterns over time, such as a spike in outbound traffic, while a full packet capture provides the detailed, byte-level contents of specific suspicious traffic, allowing the analyst to examine exactly what data was transmitted. The employee handbook (C), organizational chart (D), and fire evacuation plan (E) are administrative or facilities documents that provide no technical data relevant to a network-based investigation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-044",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Time Synchronization",
+    "format": "pbq_scenario",
+    "difficulty": "medium",
+    "scenario": "While investigating an incident, an analyst attempts to correlate log entries from a web server, a firewall, and an authentication server to build a timeline of an attacker's activity. The analyst discovers that the timestamps in each system's logs are off by several minutes from one another, making it difficult to determine the exact order in which events occurred.",
+    "stem": "Which of the following, if implemented PRIOR to the incident, would have BEST prevented this issue?",
+    "options": {
+      "A": "Configuring all systems to synchronize their clocks with a common time source using NTP",
+      "B": "Increasing the storage capacity allocated for log files",
+      "C": "Encrypting all log files at rest",
+      "D": "Requiring multifactor authentication for all administrator accounts"
+    },
+    "answer": "A",
+    "explanation": "Network Time Protocol (NTP) allows all systems to synchronize their clocks to a common, accurate time source, ensuring that timestamps recorded in logs across different systems are consistent and can be reliably correlated to build an accurate timeline during an investigation. Increasing log storage capacity (B) addresses retention but not timestamp consistency. Encrypting log files at rest (C) protects the confidentiality of logs but does not address timestamp synchronization. Requiring MFA (D) is a useful access control but does not address the timeline correlation problem described.",
+    "comptia_logic_note": "Time synchronization via NTP is a foundational but often overlooked requirement for effective log correlation during investigations. Without synchronized clocks, even accurate logs from different systems can appear to be out of order, making it difficult or impossible to reconstruct an accurate attack timeline."
+  },
+  {
+    "id": "D4-045",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Relevance to Scenario",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A security analyst is investigating a report of unusual login activity on a cloud-based email account. The analyst reviews a SIEM dashboard showing login attempts from multiple geographically distant locations within a short time frame, and also reviews a vulnerability scan report for the email server from the previous month. Which of these two data sources is MOST relevant to investigating this specific incident, and why?",
+    "options": {
+      "A": "The SIEM dashboard, because it shows actual login activity and timing relevant to the suspected account compromise",
+      "B": "The vulnerability scan report, because it lists every vulnerability ever found on the email server",
+      "C": "Both are equally relevant because they were both generated by security tools",
+      "D": "Neither is relevant; only a full packet capture would be useful"
+    },
+    "answer": "A",
+    "explanation": "The SIEM dashboard showing login attempts from geographically distant locations within a short time frame, a pattern often called 'impossible travel,' directly relates to the suspected account compromise and provides the timing and source information needed to investigate this specific incident. The vulnerability scan report (B) describes potential weaknesses in the email server's software and configuration but does not provide information about actual login activity or account compromise. While both data sources (C) could theoretically be reviewed, they are not equally relevant to this specific investigation, which centers on suspicious authentication activity. A full packet capture (D) could provide additional detail, but dismissing the SIEM dashboard, which directly shows the suspicious activity, as irrelevant would be incorrect.",
+    "comptia_logic_note": "When a question asks which data source is MOST relevant to a specific scenario, focus on which source directly relates to the activity described in the scenario, in this case login activity and account compromise, rather than a source that is generally useful for security but not directly tied to the specific incident, such as a vulnerability scan unrelated to authentication."
+  },
+  {
+    "id": "D4-046",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Enterprise Security Capabilities - Blocking SMB at the Perimeter",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security administrator is hardening the perimeter firewall and wants to prevent external attackers from directly accessing the organization's internal file sharing protocol, which is commonly abused for lateral movement and ransomware propagation if exposed to the internet. Which TCP port should be blocked at the perimeter firewall for inbound traffic?",
+    "options": {
+      "A": "445",
+      "B": "53",
+      "C": "143",
+      "D": "8080"
+    },
+    "answer": "A",
+    "explanation": "Port 445 is used by Server Message Block (SMB), the protocol used for Windows file and printer sharing, which has historically been exploited for worm propagation and ransomware when exposed directly to the internet, making it a critical port to block at the perimeter. Port 53 (B) is used by DNS for name resolution. Port 143 (C) is used by IMAP for retrieving email. Port 8080 (D) is a common alternate HTTP port for web traffic.",
+    "comptia_logic_note": "SMB (445) exposure to the internet is a well-known security risk frequently referenced in real-world ransomware incidents, making it a high-value port for exam questions about perimeter hardening and attack surface reduction."
+  },
+  {
+    "id": "D4-047",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Hardening - Disabling Unencrypted HTTP",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "During a hardening review, an administrator finds that a web server still accepts unencrypted connections on its default web traffic port and plans to redirect all such traffic to the encrypted equivalent. Which port carries the unencrypted web traffic that should be redirected?",
+    "options": {
+      "A": "80",
+      "B": "443",
+      "C": "22",
+      "D": "3389"
+    },
+    "answer": "A",
+    "explanation": "Port 80 is the default port for unencrypted HTTP traffic, which should be redirected to port 443, the default port for encrypted HTTPS traffic, as part of hardening a web server. Port 443 (B) is the encrypted destination, not the unencrypted source. Port 22 (C) is used by SSH for remote administration. Port 3389 (D) is used by RDP for remote desktop access, unrelated to web traffic.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-048",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Investigation Data Sources - Syslog",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization deploys a centralized log collection server so that network devices, servers, and applications across the environment can forward log messages to a single location for correlation and analysis by the SIEM. Which port is commonly used by the protocol that performs this log forwarding?",
+    "options": {
+      "A": "514",
+      "B": "161",
+      "C": "389",
+      "D": "993"
+    },
+    "answer": "A",
+    "explanation": "Syslog, commonly used to forward log messages from network devices, servers, and applications to a centralized logging server or SIEM, uses port 514 by default. Port 161 (B) is used by SNMP for device monitoring and management, a related but distinct function from log forwarding. Port 389 (C) is used by LDAP for directory service queries. Port 993 (D) is used by IMAPS for secure email retrieval.",
+    "comptia_logic_note": "Syslog (514) and SNMP (161/162) are both involved in device monitoring and are easy to confuse; the distinguishing detail is that syslog forwards log messages for centralized analysis, while SNMP is used to query device status and receive traps/alerts."
+  }
+]
