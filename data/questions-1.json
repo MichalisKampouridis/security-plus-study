@@ -32,7 +32,10 @@
       "D": "Data masking",
       "E": "Tokenization"
     },
-    "answer": ["A", "C"],
+    "answer": [
+      "A",
+      "C"
+    ],
     "explanation": "A TPM is a chip embedded in end-user devices such as laptops that securely generates and stores encryption keys, supporting full-disk encryption. An HSM is a dedicated hardware appliance used in data centers to generate, store, and manage cryptographic keys at scale. Steganography (B), data masking (D), and tokenization (E) are obfuscation techniques that hide or substitute data values rather than securely storing cryptographic keys in hardware.",
     "comptia_logic_note": null
   },
@@ -106,7 +109,10 @@
       "D": "Managerial",
       "E": "Directive"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "The cameras themselves are physical hardware deployed to protect a physical space, making this a physical control. Because the footage is actively monitored and used to identify and respond to suspicious activity, it also functions as a detective control. Preventive (C) controls stop an action before it occurs, such as a locked door, which is not the camera's role. Managerial (D) controls are policy and risk decisions made by leadership, and directive (E) controls are mandated procedures — neither describes a camera system itself.",
     "comptia_logic_note": "Students sometimes select 'Preventive' because a visibly monitored camera might deter an attack, but that deterrence is a side effect, not the control's classification. CompTIA classifies actively monitored cameras as physical plus detective because their primary function is identifying activity, not blocking it."
   },
@@ -196,7 +202,10 @@
       "D": "Availability",
       "E": "Non-repudiation"
     },
-    "answer": ["B", "C"],
+    "answer": [
+      "B",
+      "C"
+    ],
     "explanation": "Authorization determines which resources an authenticated user is permitted to access, matching the description of checking permitted resources. Accounting records what a user did during a session — the time, duration, and resources accessed — for auditing purposes. Authentication (A) refers to verifying the username and password, which is described but is not one of the two components asked about. Availability (D) and non-repudiation (E) are unrelated concepts outside the AAA framework.",
     "comptia_logic_note": null
   },
@@ -279,7 +288,10 @@
     "difficulty": "easy",
     "stem": "The symmetric encryption algorithm widely adopted as a U.S. federal standard, commonly used with 128-bit, 192-bit, or 256-bit key lengths, is called ___.",
     "blank_answer": "AES",
-    "acceptable_answers": ["AES", "Advanced Encryption Standard"],
+    "acceptable_answers": [
+      "AES",
+      "Advanced Encryption Standard"
+    ],
     "explanation": "AES (Advanced Encryption Standard) is the symmetric block cipher adopted by NIST as the U.S. federal standard for protecting sensitive data, supporting key sizes of 128, 192, and 256 bits. It replaced the older DES standard and is widely used for full-disk, file, and transport encryption.",
     "comptia_logic_note": null
   },
@@ -335,7 +347,10 @@
       "D": "Tokenization vault",
       "E": "Steganography tool"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "A certificate authority (CA) issues digital certificates and forms the root of trust within a PKI, vouching for the identity bound to a public key. An OCSP responder allows relying parties to check, in real time, whether a previously issued certificate has been revoked, helping validate its current trustworthiness. A data masking engine (C) and tokenization vault (D) are data protection tools unrelated to certificate issuance. A steganography tool (E) hides data inside other files and is unrelated to PKI.",
     "comptia_logic_note": null
   },
@@ -374,5 +389,1085 @@
     "answer": "A",
     "explanation": "RSA is an asymmetric (public-key) algorithm that uses a mathematically related public/private key pair, commonly used for digital signatures, key exchange, and certificate-based authentication within a PKI. AES (B) and ChaCha20 (D) are symmetric algorithms that use a single shared key for both encryption and decryption, not a public/private key pair. SHA-256 (C) is a hashing algorithm used for integrity verification, not encryption or key pairs.",
     "comptia_logic_note": "Symmetric vs. asymmetric algorithms are frequently tested together. A quick way to distinguish them: if the scenario describes a single shared secret key, think symmetric (AES, ChaCha20); if it describes a public/private key pair used for signatures or key exchange, think asymmetric (RSA)."
+  },
+  {
+    "id": "D1-022",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Deterrent Controls",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A company posts large signs at the entrance to its data center stating 'Warning: 24-Hour Video Surveillance and Armed Response.' The primary purpose of this sign is to function as which type of control?",
+    "options": {
+      "A": "Deterrent",
+      "B": "Corrective",
+      "C": "Compensating",
+      "D": "Detective"
+    },
+    "answer": "A",
+    "explanation": "A deterrent control discourages an attacker from attempting an action in the first place, such as a warning sign intended to make an intruder reconsider before approaching the facility. Corrective controls (B) act after an incident to restore systems. Compensating controls (C) are alternative measures used when a primary control cannot be implemented. Detective controls (D) identify that an event has already occurred, such as the cameras themselves recording footage, which is a separate control from the sign.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-023",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Physical Control Category",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization stations a uniformed guard at the main entrance who checks employee badges before allowing anyone into the building. From a control category standpoint, the guard's badge check is BEST classified as a:",
+    "options": {
+      "A": "Physical control",
+      "B": "Managerial control",
+      "C": "Technical control",
+      "D": "Operational control implemented entirely in software"
+    },
+    "answer": "A",
+    "explanation": "A physical control is a tangible, real-world measure that restricts physical access, and a guard checking badges at a door is a classic example. Managerial controls (B) are policy and risk-focused decisions made by leadership, such as approving a guard program, not the act of checking badges itself. Technical controls (C) are enforced through technology such as software or hardware configuration. Option D is incorrect because a human guard performing a manual check is not implemented in software.",
+    "comptia_logic_note": "Control categories (managerial, operational, technical, physical) describe HOW a control is implemented, while control types (preventive, detective, etc.) describe WHAT it does. A guard checking badges is both a physical control (category) and a preventive control (type) — this question focuses only on the category."
+  },
+  {
+    "id": "D1-024",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Detective Controls",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following are examples of detective controls? (Choose TWO.)",
+    "options": {
+      "A": "Reviewing security camera footage after a break-in to identify the intruder",
+      "B": "Installing a fence around the perimeter of a facility",
+      "C": "Analyzing audit logs to identify unauthorized login attempts that already occurred",
+      "D": "Configuring a firewall rule to block traffic before it reaches a server",
+      "E": "Encrypting a hard drive so stolen data cannot be read"
+    },
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": "Detective controls identify that an adverse event has already occurred, such as reviewing camera footage after a break-in or analyzing audit logs to find unauthorized login attempts that already happened. A fence (B) is a preventive/physical control that stops access before it happens. A firewall rule blocking traffic (D) is a preventive control because it stops the event before it occurs. Encrypting a hard drive (E) is a preventive control that protects data confidentiality in advance, not a detection mechanism.",
+    "comptia_logic_note": "The key distinguishing word for detective controls is 'after' — they identify or record events that have already taken place, whereas preventive controls act 'before' an event to stop it from happening at all."
+  },
+  {
+    "id": "D1-025",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Compensating Controls",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: A compensating control is an alternative measure put in place when the originally required control cannot be implemented, and it should provide a similar level of protection.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. A compensating control is used when an organization cannot implement a required control as specified, such as substituting additional monitoring and manual review for a legacy system that cannot support modern authentication, and it must provide a comparable level of risk reduction.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-026",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Corrective vs Compensating",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A legacy point-of-sale terminal cannot be patched because the vendor no longer supports it, and replacing it immediately is not financially feasible. The security team isolates the terminal on a dedicated VLAN with strict firewall rules limiting its communication to only the payment processor. Which type of control does this isolation represent?",
+    "options": {
+      "A": "Compensating control",
+      "B": "Corrective control",
+      "C": "Detective control",
+      "D": "Deterrent control"
+    },
+    "answer": "A",
+    "explanation": "Because the required control (patching the vulnerable software) cannot be applied, the organization implements an alternative measure, network isolation, to reduce risk to an acceptable level, which is the definition of a compensating control. A corrective control (B) would act after an incident to restore or fix the system, such as restoring from backup after a compromise, not prevent ongoing exposure. A detective control (C) would only identify malicious activity after it occurred rather than limiting the terminal's exposure. A deterrent control (D) discourages an attacker psychologically but does not technically restrict communication the way VLAN isolation does.",
+    "comptia_logic_note": "Compensating and corrective controls are easily confused because both are 'workarounds.' The distinguishing factor is timing and purpose: a compensating control substitutes for a missing preventive measure BEFORE an incident, while a corrective control responds AFTER an incident has already occurred to limit or repair damage."
+  },
+  {
+    "id": "D1-027",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Directive Controls",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization publishes a formal policy requiring all employees to complete annual security awareness training and to report lost devices within one hour of discovery. This policy itself functions as which type of control?",
+    "options": {
+      "A": "Directive",
+      "B": "Detective",
+      "C": "Compensating",
+      "D": "Physical"
+    },
+    "answer": "A",
+    "explanation": "A directive control specifies or mandates required behavior through policies, procedures, or guidelines, such as a policy requiring employees to complete training and report lost devices within a set time. A detective control (B) would identify that a violation occurred, not direct behavior in advance. A compensating control (C) substitutes for a missing primary control, which is not the case here. A physical control (D) involves tangible barriers or devices, not written policy requirements.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-028",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Layered Categories in a Scenario",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A hospital implements the following measures around its server room: a written policy requiring background checks for anyone with server room access (approved by management), a badge reader on the door that only grants access to authorized staff, and a motion-activated camera system that records all entries and alerts security if the door is opened outside of scheduled maintenance windows.",
+    "stem": "Which of the following correctly matches each measure to its primary control category?",
+    "options": {
+      "A": "Background check policy = managerial, badge reader = technical, camera alert system = technical",
+      "B": "Background check policy = technical, badge reader = physical, camera alert system = managerial",
+      "C": "Background check policy = physical, badge reader = managerial, camera alert system = physical",
+      "D": "Background check policy = operational, badge reader = physical, camera alert system = managerial"
+    },
+    "answer": "A",
+    "explanation": "The background check policy is a managerial control because it is a risk-based decision and requirement set by organizational leadership. The badge reader is a technical control because it uses an electronic system to enforce access restrictions. The motion-activated camera with automated alerting is also a technical control because it relies on electronic/software-based detection and alerting mechanisms. Option D incorrectly labels the background check as operational rather than managerial, and the other options mismatch multiple categories.",
+    "comptia_logic_note": "A badge reader and a camera system might both seem 'physical' because they are physical devices, but CompTIA categorizes controls based on HOW they are implemented and enforced: electronic/software-driven enforcement is technical, even if the device itself is a physical object mounted on a wall or door."
+  },
+  {
+    "id": "D1-029",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Technical Control Example",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "Which of the following is an example of a technical security control?",
+    "options": {
+      "A": "An access control list (ACL) on a router that blocks traffic from a specific IP range",
+      "B": "A policy requiring new hires to sign an acceptable use agreement",
+      "C": "A fence surrounding the building's perimeter",
+      "D": "A risk assessment conducted annually by the security team"
+    },
+    "answer": "A",
+    "explanation": "An ACL enforced by a router is a technical control because it is implemented through hardware/software configuration to restrict traffic. A signed acceptable use agreement (B) is a managerial/administrative requirement, not a technology-enforced control. A fence (C) is a physical control. An annual risk assessment (D) is a managerial activity used to guide decision-making, not a technical enforcement mechanism.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-030",
+    "domain": 1,
+    "objective": "1.1",
+    "topic": "Security Controls - Preventive Controls",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following are examples of preventive controls? (Choose TWO.)",
+    "options": {
+      "A": "Requiring multifactor authentication before granting access to a VPN",
+      "B": "Reviewing intrusion detection system alerts each morning",
+      "C": "Locking a laptop in a cable lock to a desk",
+      "D": "Conducting a post-incident lessons-learned meeting",
+      "E": "Generating a weekly report of failed login attempts"
+    },
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": "Preventive controls stop an unwanted action before it can occur, such as requiring MFA before granting VPN access or physically securing a laptop with a cable lock so it cannot be easily stolen. Reviewing IDS alerts (B) and generating a report of failed logins (E) are detective activities because they identify events that have already happened. A lessons-learned meeting (D) is part of the incident response process that occurs after an incident, related to corrective improvements rather than prevention of the original event.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-031",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "CIA Triad - Confidentiality",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization encrypts customer Social Security numbers stored in its database so that even if an attacker gains access to the raw database files, the values cannot be read without the decryption key. This control primarily supports which principle of the CIA triad?",
+    "options": {
+      "A": "Confidentiality",
+      "B": "Integrity",
+      "C": "Availability",
+      "D": "Non-repudiation"
+    },
+    "answer": "A",
+    "explanation": "Confidentiality ensures that sensitive information is only accessible to authorized parties, and encrypting data at rest is a primary technique for preventing unauthorized disclosure. Integrity (B) ensures data has not been altered, which is typically verified with hashing, not encryption alone. Availability (C) ensures systems and data are accessible when needed, unrelated to this scenario. Non-repudiation (D) ensures a party cannot deny an action they took, which is a separate security concept from the CIA triad.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-032",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "CIA Triad - Integrity Verification",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A software vendor publishes a SHA-256 hash value alongside each downloadable installer file. After downloading the file, a user is expected to calculate the hash of the downloaded file and compare it to the published value. This practice is designed to verify which security property?",
+    "options": {
+      "A": "Integrity",
+      "B": "Confidentiality",
+      "C": "Availability",
+      "D": "Authorization"
+    },
+    "answer": "A",
+    "explanation": "Integrity ensures that data has not been altered, whether accidentally during transfer or maliciously by a third party, and comparing hash values is a standard way to detect such changes. Confidentiality (B) would involve preventing unauthorized parties from viewing the file's contents, which a published hash does not address. Availability (C) relates to whether the file can be accessed at all, not whether it has been modified. Authorization (D) determines what an authenticated user is permitted to do, unrelated to verifying file integrity.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-033",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "CIA Triad - Availability",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An e-commerce company deploys its web application across multiple availability zones, configures automatic failover, and load-balances traffic between redundant servers. These measures are primarily intended to support which principle of the CIA triad?",
+    "options": {
+      "A": "Availability",
+      "B": "Confidentiality",
+      "C": "Integrity",
+      "D": "Accounting"
+    },
+    "answer": "A",
+    "explanation": "Availability ensures that systems and data remain accessible to authorized users when needed, and redundancy, failover, and load balancing are core techniques for achieving high availability. Confidentiality (B) and integrity (C) relate to protecting information from unauthorized disclosure or modification, neither of which is the primary goal of redundant infrastructure. Accounting (D) is part of the AAA framework and refers to logging user activity, unrelated to system uptime.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-034",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Non-repudiation - Digital Signatures",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: When a user digitally signs a document using their private key, this provides non-repudiation because the user cannot credibly deny having signed the document, assuming their private key has remained secure.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Because the digital signature can only be produced using the signer's private key, and the signature can be verified using the corresponding public key, the signer cannot plausibly deny having created it, which is the essence of non-repudiation, provided the private key was never compromised.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-035",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "AAA Framework - Identifying Components",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A user types their username and password into a corporate login portal. The system verifies the credentials, grants the user access only to the file shares assigned to their department, and records the date, time, and resources accessed in a log for later review. Which TWO of the following AAA components are demonstrated in this scenario? (Choose TWO.)",
+    "options": {
+      "A": "Authentication — verifying the username and password",
+      "B": "Accounting — logging the date, time, and resources accessed",
+      "C": "Authorization — encrypting the file shares",
+      "D": "Identification — granting access only to assigned file shares",
+      "E": "Non-repudiation — recording the user's IP address"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Authentication is the process of verifying that the user is who they claim to be, demonstrated by checking the username and password. Accounting is the process of recording user activity for later review, demonstrated by logging the date, time, and resources accessed. Option C mislabels authorization, which is determining what an authenticated user is permitted to do (granting access to assigned file shares), not encryption. Option D mislabels authorization as identification; identification is simply claiming an identity (entering the username), not the access decision. Option E describes a logging detail, not a formal AAA component on its own.",
+    "comptia_logic_note": "Authorization is granting access to the file shares assigned to the user's department — this is the part of the scenario that option C and D incorrectly describe. Since the question asks for the TWO components that are clearly and correctly demonstrated, authentication and accounting are the safest, unambiguous choices."
+  },
+  {
+    "id": "D1-036",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "AAA Framework - Authentication vs Authorization vs Accounting",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A contractor attempts to open a confidential file on a shared drive. The system successfully verifies the contractor's smart card and PIN, but then denies access to the file because the contractor's account is not a member of the group assigned to that folder. Which statement BEST describes what occurred?",
+    "options": {
+      "A": "Authentication succeeded, but authorization failed",
+      "B": "Authentication failed, but authorization succeeded",
+      "C": "Both authentication and authorization failed",
+      "D": "Accounting failed, preventing authentication from completing"
+    },
+    "answer": "A",
+    "explanation": "The smart card and PIN verification confirms the contractor's identity, which is authentication, and this step succeeded. However, the system then denied access to the specific file because the account lacked the necessary group membership, which is an authorization failure — the user is who they claim to be, but is not permitted to access that resource. Option B is incorrect because authentication clearly succeeded. Option C is incorrect because authentication did not fail. Option D incorrectly suggests accounting (logging) caused the denial, but accounting only records events and does not make access decisions.",
+    "comptia_logic_note": "A common trap is assuming that any 'access denied' message means authentication failed. CompTIA expects candidates to recognize that authentication answers 'who are you,' while authorization answers 'what are you allowed to do' — a successful login followed by a permissions-based denial is always an authorization issue, not an authentication issue."
+  },
+  {
+    "id": "D1-037",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Identification vs Authentication",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "When a new employee starts at a company, the HR department issues them a unique employee ID number and a corresponding username that will be used across all internal systems. This act of assigning a unique username is BEST described as:",
+    "options": {
+      "A": "Identification",
+      "B": "Authentication",
+      "C": "Authorization",
+      "D": "Federation"
+    },
+    "answer": "A",
+    "explanation": "Identification is the process of establishing a unique identifier (such as a username) that represents an individual within a system, which is the first step before any verification occurs. Authentication (B) is the subsequent process of proving that identity, typically with a password, token, or biometric. Authorization (C) determines what the identified and authenticated user is permitted to do. Federation (D) refers to extending authentication and authorization across organizational boundaries using a trusted third party, unrelated to assigning an initial username.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-038",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Zero Trust - Core Principle",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "Which statement BEST summarizes the core philosophy of a Zero Trust security model?",
+    "options": {
+      "A": "Never trust, always verify — every access request must be authenticated and authorized regardless of its origin",
+      "B": "Trust all devices and users on the internal network by default, and verify only external connections",
+      "C": "Trust is granted permanently once a user successfully authenticates at the start of the day",
+      "D": "Perimeter firewalls are sufficient to protect all internal resources without further verification"
+    },
+    "answer": "A",
+    "explanation": "Zero Trust is built on the principle of 'never trust, always verify,' meaning that no user, device, or application is implicitly trusted based on its network location, and every request must be continuously authenticated, authorized, and validated. Option B describes the traditional perimeter-based model that Zero Trust replaces, where internal traffic was implicitly trusted. Option C is incorrect because Zero Trust requires continuous validation, not one-time trust. Option D describes a perimeter-only approach, which is the opposite of Zero Trust's defense against threats that bypass or originate inside the perimeter.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-039",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Zero Trust - Control Plane vs Data Plane",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "In a Zero Trust architecture, the control plane and data plane perform distinct functions. Which TWO of the following components belong to the control plane? (Choose TWO.)",
+    "options": {
+      "A": "Policy engine",
+      "B": "Policy administrator",
+      "C": "Policy enforcement point",
+      "D": "Subject/system requesting access",
+      "E": "Resource being accessed"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "The control plane in a Zero Trust architecture is responsible for deciding whether to grant access, and consists of the policy engine, which evaluates access requests against policy, and the policy administrator, which executes that decision by establishing or terminating the communication path. The policy enforcement point (C) resides in the data plane and is the component that actually allows or blocks the connection based on the control plane's decision. The subject (D) and the resource (E) are the entities involved in the access request itself, not control-plane decision-making components.",
+    "comptia_logic_note": "The policy enforcement point is the most commonly confused component because its name sounds like a decision-maker. CompTIA's model places decision-making (policy engine and policy administrator) in the control plane, while the policy enforcement point sits in the data plane and simply carries out the decision by permitting or blocking traffic."
+  },
+  {
+    "id": "D1-040",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Zero Trust - Policy Enforcement in Practice",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "An organization implements a Zero Trust architecture for its internal applications. When an employee's laptop attempts to connect to a finance application, the request is sent to a centralized component that evaluates the user's identity, device health, location, and time of day against defined policies. Based on that evaluation, a decision is made and communicated to the gateway sitting directly in front of the finance application, which then either allows or blocks the connection.",
+    "stem": "Which component evaluates the user's identity, device health, location, and time of day to make the access decision?",
+    "options": {
+      "A": "Policy engine",
+      "B": "Policy enforcement point",
+      "C": "Subject",
+      "D": "Resource"
+    },
+    "answer": "A",
+    "explanation": "The policy engine is the control-plane component responsible for evaluating contextual signals such as identity, device health, location, and time against organizational policy to make an access decision. The policy enforcement point (B) is the gateway in front of the finance application that carries out the decision by allowing or blocking the connection, but does not itself evaluate the policy. The subject (C) is the employee's laptop making the request, and the resource (D) is the finance application being protected, neither of which performs the evaluation.",
+    "comptia_logic_note": "This scenario separates the 'thinking' component (policy engine, which evaluates signals and decides) from the 'doing' component (policy enforcement point, which sits in line with traffic and executes the decision). When a scenario describes evaluation of multiple contextual factors to reach a decision, that is the policy engine; when it describes a gateway allowing or blocking traffic based on a decision already made elsewhere, that is the policy enforcement point."
+  },
+  {
+    "id": "D1-041",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Deception Technology - Honeypot",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team deploys a server that appears to host an outdated, vulnerable database application, but it contains no real data and exists solely to attract and observe attacker behavior. This server is an example of a:",
+    "options": {
+      "A": "Honeypot",
+      "B": "Jump server",
+      "C": "Bastion host",
+      "D": "Screened subnet"
+    },
+    "answer": "A",
+    "explanation": "A honeypot is a decoy system designed to appear as an attractive target in order to lure attackers, allowing defenders to study their tactics and divert them from real production systems. A jump server (B) is a hardened intermediary host used by legitimate administrators to access other systems. A bastion host (C) is a hardened server exposed to untrusted networks that provides a controlled entry point. A screened subnet (D) is a network architecture concept (formerly called a DMZ), not a decoy system.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-042",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Deception Technology - Honeytoken",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team creates a fake administrator account named 'svc_backup_admin' with a password stored in a configuration file that is never used by any legitimate process. If this account is ever used to log in, an alert is immediately triggered. This fake credential is an example of a:",
+    "options": {
+      "A": "Honeytoken",
+      "B": "Honeynet",
+      "C": "Honeyfile",
+      "D": "Sinkhole"
+    },
+    "answer": "A",
+    "explanation": "A honeytoken is a fake piece of data, such as a credential, API key, or database record, that has no legitimate use and is planted specifically to detect unauthorized access when it is used. A honeynet (B) is an entire decoy network composed of multiple honeypots. A honeyfile (C) is a decoy document placed to detect unauthorized file access, which is a related but distinct concept from a fake credential. A sinkhole (D) is a technique used to redirect malicious traffic, such as DNS queries for known malicious domains, to a controlled destination.",
+    "comptia_logic_note": "Honeytoken, honeyfile, honeypot, and honeynet form a family of deception terms that are distinguished by what is being faked: a credential/data value (honeytoken), a document (honeyfile), a single system (honeypot), or an entire network (honeynet)."
+  },
+  {
+    "id": "D1-043",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Physical Security - Bollards",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A company installs a row of sturdy, closely spaced concrete posts along the sidewalk in front of its main entrance. The primary purpose of these posts is to:",
+    "options": {
+      "A": "Prevent vehicles from ramming or driving into the building",
+      "B": "Detect unauthorized access attempts and trigger an alarm",
+      "C": "Provide lighting for the entrance area at night",
+      "D": "Authenticate visitors before they enter the lobby"
+    },
+    "answer": "A",
+    "explanation": "Bollards are short, sturdy posts installed to prevent vehicles from driving into pedestrian areas or building entrances, providing a physical barrier against vehicle-ramming attacks. They do not contain sensors or alarms by themselves (B), they are not lighting fixtures (C), and they do not perform any authentication function (D).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-044",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Physical Security Controls",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Which TWO of the following are examples of physical security controls used to protect a data center? (Choose TWO.)",
+    "options": {
+      "A": "A mantrap that allows only one person to pass through at a time after badge verification",
+      "B": "An access control list on a database limiting which accounts can read customer records",
+      "C": "Motion-activated lighting around the building perimeter",
+      "D": "A software firewall rule blocking inbound traffic on port 23",
+      "E": "A policy requiring quarterly access reviews"
+    },
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": "A mantrap is a physical access control consisting of a small enclosed space with two interlocking doors that prevents more than one person from entering at a time, often paired with badge or biometric verification. Perimeter lighting is also a physical control that improves visibility and deters intruders. A database access control list (B) and a software firewall rule (D) are technical controls implemented through software. A policy requiring access reviews (E) is a managerial/administrative control, not a physical one.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-045",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Defense in Depth - Layered Controls",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization protects a sensitive database with the following layers: a perimeter firewall, a network intrusion prevention system, host-based antivirus on the database server, encryption of data at rest, and strict database-level access controls. If an attacker successfully bypasses the perimeter firewall, which security principle ensures the attacker still faces additional obstacles before reaching the data?",
+    "options": {
+      "A": "Defense in depth",
+      "B": "Single point of failure",
+      "C": "Security through obscurity",
+      "D": "Implicit deny"
+    },
+    "answer": "A",
+    "explanation": "Defense in depth is the practice of layering multiple, independent security controls so that if one layer is bypassed or fails, additional layers continue to provide protection. A single point of failure (B) describes a weakness where one component's failure compromises the entire system, which is the opposite of what layered controls aim to avoid. Security through obscurity (C) relies on hiding the details of a system rather than implementing verifiable controls, and is generally considered a weak standalone strategy. Implicit deny (D) is a specific access control principle stating that anything not explicitly permitted is denied, which is one possible control but not the overarching concept of layering multiple distinct controls.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-046",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Physical Security - Video Surveillance as Detective Control",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: A video surveillance system that records building entrances is primarily considered a detective control because it captures evidence of events for later review, even though its presence may also deter some intruders.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. While visible cameras can have a deterrent effect, the core function of a recording surveillance system is to capture evidence that can be reviewed after an event occurs, making it primarily a detective control.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-047",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Gap Analysis",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team compares its organization's current access control practices against the requirements outlined in a target security framework, documenting where current practices fall short so that remediation can be planned. This activity is BEST described as a:",
+    "options": {
+      "A": "Gap analysis",
+      "B": "Penetration test",
+      "C": "Tabletop exercise",
+      "D": "Vulnerability scan"
+    },
+    "answer": "A",
+    "explanation": "A gap analysis compares an organization's current state against a desired or required state, such as a framework or regulatory standard, to identify deficiencies that need to be addressed. A penetration test (B) actively attempts to exploit technical vulnerabilities rather than comparing documented practices to a standard. A tabletop exercise (C) is a discussion-based simulation of an incident response scenario. A vulnerability scan (D) is an automated technical assessment of systems for known weaknesses, not a comparison of practices against a framework.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-048",
+    "domain": 1,
+    "objective": "1.2",
+    "topic": "Authentication Factors - Multifactor Combinations",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An employee logs into a banking application by entering a password and then scanning their fingerprint on their phone. A security analyst is asked whether this constitutes true multifactor authentication. Which of the following is the BEST response?",
+    "options": {
+      "A": "Yes, because the password represents 'something you know' and the fingerprint represents 'something you are,' which are two different factor categories",
+      "B": "No, because both steps occur on the same device, so they count as only one factor",
+      "C": "No, because a fingerprint is considered 'something you have,' the same category as a password",
+      "D": "Yes, but only because the fingerprint scan happens after the password, making it a corrective control"
+    },
+    "answer": "A",
+    "explanation": "True multifactor authentication requires factors from at least two different categories: something you know (a password), something you have (a token or device), and something you are (a biometric trait like a fingerprint). Combining a password with a fingerprint scan uses two distinct categories, regardless of whether both occur on the same device, so option B is incorrect. Option C mischaracterizes a fingerprint, which is 'something you are,' not 'something you have.' Option D incorrectly applies the unrelated term 'corrective control' to an authentication factor.",
+    "comptia_logic_note": "A common misconception is that using the same device for both factors negates MFA. CompTIA's definition of multifactor authentication is based on the CATEGORY of each factor (something you know, have, are, somewhere you are, something you do), not the physical device used to present them."
+  },
+  {
+    "id": "D1-049",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Purpose of the Process",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "What is the PRIMARY purpose of a formal change management process within an organization?",
+    "options": {
+      "A": "To ensure changes to systems are reviewed, approved, and documented in order to minimize unintended disruptions",
+      "B": "To prevent any changes to production systems from ever occurring",
+      "C": "To automatically deploy all requested changes without review to save time",
+      "D": "To replace the need for testing changes before deployment"
+    },
+    "answer": "A",
+    "explanation": "Change management exists to ensure that modifications to systems are properly reviewed, tested, approved, and documented so that they do not cause unintended outages or security issues. It does not prevent change altogether (B); rather, it controls how changes happen. It does not mean skipping review (C), and it does not eliminate the need for testing (D) — in fact, testing results are typically a required part of the change request.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-050",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Backout Plan",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "As part of a change request to update firewall firmware, the change documentation includes a section describing the exact steps to restore the firewall to its previous firmware version and configuration if the update causes connectivity issues. This section is known as the:",
+    "options": {
+      "A": "Backout plan",
+      "B": "Risk register",
+      "C": "Service level agreement",
+      "D": "Memorandum of understanding"
+    },
+    "answer": "A",
+    "explanation": "A backout plan describes the specific steps required to revert a change and restore the previous known-good state if the change causes problems, which is essential for minimizing downtime if an issue arises. A risk register (B) is a document that tracks identified organizational risks generally, not a specific reversal procedure. A service level agreement (C) defines expected service performance between parties. A memorandum of understanding (D) documents a general intent of cooperation between parties, unrelated to reverting a technical change.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-051",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Maintenance Windows",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Scheduling significant infrastructure changes during a designated maintenance window, typically during off-peak hours, helps minimize the impact on users if the change causes an unexpected outage.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Maintenance windows are scheduled periods, often during low-usage hours, specifically designated for implementing changes so that if something goes wrong, the number of affected users and the business impact are minimized.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-052",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Testing in a Sandbox",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Before applying a major application update to production servers, a development team deploys the update to an isolated environment that mirrors production but has no connection to live customer data, allowing them to validate the update without risk. This isolated environment is known as a:",
+    "options": {
+      "A": "Sandbox",
+      "B": "Honeynet",
+      "C": "Screened subnet",
+      "D": "Jump server"
+    },
+    "answer": "A",
+    "explanation": "A sandbox is an isolated testing environment used to evaluate changes, software, or code without affecting production systems or live data, which is exactly the purpose described. A honeynet (B) is a decoy network used to study attacker behavior, not a testing environment for legitimate changes. A screened subnet (C) is a network architecture for exposing public-facing services while protecting internal networks. A jump server (D) is a hardened intermediary used to access other systems for administration, not a testing environment.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-053",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Request Documentation",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "When submitting a request to a change advisory board for a significant configuration change to a production database server, which TWO of the following should typically be included in the documentation? (Choose TWO.)",
+    "options": {
+      "A": "An impact analysis describing which systems or users could be affected by the change",
+      "B": "A backout plan describing how to revert the change if issues occur",
+      "C": "A copy of the organization's annual financial statements",
+      "D": "The personal home address of the engineer performing the change",
+      "E": "A list of unrelated marketing campaigns scheduled for the same quarter"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "A well-documented change request should include an impact analysis identifying which systems, services, or users could be affected, and a backout plan describing how to revert the change if problems occur, allowing the change advisory board to assess risk and approve appropriately. Financial statements (C), an engineer's home address (D), and unrelated marketing campaigns (E) have no relevance to evaluating the technical and operational risk of a system change.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-054",
+    "domain": 1,
+    "objective": "1.3",
+    "topic": "Change Management - Consequences of Bypassing the Process",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "An administrator, under pressure to fix a reported issue quickly, makes a configuration change directly on a production router without submitting a change request, without testing in a staging environment, and without documenting a backout plan. The change causes a widespread outage that takes several hours to diagnose because no one knew what had changed.",
+    "stem": "Which of the following BEST identifies the control failure that most directly contributed to the extended outage?",
+    "options": {
+      "A": "The administrator bypassed the change management process, so there was no documentation, testing, or backout plan to quickly identify and reverse the cause of the outage",
+      "B": "The router's firmware was outdated, which is unrelated to the change management process",
+      "C": "The organization failed to encrypt data in transit on the router",
+      "D": "The administrator used a weak password to access the router"
+    },
+    "answer": "A",
+    "explanation": "Because the administrator bypassed the change management process, there was no record of what had changed, no prior testing to reveal potential issues, and no backout plan to quickly revert the change, all of which directly extended the time needed to diagnose and resolve the outage. Outdated firmware (B), data-in-transit encryption (C), and password strength (D) are all unrelated to the scenario's root cause, which was an undocumented, untested, unapproved change.",
+    "comptia_logic_note": "When a scenario describes an outage caused by an unannounced or undocumented change, the root-cause answer almost always points back to a failure of the change management process itself, even if the technical change (e.g., a router configuration) seems like the more obvious focus."
+  },
+  {
+    "id": "D1-055",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Diffie-Hellman",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "The ___ key exchange protocol allows two parties to each generate a shared secret key over an insecure channel without ever transmitting the key itself, by combining their own private values with publicly exchanged values.",
+    "blank_answer": "DH",
+    "acceptable_answers": [
+      "DH",
+      "Diffie-Hellman",
+      "Diffie Hellman",
+      "Diffie-Hellman key exchange"
+    ],
+    "explanation": "Diffie-Hellman (DH) is a key exchange protocol that enables two parties to derive a shared secret over a public channel without directly transmitting the secret itself, forming the basis for secure key establishment in many cryptographic protocols including TLS.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-056",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Elliptic Curve Cryptography",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "___ is an asymmetric cryptographic approach based on the algebraic structure of elliptic curves over finite fields, allowing it to provide security equivalent to RSA while using significantly smaller key sizes.",
+    "blank_answer": "ECC",
+    "acceptable_answers": [
+      "ECC",
+      "Elliptic Curve Cryptography",
+      "Elliptic-Curve Cryptography"
+    ],
+    "explanation": "Elliptic Curve Cryptography (ECC) provides the same level of security as RSA but with much smaller key sizes, which reduces computational overhead and is especially valuable for mobile devices and constrained environments such as IoT.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-057",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Certificate Authority",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "Within a public key infrastructure, the ___ is the trusted entity responsible for issuing, signing, and revoking digital certificates.",
+    "blank_answer": "CA",
+    "acceptable_answers": [
+      "CA",
+      "Certificate Authority",
+      "Certification Authority"
+    ],
+    "explanation": "A Certificate Authority (CA) is the trusted entity that issues digital certificates, vouching for the identity of the certificate holder by signing the certificate with its own private key, forming the foundation of trust in a PKI.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-058",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Certificate Signing Request",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "Before an organization can receive a signed digital certificate from a CA, it must generate a key pair and submit a ___ containing its public key and identifying information to the CA.",
+    "blank_answer": "CSR",
+    "acceptable_answers": [
+      "CSR",
+      "Certificate Signing Request",
+      "Certificate Request"
+    ],
+    "explanation": "A Certificate Signing Request (CSR) is a file containing an applicant's public key and identifying details, submitted to a CA so the CA can verify the information and issue a signed certificate binding that identity to the public key.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-059",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Hardware Security Module",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A financial institution uses a dedicated, tamper-resistant hardware appliance in its data center to generate, store, and manage cryptographic keys used for signing transactions at scale. This appliance is known as an ___.",
+    "blank_answer": "HSM",
+    "acceptable_answers": [
+      "HSM",
+      "Hardware Security Module"
+    ],
+    "explanation": "A Hardware Security Module (HSM) is a dedicated, tamper-resistant hardware device used to generate, store, and manage cryptographic keys and perform cryptographic operations at scale, commonly used by financial institutions and certificate authorities.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-060",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Trusted Platform Module",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "Most modern laptops include a chip soldered to the motherboard that securely generates and stores encryption keys used for full-disk encryption and verifies the integrity of the boot process. This chip is called a ___.",
+    "blank_answer": "TPM",
+    "acceptable_answers": [
+      "TPM",
+      "Trusted Platform Module"
+    ],
+    "explanation": "A Trusted Platform Module (TPM) is a dedicated chip built into a device's motherboard that securely generates and stores cryptographic keys, supports full-disk encryption such as BitLocker, and helps verify that the boot process has not been tampered with.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-061",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - ECC vs RSA",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A mobile device manufacturer wants to implement strong asymmetric encryption for device-to-device communication but is concerned about the processing power and battery consumption required for large RSA keys. Which alternative algorithm provides comparable security with smaller key sizes and lower computational overhead?",
+    "options": {
+      "A": "Elliptic Curve Cryptography (ECC)",
+      "B": "MD5",
+      "C": "3DES",
+      "D": "ROT13"
+    },
+    "answer": "A",
+    "explanation": "ECC provides equivalent security to RSA using significantly smaller key sizes, which reduces the computational and power requirements, making it well-suited for mobile and resource-constrained devices. MD5 (B) is a hashing algorithm, not an encryption method, and is also considered cryptographically broken. 3DES (C) is a symmetric algorithm that is slower and less efficient than modern alternatives, and does not address the asymmetric encryption requirement. ROT13 (D) is a trivial letter-substitution scheme that provides no real security.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-062",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Perfect Forward Secrecy",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company configures its web servers to use ephemeral Diffie-Hellman key exchanges, generating a new temporary key pair for every TLS session rather than reusing a long-term key. This configuration ensures that if the server's long-term private key is later compromised, past recorded sessions cannot be decrypted. This property is known as:",
+    "options": {
+      "A": "Perfect forward secrecy",
+      "B": "Key escrow",
+      "C": "Certificate pinning",
+      "D": "Salting"
+    },
+    "answer": "A",
+    "explanation": "Perfect forward secrecy ensures that session keys are generated independently for each session using ephemeral key exchange, so the compromise of a long-term private key in the future does not allow an attacker to decrypt previously recorded traffic. Key escrow (B) refers to storing a copy of encryption keys with a trusted third party for recovery purposes, the opposite concern from forward secrecy. Certificate pinning (C) is a technique to prevent man-in-the-middle attacks by associating a host with a specific certificate. Salting (D) is used to strengthen password hashes, unrelated to session key derivation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-063",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Certificate Pinning",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A mobile banking app is hardcoded to only trust one specific certificate (or public key) for its API server, rejecting connections even if a different, otherwise valid certificate is presented by a server claiming to be the API endpoint. This technique is known as:",
+    "options": {
+      "A": "Certificate pinning",
+      "B": "OCSP stapling",
+      "C": "Key escrow",
+      "D": "Certificate chaining"
+    },
+    "answer": "A",
+    "explanation": "Certificate pinning hardcodes or 'pins' an application's trust to a specific certificate or public key, so that even if an attacker obtains a fraudulent certificate signed by a compromised or coerced CA, the application will reject it because it does not match the pinned value, mitigating certain man-in-the-middle attacks. OCSP stapling (B) is a performance and privacy optimization for certificate revocation checking, unrelated to pinning a specific certificate. Key escrow (C) involves storing keys with a third party for recovery. Certificate chaining (D) refers to the hierarchy of trust from a root CA down to an end-entity certificate, not restricting trust to a single pinned certificate.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-064",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - OCSP Stapling",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A web server is configured to periodically obtain a signed, time-stamped revocation status response from its CA's OCSP responder and include that response directly within the TLS handshake when a client connects, rather than requiring the client to separately contact the OCSP responder. This optimization is known as:",
+    "options": {
+      "A": "OCSP stapling",
+      "B": "Certificate pinning",
+      "C": "Key escrow",
+      "D": "Certificate revocation list distribution"
+    },
+    "answer": "A",
+    "explanation": "OCSP stapling allows a server to proactively obtain and cache a signed revocation status from the CA and present, or 'staple,' it during the TLS handshake, eliminating the need for the client to make a separate round trip to the OCSP responder, which improves performance and reduces information leakage about which sites a client visits. Certificate pinning (B) restricts an application to trust only a specific certificate, an unrelated concept. Key escrow (C) involves storing a copy of private keys for recovery. Distributing a certificate revocation list (D) is the older, less efficient alternative that OCSP and OCSP stapling were designed to improve upon.",
+    "comptia_logic_note": "OCSP and OCSP stapling are easily confused. Plain OCSP requires the CLIENT to contact the CA's responder directly for each connection. OCSP stapling shifts that burden to the SERVER, which fetches and caches ('staples') the response ahead of time — the key distinguishing detail is WHO performs the revocation check and WHEN."
+  },
+  {
+    "id": "D1-065",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Key Escrow",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A government agency requires that a copy of every employee's encryption key be securely stored with a trusted internal authority so that encrypted data can still be recovered if an employee leaves the organization or loses their key. This practice is known as:",
+    "options": {
+      "A": "Key escrow",
+      "B": "Perfect forward secrecy",
+      "C": "Steganography",
+      "D": "Key stretching"
+    },
+    "answer": "A",
+    "explanation": "Key escrow is the practice of storing a copy of cryptographic keys with a trusted third party so that data can still be decrypted even if the original key holder is unavailable, which supports business continuity but introduces a risk if the escrow itself is compromised. Perfect forward secrecy (B) is designed to prevent past sessions from being decrypted even with future key compromise, the opposite goal of key escrow's recoverability focus. Steganography (C) hides data within other files and is unrelated to key recovery. Key stretching (D) is a technique to strengthen weak keys or passwords against brute-force attacks, not a recovery mechanism.",
+    "comptia_logic_note": "Key escrow is often viewed with suspicion because it represents a tradeoff between recoverability (business continuity) and confidentiality (a third party holds a copy of the key). CompTIA frames it as a legitimate recovery mechanism, but exam questions may test whether candidates recognize the inherent risk of a centralized key store."
+  },
+  {
+    "id": "D1-066",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Steganography vs Obfuscation",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An analyst is comparing data-hiding techniques. Which TWO of the following statements correctly describe steganography and obfuscation? (Choose TWO.)",
+    "options": {
+      "A": "Steganography hides the existence of data by embedding it within another file, such as concealing a text message within the pixel data of an image",
+      "B": "Obfuscation makes data or code difficult to understand or read, such as renaming variables to meaningless characters, without necessarily hiding that something is present",
+      "C": "Steganography and obfuscation both provide mathematically provable confidentiality equivalent to strong encryption",
+      "D": "Obfuscation is a form of asymmetric encryption that uses a public and private key pair",
+      "E": "Steganography always requires a CA-issued digital certificate to function"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Steganography conceals the existence of data by hiding it within another file or medium, such as embedding a message in an image's pixel data, so an observer may not even realize hidden data is present. Obfuscation makes data, code, or logic difficult to understand without necessarily hiding its existence, such as minifying or renaming variables in source code. Neither technique provides the mathematically provable confidentiality of strong encryption (C), since both can often be reversed by someone who knows the technique used. Obfuscation is not a form of asymmetric encryption (D) and does not use key pairs. Steganography does not require a digital certificate (E) to function.",
+    "comptia_logic_note": "Steganography and obfuscation are sometimes mistaken for encryption because all three relate to 'hiding' information, but neither provides the strong, key-based mathematical guarantees of encryption — they are best thought of as concealment or complexity techniques rather than true cryptographic protection."
+  },
+  {
+    "id": "D1-067",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Tokenization vs Encryption",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A payment processor replaces customers' actual credit card numbers stored in its database with randomly generated reference values that have no mathematical relationship to the original numbers. The mapping between the reference values and the real card numbers is kept in a separate, highly secured vault. Compared to encrypting the card numbers directly, this approach is BEST described as:",
+    "options": {
+      "A": "Tokenization, which removes the sensitive data from the database entirely by substituting it with a non-mathematically-derived reference value",
+      "B": "Symmetric encryption, because both the token and the original value are derived using the same shared key",
+      "C": "Hashing, because the token is a fixed-length irreversible representation of the card number",
+      "D": "Key stretching, because the token requires additional computational rounds to generate"
+    },
+    "answer": "A",
+    "explanation": "Tokenization substitutes sensitive data with a randomly generated, non-mathematically-derived token that has no usable relationship to the original value, with the actual sensitive data stored separately in a secure vault, reducing the scope of systems that must handle the real data, such as for PCI DSS compliance. Encryption (B) maintains a mathematical relationship between plaintext and ciphertext that can be reversed with the correct key, which is not the case here since the token has no derivable relationship to the card number. Hashing (C) is a one-way function, but tokens are typically reversible through the vault's lookup table, unlike a hash. Key stretching (D) is a password-hardening technique unrelated to substituting data values.",
+    "comptia_logic_note": "Tokenization and encryption both protect sensitive data 'at rest' in a database, but the key distinction is reversibility mechanism: encryption can be reversed mathematically with a key, while tokenization can only be reversed by looking up the original value in a separate secure vault — the token itself carries no recoverable information."
+  },
+  {
+    "id": "D1-068",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Symmetric vs Asymmetric Review",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Symmetric encryption algorithms generally perform encryption and decryption faster than asymmetric algorithms, which is why asymmetric algorithms like RSA are often used only to securely exchange a symmetric session key, with the bulk data then encrypted using the faster symmetric algorithm.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Symmetric algorithms such as AES are computationally efficient for encrypting large amounts of data, while asymmetric algorithms such as RSA are slower but useful for securely exchanging keys, which is why protocols like TLS use asymmetric cryptography to establish a session key and then switch to symmetric encryption for the actual data transfer.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-069",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Hashing Algorithm Strength",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A developer is choosing a hashing algorithm to verify file integrity for a new application. Which of the following algorithms is currently considered cryptographically strong and suitable for this purpose?",
+    "options": {
+      "A": "SHA-256",
+      "B": "MD5",
+      "C": "SHA-1",
+      "D": "ROT13"
+    },
+    "answer": "A",
+    "explanation": "SHA-256, part of the SHA-2 family, is currently considered cryptographically strong and widely used for integrity verification and digital signatures. MD5 (B) and SHA-1 (C) are both considered cryptographically broken due to demonstrated collision vulnerabilities and should not be used for security-sensitive integrity verification. ROT13 (D) is a trivial letter-substitution cipher that provides no cryptographic security and is not a hashing algorithm.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-070",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - HMAC",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An API gateway requires that every request include a value computed by combining the request body with a shared secret key using a cryptographic hash function. The receiving server recomputes this value using the same shared secret and compares it to the submitted value to confirm both the integrity of the request and that it was generated by a party who knows the shared secret. This mechanism is known as:",
+    "options": {
+      "A": "HMAC (Hash-based Message Authentication Code)",
+      "B": "OCSP",
+      "C": "Salting",
+      "D": "Tokenization"
+    },
+    "answer": "A",
+    "explanation": "An HMAC combines a cryptographic hash function with a shared secret key to provide both data integrity and authenticity, since only a party possessing the shared secret could generate a matching HMAC value. OCSP (B) is a protocol for checking certificate revocation status, unrelated to message authentication codes. Salting (C) adds random data to passwords before hashing to defeat precomputed attack tables, a different purpose. Tokenization (D) substitutes sensitive values with non-derivable reference tokens, unrelated to message authentication.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-071",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Digital Signature Process",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A user wants to digitally sign a document so that recipients can verify both its integrity and its origin. Which of the following correctly describes the process?",
+    "options": {
+      "A": "The user hashes the document, then encrypts the resulting hash with their own private key; recipients decrypt the signature using the user's public key and compare it to a hash they compute themselves",
+      "B": "The user encrypts the entire document with the recipient's public key, and the recipient decrypts it with their own private key",
+      "C": "The user hashes the document and encrypts the hash with the recipient's public key, which only the recipient can decrypt with their private key",
+      "D": "The user encrypts the document using a shared symmetric key that both parties exchanged in advance over the phone"
+    },
+    "answer": "A",
+    "explanation": "To create a digital signature, the signer generates a hash of the document and encrypts that hash with their own private key; recipients then decrypt the signature using the signer's public key and compare the result to a hash they compute independently from the received document, confirming both integrity (the hash matches) and origin (only the signer's private key could have produced a signature decryptable with their public key). Option B describes confidentiality-focused encryption of an entire message to a recipient, which is a separate use case from signing. Option C incorrectly uses the recipient's public key, which would only provide confidentiality to the recipient, not prove the sender's identity. Option D describes symmetric key exchange, unrelated to digital signatures.",
+    "comptia_logic_note": "A frequent point of confusion is which key (sender's or recipient's, public or private) is used at each step. For digital SIGNATURES, the SENDER uses their own PRIVATE key to sign, and anyone can verify with the sender's PUBLIC key. For CONFIDENTIALITY (encrypting a message so only one recipient can read it), the SENDER uses the RECIPIENT's PUBLIC key, and only the recipient's PRIVATE key can decrypt it. These are often combined but serve different purposes."
+  },
+  {
+    "id": "D1-072",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Certificate Chain of Trust",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A browser receives a web server's certificate, which was signed by an intermediate CA, whose own certificate was signed by a root CA that is pre-installed in the browser's trust store. The browser is able to validate the web server's certificate by following this hierarchy back to a trusted root. This concept is known as the:",
+    "options": {
+      "A": "Chain of trust",
+      "B": "Key escrow hierarchy",
+      "C": "Certificate pinning hierarchy",
+      "D": "Tokenization vault"
+    },
+    "answer": "A",
+    "explanation": "The chain of trust refers to the hierarchical relationship in which a root CA's trusted certificate signs intermediate CA certificates, which in turn sign end-entity certificates, allowing a relying party to validate a certificate by tracing signatures back to a trusted root. Key escrow (B) refers to storing keys for recovery, unrelated to certificate hierarchies. Certificate pinning (C) restricts trust to a specific certificate or key regardless of the chain. A tokenization vault (D) stores mappings between tokens and sensitive data, unrelated to certificate validation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-073",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Emerging Threats to Cryptography",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A security architect is evaluating long-term risks to the organization's current RSA and ECC-based encryption deployments. Which emerging technology poses a theoretical future risk of being able to break these widely used asymmetric algorithms by efficiently solving the mathematical problems they rely on?",
+    "options": {
+      "A": "Quantum computing",
+      "B": "Software-defined networking",
+      "C": "Containerization",
+      "D": "Federated identity management"
+    },
+    "answer": "A",
+    "explanation": "Quantum computing poses a long-term theoretical threat to current asymmetric algorithms like RSA and ECC because algorithms such as Shor's algorithm, if run on a sufficiently powerful quantum computer, could efficiently solve the integer factorization and discrete logarithm problems that these algorithms rely on for security, motivating research into post-quantum cryptography. Software-defined networking (B) and containerization (C) are architecture and virtualization technologies unrelated to cryptographic strength. Federated identity management (D) is an authentication concept, not a computational threat to cryptographic algorithms.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-074",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Blockchain Concepts",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A supply chain management system records each transaction in a sequential, cryptographically linked structure where each new entry includes a hash of the previous entry, making it computationally impractical to alter historical records without detection. This structure is BEST described as a:",
+    "options": {
+      "A": "Blockchain or distributed ledger",
+      "B": "Honeynet",
+      "C": "Screened subnet",
+      "D": "Key escrow vault"
+    },
+    "answer": "A",
+    "explanation": "A blockchain, or distributed ledger, is a sequential chain of records where each entry is cryptographically linked to the previous one via hashing, making historical tampering evident because altering any entry would change its hash and break the chain of subsequent hashes. A honeynet (B) is a decoy network for studying attackers. A screened subnet (C) is a network architecture for isolating public-facing services. A key escrow vault (D) stores cryptographic keys for recovery, unrelated to immutable transaction ledgers.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-075",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - TLS Handshake and Cipher Suites",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "During a TLS handshake between a client and a web server, the client sends a list of cipher suites it supports, and the server selects one cipher suite from that list to use for the session. The chosen cipher suite specifies the key exchange algorithm, the authentication algorithm, the bulk encryption algorithm, and the hashing algorithm used for the connection.",
+    "stem": "If the server selects a cipher suite that uses ephemeral Diffie-Hellman (DHE or ECDHE) for key exchange instead of static RSA key exchange, what security benefit is gained for this session?",
+    "options": {
+      "A": "Perfect forward secrecy, because a unique ephemeral key is generated for this session and is not derivable from the server's long-term private key",
+      "B": "The session will use a weaker encryption algorithm than RSA key exchange would provide",
+      "C": "The client no longer needs to validate the server's certificate",
+      "D": "The session will bypass the need for any symmetric encryption algorithm"
+    },
+    "answer": "A",
+    "explanation": "Using ephemeral Diffie-Hellman (DHE or ECDHE) for key exchange generates a unique, temporary key pair for each session that is not mathematically derivable from the server's long-term private key, providing perfect forward secrecy so that a future compromise of the server's private key cannot be used to decrypt past recorded sessions. Option B is incorrect because the choice of key exchange algorithm does not inherently weaken the bulk encryption algorithm, which is negotiated separately. Option C is incorrect because certificate validation still occurs regardless of the key exchange method chosen. Option D is incorrect because TLS always uses a symmetric algorithm for bulk data encryption after the handshake, regardless of the key exchange method.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-076",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Salting vs Key Stretching",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An application stores user passwords as hashed values. To protect against precomputed hash attacks and brute-force attacks, the developers add random data to each password before hashing and also run the hash function through thousands of iterations. Which TWO of the following correctly describe these two techniques? (Choose TWO.)",
+    "options": {
+      "A": "Salting adds unique random data to each password before hashing, which prevents attackers from using precomputed rainbow tables across multiple accounts",
+      "B": "Key stretching applies the hash function repeatedly (many iterations), which increases the computational cost of each brute-force guess",
+      "C": "Salting and key stretching both eliminate the need to ever store a hashed password",
+      "D": "Salting encrypts the password using the recipient's public key before hashing",
+      "E": "Key stretching is only applicable to symmetric encryption keys, never to passwords"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Salting adds unique random data to each password before hashing so that identical passwords produce different hash values and precomputed rainbow tables become ineffective. Key stretching applies the hash function through many iterations (or uses algorithms designed for this purpose, such as PBKDF2, bcrypt, or Argon2), making each brute-force attempt computationally expensive. Both techniques still result in a stored hash (C is incorrect). Salting does not involve public key encryption (D). Key stretching is commonly applied to passwords specifically to slow down brute-force attacks, not only to symmetric keys (E).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-077",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Wildcard and SAN Certificates",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company hosts several subdomains (mail.example.com, vpn.example.com, and portal.example.com) on different servers and wants to use a single certificate that secures all of them, including any future subdomains, without reissuing the certificate each time a new subdomain is added. Which type of certificate BEST meets this requirement?",
+    "options": {
+      "A": "A wildcard certificate (e.g., issued for *.example.com)",
+      "B": "A self-signed certificate generated independently on each server",
+      "C": "A certificate revocation list",
+      "D": "An OCSP responder certificate"
+    },
+    "answer": "A",
+    "explanation": "A wildcard certificate, issued for a domain such as *.example.com, secures the base domain and any first-level subdomain, allowing new subdomains to be added without reissuing the certificate. A self-signed certificate (B) is not issued by a trusted CA and would generate browser trust warnings, and would still need to be generated separately per server. A certificate revocation list (C) is a list of revoked certificates, not a certificate itself. An OCSP responder certificate (D) is used by the OCSP service to sign revocation responses, unrelated to securing subdomains.",
+    "comptia_logic_note": "A Subject Alternative Name (SAN) certificate is a related but different solution — it secures a specific, explicitly listed set of domain names (which can be entirely different domains, not just subdomains), while a wildcard certificate covers any subdomain of one base domain. The scenario's requirement for 'any future subdomain without reissuing' specifically points to wildcard rather than SAN, since a SAN certificate would need to be reissued to add a new name."
+  },
+  {
+    "id": "D1-078",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Self-Signed Certificate Risk",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: A self-signed certificate used on a public-facing production website will typically cause browsers to display a trust warning to visitors, because the certificate was not issued and vouched for by a CA in the browser's trust store.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Because a self-signed certificate is signed by its own private key rather than by a CA that the browser already trusts, browsers cannot verify the chain of trust and will display a warning to the user, which is why self-signed certificates are generally limited to internal testing environments rather than public production websites.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-079",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Envelope Encryption (KEK/DEK)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A cloud storage provider encrypts each customer's file using a unique data encryption key (DEK). That DEK is then itself encrypted using a separate, centrally managed key encryption key (KEK), and only the encrypted DEK is stored alongside the file. This layered approach is known as:",
+    "options": {
+      "A": "Envelope encryption",
+      "B": "Steganography",
+      "C": "Certificate pinning",
+      "D": "Key stretching"
+    },
+    "answer": "A",
+    "explanation": "Envelope encryption uses a data encryption key (DEK) to encrypt the actual data, and then encrypts that DEK with a key encryption key (KEK), which is typically managed in a centralized, more tightly controlled service such as an HSM or cloud key management system; this allows keys to be rotated and managed efficiently without re-encrypting the underlying data each time. Steganography (B) hides data within other files, an unrelated concept. Certificate pinning (C) restricts trust to a specific certificate. Key stretching (D) strengthens weak keys against brute-force attacks, not a layered key-management structure.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D1-080",
+    "domain": 1,
+    "objective": "1.4",
+    "topic": "Cryptographic Solutions - Private Key Compromise Response",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A security team discovers that the private key associated with a web server's TLS certificate was inadvertently committed to a public code repository for several hours before being removed. The certificate is not set to expire for another 11 months.",
+    "stem": "What is the MOST appropriate immediate action for the security team to take?",
+    "options": {
+      "A": "Revoke the compromised certificate with the issuing CA and request a new certificate using a newly generated key pair",
+      "B": "Wait until the certificate's normal expiration date in 11 months, since revocation is unnecessary if the key was only exposed briefly",
+      "C": "Change the website's domain name to prevent the compromised key from being used",
+      "D": "Increase the certificate's validity period to reduce how often this could happen again"
+    },
+    "answer": "A",
+    "explanation": "Because the private key may have been viewed or copied by anyone with access to the public repository during the exposure window, the certificate must be treated as compromised regardless of how briefly it was exposed, requiring immediate revocation with the CA and issuance of a new certificate using a freshly generated key pair. Waiting until normal expiration (B) leaves the organization exposed to impersonation or decryption of traffic for nearly a year. Changing the domain name (C) is an extreme, unnecessary measure that does not address the compromised key and would cause significant business disruption. Increasing the certificate's validity period (D) would worsen future exposure windows rather than addressing the current compromise.",
+    "comptia_logic_note": "Any exposure of a private key, no matter how brief, should be treated as a full compromise because there is no reliable way to prove the key was not copied during that window — CompTIA expects 'revoke and reissue' as the default safe response to any private key exposure."
   }
 ]

@@ -84,7 +84,10 @@
       "D": "Hacktivism",
       "E": "Watering hole attack"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "Shadow IT refers to the use of unsanctioned applications or services, like an unapproved cloud account, without IT department knowledge or approval. Because this employee is an authorized user whose actions create risk to the organization's data, this also qualifies as an insider threat. Nation-state actor (C) and hacktivism (D) describe external attackers with political or espionage motives, which do not apply here. A watering hole attack (E) involves compromising a website frequently visited by a target group, unrelated to this scenario.",
     "comptia_logic_note": "Insider threat does not always mean malicious intent. CompTIA's definition includes well-meaning employees whose actions, such as using unsanctioned shadow IT, create unintentional risk, not only those acting with deliberate malice."
   },
@@ -192,7 +195,10 @@
       "D": "Typosquatting",
       "E": "Brand impersonation"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "An open, unencrypted wireless network is a classic example of an unsecure network, allowing attackers to intercept traffic or gain unauthorized network access. A device left with its factory-default administrator credentials represents the default credentials threat vector, allowing trivial unauthorized access. Watering hole (C), typosquatting (D), and brand impersonation (E) are all social-engineering or web-based attack techniques unrelated to the network configuration weaknesses described here.",
     "comptia_logic_note": null
   },
@@ -246,7 +252,10 @@
       "D": "Pretexting",
       "E": "DNS sinkhole"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "The fake website copying Contoso's logo, color scheme, and layout under a similar-sounding domain is brand impersonation, designed to make visitors believe they are on the legitimate site. The sender's email domain 'cont0so.com' substitutes a zero for the letter 'o', a classic typosquatting technique used to deceive recipients into trusting the email's origin. A watering hole attack (C) would involve compromising a legitimate third-party site the victims already visit, not creating a new lookalike site. Pretexting (D) involves a fabricated scenario or identity in direct communication, which is not the focus of the domain-naming techniques asked about here. A DNS sinkhole (E) is a defensive tool, not an attack technique.",
     "comptia_logic_note": "Brand impersonation and typosquatting frequently appear together in phishing campaigns but describe different elements: typosquatting refers specifically to the deceptive domain name or character substitution, while brand impersonation refers to copying visual branding and identity. This question asks about both elements separately, so both terms are needed."
   },
@@ -320,7 +329,10 @@
       "D": "Cross-site scripting",
       "E": "Typosquatting"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "VM escape occurs when malicious code running inside a virtual machine breaks out of its isolation boundary to access the host system or other VMs. Resource reuse refers to the risk that data remnants from one virtual machine's allocated memory or storage could be exposed to another VM later assigned the same physical resources. SQL injection (C) and cross-site scripting (D) are web application vulnerabilities unrelated to virtualization specifically. Typosquatting (E) is a social engineering threat vector, not a virtualization vulnerability.",
     "comptia_logic_note": null
   },
@@ -427,7 +439,10 @@
       "D": "Birthday attack",
       "E": "Downgrade attack"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "The first pattern, many password attempts against a single account, is a brute-force attack, which tries numerous password combinations against one target. The second pattern, a single password tried against many accounts, is password spraying, which avoids triggering account lockout policies by limiting attempts per account while testing a common password broadly. Credential replay (C) involves reusing previously captured valid credentials or session tokens, not guessing passwords. A birthday attack (D) is a cryptographic attack exploiting hash collision probabilities. A downgrade attack (E) forces a system to use a weaker, less secure protocol or cipher.",
     "comptia_logic_note": "Brute force and password spraying are often confused because both involve trying many password combinations. The distinguishing factor is direction: brute force concentrates many attempts on ONE account, while password spraying spreads few attempts across MANY accounts to stay under lockout thresholds."
   },
@@ -553,7 +568,10 @@
       "D": "Disabling the host-based firewall",
       "E": "Installing additional unnecessary software for convenience"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "Changing default passwords removes a commonly exploited weakness where attackers know factory-set credentials, and disabling unused ports and services reduces the attack surface by removing unnecessary entry points. Increasing the number of guest accounts (C) would increase risk rather than reduce it. Disabling the host-based firewall (D) removes a layer of protection rather than hardening the system. Installing additional unnecessary software (E) increases the attack surface, the opposite of hardening, which involves removing unnecessary software.",
     "comptia_logic_note": null
   },
@@ -645,5 +663,1386 @@
     "answer": "A",
     "explanation": "SQL injection (SQLi) occurs when an attacker inserts crafted input, such as ' OR '1'='1, into a field that is passed directly into a database query, manipulating the query's logic to always evaluate as true and bypass authentication. Cross-site scripting (B) involves injecting malicious scripts that execute in other users' browsers, not manipulating database queries. CSRF (C) tricks an authenticated user's browser into submitting unwanted requests, unrelated to database query manipulation. A buffer overflow (D) involves overwriting memory by sending more data than a buffer can hold, a different exploitation technique entirely.",
     "comptia_logic_note": "The specific syntax ' OR '1'='1 is a classic SQL injection payload designed to make a WHERE clause always evaluate as true. Recognizing this pattern in a scenario is a strong signal that the answer is SQL injection rather than other web application attacks like XSS or CSRF."
+  },
+  {
+    "id": "D2-037",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Nation-State",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A highly sophisticated attack against a defense contractor's network is found to have used previously unknown zero-day exploits, custom malware, and extensive reconnaissance conducted over many months, with the apparent goal of stealing classified design documents. Which type of threat actor is MOST likely responsible?",
+    "options": {
+      "A": "Nation-state actor",
+      "B": "Script kiddie",
+      "C": "Hacktivist",
+      "D": "Shadow IT department"
+    },
+    "answer": "A",
+    "explanation": "Nation-state actors typically have significant funding, advanced custom tooling including zero-day exploits, and long-term strategic goals such as espionage, which matches this scenario's sophistication and target. A script kiddie (B) relies on existing tools and lacks the resources for custom zero-day development. A hacktivist (C) is typically motivated by political or social causes and tends to favor visible disruption rather than covert long-term espionage. Shadow IT (D) refers to unauthorized internal technology use, not an external threat actor.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-038",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Insider Threat",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A disgruntled database administrator who is about to be terminated copies a sensitive customer database to a personal USB drive before their access is revoked. This individual is BEST classified as which type of threat actor?",
+    "options": {
+      "A": "Insider threat",
+      "B": "Hacktivist",
+      "C": "Nation-state actor",
+      "D": "Unskilled attacker"
+    },
+    "answer": "A",
+    "explanation": "An insider threat is a current or former employee, contractor, or business partner who uses their legitimate access to harm the organization, such as exfiltrating data before termination. A hacktivist (B) is motivated by ideology and is typically an external actor. A nation-state actor (C) operates on behalf of a government with strategic goals, not a personal grievance. An unskilled attacker (D) refers to someone with low technical capability using readily available tools, which does not describe an administrator misusing legitimate access.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-039",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Hacktivist Motivation",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A group defaces a government agency's website with messages protesting a recent policy decision and leaks internal emails to the press to embarrass officials. This group's actions are MOST consistent with which threat actor motivation?",
+    "options": {
+      "A": "Political or ideological (hacktivism)",
+      "B": "Financial gain",
+      "C": "Personal revenge against a former employer",
+      "D": "Pure curiosity with no specific goal"
+    },
+    "answer": "A",
+    "explanation": "Hacktivists are motivated by political, social, or ideological causes, and defacing a government website along with leaking documents to embarrass officials over a policy decision is a classic hacktivist action. Financial gain (B) would typically involve theft of money or sellable data rather than public embarrassment over policy. Personal revenge against a former employer (C) describes an insider threat motivation, not a politically motivated external group. Pure curiosity (D) would not typically involve a coordinated, message-driven defacement campaign.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-040",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Unskilled Attacker",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An individual with minimal technical knowledge downloads a freely available exploitation tool from the internet and uses it, without understanding how it works, to deface a small business's website. This individual is BEST described as a(n):",
+    "options": {
+      "A": "Unskilled attacker (script kiddie)",
+      "B": "Advanced persistent threat",
+      "C": "Insider threat",
+      "D": "Competitor conducting corporate espionage"
+    },
+    "answer": "A",
+    "explanation": "An unskilled attacker, sometimes called a script kiddie, uses pre-existing tools or scripts created by others without a deep understanding of how they work, typically targeting low-hanging-fruit vulnerabilities. An advanced persistent threat (B) refers to a well-resourced, often nation-state-sponsored actor conducting prolonged, sophisticated campaigns. An insider threat (C) requires legitimate internal access, which is not described here. A competitor conducting corporate espionage (D) implies a business motivation and likely more capability than described.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-041",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Attributes (Resources and Sophistication)",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "When assessing a threat actor, analysts often consider attributes such as resources/funding, level of sophistication, and internal vs. external origin. Which TWO of the following statements about these attributes are accurate? (Choose TWO.)",
+    "options": {
+      "A": "An internal threat actor already has some level of legitimate access to systems, which can make their actions harder to distinguish from normal activity",
+      "B": "Nation-state actors typically have lower funding and less sophistication than hacktivist groups",
+      "C": "External threat actors must first gain some form of access before they can act against an organization's systems",
+      "D": "All threat actors, regardless of funding, pose an identical level of risk to every organization",
+      "E": "Sophistication level has no bearing on how difficult a threat actor is to detect or defend against"
+    },
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": "Internal threat actors already possess some legitimate access, which can make malicious activity blend in with normal behavior and be harder to detect. External threat actors, by definition, must first find a way to gain access to systems they do not already have legitimate access to, such as through phishing or exploiting an exposed service. Nation-state actors are generally among the most well-funded and sophisticated actors, not less so than hacktivists (B is incorrect). Funding and sophistication directly affect the level of risk an actor poses (D is incorrect), and higher sophistication generally makes an actor harder to detect and defend against (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-042",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat Actors - Shadow IT",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A marketing team, frustrated with the time it takes IT to approve new software, signs up for a cloud-based file-sharing service using a personal credit card and begins storing customer contact lists there without informing the security team. This unauthorized use of technology is an example of:",
+    "options": {
+      "A": "Shadow IT",
+      "B": "A nation-state attack",
+      "C": "A watering hole attack",
+      "D": "Privilege escalation"
+    },
+    "answer": "A",
+    "explanation": "Shadow IT refers to the use of unauthorized hardware, software, or services within an organization without the knowledge or approval of the IT or security department, which introduces unmanaged and often unmonitored risk, as in this scenario with an unapproved cloud file-sharing service. A nation-state attack (B) involves a government-sponsored external actor, not an internal team's unsanctioned tool usage. A watering hole attack (C) involves compromising a website frequently visited by a target group. Privilege escalation (D) refers to gaining higher access rights than originally granted, unrelated to adopting an unapproved service.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-043",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Spear Phishing",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An attacker sends a highly personalized email to a specific finance manager, referencing the manager's name, job title, and a recent company event, in an attempt to trick them into clicking a malicious link. This targeted approach is known as:",
+    "options": {
+      "A": "Spear phishing",
+      "B": "Whaling",
+      "C": "Vishing",
+      "D": "Pharming"
+    },
+    "answer": "A",
+    "explanation": "Spear phishing is a targeted phishing attack directed at a specific individual or small group, using personalized details to increase credibility. Whaling (B) is a specific form of spear phishing aimed at high-profile executives such as a CEO or CFO, which is not indicated here since the target is a finance manager generally. Vishing (C) is phishing conducted over voice calls. Pharming (D) redirects users to fraudulent websites by manipulating DNS, not through a personalized email.",
+    "comptia_logic_note": "Spear phishing and whaling are related: whaling is simply spear phishing aimed specifically at senior executives or other high-value targets. If the scenario does not specify a C-level executive or similarly prominent target, 'spear phishing' is the more general and safer answer."
+  },
+  {
+    "id": "D2-044",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Vishing",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An employee receives a phone call from someone claiming to be from the company's IT help desk, urgently requesting the employee's network password to 'resolve a critical security issue' affecting their account. The employee provides the password over the phone. This attack is an example of:",
+    "options": {
+      "A": "Vishing",
+      "B": "Smishing",
+      "C": "Pharming",
+      "D": "Watering hole attack"
+    },
+    "answer": "A",
+    "explanation": "Vishing (voice phishing) involves an attacker using a phone call to impersonate a trusted entity and manipulate the victim into divulging sensitive information, such as a password. Smishing (B) uses SMS text messages rather than voice calls. Pharming (C) redirects users to fraudulent websites via DNS manipulation, not phone calls. A watering hole attack (D) compromises a website frequented by the target group, unrelated to a direct phone call.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-045",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Smishing",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Several employees receive a text message on their personal phones claiming to be from the company's payroll provider, stating there is an issue with their direct deposit and providing a link to 'verify your banking details immediately.' This attack is an example of:",
+    "options": {
+      "A": "Smishing",
+      "B": "Vishing",
+      "C": "Whaling",
+      "D": "Tailgating"
+    },
+    "answer": "A",
+    "explanation": "Smishing is phishing conducted via SMS text messages, often creating urgency around topics like payroll, package deliveries, or account issues to trick victims into clicking malicious links. Vishing (B) uses voice calls rather than text messages. Whaling (C) specifically targets high-profile executives, not a broad group of employees. Tailgating (D) is a physical security issue involving following someone through a secured door, unrelated to text messages.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-046",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Whaling",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker researches a company's organizational chart and sends a carefully crafted email to the Chief Financial Officer, impersonating the CEO and requesting an urgent wire transfer to close a confidential acquisition. This attack specifically targeting a senior executive is known as:",
+    "options": {
+      "A": "Whaling",
+      "B": "Smishing",
+      "C": "Typosquatting",
+      "D": "Watering hole attack"
+    },
+    "answer": "A",
+    "explanation": "Whaling is a form of spear phishing that specifically targets high-value individuals such as C-level executives, often involving requests for wire transfers or sensitive information under the guise of urgency and authority. Smishing (B) refers to phishing via SMS, not email targeting executives. Typosquatting (C) involves registering misspelled domain names, not crafting a targeted impersonation email. A watering hole attack (D) compromises a commonly visited website rather than directly emailing an executive.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-047",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Pharming",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "Users at a company report that when they type their bank's correct web address into their browser, they are silently redirected to a fraudulent site that looks identical to the real one. Investigation reveals that the company's DNS server records were altered to point the bank's domain name to an attacker-controlled IP address. This attack is BEST described as:",
+    "options": {
+      "A": "Pharming",
+      "B": "Spear phishing",
+      "C": "Vishing",
+      "D": "Tailgating"
+    },
+    "answer": "A",
+    "explanation": "Pharming redirects users to a fraudulent website even when they enter the correct URL, typically by manipulating DNS records or a local hosts file, making it more dangerous than typical phishing because no user error (like clicking a malicious link) is required. Spear phishing (B) relies on a targeted email or message to trick a user into taking an action, not DNS manipulation. Vishing (C) uses phone calls. Tailgating (D) is a physical security concept involving unauthorized physical entry.",
+    "comptia_logic_note": "Phishing variants (spear phishing, vishing, smishing, whaling) all require some user action, such as clicking a link or answering a call. Pharming is distinct because it requires NO user error at all — even a security-conscious user typing the correct URL is redirected, because the underlying name resolution itself has been compromised."
+  },
+  {
+    "id": "D2-048",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Watering Hole Attack",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "Security researchers discover that a website frequently visited by employees of several aerospace companies, an industry news portal, has been compromised and is silently delivering malware to visitors from those companies' IP ranges only. Which TWO statements correctly describe this type of attack? (Choose TWO.)",
+    "options": {
+      "A": "This is a watering hole attack, which compromises a site the target group is known to visit rather than attacking the target organizations directly",
+      "B": "This attack relies on the targets' trust in a third-party site they regularly and voluntarily visit",
+      "C": "This attack requires the attacker to have valid login credentials for each target organization",
+      "D": "This attack is a form of typosquatting because it relies on a misspelled domain name",
+      "E": "This attack could only succeed if the targets clicked on a phishing email first"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "A watering hole attack compromises a third-party website that members of a target group are known to frequent, relying on the targets' inherent trust in that familiar site to deliver malware without needing to directly breach the target organizations or send phishing emails. This attack does not require valid credentials for the target organizations (C), since it works by compromising the third-party site itself. It does not rely on a misspelled domain (D), since the legitimate, correctly-spelled site is the one compromised. It also does not require a phishing email (E), since simply visiting the already-trusted site triggers the malware delivery.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-049",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Business Email Compromise (Invoice Fraud)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "An accounts payable clerk receives an email that appears to come from a long-standing vendor's accounting department, stating that the vendor has 'updated its banking details' and requesting that all future invoice payments be sent to a new account number. The email uses the vendor's correct logo and signature block, but the sender's email domain is spelled slightly differently from the vendor's actual domain.",
+    "stem": "Which of the following BEST describes this attack and the MOST appropriate immediate action?",
+    "options": {
+      "A": "This is business email compromise using a look-alike domain; the clerk should independently verify the change by calling the vendor using a previously known phone number before making any payment changes",
+      "B": "This is a watering hole attack; the clerk should report the vendor's website to law enforcement",
+      "C": "This is a legitimate request and the clerk should update the banking details immediately to avoid late payment fees",
+      "D": "This is a brute-force attack; the clerk should reset their own email password"
+    },
+    "answer": "A",
+    "explanation": "This scenario describes business email compromise (BEC), using a look-alike domain to impersonate a trusted vendor and redirect payments to an attacker-controlled account, a common and costly form of fraud. The correct response is to independently verify any change to payment details through a previously established, trusted contact method, such as a phone number on file, rather than replying to or trusting the email itself. Option B mischaracterizes the attack as a watering hole, which involves compromising a website, not an email-based payment redirection. Option C would result in the organization sending payments directly to the attacker. Option D addresses an unrelated concern about the clerk's own password, not the vendor impersonation.",
+    "comptia_logic_note": "The subtle domain misspelling is the key forensic detail distinguishing this from a legitimate request. CompTIA expects candidates to recognize that any unsolicited request to change payment or banking details, regardless of how convincing it appears, must be verified out-of-band using previously known contact information, never information provided in the suspicious message itself."
+  },
+  {
+    "id": "D2-050",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Brand Impersonation",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker creates a fake customer support social media account that closely mimics a well-known software company's official branding, including its logo and color scheme, and uses it to respond to customer complaints with links to a malicious 'support portal.' This technique is BEST described as:",
+    "options": {
+      "A": "Brand impersonation",
+      "B": "Tailgating",
+      "C": "Dumpster diving",
+      "D": "Shoulder surfing"
+    },
+    "answer": "A",
+    "explanation": "Brand impersonation involves creating fake accounts, websites, or communications that mimic a trusted brand's identity to deceive victims into trusting malicious content, such as a fake support account directing users to a malicious link. Tailgating (B) and dumpster diving (C) are physical social engineering techniques unrelated to online brand mimicry. Shoulder surfing (D) involves observing someone's screen or keypad entry to capture sensitive information, also unrelated to impersonating a brand online.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-051",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Pretexting",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Pretexting involves an attacker creating a fabricated scenario or false identity, such as posing as a vendor's technician, to convincingly justify a request for information or access from a victim.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Pretexting involves inventing a plausible false scenario or identity, such as claiming to be a vendor technician needing building access, in order to manipulate a victim into providing information or granting access they otherwise would not.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-052",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Influence Campaigns and Disinformation",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A coordinated network of fake social media accounts repeatedly shares fabricated news stories designed to damage a company's reputation and erode public trust ahead of a product launch. Which TWO of the following statements correctly describe this type of threat? (Choose TWO.)",
+    "options": {
+      "A": "This is an example of an influence campaign using disinformation to shape public perception",
+      "B": "Such campaigns often use a network of fake or automated accounts (bots) to amplify the reach of false narratives",
+      "C": "This activity is technically identical to a watering hole attack because both involve a website",
+      "D": "Influence campaigns can only be conducted by nation-state actors, never by competitors or other groups",
+      "E": "This activity requires the attacker to have administrative access to the company's internal network"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "An influence campaign uses disinformation, deliberately false or misleading information, spread through coordinated channels to shape public opinion or damage reputations, often amplified by networks of fake or automated bot accounts to increase apparent legitimacy and reach. This is not the same as a watering hole attack (C), which involves compromising a legitimate website to deliver malware, not spreading false narratives on social media. Influence campaigns are not limited to nation-state actors (D); hacktivists, competitors, and other groups can conduct them as well. This activity does not require access to the target company's internal network (E), since it operates entirely through public social media channels.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-053",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - USB Drop Attack",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker leaves several USB flash drives labeled 'Confidential - Executive Bonuses' scattered in the parking lot of a target company, hoping an employee will plug one into a corporate computer out of curiosity. This technique is BEST described as:",
+    "options": {
+      "A": "A USB drop attack (baiting)",
+      "B": "Tailgating",
+      "C": "Pharming",
+      "D": "Vishing"
+    },
+    "answer": "A",
+    "explanation": "A USB drop attack, also called baiting, relies on human curiosity by leaving infected removable media in a location where a target is likely to find and use it, leading to malware execution. Tailgating (B) involves physically following an authorized person through a secured entrance, not leaving media to be found. Pharming (C) involves DNS-based redirection to fraudulent websites. Vishing (D) involves voice-based phone calls.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-054",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Tailgating",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An employee badges into a secure server room, and a person they do not recognize, carrying a large box and not displaying a badge, follows closely behind and slips through the door before it closes. This is an example of:",
+    "options": {
+      "A": "Tailgating",
+      "B": "Smishing",
+      "C": "Typosquatting",
+      "D": "Brand impersonation"
+    },
+    "answer": "A",
+    "explanation": "Tailgating occurs when an unauthorized individual follows closely behind an authorized person to gain physical access to a restricted area without using their own credentials. Smishing (B) involves SMS-based phishing, an unrelated digital attack. Typosquatting (C) involves registering misspelled domain names. Brand impersonation (D) involves mimicking a trusted brand's online identity, neither of which involves physical entry to a building.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-055",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Dumpster Diving",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker searches through a company's outdoor recycling bins after hours and finds printed documents containing employee names, internal phone extensions, and a network diagram that was discarded without being shredded. This information-gathering technique is known as:",
+    "options": {
+      "A": "Dumpster diving",
+      "B": "Shoulder surfing",
+      "C": "Pretexting",
+      "D": "Watering hole attack"
+    },
+    "answer": "A",
+    "explanation": "Dumpster diving involves searching through an organization's trash or recycling for discarded documents, hardware, or other materials that can reveal sensitive information useful for further attacks. Shoulder surfing (B) involves directly observing a person's screen, keyboard, or written notes in real time, not searching discarded materials. Pretexting (C) involves creating a false scenario to manipulate a victim directly. A watering hole attack (D) compromises a website frequented by the target group.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-056",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Shoulder Surfing",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "While riding in a crowded elevator, an employee enters their PIN to unlock their phone. A stranger standing behind them watches and memorizes the PIN, intending to use it later if they can steal the phone. This observation technique is called:",
+    "options": {
+      "A": "Shoulder surfing",
+      "B": "Dumpster diving",
+      "C": "Smishing",
+      "D": "Pharming"
+    },
+    "answer": "A",
+    "explanation": "Shoulder surfing involves directly observing someone entering credentials, PINs, or other sensitive information, typically by looking over their shoulder in a public or crowded setting. Dumpster diving (B) involves searching discarded trash for information, not direct observation. Smishing (C) involves SMS-based phishing messages. Pharming (D) involves DNS manipulation to redirect web traffic, neither of which involves visually observing a PIN entry.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-057",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - QR Code Phishing",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A flyer posted in a company break room advertises a 'free coffee giveaway' and includes a QR code. Employees who scan the code with their phones are taken to a fake login page that harvests their corporate credentials. This attack vector is BEST described as:",
+    "options": {
+      "A": "QR code phishing (quishing)",
+      "B": "Typosquatting",
+      "C": "Vishing",
+      "D": "Watering hole attack"
+    },
+    "answer": "A",
+    "explanation": "QR code phishing, sometimes called 'quishing,' uses malicious QR codes to direct victims to fraudulent websites designed to harvest credentials or deliver malware, often placed in physical locations to exploit the convenience of scanning. Typosquatting (B) relies on registering misspelled domain names that users might type directly, not on scanning a code. Vishing (C) is conducted via voice calls. A watering hole attack (D) compromises a website frequented by the target group rather than using a physical QR code.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-058",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Supply Chain Attack Vector",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A widely used software vendor's build server is compromised, and attackers insert malicious code into a routine software update that is then digitally signed and distributed to thousands of the vendor's customers through the normal automatic update process. This attack vector is BEST classified as a:",
+    "options": {
+      "A": "Supply chain attack",
+      "B": "Watering hole attack",
+      "C": "Brand impersonation attack",
+      "D": "Typosquatting attack"
+    },
+    "answer": "A",
+    "explanation": "A supply chain attack compromises a trusted third-party vendor, such as by inserting malicious code into a legitimate software update, allowing attackers to reach a large number of downstream customers through a normally trusted distribution channel. A watering hole attack (B) compromises a website that a target group visits, not a software update mechanism. Brand impersonation (C) involves mimicking a brand's identity to deceive victims directly, not compromising the vendor's actual infrastructure. Typosquatting (D) involves registering similar-looking domain names, unrelated to compromising a legitimate update process.",
+    "comptia_logic_note": "The key distinguishing feature of a supply chain attack is that the malicious code arrives through a channel the victim already trusts and has approved, such as an automatic update signed by a legitimate vendor, which is what makes it especially dangerous and hard to detect compared to attacks that rely on tricking a user into taking a new, unusual action."
+  },
+  {
+    "id": "D2-059",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Unsecured Networks",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Connecting a corporate laptop to a free, unencrypted public Wi-Fi network at a coffee shop poses a security risk because attackers on the same network can potentially intercept unencrypted traffic.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Open, unencrypted Wi-Fi networks allow any nearby attacker connected to the same network to potentially capture or intercept unencrypted traffic using techniques such as packet sniffing or on-path attacks, making such networks an unsecured threat vector for sensitive data.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-060",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Default Credentials",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "During an assessment, a security analyst discovers that a newly deployed network printer is still configured with the username 'admin' and password 'admin' as shipped from the manufacturer, and this configuration is reachable from the internet. This represents which type of threat vector?",
+    "options": {
+      "A": "Default credentials",
+      "B": "Watering hole attack",
+      "C": "Pretexting",
+      "D": "Brand impersonation"
+    },
+    "answer": "A",
+    "explanation": "Default credentials are the factory-set usernames and passwords that ship with devices and are often publicly documented; failing to change them creates an easily exploitable threat vector, especially when the device is internet-facing. A watering hole attack (B) involves compromising a frequently visited website. Pretexting (C) involves a fabricated scenario used to manipulate a person. Brand impersonation (D) involves mimicking a trusted brand's online identity, none of which describe an unchanged factory password on a device.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-061",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Social Media as a Vector",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A security awareness training module discusses how social media platforms can serve as a threat vector against an organization. Which TWO of the following are accurate examples of social media being used as a threat vector? (Choose TWO.)",
+    "options": {
+      "A": "An attacker reviews an employee's public profile to gather job title, manager's name, and recent projects to craft a convincing pretexting attempt",
+      "B": "An attacker sends a fake 'connection request' from a profile impersonating a recruiter, then sends a malicious document disguised as a job offer",
+      "C": "Social media platforms are immune to being used for reconnaissance because profile information is always private by default",
+      "D": "Posting a photo of a desk that includes a visible whiteboard with project codenames could not realistically aid an attacker",
+      "E": "An attacker can only use social media to spread malware, never to gather information for other attacks"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Social media is a common threat vector because publicly available profile information, such as job titles, projects, and connections, can be mined for reconnaissance to craft convincing pretexting or spear phishing attempts, and fake profiles can be used to establish trust before delivering malicious content. The claim that profiles are always private by default (C) is false, as many users share information publicly. A photo revealing project codenames on a whiteboard (D) absolutely could aid an attacker through inadvertent information disclosure. Social media is used for both reconnaissance and malware delivery, not just one or the other (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-062",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Threat Vectors - Supply Chain Compromise (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A mid-sized hospital system relies on a third-party billing software vendor that has remote access into the hospital's network to push updates and provide support. Six months after onboarding the vendor, the hospital's security team detects unusual outbound traffic from the billing server to an unfamiliar external IP address shortly after a routine vendor-pushed update was installed.",
+    "stem": "Which of the following is the MOST likely explanation, and what should the security team prioritize FIRST?",
+    "options": {
+      "A": "The vendor's update mechanism may have been compromised (a supply chain attack); the team should isolate the billing server from the network while investigating",
+      "B": "This is normal behavior and no action is required because the vendor has legitimate remote access",
+      "C": "This is a watering hole attack, and the team should block the hospital's public website",
+      "D": "This is a tailgating incident, and the team should review badge access logs for the building"
+    },
+    "answer": "A",
+    "explanation": "Unusual outbound traffic immediately following a vendor-pushed update is a strong indicator of a supply chain attack, where the trusted update mechanism itself has been compromised to deliver malicious code or establish command-and-control communication. The presence of legitimate remote access (B) does not make all resulting traffic automatically benign, especially when it follows an update and goes to an unfamiliar destination, so this option ignores a clear anomaly. A watering hole attack (C) involves compromising a website the target visits, which is unrelated to a vendor-pushed software update. Tailgating (D) is a physical security concern involving unauthorized building access, not network traffic anomalies.",
+    "comptia_logic_note": "Isolating (containing) the affected system is prioritized first because, in incident response, containment limits further damage (such as data exfiltration or lateral movement) while preserving the system for investigation, rather than waiting to fully confirm the cause before taking any protective action."
+  },
+  {
+    "id": "D2-063",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Misconfiguration",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A cloud storage bucket containing customer invoices is found to be set to 'public' access, allowing anyone with the URL to download the files without authentication. This is an example of a:",
+    "options": {
+      "A": "Misconfiguration vulnerability",
+      "B": "Zero-day vulnerability",
+      "C": "Race condition",
+      "D": "Buffer overflow"
+    },
+    "answer": "A",
+    "explanation": "A misconfiguration vulnerability arises when a system, application, or service is set up with insecure settings, such as a cloud storage bucket left publicly accessible, exposing data without requiring an exploit. A zero-day vulnerability (B) is an unknown, unpatched flaw in software, not a configuration error. A race condition (C) involves timing issues between concurrent operations. A buffer overflow (D) involves writing data beyond allocated memory boundaries, neither of which describes an access control setting.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-064",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Zero-Day",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Researchers discover a previously unknown flaw in a widely used web server software that is actively being exploited in the wild before the vendor has released a patch. This type of vulnerability is known as a:",
+    "options": {
+      "A": "Zero-day vulnerability",
+      "B": "Legacy system vulnerability",
+      "C": "Misconfiguration",
+      "D": "End-of-life vulnerability"
+    },
+    "answer": "A",
+    "explanation": "A zero-day vulnerability is a flaw that is unknown to the vendor (and therefore unpatched) at the time it is discovered or exploited, giving defenders zero days of advance warning to apply a fix. A legacy system vulnerability (B) and end-of-life vulnerability (D) refer to risks from outdated software or hardware that is no longer supported, which is a known and often long-standing issue rather than a newly discovered flaw. A misconfiguration (C) is an insecure setting, not an unpatched software flaw.",
+    "comptia_logic_note": "Legacy and end-of-life vulnerabilities are similar but distinct from zero-days: legacy/EOL issues are typically WELL-KNOWN flaws that remain unpatched because the vendor no longer supports the product, whereas a zero-day is UNKNOWN to the vendor at the time of discovery, meaning no patch could have existed yet regardless of support status."
+  },
+  {
+    "id": "D2-065",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Legacy and End-of-Life Systems",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A hospital continues to run a critical diagnostic imaging application on an operating system that the vendor stopped releasing security patches for three years ago, because the application is not certified to run on a newer OS. This situation represents which type of vulnerability?",
+    "options": {
+      "A": "Legacy/end-of-life system vulnerability",
+      "B": "Zero-day vulnerability",
+      "C": "Race condition",
+      "D": "SQL injection vulnerability"
+    },
+    "answer": "A",
+    "explanation": "Legacy and end-of-life systems are those that are no longer supported with security updates by their vendor, leaving any known or future vulnerabilities permanently unpatched and creating an ongoing risk that often must be mitigated through compensating controls such as network segmentation. A zero-day vulnerability (B) refers to a newly discovered, unpatched flaw in currently supported software, not a long-unsupported OS. A race condition (C) is a timing-based flaw in concurrent processing. SQL injection (D) is a web application input validation flaw, unrelated to an unsupported operating system.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-066",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Supply Chain (Third-Party Library)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A development team discovers that an open-source logging library used throughout their application portfolio contains a critical, publicly disclosed vulnerability that allows remote code execution. The library was incorporated years ago and is now embedded in dozens of internal applications. This scenario BEST illustrates which category of vulnerability?",
+    "options": {
+      "A": "Supply chain vulnerability",
+      "B": "Memory injection",
+      "C": "Misconfiguration",
+      "D": "Race condition"
+    },
+    "answer": "A",
+    "explanation": "A supply chain vulnerability arises when a flaw exists in a third-party component, such as an open-source library, hardware component, or vendor product, that an organization depends on but does not directly control, and a single flaw can cascade across many downstream applications. Memory injection (B) refers to an attack technique that inserts malicious code into a running process's memory, not a dependency-based weakness. Misconfiguration (C) involves insecure settings rather than a flawed dependency. A race condition (D) is a timing-based concurrency flaw, unrelated to third-party library risk.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-067",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Cryptographic Vulnerability",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security audit finds that a legacy internal application still uses the MD5 algorithm to store user password hashes, even though MD5 is widely known to be vulnerable to collision attacks and rapid brute-forcing with modern hardware. This is an example of a:",
+    "options": {
+      "A": "Cryptographic vulnerability",
+      "B": "Race condition",
+      "C": "Buffer overflow",
+      "D": "Misconfiguration of a firewall rule"
+    },
+    "answer": "A",
+    "explanation": "A cryptographic vulnerability exists when an application relies on weak, outdated, or broken cryptographic algorithms, such as MD5 for password hashing, which can be cracked far more easily than modern algorithms like bcrypt or Argon2, exposing stored credentials to compromise. A race condition (B) is a timing-based concurrency flaw unrelated to algorithm choice. A buffer overflow (C) involves writing beyond allocated memory bounds. A firewall misconfiguration (D) relates to network access control rules, not the choice of hashing algorithm.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-068",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Mobile Device Vulnerabilities",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A mobile device management (MDM) policy review identifies several smartphones that have been modified to remove manufacturer restrictions and have apps installed from outside the official app store. Which TWO of the following terms and risks correctly apply to this situation? (Choose TWO.)",
+    "options": {
+      "A": "Jailbreaking (or rooting) removes built-in OS security restrictions, potentially allowing malicious apps greater access to the system",
+      "B": "Sideloading installs applications from sources other than the official app store, bypassing the vendor's app vetting process",
+      "C": "This practice automatically encrypts all data on the device using a stronger algorithm than the manufacturer default",
+      "D": "Jailbreaking is required to apply standard manufacturer security patches",
+      "E": "Sideloaded apps are always digitally signed by the device manufacturer, guaranteeing their safety"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Jailbreaking (on iOS) or rooting (on Android) removes the operating system's built-in security restrictions, often allowing apps to gain elevated privileges and bypassing sandboxing protections, while sideloading installs apps from outside the official, vetted app store, increasing the risk of installing malicious software. Neither practice improves encryption (C) — in fact, jailbreaking can weaken built-in protections. Jailbreaking is not required for, and often interferes with, receiving standard manufacturer security patches (D is incorrect, often the opposite is true). Sideloaded apps are not vetted or guaranteed safe by the manufacturer (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-069",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Race Condition (TOCTOU)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An application checks whether a user has permission to access a file, and then, a brief moment later, performs the file operation. An attacker exploits the small time gap between the permission check and the actual file access to swap the target file with a malicious one. This type of flaw is BEST described as a:",
+    "options": {
+      "A": "Time-of-check to time-of-use (TOCTOU) race condition",
+      "B": "Buffer overflow",
+      "C": "Cryptographic vulnerability",
+      "D": "Misconfiguration"
+    },
+    "answer": "A",
+    "explanation": "A time-of-check to time-of-use (TOCTOU) race condition occurs when there is a gap between when a condition is checked (such as a permission check) and when it is acted upon, allowing an attacker to alter the state of a resource during that window to bypass the intended security check. A buffer overflow (B) involves writing data beyond an allocated memory region, not exploiting a timing gap between check and use. A cryptographic vulnerability (C) involves weaknesses in encryption algorithms. A misconfiguration (D) involves an insecure setting, neither of which describes exploiting a timing gap in access checks.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-070",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Memory Injection",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An attacker exploits a flaw in a running application to insert and execute malicious code directly within the application's allocated memory space, allowing the malicious code to inherit the privileges and trusted status of the legitimate process. This technique is known as:",
+    "options": {
+      "A": "Memory injection",
+      "B": "Typosquatting",
+      "C": "Pretexting",
+      "D": "Dumpster diving"
+    },
+    "answer": "A",
+    "explanation": "Memory injection involves inserting malicious code into the memory space of a legitimate, running process, allowing the injected code to execute with the same privileges and trust level as the host process, often used to evade detection since no new malicious file is written to disk. Typosquatting (B) involves registering similar domain names. Pretexting (C) is a social engineering technique using a fabricated scenario. Dumpster diving (D) involves searching discarded materials for information, none of which involve runtime code injection into process memory.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-071",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Buffer Overflow",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker sends an input string to a legacy application that is far longer than the application's input field was designed to handle. The excess data overwrites adjacent memory, including portions used to control program execution, allowing the attacker to potentially run arbitrary code. This vulnerability is known as a:",
+    "options": {
+      "A": "Buffer overflow",
+      "B": "Race condition",
+      "C": "Cryptographic vulnerability",
+      "D": "Misconfiguration"
+    },
+    "answer": "A",
+    "explanation": "A buffer overflow occurs when a program writes more data to a buffer (a fixed-size block of memory) than it was allocated to hold, causing the excess data to overwrite adjacent memory, which can corrupt data, crash the program, or allow execution of attacker-controlled code. A race condition (B) involves a timing issue between concurrent operations, not memory boundary violations. A cryptographic vulnerability (C) involves weaknesses in encryption algorithms. A misconfiguration (D) involves an insecure setting, neither of which describes overwriting memory via oversized input.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-072",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - OS-Based Vulnerabilities",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: An operating system that has not been updated with the latest security patches for several months is considered to have OS-based vulnerabilities, since known flaws that have already been fixed by the vendor remain exploitable on that system.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. OS-based vulnerabilities include known flaws for which the vendor has already released patches; if those patches are not applied, the system remains exposed to publicly known exploits targeting those unpatched flaws, making timely patch management a critical control.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-073",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Web-Based (Directory Traversal)",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A penetration tester modifies a URL parameter on a web application from 'file=report.pdf' to 'file=../../../../etc/passwd' and successfully retrieves the contents of a sensitive system file. This web application vulnerability is known as:",
+    "options": {
+      "A": "Directory traversal",
+      "B": "Buffer overflow",
+      "C": "Race condition",
+      "D": "Cryptographic vulnerability"
+    },
+    "answer": "A",
+    "explanation": "Directory traversal (also called path traversal) is a web-based vulnerability that occurs when an application fails to properly validate user-supplied file paths, allowing an attacker to use sequences like '../' to access files and directories outside the intended web root. A buffer overflow (B) involves overwriting memory through oversized input, not manipulating file paths. A race condition (C) is a timing-based flaw. A cryptographic vulnerability (D) involves weak encryption, none of which describe manipulating a file path parameter to access arbitrary files.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-074",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerabilities - Virtualization (VM Escape) and Firmware",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A cloud hosting provider runs multiple customers' virtual machines on the same physical host for cost efficiency. Security researchers later discover a flaw in the hypervisor that allows a process running inside one customer's virtual machine to break out of its isolated environment and access the memory of other virtual machines running on the same host, as well as the underlying host system.",
+    "stem": "This flaw is BEST classified as which type of vulnerability, and what is the primary risk it introduces in a multi-tenant cloud environment?",
+    "options": {
+      "A": "A VM escape (virtualization) vulnerability; it allows a single compromised guest to potentially compromise the host and other tenants' VMs, breaking the isolation that multi-tenancy depends on",
+      "B": "A buffer overflow in a single customer's application; it only affects that customer's own data and poses no risk to others",
+      "C": "A misconfiguration of the customer's firewall rules; the customer should restrict inbound traffic to their VM",
+      "D": "A cryptographic vulnerability in the customer's TLS certificate; the customer should renew their certificate"
+    },
+    "answer": "A",
+    "explanation": "A VM escape vulnerability allows malicious code running within a guest virtual machine to break out of its isolated environment and interact with the hypervisor, host system, or other guest VMs, which is especially dangerous in multi-tenant cloud environments because it undermines the fundamental isolation guarantee that separates different customers' workloads on shared hardware. Option B incorrectly limits the impact to a single customer, ignoring that the flaw is in the shared hypervisor layer itself. Option C misattributes the issue to a customer-controlled firewall setting, when the flaw is in the underlying virtualization platform. Option D incorrectly frames the issue as a certificate problem, unrelated to hypervisor isolation.",
+    "comptia_logic_note": "Virtualization vulnerabilities like VM escape are uniquely severe in cloud contexts because they can violate the shared responsibility model's isolation boundary: even if every individual customer follows best practices within their own VM, a hypervisor-level flaw can expose all tenants, which is why patching and securing the virtualization layer is the cloud provider's responsibility, not the customer's."
+  },
+  {
+    "id": "D2-075",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Ransomware",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "Employees at a company suddenly find that all of their documents have been encrypted and a pop-up message demands payment in cryptocurrency to receive a decryption key. This type of malware is known as:",
+    "options": {
+      "A": "Ransomware",
+      "B": "Spyware",
+      "C": "A logic bomb",
+      "D": "A worm"
+    },
+    "answer": "A",
+    "explanation": "Ransomware encrypts a victim's files and demands payment, often in cryptocurrency, in exchange for the decryption key, denying access to data until the ransom is paid (or a backup is restored). Spyware (B) covertly collects information about a user without their consent but does not typically encrypt files for ransom. A logic bomb (C) is malicious code that executes when a specific condition is met, not necessarily encryption-based extortion. A worm (D) is self-replicating malware that spreads across networks, which may deliver ransomware but is not itself the encryption/extortion mechanism.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-076",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Trojan",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An employee downloads what appears to be a legitimate free PDF editor from a third-party website. After installation, the program secretly installs a backdoor that gives an attacker remote access to the system. This type of malware is BEST classified as a:",
+    "options": {
+      "A": "Trojan",
+      "B": "Worm",
+      "C": "Logic bomb",
+      "D": "Rootkit"
+    },
+    "answer": "A",
+    "explanation": "A Trojan (or Trojan horse) is malware disguised as legitimate, desirable software, which performs malicious actions, such as installing a backdoor, once the user voluntarily installs it. A worm (B) self-replicates and spreads across networks without requiring the user to install a disguised program. A logic bomb (C) executes malicious code when a specific trigger condition occurs, not upon installation of a fake application. A rootkit (D) is designed to hide its presence and maintain privileged access, which could be a component delivered by a Trojan but is not the same as the disguised-software delivery method itself.",
+    "comptia_logic_note": "Trojans and rootkits are often confused: a Trojan describes HOW malware gets onto a system (disguised as something legitimate that the user willingly installs), while a rootkit describes WHAT the malware does once installed (hides itself and maintains privileged access). A single piece of malware could technically be both, but when a question emphasizes deceptive disguise and voluntary installation, 'Trojan' is the better answer; when it emphasizes hiding from detection, 'rootkit' is better."
+  },
+  {
+    "id": "D2-077",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Worm",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A piece of malware exploits a vulnerability in a network service to automatically spread from one vulnerable host to another across a network, without requiring any user interaction or a host file to attach to. This type of malware is known as a:",
+    "options": {
+      "A": "Worm",
+      "B": "Trojan",
+      "C": "Logic bomb",
+      "D": "Spyware"
+    },
+    "answer": "A",
+    "explanation": "A worm is self-replicating malware that spreads independently across networks by exploiting vulnerabilities, without needing to attach to a host file or rely on user interaction, unlike a traditional virus. A Trojan (B) requires a user to be tricked into installing disguised software. A logic bomb (C) lies dormant until a specific condition triggers it, rather than actively spreading. Spyware (D) focuses on covertly collecting information rather than self-propagating across a network.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-078",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Spyware and Bloatware",
+    "format": "multi_select",
+    "difficulty": "easy",
+    "stem": "A user complains that their new laptop came preloaded with numerous unwanted trial applications that slow down startup, and separately notices that their browsing habits seem to be tracked by an application they don't remember installing. Which TWO of the following statements correctly match these issues to the appropriate malware/software category? (Choose TWO.)",
+    "options": {
+      "A": "The preloaded trial applications that consume resources without providing value are an example of bloatware",
+      "B": "The application covertly tracking browsing habits without consent is an example of spyware",
+      "C": "Both issues are examples of ransomware because they affect system performance",
+      "D": "Bloatware is always a form of rootkit because it is preinstalled by the manufacturer",
+      "E": "Spyware cannot run on a laptop unless the device has been jailbroken"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Bloatware refers to unnecessary preinstalled software that consumes system resources without providing meaningful value to the user, while spyware covertly monitors user activity, such as browsing habits, and transmits that information without consent. Neither issue involves encrypting files for ransom (C is incorrect, that describes ransomware). Bloatware is not inherently a rootkit (D is incorrect) — it may simply be unwanted but legitimate software. Spyware can run on standard, non-jailbroken devices (E is incorrect); jailbreaking is unrelated to whether spyware can be installed.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-079",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Keylogger",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A user's antivirus software flags a hidden process that records every keystroke made on the keyboard, including login credentials and credit card numbers typed into web forms, and periodically sends this captured data to an external server. This malware is BEST described as a:",
+    "options": {
+      "A": "Keylogger",
+      "B": "Logic bomb",
+      "C": "Worm",
+      "D": "Rootkit"
+    },
+    "answer": "A",
+    "explanation": "A keylogger records keystrokes entered by a user, capturing sensitive information such as usernames, passwords, and financial data, and often exfiltrates this data to an attacker. A logic bomb (B) executes malicious actions when a specific condition is triggered, not continuous keystroke capture. A worm (C) is self-replicating malware focused on spreading across systems. A rootkit (D) focuses on hiding malicious activity and maintaining privileged access, which a keylogger might use to remain hidden, but the defining behavior described here, capturing keystrokes, is specifically a keylogger.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-080",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Logic Bomb",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A system administrator who was recently terminated had previously embedded code into a payroll application that remains dormant and harmless until a specific date arrives, at which point it will delete all payroll records. This malicious code is BEST classified as a:",
+    "options": {
+      "A": "Logic bomb",
+      "B": "Worm",
+      "C": "Spyware",
+      "D": "Bloatware"
+    },
+    "answer": "A",
+    "explanation": "A logic bomb is malicious code intentionally inserted into a system that remains dormant until triggered by a specific condition, such as a date, event, or user action, at which point it executes a harmful action like deleting data. A worm (B) actively self-replicates and spreads across systems rather than lying dormant until a trigger. Spyware (C) covertly collects information rather than performing a destructive triggered action. Bloatware (D) is unwanted but generally non-malicious software that consumes resources, not a deliberately planted destructive trigger.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-081",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Rootkit",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A forensic analyst discovers malware that has modified core operating system files and kernel-level functions specifically to hide its own running processes, files, and network connections from standard system monitoring tools and antivirus scans. This type of malware is known as a:",
+    "options": {
+      "A": "Rootkit",
+      "B": "Trojan",
+      "C": "Worm",
+      "D": "Logic bomb"
+    },
+    "answer": "A",
+    "explanation": "A rootkit is malware specifically designed to gain and maintain privileged ('root' or administrator-level) access while actively hiding its presence from the operating system and security tools, often by modifying kernel-level functions, making it extremely difficult to detect with standard tools. A Trojan (B) describes malware disguised as legitimate software to gain initial installation, which is a delivery method rather than a stealth/persistence mechanism. A worm (C) focuses on self-replication and spreading. A logic bomb (D) executes based on a trigger condition, neither of which describes the deep stealth and privilege-hiding behavior in this scenario.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-082",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Malware - Botnet",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A security researcher identifies thousands of compromised IoT devices around the world that are all receiving commands from the same command-and-control (C2) server and are being used together to send massive volumes of traffic toward a single target. Which TWO of the following statements correctly describe this situation? (Choose TWO.)",
+    "options": {
+      "A": "This network of compromised devices acting under centralized control is known as a botnet",
+      "B": "The compromised devices in a botnet are often called 'zombies' or 'bots'",
+      "C": "A botnet can only consist of traditional desktop computers, never IoT devices",
+      "D": "Botnets are incapable of being used to launch distributed denial-of-service (DDoS) attacks",
+      "E": "Once a device becomes part of a botnet, it can never be removed or cleaned"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "A botnet is a network of compromised devices, often called 'zombies' or 'bots,' that are controlled centrally by an attacker (often via a command-and-control server) and can be directed to perform coordinated actions such as launching attacks. Botnets are not limited to desktop computers (C is incorrect) — IoT devices, servers, and mobile devices can all be recruited. Botnets are commonly used specifically to launch distributed denial-of-service (DDoS) attacks by overwhelming a target with traffic from many sources (D is incorrect). Infected devices can be cleaned and removed from a botnet through remediation such as malware removal or firmware resets (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-083",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - APT (Advanced Persistent Threat)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A long-term, stealthy intrusion campaign typically conducted by a well-resourced and highly skilled threat actor, often a nation-state, that maintains persistent access to a target network over an extended period to achieve strategic goals such as espionage, is referred to by the acronym ____.",
+    "blank_answer": "APT",
+    "acceptable_answers": [
+      "APT",
+      "Advanced Persistent Threat",
+      "advanced persistent threat"
+    ],
+    "answer": "APT",
+    "explanation": "APT stands for Advanced Persistent Threat, describing a sophisticated, well-funded threat actor (often nation-state sponsored) that establishes long-term, stealthy access to a target's network to achieve strategic objectives such as data theft or espionage, rather than seeking quick, opportunistic gains.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-084",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - IOC (Indicator of Compromise)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "Forensic artifacts such as unusual outbound network connections, unexpected new user accounts, or known-malicious file hashes that suggest a system may have been breached are collectively referred to as an ____.",
+    "blank_answer": "IOC",
+    "acceptable_answers": [
+      "IOC",
+      "Indicator of Compromise",
+      "indicator of compromise",
+      "IOCs",
+      "Indicators of Compromise"
+    ],
+    "answer": "IOC",
+    "explanation": "An IOC (Indicator of Compromise) is forensic evidence, such as unusual network traffic, anomalous account activity, or known-malicious file signatures, that suggests a system or network has been compromised, and is commonly used by security teams and threat intelligence platforms to detect and respond to intrusions.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-085",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - TTPs (Tactics, Techniques, and Procedures)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "When threat intelligence analysts describe the overall strategies (tactics), specific methods (techniques), and detailed step-by-step actions (procedures) commonly used by a particular threat actor or group, they refer to this collectively using the acronym ____.",
+    "blank_answer": "TTPs",
+    "acceptable_answers": [
+      "TTPs",
+      "TTP",
+      "Tactics, Techniques, and Procedures",
+      "tactics, techniques, and procedures"
+    ],
+    "answer": "TTPs",
+    "explanation": "TTPs (Tactics, Techniques, and Procedures) describe the behavioral patterns of a threat actor: tactics represent the high-level goals, techniques represent the general methods used to achieve those goals, and procedures represent the specific, detailed implementation steps, and analyzing TTPs helps defenders attribute attacks and anticipate future behavior.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-086",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - DDoS",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "An attack in which traffic from many distributed, often compromised, systems is directed simultaneously at a single target to overwhelm its resources and make a service unavailable to legitimate users is called a ____ attack.",
+    "blank_answer": "DDoS",
+    "acceptable_answers": [
+      "DDoS",
+      "Distributed Denial of Service",
+      "distributed denial of service",
+      "Distributed Denial-of-Service"
+    ],
+    "answer": "DDoS",
+    "explanation": "A DDoS (Distributed Denial of Service) attack uses many distributed sources, often a botnet of compromised devices, to flood a target with traffic or requests simultaneously, overwhelming its resources and denying service to legitimate users. The 'distributed' aspect distinguishes it from a simple DoS attack originating from a single source.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-087",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - DoS vs DDoS",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A small e-commerce website becomes unreachable after a single server begins sending an overwhelming flood of malformed requests to it. Network logs show all the malicious traffic originates from one IP address. This attack is BEST classified as a:",
+    "options": {
+      "A": "Denial-of-service (DoS) attack",
+      "B": "Distributed denial-of-service (DDoS) attack",
+      "C": "On-path attack",
+      "D": "ARP poisoning attack"
+    },
+    "answer": "A",
+    "explanation": "A denial-of-service (DoS) attack originates from a single source and aims to overwhelm a target's resources, making a service unavailable to legitimate users. A distributed denial-of-service (DDoS) attack (B) involves traffic from many distributed sources, typically a botnet, not a single IP address. An on-path attack (C) involves an attacker intercepting communication between two parties. ARP poisoning (D) involves manipulating ARP tables on a local network to redirect traffic, neither of which describes a flood from one source.",
+    "comptia_logic_note": "The single defining difference between DoS and DDoS is the number of distinct source systems involved: DoS = one attacking source, DDoS = many distributed sources (often a botnet). The impact (service unavailability) is the same for both; only the source distribution differs."
+  },
+  {
+    "id": "D2-088",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - On-Path (MITM)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An attacker on the same coffee shop Wi-Fi network as a victim positions their device between the victim's laptop and the wireless access point, intercepting, and in some cases modifying, traffic exchanged between the victim and a banking website before forwarding it on, without either party being aware. This attack is BEST described as:",
+    "options": {
+      "A": "An on-path (man-in-the-middle) attack",
+      "B": "A logic bomb",
+      "C": "A watering hole attack",
+      "D": "A pretexting attack"
+    },
+    "answer": "A",
+    "explanation": "An on-path attack, also known as a man-in-the-middle (MITM) attack, occurs when an attacker secretly positions themselves between two communicating parties, allowing them to intercept, read, or alter traffic without either party's knowledge. A logic bomb (B) is malicious code triggered by a specific condition, unrelated to intercepting live traffic. A watering hole attack (C) compromises a website frequently visited by targets. Pretexting (D) is a social engineering technique using a fabricated scenario, neither of which describes real-time traffic interception between two communicating parties.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-089",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - ARP Poisoning",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker on a local network sends forged Address Resolution Protocol (ARP) messages, causing other devices on the network to associate the attacker's MAC address with the IP address of the default gateway. As a result, traffic intended for the gateway is instead routed through the attacker's machine. This attack is known as:",
+    "options": {
+      "A": "ARP poisoning",
+      "B": "DNS poisoning",
+      "C": "Credential replay",
+      "D": "Privilege escalation"
+    },
+    "answer": "A",
+    "explanation": "ARP poisoning (or ARP spoofing) involves sending forged ARP messages on a local network to associate the attacker's MAC address with the IP address of another device, such as the default gateway, enabling traffic interception (often as a step toward an on-path attack). DNS poisoning (B) involves corrupting DNS resolution records rather than local ARP tables. Credential replay (C) involves reusing captured authentication tokens or hashes, unrelated to MAC/IP address mapping. Privilege escalation (D) involves gaining higher access rights than originally assigned, not redirecting network traffic at the data-link layer.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-090",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - Credential Replay",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker captures a valid authentication token transmitted during a legitimate login session and later resends that exact token to the server to gain access to the application without knowing the user's actual password. This attack is BEST described as:",
+    "options": {
+      "A": "A credential replay attack",
+      "B": "A logic bomb",
+      "C": "Typosquatting",
+      "D": "A watering hole attack"
+    },
+    "answer": "A",
+    "explanation": "A credential replay attack involves capturing valid authentication data, such as a session token, cookie, or password hash, and reusing it later to impersonate the legitimate user without needing to know the actual plaintext password. A logic bomb (B) is malicious code triggered by a condition, unrelated to reusing captured credentials. Typosquatting (C) involves registering misspelled domains. A watering hole attack (D) compromises a frequently visited website, neither of which involves capturing and resending authentication data.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-091",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - MFA Fatigue (Push Bombing)",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An attacker who has already obtained a user's valid password repeatedly attempts to log in, causing the user's phone to receive dozens of multi-factor authentication push notifications within a few minutes. Eventually, the exhausted user approves one of the requests just to stop the notifications. This attack technique is known as:",
+    "options": {
+      "A": "MFA fatigue (push bombing)",
+      "B": "ARP poisoning",
+      "C": "Pharming",
+      "D": "Typosquatting"
+    },
+    "answer": "A",
+    "explanation": "MFA fatigue, also called push bombing, exploits push-based multi-factor authentication by bombarding a user with repeated approval requests until the user, out of frustration or confusion, approves one and grants the attacker access. ARP poisoning (B) involves manipulating local network address mappings. Pharming (C) involves DNS-based redirection to fraudulent sites. Typosquatting (D) involves registering misspelled domain names, none of which involve overwhelming a user with authentication prompts.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-092",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - Privilege Escalation",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An attacker gains initial access to a server using a low-privileged guest account, then exploits a flaw in a poorly configured scheduled task that runs with administrative privileges, ultimately gaining full administrative control over the server. This progression from limited access to higher-level access is known as:",
+    "options": {
+      "A": "Privilege escalation",
+      "B": "Credential replay",
+      "C": "A watering hole attack",
+      "D": "Typosquatting"
+    },
+    "answer": "A",
+    "explanation": "Privilege escalation occurs when an attacker exploits a flaw, misconfiguration, or design weakness to gain a higher level of access than they were originally granted, such as moving from a guest account to administrative control, often through vulnerable processes or services running with elevated permissions. Credential replay (B) involves reusing captured authentication data, not exploiting flaws to gain higher privileges directly. A watering hole attack (C) involves compromising a frequently visited website. Typosquatting (D) involves registering misspelled domains, neither of which describes escalating access rights on a compromised host.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-093",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Attacks - Password Attack Types",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A security team reviews failed login attempts across the organization and identifies two distinct patterns: one account experienced thousands of attempts using every possible character combination for a short password, while many different accounts each received only a handful of login attempts using a small list of extremely common passwords like 'Password123' and 'Welcome1'. Which TWO of the following correctly identify these password attack types? (Choose TWO.)",
+    "options": {
+      "A": "The attempts using every possible character combination against one account describe a brute-force attack",
+      "B": "The attempts using a small list of common passwords against many different accounts describe a password spraying attack",
+      "C": "Both patterns describe the same attack technique: a dictionary attack",
+      "D": "Password spraying is only effective against accounts that have no password set at all",
+      "E": "A brute-force attack always completes faster than a password spraying attack regardless of password complexity"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "A brute-force attack systematically tries every possible character combination against a single account (or small number of accounts) until the correct password is found, which is more feasible against short or weak passwords. Password spraying tries a small number of commonly used passwords against many different accounts, taking advantage of the likelihood that at least one user has a weak, common password, while avoiding account lockout thresholds by limiting attempts per account. These are distinct techniques, not the same as a dictionary attack applied identically (C is incorrect, though related). Password spraying targets accounts that DO have passwords set, just weak/common ones (D is incorrect). The speed of a brute-force attack depends heavily on password complexity and length, so it does not always complete faster than spraying (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-094",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Indicators of Attack",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A security analyst reviewing system alerts notices that a server's CPU and memory usage have spiked to near 100% with no corresponding increase in legitimate user activity, and separately notices that a user's account has been automatically locked out after a string of failed login attempts overnight. Which TWO of the following statements correctly describe these as indicators of a potential attack? (Choose TWO.)",
+    "options": {
+      "A": "Unexplained, sustained high resource consumption (CPU/memory) can indicate malware such as a cryptominer or a process performing unauthorized activity",
+      "B": "An account lockout following numerous failed login attempts can indicate a brute-force or password spraying attempt against that account",
+      "C": "High resource consumption is never a security concern and is always caused by routine software updates",
+      "D": "Account lockouts can only occur due to a user forgetting their own password, never due to an attack",
+      "E": "Both indicators should be ignored unless a user submits a help desk ticket"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Unexplained spikes in resource consumption can indicate malicious processes running on a system, such as cryptomining malware or data exfiltration tools, while an account lockout triggered by numerous failed login attempts is a classic indicator of a brute-force or password spraying attack against that account. High resource consumption is not always benign (C is incorrect) and warrants investigation when unexplained. Account lockouts can result from either legitimate user error or malicious login attempts (D is incorrect), so they should not be assumed to be one cause without investigation. Security teams should proactively monitor and investigate such indicators rather than waiting for a user-reported ticket (E is incorrect).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-095",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - XSS (Cross-Site Scripting)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A web application vulnerability that allows an attacker to inject malicious client-side scripts into web pages viewed by other users, which then execute in those users' browsers within the trust context of the vulnerable site, is known by the acronym ____.",
+    "blank_answer": "XSS",
+    "acceptable_answers": [
+      "XSS",
+      "Cross-Site Scripting",
+      "cross-site scripting",
+      "Cross Site Scripting"
+    ],
+    "answer": "XSS",
+    "explanation": "XSS (Cross-Site Scripting) is a web application vulnerability where an attacker injects malicious scripts into content delivered to other users, allowing the script to execute in the victim's browser with the same trust and permissions as the vulnerable site, often used to steal session cookies or redirect users.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-096",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - CSRF (Cross-Site Request Forgery)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "An attack that tricks an authenticated user's browser into unknowingly submitting an unwanted request, such as transferring funds or changing an account email address, to a web application in which the user is currently logged in, is known by the acronym ____.",
+    "blank_answer": "CSRF",
+    "acceptable_answers": [
+      "CSRF",
+      "Cross-Site Request Forgery",
+      "cross-site request forgery",
+      "Cross Site Request Forgery"
+    ],
+    "answer": "CSRF",
+    "explanation": "CSRF (Cross-Site Request Forgery) exploits the trust a web application has in an authenticated user's browser by tricking that browser into submitting unauthorized requests, such as a state-changing transaction, while the user is logged in, often via a malicious link or hidden form on another site.",
+    "comptia_logic_note": "XSS and CSRF are often confused: XSS involves injecting and executing malicious SCRIPT CODE in a victim's browser, exploiting the site's failure to sanitize input. CSRF involves forging a REQUEST that rides on the victim's existing authenticated session, exploiting the site's failure to verify that a request was intentionally submitted by the user, without necessarily injecting any script at all."
+  },
+  {
+    "id": "D2-097",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - SSRF (Server-Side Request Forgery)",
+    "format": "fill_blank",
+    "difficulty": "hard",
+    "stem": "A vulnerability in which an attacker manipulates a server-side application into making unauthorized HTTP requests on the attacker's behalf, potentially to internal systems that are not normally reachable from outside the network, is known by the acronym ____.",
+    "blank_answer": "SSRF",
+    "acceptable_answers": [
+      "SSRF",
+      "Server-Side Request Forgery",
+      "server-side request forgery",
+      "Server Side Request Forgery"
+    ],
+    "answer": "SSRF",
+    "explanation": "SSRF (Server-Side Request Forgery) occurs when an attacker manipulates a vulnerable server into making HTTP or other requests to arbitrary destinations, including internal-only systems such as cloud metadata services or internal management interfaces, that the attacker could not normally reach directly, often leading to information disclosure or further compromise.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-098",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Acronyms - XXE (XML External Entity)",
+    "format": "fill_blank",
+    "difficulty": "hard",
+    "stem": "A vulnerability affecting applications that parse XML input, in which an attacker can define a malicious external entity reference within an XML document to read local files, perform server-side request forgery, or cause denial of service, is known by the acronym ____.",
+    "blank_answer": "XXE",
+    "acceptable_answers": [
+      "XXE",
+      "XML External Entity",
+      "xml external entity",
+      "XML External Entity Injection"
+    ],
+    "answer": "XXE",
+    "explanation": "An XXE (XML External Entity) vulnerability occurs when a poorly configured XML parser processes external entity references defined within an XML document, allowing an attacker to read arbitrary local files, trigger outbound requests from the server, or cause resource exhaustion, and is mitigated by disabling external entity processing in XML parsers.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-099",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Host-Based Firewall",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security administrator wants to ensure that even if an attacker gains access to the internal network, an individual workstation will only accept inbound connections on specifically approved ports, regardless of the network's overall firewall rules. Which control should be configured directly on the workstation to achieve this?",
+    "options": {
+      "A": "Host-based firewall",
+      "B": "Network-based intrusion detection system (NIDS)",
+      "C": "Wireless access point",
+      "D": "VPN concentrator"
+    },
+    "answer": "A",
+    "explanation": "A host-based firewall runs directly on an individual endpoint and filters inbound and outbound traffic for that specific device, providing an additional layer of defense even if the broader network perimeter is breached. A network-based intrusion detection system (B) monitors network traffic for suspicious activity but does not enforce per-host port-level access control. A wireless access point (C) provides network connectivity, not host-level filtering. A VPN concentrator (D) manages encrypted remote access connections, unrelated to filtering traffic on an individual workstation.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-100",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - EDR",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team wants to deploy a solution on all company laptops that continuously monitors endpoint activity for suspicious behavior, such as unusual process execution or registry changes, and can automatically isolate an infected device from the network when a threat is detected. Which technology BEST fits this requirement?",
+    "options": {
+      "A": "Endpoint detection and response (EDR)",
+      "B": "A screened subnet",
+      "C": "A jump server",
+      "D": "Tokenization"
+    },
+    "answer": "A",
+    "explanation": "Endpoint detection and response (EDR) solutions continuously monitor endpoint activity for indicators of compromise, provide behavioral analysis, and can take automated response actions such as isolating an infected device from the network. A screened subnet (B) is a network architecture concept for segmenting publicly accessible servers, not an endpoint monitoring tool. A jump server (C) provides a controlled access point for administrative connections to other systems. Tokenization (D) is a data protection technique that substitutes sensitive data with non-sensitive tokens, unrelated to endpoint behavioral monitoring.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-101",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Data Backups",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Maintaining regular, tested, and isolated (offline or air-gapped) backups is an effective mitigation technique against ransomware, because it allows an organization to restore data without paying a ransom if files are encrypted by an attacker.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Regular, tested backups that are isolated from the production network, such as offline or air-gapped copies, ensure that ransomware cannot also encrypt or delete the backup data, allowing an organization to restore affected systems and data without needing to pay a ransom.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-102",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Secure Protocol Selection",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "During a security review, an administrator identifies that several servers are still using Telnet for remote management and FTP for file transfers, both of which transmit data, including credentials, in plaintext. Which TWO of the following actions would correctly mitigate this risk by selecting secure protocol alternatives? (Choose TWO.)",
+    "options": {
+      "A": "Replace Telnet with SSH for encrypted remote command-line management",
+      "B": "Replace FTP with SFTP or FTPS for encrypted file transfers",
+      "C": "Replace Telnet with HTTP, since HTTP is inherently more secure than Telnet",
+      "D": "Continue using FTP but only over a wired network, since wired networks cannot be intercepted",
+      "E": "Disable encryption on all protocols to improve performance and rely on physical security instead"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "SSH (Secure Shell) provides an encrypted replacement for Telnet's plaintext remote administration, and SFTP (SSH File Transfer Protocol) or FTPS provide encrypted replacements for FTP's plaintext file transfers, protecting credentials and data in transit. HTTP (C) is also unencrypted and would not improve security over Telnet. Wired networks (D) can still be intercepted through techniques like ARP poisoning or physical taps, so this does not mitigate the risk. Disabling encryption entirely (E) would increase risk, not reduce it, regardless of physical security measures.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-103",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Reducing Attack Surface",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "As part of hardening a newly deployed web server, an administrator disables all unused network services, closes unnecessary ports, and removes default sample applications that were installed with the operating system. The PRIMARY security benefit of these actions is to:",
+    "options": {
+      "A": "Reduce the server's attack surface by minimizing the number of potential entry points available to an attacker",
+      "B": "Increase the server's processing speed by freeing up CPU resources",
+      "C": "Automatically encrypt all data stored on the server",
+      "D": "Ensure the server complies with data retention regulations"
+    },
+    "answer": "A",
+    "explanation": "Disabling unused services, closing unnecessary ports, and removing default applications reduces the attack surface, the total set of points where an unauthorized user could attempt to enter or extract data, thereby limiting opportunities for exploitation. While these actions might marginally affect performance, that is not their primary security purpose (B). These actions do not involve encryption (C) or data retention compliance (D), which are separate security and governance concerns.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-104",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Allow Lists vs Deny Lists",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A highly regulated organization wants to ensure that only a specific, pre-approved set of applications can execute on its workstations, with every other application blocked by default, including any new or unknown software. Which application control approach BEST achieves this goal?",
+    "options": {
+      "A": "Allow listing (whitelisting), where only explicitly approved applications are permitted to run and everything else is blocked by default",
+      "B": "Deny listing (blacklisting), where only known-malicious applications are blocked and everything else is permitted by default",
+      "C": "Disabling the host-based firewall to allow all application traffic",
+      "D": "Enabling guest accounts on all workstations"
+    },
+    "answer": "A",
+    "explanation": "Allow listing (whitelisting) takes a default-deny approach, permitting only explicitly approved applications to run and blocking everything else, including new or unknown software, which provides the strongest control for highly regulated environments. Deny listing (B) takes a default-allow approach, blocking only known-bad applications, which would not block new or unknown threats. Disabling the host-based firewall (C) would increase risk and is unrelated to application execution control. Enabling guest accounts (D) would increase risk and has no bearing on which applications can execute.",
+    "comptia_logic_note": "Allow listing and deny listing represent opposite default postures: allow listing is 'default deny, explicitly permit known-good' (more secure but higher administrative overhead), while deny listing is 'default allow, explicitly block known-bad' (less administrative overhead but vulnerable to anything not yet identified as bad, including zero-days). For environments requiring the highest assurance, allow listing is preferred despite the overhead."
+  },
+  {
+    "id": "D2-105",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Acronyms - FIM (File Integrity Monitoring)",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A security tool that calculates and stores cryptographic hashes of critical system and configuration files, then periodically recalculates and compares these hashes to detect unauthorized changes, is known by the acronym ____.",
+    "blank_answer": "FIM",
+    "acceptable_answers": [
+      "FIM",
+      "File Integrity Monitoring",
+      "file integrity monitoring",
+      "File Integrity Monitor"
+    ],
+    "answer": "FIM",
+    "explanation": "FIM (File Integrity Monitoring) detects unauthorized changes to critical files, such as system binaries or configuration files, by comparing current cryptographic hashes against a known-good baseline, alerting administrators to potential tampering, malware, or misconfiguration.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-106",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Monitoring",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company implements a centralized system that aggregates logs from servers, network devices, and applications, applies correlation rules to identify suspicious patterns of activity, and generates alerts for the security team to investigate. This type of mitigation primarily provides:",
+    "options": {
+      "A": "Continuous monitoring and detection of suspicious activity across the environment",
+      "B": "Automatic encryption of all data at rest",
+      "C": "Physical access control to the data center",
+      "D": "Elimination of the need for patch management"
+    },
+    "answer": "A",
+    "explanation": "Centralized log aggregation and correlation, typically performed by a SIEM (Security Information and Event Management) system, provides continuous monitoring and detection capabilities, helping security teams identify and respond to suspicious activity across the environment. This does not provide encryption of data at rest (B), physical access control (C), or eliminate the ongoing need for patch management (D), all of which are separate, complementary controls.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-107",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Hardening Specialized Systems (ICS/SCADA)",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An industrial facility uses legacy SCADA controllers to manage physical equipment. These controllers cannot be patched without voiding the manufacturer's warranty and have no built-in authentication. Which hardening approach is MOST appropriate given these constraints?",
+    "options": {
+      "A": "Isolate the SCADA controllers on a dedicated, tightly controlled network segment with strict access controls, since the devices themselves cannot be directly hardened",
+      "B": "Connect the SCADA controllers directly to the internet so they can receive automatic updates",
+      "C": "Install a full endpoint detection and response (EDR) agent directly on each SCADA controller",
+      "D": "Disable all network monitoring near the SCADA controllers to avoid interfering with their operation"
+    },
+    "answer": "A",
+    "explanation": "When devices cannot be directly hardened due to vendor constraints, lack of patchability, or limited resources, a compensating control such as network segmentation and strict access control isolates the vulnerable devices from broader threats, a common approach for legacy ICS/SCADA environments. Connecting such devices directly to the internet (B) would dramatically increase exposure to attack. Many ICS/SCADA devices lack the resources or OS support to run a full EDR agent (C), making this impractical. Disabling monitoring (D) would reduce visibility into potential attacks, increasing risk rather than mitigating it.",
+    "comptia_logic_note": "For systems that cannot be patched or directly secured (common with embedded, ICS/SCADA, and other specialized systems), segmentation and isolation serve as the primary compensating control, since the goal shifts from 'harden the device itself' to 'limit what can reach the device and what the device can reach.'"
+  },
+  {
+    "id": "D2-108",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Acronyms - EDR (Endpoint Detection and Response)",
+    "format": "fill_blank",
+    "difficulty": "easy",
+    "stem": "A security solution deployed on individual endpoints that continuously monitors for malicious activity, collects detailed telemetry for investigation, and can take automated response actions such as isolating a compromised host is known by the acronym ____.",
+    "blank_answer": "EDR",
+    "acceptable_answers": [
+      "EDR",
+      "Endpoint Detection and Response",
+      "endpoint detection and response"
+    ],
+    "answer": "EDR",
+    "explanation": "EDR (Endpoint Detection and Response) provides continuous monitoring, threat detection, investigation telemetry, and automated response capabilities directly on endpoint devices such as workstations and servers, extending beyond traditional antivirus signature-based detection.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-109",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Encryption",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "A company wants to reduce the impact of a potential data breach involving stolen laptops and intercepted network traffic. Which TWO of the following encryption-based mitigations would directly address these specific risks? (Choose TWO.)",
+    "options": {
+      "A": "Full-disk encryption on laptops, so that data remains unreadable if a device is lost or stolen",
+      "B": "Encrypting data in transit using protocols such as TLS, so that intercepted network traffic cannot be easily read",
+      "C": "Encrypting only email attachments larger than 10 MB, since smaller files pose no risk",
+      "D": "Disabling encryption on internal networks because internal traffic is always trusted",
+      "E": "Replacing all passwords with security questions to reduce reliance on encryption"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Full-disk encryption protects data at rest on devices such as laptops, ensuring that data remains inaccessible if the device is lost or stolen, while encrypting data in transit using protocols like TLS protects against interception of network traffic by ensuring captured packets cannot be easily read. Limiting encryption based on file size (C) leaves smaller, potentially sensitive files unprotected. Internal network traffic is not inherently trustworthy (D), as insider threats and compromised internal devices can still intercept traffic. Security questions (E) are a weaker authentication mechanism and do not substitute for encryption.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-110",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation - Layered Hardening Strategy (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A mid-sized organization is rebuilding its server environment after a recent compromise that was traced back to an internet-facing server running unnecessary services, using default credentials, and lacking any host-level monitoring. The security team has been asked to design a hardening approach for the new servers before they are placed back into production.",
+    "stem": "Which combination of mitigation techniques would BEST address the root causes identified in the previous compromise?",
+    "options": {
+      "A": "Disable unnecessary services and ports, change all default credentials before deployment, and install host-based firewall and EDR agents for continuous monitoring",
+      "B": "Only change the default credentials, since the other issues are unlikely to be exploited again",
+      "C": "Place the server directly on the internet without any segmentation to simplify management, and rely solely on the network firewall",
+      "D": "Disable all logging on the server to reduce noise for the security team"
+    },
+    "answer": "A",
+    "explanation": "The previous compromise stemmed from multiple root causes: unnecessary running services (increasing attack surface), default credentials (an easily exploitable misconfiguration), and lack of host-level monitoring (delayed detection). Addressing all three directly through service/port reduction, credential changes, and deploying host-based firewall and EDR agents provides a layered hardening approach that addresses each identified weakness. Option B addresses only one of the three root causes, leaving the server still vulnerable to attack surface and detection gaps. Option C would increase risk by removing segmentation entirely. Option D would worsen the detection gap that contributed to the original compromise going unnoticed.",
+    "comptia_logic_note": null
   }
 ]

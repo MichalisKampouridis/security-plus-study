@@ -26,10 +26,22 @@
     "difficulty": "medium",
     "stem": "Match each third-party agreement type to its correct definition.",
     "pairs": [
-      { "term": "SLA (Service Level Agreement)", "definition": "Defines the minimum level of service, uptime, and performance metrics that a vendor commits to provide to a customer." },
-      { "term": "MOU (Memorandum of Understanding)", "definition": "A document expressing mutual intent and a general understanding between two parties to work together, which is generally not legally binding." },
-      { "term": "NDA (Non-Disclosure Agreement)", "definition": "A legal contract that prohibits the parties involved from disclosing confidential information shared during the course of a business relationship." },
-      { "term": "BPA (Business Partnership Agreement)", "definition": "Establishes the terms and structure of a business partnership between two organizations, including ownership stakes, liability, and how profits and losses are shared." }
+      {
+        "term": "SLA (Service Level Agreement)",
+        "definition": "Defines the minimum level of service, uptime, and performance metrics that a vendor commits to provide to a customer."
+      },
+      {
+        "term": "MOU (Memorandum of Understanding)",
+        "definition": "A document expressing mutual intent and a general understanding between two parties to work together, which is generally not legally binding."
+      },
+      {
+        "term": "NDA (Non-Disclosure Agreement)",
+        "definition": "A legal contract that prohibits the parties involved from disclosing confidential information shared during the course of a business relationship."
+      },
+      {
+        "term": "BPA (Business Partnership Agreement)",
+        "definition": "Establishes the terms and structure of a business partnership between two organizations, including ownership stakes, liability, and how profits and losses are shared."
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: SLA -> definition 1 (service levels/uptime), MOU -> definition 2 (mutual intent, non-binding), NDA -> definition 3 (confidentiality contract), BPA -> definition 4 (partnership structure/ownership/profit-sharing).",
     "explanation": "An SLA sets measurable performance and uptime expectations for a vendor relationship. An MOU documents a general, typically non-binding, mutual understanding between parties before a formal contract is signed. An NDA legally binds parties to protect confidential information exchanged during the relationship. A BPA formally defines the structure of a business partnership, including ownership, liability, and profit/loss sharing, which is more comprehensive than a simple MOU.",
@@ -80,10 +92,22 @@
     "difficulty": "medium",
     "stem": "Match each data governance role to its correct responsibility.",
     "pairs": [
-      { "term": "Data owner", "definition": "A senior-level role, often an executive, who has ultimate organizational responsibility for a specific data set, including determining its classification and acceptable use" },
-      { "term": "Data steward", "definition": "Responsible for the quality, accuracy, and appropriate labeling of data, often managing data classification on behalf of the data owner" },
-      { "term": "Data custodian", "definition": "Responsible for the day-to-day technical management of data, such as implementing backups, access controls, and storage systems" },
-      { "term": "Data processor", "definition": "An individual or organization that processes data on behalf of, and according to the instructions of, a data controller or owner" }
+      {
+        "term": "Data owner",
+        "definition": "A senior-level role, often an executive, who has ultimate organizational responsibility for a specific data set, including determining its classification and acceptable use"
+      },
+      {
+        "term": "Data steward",
+        "definition": "Responsible for the quality, accuracy, and appropriate labeling of data, often managing data classification on behalf of the data owner"
+      },
+      {
+        "term": "Data custodian",
+        "definition": "Responsible for the day-to-day technical management of data, such as implementing backups, access controls, and storage systems"
+      },
+      {
+        "term": "Data processor",
+        "definition": "An individual or organization that processes data on behalf of, and according to the instructions of, a data controller or owner"
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: Data owner -> definition 1, Data steward -> definition 2, Data custodian -> definition 3, Data processor -> definition 4.",
     "explanation": "These governance roles divide responsibility for data: the data owner holds ultimate accountability and decision-making authority, the data steward focuses on data quality and classification, the data custodian handles the technical implementation of storage and protection, and the data processor acts on behalf of the owner or controller under defined instructions.",
@@ -132,7 +156,10 @@
     "difficulty": "medium",
     "stem": "In risk calculations, the ___ represents the total monetary loss expected from a single occurrence of a specific risk event, such as the cost to replace a server damaged in a fire.",
     "blank_answer": "SLE",
-    "acceptable_answers": ["SLE", "Single Loss Expectancy"],
+    "acceptable_answers": [
+      "SLE",
+      "Single Loss Expectancy"
+    ],
     "explanation": "Single Loss Expectancy (SLE) represents the expected monetary loss from a single occurrence of a risk event. It is calculated as the asset value multiplied by the exposure factor, and is used along with the Annualized Rate of Occurrence (ARO) to calculate the Annualized Loss Expectancy (ALE).",
     "comptia_logic_note": null
   },
@@ -145,7 +172,10 @@
     "difficulty": "medium",
     "stem": "In risk calculations, the ___ represents how many times a specific risk event is expected to occur within a one-year period, which may be a fraction if the event is expected less than once per year.",
     "blank_answer": "ARO",
-    "acceptable_answers": ["ARO", "Annualized Rate of Occurrence"],
+    "acceptable_answers": [
+      "ARO",
+      "Annualized Rate of Occurrence"
+    ],
     "explanation": "The Annualized Rate of Occurrence (ARO) represents the estimated frequency of a risk event occurring within a year. For example, an event expected to occur once every four years would have an ARO of 0.25. ARO is multiplied by the Single Loss Expectancy (SLE) to calculate the Annualized Loss Expectancy (ALE).",
     "comptia_logic_note": null
   },
@@ -158,7 +188,10 @@
     "difficulty": "medium",
     "stem": "The ___ represents the total expected monetary loss from a specific risk over the course of one year, and is calculated by multiplying the Single Loss Expectancy by the Annualized Rate of Occurrence.",
     "blank_answer": "ALE",
-    "acceptable_answers": ["ALE", "Annualized Loss Expectancy"],
+    "acceptable_answers": [
+      "ALE",
+      "Annualized Loss Expectancy"
+    ],
     "explanation": "Annualized Loss Expectancy (ALE) is calculated as SLE multiplied by ARO and represents the total expected monetary loss from a specific risk over one year, providing a quantitative basis for deciding how much to invest in mitigating that risk.",
     "comptia_logic_note": null
   },
@@ -171,7 +204,10 @@
     "difficulty": "medium",
     "stem": "During a business impact analysis, an organization determines that for its order-processing database, no more than 15 minutes of transaction data can be lost in the event of a disaster. This 15-minute figure represents the database's ___.",
     "blank_answer": "RPO",
-    "acceptable_answers": ["RPO", "Recovery Point Objective"],
+    "acceptable_answers": [
+      "RPO",
+      "Recovery Point Objective"
+    ],
     "explanation": "The Recovery Point Objective (RPO) defines the maximum acceptable amount of data loss, measured in time, for a system or process. An RPO of 15 minutes means backups or replication must occur frequently enough that no more than 15 minutes of data would be lost in a disaster.",
     "comptia_logic_note": null
   },
@@ -184,7 +220,10 @@
     "difficulty": "medium",
     "stem": "During the same business impact analysis, the organization determines that the order-processing database must be restored and operational within 4 hours of a disaster, or the business will suffer unacceptable losses. This 4-hour figure represents the database's ___.",
     "blank_answer": "RTO",
-    "acceptable_answers": ["RTO", "Recovery Time Objective"],
+    "acceptable_answers": [
+      "RTO",
+      "Recovery Time Objective"
+    ],
     "explanation": "The Recovery Time Objective (RTO) defines the maximum acceptable amount of downtime for a system or process after a disruption. An RTO of 4 hours means the system must be restored to operation within 4 hours to avoid unacceptable business impact.",
     "comptia_logic_note": null
   },
@@ -197,10 +236,22 @@
     "difficulty": "medium",
     "stem": "Match each risk management strategy to its correct example.",
     "pairs": [
-      { "term": "Risk avoidance", "definition": "Eliminating a risk entirely by discontinuing the activity or system that creates it, such as decommissioning a vulnerable legacy application" },
-      { "term": "Risk transfer", "definition": "Shifting some or all of the financial impact of a risk to another party, such as purchasing a cybersecurity insurance policy" },
-      { "term": "Risk mitigation", "definition": "Implementing controls to reduce the likelihood or impact of a risk, such as deploying a firewall or patching a vulnerability" },
-      { "term": "Risk acceptance", "definition": "Choosing to take no additional action on a risk because the cost of addressing it exceeds the potential impact, while continuing to monitor it" }
+      {
+        "term": "Risk avoidance",
+        "definition": "Eliminating a risk entirely by discontinuing the activity or system that creates it, such as decommissioning a vulnerable legacy application"
+      },
+      {
+        "term": "Risk transfer",
+        "definition": "Shifting some or all of the financial impact of a risk to another party, such as purchasing a cybersecurity insurance policy"
+      },
+      {
+        "term": "Risk mitigation",
+        "definition": "Implementing controls to reduce the likelihood or impact of a risk, such as deploying a firewall or patching a vulnerability"
+      },
+      {
+        "term": "Risk acceptance",
+        "definition": "Choosing to take no additional action on a risk because the cost of addressing it exceeds the potential impact, while continuing to monitor it"
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: Risk avoidance -> definition 1, Risk transfer -> definition 2, Risk mitigation -> definition 3, Risk acceptance -> definition 4.",
     "explanation": "These four strategies represent the standard ways organizations respond to identified risks: avoidance eliminates the risk-creating activity, transfer shifts impact to another party, mitigation reduces likelihood or impact through controls, and acceptance acknowledges the risk and continues operating without additional action, typically when the cost of further action would exceed the benefit.",
@@ -328,7 +379,10 @@
       "D": "The right for an organization to sell personal data to any third party without notifying the individual",
       "E": "The right for an organization to retain personal data indefinitely regardless of its original purpose"
     },
-    "answer": ["A", "B"],
+    "answer": [
+      "A",
+      "B"
+    ],
     "explanation": "Many privacy regulations grant individuals (data subjects) the right to access the personal data an organization holds about them, and the right to request deletion of that data under certain circumstances, often referred to as the right to be forgotten. Unrestricted internal access to personal data (C) would violate privacy principles like least privilege and need-to-know. Selling personal data without notification (D) and indefinite retention without purpose limitation (E) are practices that privacy regulations typically restrict or prohibit, not rights granted to data subjects.",
     "comptia_logic_note": null
   },
@@ -360,10 +414,22 @@
     "difficulty": "medium",
     "stem": "Match each privacy-related term to its correct definition.",
     "pairs": [
-      { "term": "Data subject", "definition": "The individual whose personal data is being collected, processed, or stored" },
-      { "term": "Data controller", "definition": "The entity that determines the purposes and means of processing personal data" },
-      { "term": "Data processor", "definition": "The entity that processes personal data on behalf of, and according to the instructions of, the data controller" },
-      { "term": "Right to be forgotten", "definition": "A data subject's right to request that an organization delete their personal data under certain circumstances" }
+      {
+        "term": "Data subject",
+        "definition": "The individual whose personal data is being collected, processed, or stored"
+      },
+      {
+        "term": "Data controller",
+        "definition": "The entity that determines the purposes and means of processing personal data"
+      },
+      {
+        "term": "Data processor",
+        "definition": "The entity that processes personal data on behalf of, and according to the instructions of, the data controller"
+      },
+      {
+        "term": "Right to be forgotten",
+        "definition": "A data subject's right to request that an organization delete their personal data under certain circumstances"
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: Data subject -> definition 1, Data controller -> definition 2, Data processor -> definition 3, Right to be forgotten -> definition 4.",
     "explanation": "These privacy terms describe the key parties and rights involved in handling personal data: the data subject is the individual the data is about, the controller decides how and why data is processed, the processor acts on the controller's behalf, and the right to be forgotten is one of several rights granted to data subjects under many privacy regulations.",
@@ -420,7 +486,10 @@
       "D": "Black box testing",
       "E": "Tabletop exercise"
     },
-    "answer": ["A", "C"],
+    "answer": [
+      "A",
+      "C"
+    ],
     "explanation": "When testers are given full knowledge of the target environment, including architecture, source code, and credentials, this is referred to as known environment testing, also commonly called white box testing. Unknown environment testing (B), also called black box testing (D), is the opposite, where testers are given little to no information and must perform reconnaissance themselves, simulating an external attacker's perspective. A tabletop exercise (E) is a discussion-based exercise unrelated to penetration testing methodology.",
     "comptia_logic_note": "Known environment/white box and unknown environment/black box are pairs of terms describing the same concepts. CompTIA has shifted toward 'known/unknown/partially known environment' terminology, while 'white/gray/black box' are older but still commonly used equivalent terms. A question may use either set of terms, so recognizing both is important."
   },
@@ -433,10 +502,22 @@
     "difficulty": "medium",
     "stem": "Match each penetration testing environment type to its correct description.",
     "pairs": [
-      { "term": "Known environment (white box)", "definition": "Testers are provided with full knowledge of the target's architecture, source code, and credentials before testing begins" },
-      { "term": "Unknown environment (black box)", "definition": "Testers are given little to no information about the target and must perform reconnaissance themselves, simulating an external attacker" },
-      { "term": "Partially known environment (gray box)", "definition": "Testers are provided with some information about the target, such as network diagrams or limited credentials, but not full access to source code or documentation" },
-      { "term": "Rules of engagement", "definition": "A document that defines the scope, boundaries, timing, and authorized techniques for a penetration test before it begins" }
+      {
+        "term": "Known environment (white box)",
+        "definition": "Testers are provided with full knowledge of the target's architecture, source code, and credentials before testing begins"
+      },
+      {
+        "term": "Unknown environment (black box)",
+        "definition": "Testers are given little to no information about the target and must perform reconnaissance themselves, simulating an external attacker"
+      },
+      {
+        "term": "Partially known environment (gray box)",
+        "definition": "Testers are provided with some information about the target, such as network diagrams or limited credentials, but not full access to source code or documentation"
+      },
+      {
+        "term": "Rules of engagement",
+        "definition": "A document that defines the scope, boundaries, timing, and authorized techniques for a penetration test before it begins"
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: Known environment (white box) -> definition 1, Unknown environment (black box) -> definition 2, Partially known environment (gray box) -> definition 3, Rules of engagement -> definition 4.",
     "explanation": "These terms describe the spectrum of information provided to penetration testers before an engagement, ranging from full knowledge (known/white box) to no prior knowledge (unknown/black box), with partially known/gray box in between. The rules of engagement document, agreed upon before testing begins, defines the scope and boundaries regardless of which environment type is used.",
@@ -488,7 +569,13 @@
     "difficulty": "medium",
     "stem": "As part of its security awareness program, an organization teaches employees to enable ___ on all accounts that support it, requiring a second form of verification, such as a one-time code, in addition to a password, to significantly reduce the risk of account compromise from a stolen password alone.",
     "blank_answer": "MFA",
-    "acceptable_answers": ["MFA", "Multifactor Authentication", "Multi-Factor Authentication", "Two-Factor Authentication", "2FA"],
+    "acceptable_answers": [
+      "MFA",
+      "Multifactor Authentication",
+      "Multi-Factor Authentication",
+      "Two-Factor Authentication",
+      "2FA"
+    ],
     "explanation": "Multifactor authentication (MFA) requires an additional form of verification beyond a password, such as a one-time code from an app or a hardware token, significantly reducing the risk that a stolen or guessed password alone would be sufficient for an attacker to access an account. Encouraging MFA adoption is a common topic in security awareness training.",
     "comptia_logic_note": null
   },
@@ -507,7 +594,10 @@
       "D": "How to perform a forensic disk image acquisition",
       "E": "How to write custom SIEM correlation rules"
     },
-    "answer": ["A", "C"],
+    "answer": [
+      "A",
+      "C"
+    ],
     "explanation": "General security awareness training focuses on topics relevant to all employees, such as recognizing and reporting phishing attempts and properly handling sensitive information, since these are everyday risks that any employee might encounter. Configuring firewall ACLs (B), performing forensic disk imaging (D), and writing SIEM correlation rules (E) are highly technical tasks performed by specialized IT and security staff, not topics included in general employee awareness training.",
     "comptia_logic_note": null
   },
@@ -520,10 +610,22 @@
     "difficulty": "medium",
     "stem": "Match each security awareness training concept to its correct description.",
     "pairs": [
-      { "term": "Phishing campaign", "definition": "Simulated phishing emails sent to employees to measure susceptibility and reinforce training on recognizing malicious emails" },
-      { "term": "Role-based training", "definition": "Security training tailored to the specific responsibilities and risks associated with an employee's job function, such as additional training for administrators with privileged access" },
-      { "term": "Anomalous behavior recognition", "definition": "Training employees to recognize and report unusual behavior, such as a coworker accessing systems they do not normally use, that could indicate an insider threat or compromised account" },
-      { "term": "Policy and handbook training", "definition": "Training that familiarizes employees with the organization's security policies, such as acceptable use and data handling requirements, typically completed during onboarding and periodically thereafter" }
+      {
+        "term": "Phishing campaign",
+        "definition": "Simulated phishing emails sent to employees to measure susceptibility and reinforce training on recognizing malicious emails"
+      },
+      {
+        "term": "Role-based training",
+        "definition": "Security training tailored to the specific responsibilities and risks associated with an employee's job function, such as additional training for administrators with privileged access"
+      },
+      {
+        "term": "Anomalous behavior recognition",
+        "definition": "Training employees to recognize and report unusual behavior, such as a coworker accessing systems they do not normally use, that could indicate an insider threat or compromised account"
+      },
+      {
+        "term": "Policy and handbook training",
+        "definition": "Training that familiarizes employees with the organization's security policies, such as acceptable use and data handling requirements, typically completed during onboarding and periodically thereafter"
+      }
     ],
     "answer": "Each term matches the definition listed at the same position in the pairs array: Phishing campaign -> definition 1, Role-based training -> definition 2, Anomalous behavior recognition -> definition 3, Policy and handbook training -> definition 4.",
     "explanation": "A comprehensive security awareness program typically combines several components: simulated phishing campaigns to test and reinforce email vigilance, role-based training tailored to specific job risks, training on recognizing anomalous behavior that might indicate insider threats or account compromise, and policy and handbook training to ensure employees understand organizational rules.",
@@ -547,5 +649,907 @@
     "answer": "A",
     "explanation": "This scenario demonstrates a business email compromise (BEC) or CEO fraud attempt, and the employee's ability to recognize the red flags, such as urgency, an unusual request, and claimed unavailability, and follow proper reporting procedures directly reflects the effectiveness of security awareness training, which is the human-focused layer of defense against social engineering attacks that technical controls alone cannot fully address. A firewall (B), vulnerability scan (C), and encryption (D) are all technical controls that would not have prevented or detected this social engineering attempt, which relied on manipulating a human into taking an action, not exploiting a technical vulnerability.",
     "comptia_logic_note": "Social engineering attacks like BEC and CEO fraud specifically target human decision-making rather than technical systems, which is why security awareness training, not technical controls, is the primary defense, and why this scenario's successful outcome is attributed to the training program."
+  },
+  {
+    "id": "D5-033",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Analysis - ALE Calculation (SLE x ARO)",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A risk analyst calculates that a regional office's flooding risk has a Single Loss Expectancy (SLE) of $20,000 and an Annualized Rate of Occurrence (ARO) of 0.5 (meaning the event is expected once every two years). What is the Annualized Loss Expectancy (ALE)?",
+    "options": {
+      "A": "$10,000",
+      "B": "$20,000",
+      "C": "$40,000",
+      "D": "$2,000"
+    },
+    "answer": "A",
+    "explanation": "ALE = SLE x ARO = $20,000 x 0.5 = $10,000. Option B ($20,000) is simply the SLE without applying the ARO. Option C ($40,000) would result from dividing the SLE by the ARO instead of multiplying. Option D ($2,000) would result from an incorrect calculation, such as multiplying by 0.1 instead of 0.5.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-034",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Analysis - Solving for ARO",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A risk analyst has determined that a particular type of security incident has a Single Loss Expectancy (SLE) of $15,000 and an Annualized Loss Expectancy (ALE) of $30,000. Based on these figures, what is the Annualized Rate of Occurrence (ARO) for this risk?",
+    "options": {
+      "A": "2 (the event is expected to occur twice per year on average)",
+      "B": "0.5 (the event is expected once every two years)",
+      "C": "$45,000",
+      "D": "0.2 (the event is expected once every five years)"
+    },
+    "answer": "A",
+    "explanation": "Since ALE = SLE x ARO, the ARO can be found by rearranging the formula: ARO = ALE / SLE = $30,000 / $15,000 = 2, meaning the event is expected to occur an average of twice per year. Option B (0.5) would result from inverting the calculation (SLE / ALE) instead of dividing ALE by SLE. Option C ($45,000) results from incorrectly adding SLE and ALE together rather than dividing. Option D (0.2) does not correspond to any correct manipulation of the given figures.",
+    "comptia_logic_note": "When a question provides ALE and SLE and asks for ARO, remember the relationship ALE = SLE x ARO can be rearranged to ARO = ALE / SLE. Confusing which value to divide by which is the most common source of error on these calculation questions."
+  },
+  {
+    "id": "D5-035",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Analysis - Solving for SLE",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization has calculated that a specific risk has an Annualized Loss Expectancy (ALE) of $12,000 and an Annualized Rate of Occurrence (ARO) of 0.25 (the event is expected once every four years). What is the Single Loss Expectancy (SLE) for this risk?",
+    "options": {
+      "A": "$48,000",
+      "B": "$3,000",
+      "C": "$12,000",
+      "D": "$12,250"
+    },
+    "answer": "A",
+    "explanation": "Since ALE = SLE x ARO, the SLE can be found by rearranging the formula: SLE = ALE / ARO = $12,000 / 0.25 = $48,000. Option B ($3,000) would result from incorrectly multiplying ALE by ARO instead of dividing. Option C ($12,000) is simply the ALE with no adjustment for the ARO. Option D ($12,250) does not correspond to any correct manipulation of the given figures.",
+    "comptia_logic_note": "When a question provides ALE and ARO and asks for SLE, the relationship ALE = SLE x ARO rearranges to SLE = ALE / ARO. Dividing by a fraction less than 1 (like 0.25) results in a larger number, which is a useful sanity check: a rare event (low ARO) with a meaningful annualized impact must have a large per-occurrence impact."
+  },
+  {
+    "id": "D5-036",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Analysis - Two-Step SLE and ALE Calculation",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A company's data center houses equipment valued at $200,000 (Asset Value, AV). A risk analyst estimates that a specific type of incident, such as a localized fire, would destroy 40% of this equipment (an Exposure Factor, EF, of 0.4), and estimates this type of incident occurs once every ten years (an ARO of 0.1). What is the Annualized Loss Expectancy (ALE) for this risk?",
+    "options": {
+      "A": "$8,000",
+      "B": "$80,000",
+      "C": "$20,000",
+      "D": "$800"
+    },
+    "answer": "A",
+    "explanation": "This problem requires two steps. First, calculate the SLE: SLE = AV x EF = $200,000 x 0.4 = $80,000. Second, calculate the ALE: ALE = SLE x ARO = $80,000 x 0.1 = $8,000. Option B ($80,000) is the SLE without applying the ARO, stopping after only the first step. Option C ($20,000) would result from using an incorrect exposure factor calculation. Option D ($800) would result from an additional incorrect division.",
+    "comptia_logic_note": "Some calculation questions require deriving the SLE first using SLE = Asset Value (AV) x Exposure Factor (EF), before applying ALE = SLE x ARO. Watch for questions that provide AV and EF separately rather than giving the SLE directly, this is a strong hint that a two-step calculation is required."
+  },
+  {
+    "id": "D5-037",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Analysis - Exposure Factor",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "In risk calculations, the ___ is expressed as a percentage representing the proportion of an asset's value that would be lost if a specific risk event occurred, and is multiplied by the asset value to determine the Single Loss Expectancy.",
+    "blank_answer": "EF",
+    "acceptable_answers": [
+      "EF",
+      "Exposure Factor",
+      "exposure factor"
+    ],
+    "answer": "EF",
+    "explanation": "The Exposure Factor (EF) represents the percentage of an asset's value that would be lost if a particular risk event occurred. For example, an EF of 0.4 means 40% of the asset's value would be lost. SLE is calculated as Asset Value (AV) multiplied by EF.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-038",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Risk Appetite, Tolerance, and Threshold",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization's executive leadership states that the company is generally unwilling to take on risks related to customer data exposure (its overall philosophy toward risk-taking), but for a specific upcoming project, leadership defines an acceptable range of potential financial loss between $0 and $50,000, with $50,000 being the specific point at which a risk becomes unacceptable and requires action. The first statement describes the organization's risk ___, the acceptable range describes its risk ___, and the $50,000 figure describes the risk ___.",
+    "options": {
+      "A": "Appetite; tolerance; threshold",
+      "B": "Threshold; appetite; tolerance",
+      "C": "Tolerance; threshold; appetite",
+      "D": "Appetite; threshold; tolerance"
+    },
+    "answer": "A",
+    "explanation": "Risk appetite is the organization's general, high-level philosophy toward risk-taking (in this case, unwillingness to accept risks related to customer data exposure). Risk tolerance is the acceptable range of variation around that appetite for a specific objective (the $0 to $50,000 range). The risk threshold is the specific boundary point at which a risk becomes unacceptable and triggers action (the $50,000 figure). The other answer orderings (B, C, D) mismatch these terms with the wrong descriptions.",
+    "comptia_logic_note": "Risk appetite, tolerance, and threshold form a hierarchy from general to specific: appetite is the broad philosophy ('how much risk are we generally willing to take?'), tolerance is the acceptable range for a specific objective ('how much variation can we accept here?'), and threshold is the specific trigger point ('at what exact value does this become unacceptable and require action?'). These three terms are frequently tested together because of their similar meanings."
+  },
+  {
+    "id": "D5-039",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Inherent vs Residual Risk",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "Before implementing any controls, a particular vulnerability presents a risk level that the organization rates as 'high.' After implementing a combination of patching, network segmentation, and monitoring, the same vulnerability now presents a risk level the organization rates as 'low.' The 'high' rating BEFORE controls were applied represents the ___ risk, and the 'low' rating AFTER controls were applied represents the ___ risk.",
+    "options": {
+      "A": "Inherent; residual",
+      "B": "Residual; inherent",
+      "C": "Transferred; avoided",
+      "D": "Accepted; mitigated"
+    },
+    "answer": "A",
+    "explanation": "Inherent risk is the level of risk that exists before any controls are applied, representing the raw exposure to a threat. Residual risk is the level of risk that remains after controls have been implemented. In this scenario, the 'high' rating before any controls reflects the inherent risk, and the 'low' rating after patching, segmentation, and monitoring were applied reflects the residual risk. The terms in option B reverse this relationship incorrectly. 'Transferred' and 'avoided' (C) describe specific risk response strategies, not risk levels at different points in time. 'Accepted' and 'mitigated' (D) also describe risk response decisions, not the before/after risk levels themselves.",
+    "comptia_logic_note": "Inherent risk vs residual risk is a before-and-after comparison: inherent risk is what exists with no controls in place, while residual risk is what remains after controls have been applied. The goal of risk mitigation is to reduce residual risk to an acceptable level, it can rarely be reduced to zero, which is why some residual risk almost always remains and must be accepted, transferred, or further addressed."
+  },
+  {
+    "id": "D5-040",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Qualitative vs Quantitative Risk Assessment",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A risk assessment team rates each identified risk using labels such as 'Low,' 'Medium,' 'High,' and 'Critical,' based on a discussion of likelihood and impact, without assigning specific dollar values to potential losses. This approach is BEST described as a:",
+    "options": {
+      "A": "Qualitative risk assessment",
+      "B": "Quantitative risk assessment",
+      "C": "Penetration test",
+      "D": "Business impact analysis only, with no risk assessment component"
+    },
+    "answer": "A",
+    "explanation": "A qualitative risk assessment uses descriptive categories or ratings, such as Low, Medium, High, and Critical, to express the relative likelihood and impact of risks, often based on expert judgment, without assigning specific numerical or monetary values. A quantitative risk assessment (B) assigns specific numerical values, such as dollar amounts (as used in SLE/ALE calculations), to express risk in measurable financial terms. A penetration test (C) is a technical security assessment activity, not a risk rating methodology. A business impact analysis (D) is related to but distinct from a risk assessment, focusing on the impact of disruptions to business processes; the described activity is itself a form of risk assessment.",
+    "comptia_logic_note": "Qualitative and quantitative risk assessments are complementary approaches: qualitative assessments are faster and easier to perform, using relative ratings (Low/Medium/High), while quantitative assessments require more data and effort but produce specific numerical values (such as ALE in dollars) that can be directly compared to the cost of controls for cost-benefit analysis."
+  },
+  {
+    "id": "D5-041",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Risk Matrix / Heat Map",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A risk management team creates a visual grid with 'Likelihood' on one axis and 'Impact' on the other, plotting each identified risk into one of the resulting cells, with cells in the upper-right (high likelihood, high impact) shaded red to indicate the highest-priority risks. This visual tool is commonly known as a:",
+    "options": {
+      "A": "Risk matrix (or risk heat map)",
+      "B": "Network topology diagram",
+      "C": "Gantt chart",
+      "D": "Data flow diagram"
+    },
+    "answer": "A",
+    "explanation": "A risk matrix, often called a risk heat map, visually plots risks according to their likelihood and impact, with color coding (such as red for high-priority risks) used to quickly communicate which risks require the most urgent attention. A network topology diagram (B) depicts how devices are connected on a network. A Gantt chart (C) is a project management tool showing task schedules over time. A data flow diagram (D) illustrates how data moves through a system, none of which describe a likelihood/impact visualization for risk prioritization.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-042",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Risk Register Components",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is updating its risk register to ensure it captures all the information needed for effective risk management. Which TWO of the following are typically included as components of a risk register entry?",
+    "options": {
+      "A": "A designated risk owner responsible for monitoring and managing the specific risk",
+      "B": "The current risk level (such as a qualitative rating or quantitative score) and any planned or implemented mitigations",
+      "C": "The risk owner's personal home address",
+      "D": "The favorite color of the employee who first identified the risk",
+      "E": "A copy of the entire company's general ledger for the fiscal year"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "A risk register entry typically includes a designated risk owner who is accountable for monitoring and managing that specific risk, along with the current risk level (qualitative or quantitative) and details of any mitigations that have been planned or implemented, allowing the organization to track risk status over time. A risk owner's personal home address (C) and an identifying employee's favorite color (D) are irrelevant personal details with no role in risk management. The company's entire general ledger (E) is a financial document unrelated to the structured tracking of individual identified risks.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-043",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Risk Threshold Decision (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "An organization's risk management policy states that any risk with a calculated Annualized Loss Expectancy (ALE) exceeding $25,000 requires mandatory mitigation, while risks below this threshold may be accepted at the discretion of the department manager. A newly identified risk has an SLE of $40,000 and an ARO of 0.5.",
+    "stem": "Based on the organization's policy, what is the calculated ALE for this risk, and what action does the policy require?",
+    "options": {
+      "A": "ALE = $20,000, which is below the $25,000 threshold, so the department manager may accept the risk at their discretion",
+      "B": "ALE = $20,000, which exceeds the threshold, so mandatory mitigation is required regardless of manager discretion",
+      "C": "ALE = $40,000, which exceeds the threshold, so mandatory mitigation is required",
+      "D": "ALE = $80,000, which exceeds the threshold, so mandatory mitigation is required"
+    },
+    "answer": "A",
+    "explanation": "ALE = SLE x ARO = $40,000 x 0.5 = $20,000. Since $20,000 is below the organization's $25,000 mandatory mitigation threshold, the policy allows the department manager to accept this risk at their discretion rather than requiring mandatory mitigation. Option B correctly calculates the ALE but incorrectly concludes it exceeds the threshold and requires mandatory mitigation, when $20,000 is actually below $25,000. Option C ($40,000) incorrectly uses the SLE value alone as the ALE, without applying the ARO. Option D ($80,000) results from an incorrect calculation, such as dividing instead of multiplying, or doubling the SLE incorrectly.",
+    "comptia_logic_note": "This question tests both the ability to correctly calculate ALE (SLE x ARO) and the ability to apply that figure against a defined risk threshold to determine the correct organizational action. A correct calculation that is then compared against the threshold incorrectly (as in option B) is a common distractor pattern."
+  },
+  {
+    "id": "D5-044",
+    "domain": 5,
+    "objective": "5.2",
+    "topic": "Risk Management - Risk Owner Responsibility",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A specific risk related to an aging payroll system has been assigned to the Director of Human Resources in the organization's risk register. The Director's responsibility regarding this risk PRIMARILY includes:",
+    "options": {
+      "A": "Monitoring the status of the risk, ensuring mitigation efforts proceed as planned, and making or escalating decisions about how the risk should be managed",
+      "B": "Personally performing all technical patching of the payroll system",
+      "C": "Ignoring the risk entirely, since it has been assigned a name in the register",
+      "D": "Transferring all organizational risk to a single insurance policy without further review"
+    },
+    "answer": "A",
+    "explanation": "A risk owner is responsible for monitoring the status of their assigned risk, ensuring that planned mitigations are progressing, and making or escalating decisions about how the risk should ultimately be managed (accepted, mitigated, transferred, or avoided), even if they do not personally perform all technical work. Personally performing technical patching (B) is typically the responsibility of IT staff, not the risk owner specifically, though the risk owner ensures it happens. Simply being assigned in the register does not mean the risk can be ignored (C); assignment establishes accountability for active management. Risk transfer via insurance (D) may be one tool used, but a risk owner's responsibility involves ongoing review and decision-making, not a one-time blanket transfer without further oversight.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-045",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Policy, Standard, Procedure, Guideline",
+    "format": "matching",
+    "difficulty": "medium",
+    "stem": "Match each governance document type to its correct description.",
+    "pairs": [
+      {
+        "term": "Policy",
+        "definition": "A high-level statement of management's intent and expectations regarding a topic, such as requiring all data to be encrypted at rest"
+      },
+      {
+        "term": "Standard",
+        "definition": "A specific, mandatory requirement that supports a policy, such as specifying that AES-256 must be used for encryption at rest"
+      },
+      {
+        "term": "Procedure",
+        "definition": "A detailed, step-by-step set of instructions for performing a specific task in compliance with a standard, such as the exact steps to configure disk encryption on a server"
+      },
+      {
+        "term": "Guideline",
+        "definition": "A recommended, but not mandatory, best practice or suggestion that helps people make decisions when a standard does not specifically apply"
+      }
+    ],
+    "answer": "Each term matches the definition listed at the same position in the pairs array: Policy -> definition 1, Standard -> definition 2, Procedure -> definition 3, Guideline -> definition 4.",
+    "explanation": "These four document types form a hierarchy of governance documentation: a policy states high-level management intent (the 'what' and 'why'), a standard provides specific mandatory requirements supporting that policy, a procedure provides detailed step-by-step instructions for performing tasks in compliance, and a guideline offers recommended, non-mandatory best practices for situations not explicitly covered by a standard.",
+    "comptia_logic_note": "Policy, standard, procedure, and guideline are frequently confused due to their similar nature. The key distinguishing factors are level of detail (policy is most general, procedure is most detailed) and whether compliance is mandatory (policies and standards are mandatory; guidelines are recommended but optional)."
+  },
+  {
+    "id": "D5-046",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Board and Committee Oversight",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization's board of directors establishes a governance committee responsible for setting overall security strategy, approving major security investments, and reviewing the organization's risk posture on a quarterly basis. This committee's role is BEST described as providing:",
+    "options": {
+      "A": "High-level governance oversight of the organization's security program",
+      "B": "Day-to-day technical configuration of firewalls",
+      "C": "Hands-on incident response during active security incidents",
+      "D": "Personal IT support for individual employees"
+    },
+    "answer": "A",
+    "explanation": "A governance committee at the board level provides high-level oversight, setting strategic direction, approving major investments, and reviewing overall risk posture, distinct from the operational, technical, and tactical activities performed by IT and security staff. Day-to-day firewall configuration (B), hands-on incident response (C), and individual employee IT support (D) are all operational activities performed by technical staff, not the strategic oversight function of a governance committee.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-047",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - CISO Role",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization's most senior executive responsible for the overall information security program, including setting security strategy, policy, and budget priorities, and reporting on security posture to executive leadership and the board, holds which title?",
+    "options": {
+      "A": "Chief Information Security Officer (CISO)",
+      "B": "Help desk technician",
+      "C": "Network cable installer",
+      "D": "Receptionist"
+    },
+    "answer": "A",
+    "explanation": "The Chief Information Security Officer (CISO) is typically the most senior executive responsible for an organization's overall information security program, including strategy, policy, budget, and reporting to executive leadership and the board on the organization's security posture. A help desk technician (B), network cable installer (C), and receptionist (D) are operational or administrative roles that do not carry executive-level responsibility for organizational security governance.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-048",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Policy Lifecycle",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: A security policy should include a defined owner and a scheduled review cycle, ensuring that someone is accountable for keeping the policy current and that it does not become outdated as technology, regulations, and business needs evolve.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Assigning a policy owner establishes accountability for maintaining the document, and a scheduled review cycle (such as annually) ensures the policy is periodically evaluated and updated as needed to remain relevant and effective, preventing policies from becoming stale or out of sync with current regulations and business needs.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-049",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Regulatory Influence on Policy",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A hospital system is developing its data handling policies. Because the organization handles protected health information, it must ensure that its internal policies meet or exceed the requirements established by applicable healthcare privacy regulations. This relationship illustrates that:",
+    "options": {
+      "A": "External regulatory requirements often establish a minimum baseline that internal governance policies must meet or exceed",
+      "B": "Internal policies always override external regulatory requirements regardless of conflict",
+      "C": "Regulations have no influence on how internal policies are written",
+      "D": "Only publicly traded companies are required to consider any regulations when writing policy"
+    },
+    "answer": "A",
+    "explanation": "External regulatory requirements, such as healthcare privacy laws, often establish a minimum baseline of required controls and practices that an organization's internal governance policies must meet or exceed; an organization may choose to exceed regulatory minimums but cannot fall below them without risking non-compliance. Internal policies cannot simply override binding external regulatory requirements (B); doing so would create compliance violations. Regulations very much influence internal policy development (C), as illustrated by this scenario. Many types of organizations, not just publicly traded companies (D), are subject to regulations relevant to their industry or the data they handle, such as healthcare or financial regulations.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-050",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Conflicting Jurisdictional Requirements (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A multinational company operates in two countries. Country A's law requires that certain types of communications be retained and made available to government authorities upon request. Country B's law, where the company's regional headquarters is located, prohibits the same type of data from being shared with foreign governments without the data subject's explicit consent.",
+    "stem": "When an organization's governance team identifies that legal requirements in two jurisdictions directly conflict for a particular business process, which course of action is MOST appropriate?",
+    "options": {
+      "A": "Escalate the conflict to legal counsel and senior leadership to determine an appropriate resolution, which may involve restructuring the process, segregating data by jurisdiction, or seeking formal legal guidance",
+      "B": "Simply comply with whichever country's law was discovered first, without further analysis",
+      "C": "Ignore both legal requirements, since they conflict and therefore cancel each other out",
+      "D": "Make a unilateral decision at the individual employee level regarding which law to follow for each transaction"
+    },
+    "answer": "A",
+    "explanation": "When governance identifies a genuine conflict between legal requirements in different jurisdictions, this is a significant issue that should be escalated to legal counsel and senior leadership, who can evaluate options such as restructuring business processes, segregating data handling by jurisdiction, seeking formal regulatory guidance, or other approaches to manage the conflict appropriately. Arbitrarily complying with whichever law was discovered first (B) does not constitute a reasoned legal analysis and could expose the organization to liability under the other jurisdiction's law. Assuming conflicting requirements 'cancel out' and can be ignored entirely (C) is not a valid legal or governance principle and would leave the organization non-compliant with both. Allowing individual employees to make ad-hoc legal compliance decisions on a per-transaction basis (D) creates inconsistency and significant legal risk, and is not an appropriate substitute for organizational governance and legal review.",
+    "comptia_logic_note": "Conflicts between jurisdictions' legal requirements are real challenges for multinational organizations and have no simple universal answer; the correct governance response is always to escalate to legal/compliance expertise for a deliberate, informed decision, rather than applying a simplistic rule or leaving the decision to individuals."
+  },
+  {
+    "id": "D5-051",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Code of Conduct vs AUP",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization has two separate documents: one defines the rules for how employees may use company computers, networks, and email (including prohibitions on accessing unauthorized websites), while the other broadly describes expected ethical behavior, professionalism, and standards of conduct for all employees in all aspects of their work, not limited to technology use. The second document is BEST described as a:",
+    "options": {
+      "A": "Code of conduct",
+      "B": "Acceptable Use Policy (AUP)",
+      "C": "Service Level Agreement",
+      "D": "Risk register"
+    },
+    "answer": "A",
+    "explanation": "A code of conduct broadly describes expected ethical behavior, professionalism, and standards of conduct for all employees across all aspects of their work, not limited to technology use, while an Acceptable Use Policy (AUP), described as the first document, specifically governs the use of an organization's technology resources. A Service Level Agreement (C) defines vendor performance commitments, unrelated to employee conduct. A risk register (D) tracks identified organizational risks, also unrelated.",
+    "comptia_logic_note": "An AUP and a code of conduct are related but scoped differently: an AUP is narrowly focused on technology resource usage rules, while a code of conduct addresses broader ethical and professional behavior expectations across the entire organization, of which technology use may be only one component."
+  },
+  {
+    "id": "D5-052",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Password Policy as a Standard",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization's information security policy states that 'all user accounts must be protected by strong authentication.' A supporting document specifies the exact mandatory requirements: passwords must be at least 14 characters, include a mix of character types, and must not match any of the user's previous 10 passwords. This supporting document is an example of a:",
+    "options": {
+      "A": "Standard",
+      "B": "Guideline",
+      "C": "Risk register",
+      "D": "Business impact analysis"
+    },
+    "answer": "A",
+    "explanation": "A standard provides specific, mandatory requirements that support and give detail to a higher-level policy statement; in this case, the policy broadly requires 'strong authentication,' while the standard specifies the exact mandatory password requirements that fulfill that policy. A guideline (B) would be a recommended, non-mandatory suggestion, whereas these password requirements are described as mandatory. A risk register (C) tracks identified risks, and a business impact analysis (D) assesses the impact of disruptions, neither of which describes a document specifying mandatory technical requirements.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-053",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Emergency Change Management",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A critical vulnerability is being actively exploited against a production system, and the standard change management process, which normally requires a week of review and testing before implementation, would leave the system exposed for an unacceptable period. The organization's change management policy includes a defined emergency change process that allows for expedited review and implementation, with required documentation completed retroactively within a short timeframe afterward. Using this emergency change process in this situation represents:",
+    "options": {
+      "A": "An appropriate use of a predefined emergency change process to balance the urgency of the security risk against the need for change control and accountability",
+      "B": "A violation of change management that should never occur under any circumstances",
+      "C": "An action that bypasses all governance entirely, with no documentation required",
+      "D": "Proof that the change management policy is poorly written and should be discarded"
+    },
+    "answer": "A",
+    "explanation": "A well-designed change management policy includes a defined emergency change process specifically for situations like actively exploited critical vulnerabilities, allowing for expedited implementation while still requiring documentation (even if completed retroactively) to maintain accountability and a record of what was changed and why. Using this predefined process as intended is not a violation (B); it is the policy working as designed for exceptional circumstances. The emergency process still requires documentation (C), it is expedited, not undocumented or ungoverned. The existence of an emergency process for genuinely urgent situations is generally a sign of a well-designed policy (D), not evidence that the policy should be discarded.",
+    "comptia_logic_note": "Emergency change processes are a recognized part of mature change management programs, not an exception that undermines governance. The key distinction from a normal change is timing and documentation order (expedited approval with retroactive documentation), not an absence of governance or accountability."
+  },
+  {
+    "id": "D5-054",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Governance vs Management",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization's board-level committee sets the strategic direction for security, defines acceptable risk levels, and holds the CISO accountable for results, without directly performing day-to-day security operations. The CISO and security team then execute against that direction, making operational decisions about specific tools, configurations, and daily activities. This division BEST illustrates the distinction between:",
+    "options": {
+      "A": "Governance (setting direction and ensuring accountability) and management (executing operations to achieve that direction)",
+      "B": "Risk acceptance and risk avoidance",
+      "C": "Data controllers and data processors",
+      "D": "Qualitative and quantitative risk assessment"
+    },
+    "answer": "A",
+    "explanation": "Governance refers to the activities of setting strategic direction, defining acceptable risk levels, and holding leadership accountable for outcomes, typically performed at the board or executive committee level, while management refers to the operational execution of that direction by those responsible for day-to-day activities, such as the CISO and security team in this scenario. Risk acceptance and avoidance (B) are specific risk response strategies, not a governance/management distinction. Data controllers and processors (C) describe roles in privacy regulation regarding data handling responsibilities. Qualitative and quantitative risk assessment (D) describe risk evaluation methodologies, none of which describe the relationship between strategic oversight and operational execution illustrated here.",
+    "comptia_logic_note": "Governance and management are related but distinct concepts that are sometimes used loosely or interchangeably in casual conversation, but on the exam the distinction matters: governance is about setting direction, policy, and accountability (the 'what' and 'why', often at a board/executive level), while management is about executing operations to achieve that direction (the 'how', at an operational level)."
+  },
+  {
+    "id": "D5-055",
+    "domain": 5,
+    "objective": "5.1",
+    "topic": "Governance - Data Governance Framework Oversight",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization establishes a formal structure that defines who is responsible for classifying data, who approves changes to data handling policies, and how data-related decisions are escalated when disagreements arise between departments. This formal structure is BEST described as a:",
+    "options": {
+      "A": "Data governance framework",
+      "B": "Single firewall rule",
+      "C": "Individual employee's personal preference",
+      "D": "Network cabling diagram"
+    },
+    "answer": "A",
+    "explanation": "A data governance framework establishes the formal structure, roles, responsibilities, and decision-making processes for how an organization manages its data, including classification, policy approval, and escalation of disagreements, ensuring data-related decisions are made consistently and with appropriate accountability. A single firewall rule (B) is a narrow technical configuration item, not an organizational framework. An individual employee's personal preference (C) provides no organizational structure or consistency. A network cabling diagram (D) depicts physical network connections, unrelated to data governance roles and decision-making.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-056",
+    "domain": 5,
+    "objective": "5.3",
+    "topic": "Third-Party Risk - Vendor Offboarding",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization ends its relationship with a third-party vendor that previously had access to internal systems and data. As part of the offboarding process, the organization revokes the vendor's access credentials, removes any vendor-installed software or accounts, and confirms the return or destruction of any company data the vendor possessed. This process is BEST described as:",
+    "options": {
+      "A": "Vendor offboarding",
+      "B": "Vendor onboarding",
+      "C": "A penetration test",
+      "D": "A business impact analysis"
+    },
+    "answer": "A",
+    "explanation": "Vendor offboarding involves systematically revoking access, removing accounts and software, and ensuring the return or destruction of company data when a third-party relationship ends, reducing the risk of orphaned access or lingering data exposure. Vendor onboarding (B) is the opposite process, establishing access and relationships at the start of an engagement. A penetration test (C) is a technical security assessment activity. A business impact analysis (D) assesses the impact of disruptions to business functions, neither of which describes ending a vendor relationship.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-057",
+    "domain": 5,
+    "objective": "5.3",
+    "topic": "Third-Party Risk - Ongoing Vendor Monitoring",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Before signing a contract with a vendor, an organization conducts a thorough review of the vendor's security practices (due diligence). After the contract is signed, the organization continues to periodically review the vendor's security posture, including monitoring for news of breaches or changes in compliance certifications, throughout the relationship. This ongoing review process is BEST described as:",
+    "options": {
+      "A": "Continuous (ongoing) vendor risk monitoring",
+      "B": "A one-time activity that is never repeated after the contract is signed",
+      "C": "A penetration test performed exclusively by the vendor against the organization",
+      "D": "An acceptable use policy violation"
+    },
+    "answer": "A",
+    "explanation": "Continuous, or ongoing, vendor risk monitoring extends the due diligence performed before signing a contract into an ongoing process throughout the relationship, recognizing that a vendor's security posture can change over time, due to a breach, loss of certification, or other events, and that initial due diligence alone is insufficient for long-term risk management. Describing this as a one-time activity (B) misrepresents the scenario, which explicitly describes an ongoing process. The scenario does not describe a penetration test performed by the vendor against the organization (C); that would be a different and unrelated activity. Ongoing monitoring of a vendor's security posture is not an acceptable use policy violation (D); an AUP governs employee use of company resources, an unrelated topic.",
+    "comptia_logic_note": "Due diligence and continuous monitoring represent different points in the vendor risk management lifecycle: due diligence is performed before establishing a relationship (a point-in-time assessment), while continuous monitoring extends risk assessment throughout the life of the relationship, recognizing that a vendor's risk profile is not static."
+  },
+  {
+    "id": "D5-058",
+    "domain": 5,
+    "objective": "5.3",
+    "topic": "Third-Party Risk - Master Service Agreement",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "A company establishes a long-term relationship with a vendor by signing an overarching contract that defines the general terms and conditions governing all future work, such as payment terms, confidentiality, and dispute resolution, with specific projects to be defined later in separate work orders or statements of work. This overarching contract is known by the acronym ____.",
+    "blank_answer": "MSA",
+    "acceptable_answers": [
+      "MSA",
+      "Master Service Agreement",
+      "master service agreement"
+    ],
+    "answer": "MSA",
+    "explanation": "A Master Service Agreement (MSA) establishes the overarching terms and conditions that will govern a business relationship, such as payment terms, confidentiality, liability, and dispute resolution, allowing individual future projects to be defined through separate, more specific documents (such as statements of work) without renegotiating the foundational terms each time.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-059",
+    "domain": 5,
+    "objective": "5.3",
+    "topic": "Third-Party Risk - Vendor Risk Tiering",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization classifies its vendors into risk tiers to determine the level of due diligence and ongoing monitoring required for each. Which TWO of the following factors would appropriately influence a vendor's assigned risk tier?",
+    "options": {
+      "A": "The sensitivity and volume of data the vendor will access or process on behalf of the organization",
+      "B": "The level of system access or network connectivity the vendor requires to perform its services",
+      "C": "The vendor's company logo color scheme",
+      "D": "The number of vowels in the vendor's company name",
+      "E": "The vendor's preferred office furniture brand"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Vendor risk tiering should be based on factors that genuinely correlate with the level of risk the vendor relationship poses, such as the sensitivity and volume of data the vendor will access (a vendor handling highly sensitive customer data poses more risk than one handling only public information) and the level of system access or connectivity required (a vendor with deep network integration poses more risk than one with no direct access). A vendor's logo color scheme (C), the number of vowels in its name (D), and its choice of office furniture (E) have no bearing on the actual risk the vendor relationship poses and would be entirely inappropriate criteria for risk tiering.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-060",
+    "domain": 5,
+    "objective": "5.3",
+    "topic": "Third-Party Risk - Conflict of Interest (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "During the vendor selection process for a major new security tool, the procurement manager discloses that their sibling owns a significant stake in one of the vendors being evaluated. The procurement manager has been actively involved in scoring vendor proposals, including this vendor's proposal.",
+    "stem": "Which of the following represents the MOST appropriate handling of this situation from a third-party risk and governance perspective?",
+    "options": {
+      "A": "Recognize this as a conflict of interest, recuse the procurement manager from evaluating or scoring this particular vendor's proposal, and ensure the decision is made by uninvolved parties",
+      "B": "Allow the procurement manager to continue scoring all proposals as normal, since family relationships are a private matter",
+      "C": "Automatically select the vendor with the conflict of interest, since the relationship may provide better service",
+      "D": "Automatically disqualify the procurement manager from their job entirely for disclosing the relationship"
+    },
+    "answer": "A",
+    "explanation": "A conflict of interest exists when a decision-maker has a personal relationship that could improperly influence, or appear to influence, their professional judgment; the appropriate governance response is to recognize the conflict, recuse the affected individual from decisions involving that specific vendor, and ensure the evaluation is conducted by uninvolved parties to maintain integrity and fairness in the process. Allowing the procurement manager to continue scoring this vendor's proposal as normal (B) ignores a legitimate conflict of interest that could undermine the integrity of the selection process, regardless of whether the relationship is otherwise a private matter. Automatically selecting the conflicted vendor (C) would be an inappropriate decision driven by the conflict itself rather than an objective evaluation. Disqualifying the procurement manager from their job for proactively disclosing the relationship (D) would discourage future disclosure and is a disproportionate response to appropriate, transparent behavior; disclosure followed by recusal is the correct and rewarded response, not punished.",
+    "comptia_logic_note": "Proactive disclosure of a potential conflict of interest, followed by recusal from the affected decision, is the textbook correct handling of such situations. The goal of governance processes around conflicts of interest is not to punish disclosure, but to manage the conflict transparently so that decisions remain fair and defensible."
+  },
+  {
+    "id": "D5-061",
+    "domain": 5,
+    "objective": "5.5",
+    "topic": "Audits and Assessments - Vulnerability Assessment vs Penetration Test",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "An organization performs two separate security activities: Activity 1 uses automated tools to scan systems and produce a list of known vulnerabilities along with severity ratings, without attempting to exploit any of them. Activity 2 involves a team actively attempting to exploit identified weaknesses to determine whether they can gain unauthorized access and how far they could escalate that access. Which statement correctly distinguishes these two activities?",
+    "options": {
+      "A": "Activity 1 is a vulnerability assessment, which identifies and rates weaknesses without exploitation, while Activity 2 is a penetration test, which actively attempts exploitation to demonstrate real-world impact",
+      "B": "Activity 1 and Activity 2 are simply two different names for the exact same activity with no meaningful difference",
+      "C": "Activity 1 is a penetration test, and Activity 2 is a vulnerability assessment",
+      "D": "Neither activity provides any value to the organization's security program"
+    },
+    "answer": "A",
+    "explanation": "A vulnerability assessment uses automated tools to identify and rate known vulnerabilities without attempting to exploit them, providing a broad view of potential weaknesses (Activity 1). A penetration test goes further by actively attempting to exploit identified weaknesses to demonstrate real-world impact and the extent to which access could be escalated (Activity 2). These are meaningfully different activities with different goals, scopes, and levels of risk (B is incorrect). Option C reverses the correct labels. Both activities provide significant value: vulnerability assessments offer broad, frequent, low-risk visibility into weaknesses, while penetration tests provide deeper validation of exploitability and real-world impact (D is incorrect).",
+    "comptia_logic_note": "Vulnerability assessments and penetration tests are often confused because both relate to identifying weaknesses, but the key distinction is exploitation: a vulnerability assessment identifies and rates potential weaknesses without exploiting them (broad, automated, lower risk), while a penetration test actively exploits weaknesses to demonstrate real impact (deeper, more targeted, higher risk, typically requires more explicit authorization)."
+  },
+  {
+    "id": "D5-062",
+    "domain": 5,
+    "objective": "5.5",
+    "topic": "Audits and Assessments - Self-Assessment vs Independent Assessment",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization's internal security team completes a checklist evaluating the organization's compliance with a security framework and reports the results to management. Separately, the organization hires an outside firm with no prior relationship to the organization to perform the same type of evaluation. The outside firm's evaluation is considered more valuable for providing assurance to external stakeholders PRIMARILY because:",
+    "options": {
+      "A": "An independent assessment performed by a party without a vested interest in the outcome is generally viewed as more objective and credible to external stakeholders than a self-assessment",
+      "B": "Internal staff are always less knowledgeable about the organization's systems than outside firms",
+      "C": "Self-assessments are illegal under all circumstances",
+      "D": "External firms always charge less money than internal staff cost to perform the same work"
+    },
+    "answer": "A",
+    "explanation": "An independent assessment performed by a party without a vested interest in the outcome is generally viewed as more objective and credible by external stakeholders, such as customers, regulators, or business partners, because there is less potential for bias compared to an organization evaluating itself. Internal staff are not inherently less knowledgeable about their own systems (B); in fact, they often have more detailed knowledge, but that knowledge does not eliminate potential bias for external assurance purposes. Self-assessments are not illegal (C); they are a valid and common internal practice, just generally viewed as less independently credible for external assurance. Cost comparisons (D) are not the reason independent assessments are valued for credibility, and the claim that external firms always cost less is not generally true.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-063",
+    "domain": 5,
+    "objective": "5.5",
+    "topic": "Audits and Assessments - Continuous Compliance Monitoring",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Rather than relying solely on an annual audit to identify compliance gaps, an organization implements automated tools that continuously check system configurations against compliance benchmarks and generate alerts in near real-time when a system drifts out of compliance. This approach is an example of:",
+    "options": {
+      "A": "Continuous compliance monitoring",
+      "B": "A one-time penetration test",
+      "C": "A business impact analysis",
+      "D": "Risk transfer"
+    },
+    "answer": "A",
+    "explanation": "Continuous compliance monitoring uses automated tools to continuously check configurations against compliance benchmarks, generating near-real-time alerts when systems drift out of compliance, allowing issues to be identified and addressed much sooner than waiting for periodic audits, such as an annual audit. A one-time penetration test (B) is a point-in-time technical assessment, not an ongoing compliance monitoring activity. A business impact analysis (C) assesses the impact of disruptions to business processes. Risk transfer (D) is a risk response strategy that shifts financial impact to another party, unrelated to compliance monitoring.",
+    "comptia_logic_note": "Continuous compliance monitoring complements, but does not replace, periodic audits: continuous monitoring catches configuration drift and compliance gaps quickly between audit cycles, while periodic audits (often performed by independent parties) provide a more comprehensive, formal point-in-time assessment, sometimes with attestation value that automated continuous monitoring alone may not provide."
+  },
+  {
+    "id": "D5-064",
+    "domain": 5,
+    "objective": "5.5",
+    "topic": "Audits and Assessments - Certification vs Attestation",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "Organization A undergoes a formal evaluation process by an accredited third party and is granted a formal credential indicating that its information security management system meets the requirements of a recognized international standard, valid for a defined period and subject to periodic re-evaluation. Organization B receives a signed statement from its auditor confirming that specific controls were reviewed and found effective as of a specific date, without an associated ongoing credential program. Which statement correctly distinguishes these two outcomes?",
+    "options": {
+      "A": "Organization A received a certification (a formal credential against a recognized standard, subject to ongoing maintenance), while Organization B received an attestation (a point-in-time statement about specific controls)",
+      "B": "Both organizations received exactly the same type of document with no meaningful difference",
+      "C": "Organization A received an attestation, and Organization B received a certification",
+      "D": "Neither outcome has any value for demonstrating security posture to customers or partners"
+    },
+    "answer": "A",
+    "explanation": "Certification typically refers to a formal credential granted after an evaluation against a recognized standard (such as ISO 27001), valid for a defined period and requiring ongoing maintenance and periodic re-certification. An attestation is typically a statement, often from an auditor, confirming that specific controls were reviewed and found effective as of a particular point in time, without necessarily being tied to an ongoing certification program (such as a SOC 2 report). These represent meaningfully different types of assurance (B is incorrect). Option C reverses the correct labels. Both certifications and attestations have significant value in demonstrating security posture to customers, partners, and regulators (D is incorrect), though they serve somewhat different purposes and carry different implications.",
+    "comptia_logic_note": "Certification and attestation are related concepts that are sometimes used loosely, but a useful distinction is that certification generally implies an ongoing credential against a recognized standard with periodic re-evaluation (like ISO 27001 certification), while attestation generally refers to a point-in-time statement about the effectiveness of specific controls (like a SOC 2 attestation report) that may need to be refreshed periodically but is not itself a 'certification' in the formal sense."
+  },
+  {
+    "id": "D5-065",
+    "domain": 5,
+    "objective": "5.5",
+    "topic": "Audits and Assessments - Remediation Tracking",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: After an audit identifies findings or gaps, the organization should track each finding through to remediation, including assigning an owner and a target completion date, rather than simply noting the findings and taking no further structured follow-up action.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Audit findings provide value only if they lead to action; tracking each finding through to remediation, with an assigned owner and target date, ensures that identified gaps are actually addressed over time rather than simply documented and forgotten, which would undermine the purpose of conducting the audit.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-066",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - SOC 2 Report",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A cloud service provider's customers, who are themselves businesses, request evidence that the provider has effective controls related to security, availability, and confidentiality of customer data. The provider engages an auditor to produce a report addressing these areas, intended for use by business customers and their auditors under a non-disclosure agreement. This type of report is BEST described as a:",
+    "options": {
+      "A": "SOC 2 report",
+      "B": "SOC 3 report",
+      "C": "A publicly posted marketing brochure",
+      "D": "A risk register"
+    },
+    "answer": "A",
+    "explanation": "A SOC 2 report addresses controls related to security, availability, processing integrity, confidentiality, and privacy (the 'Trust Services Criteria'), and is typically intended for a restricted audience, such as business customers and their auditors, often under an NDA due to the level of detail it contains. A SOC 3 report (B) covers similar subject matter but is a general-use report intended for public distribution, with less detail than a SOC 2 report. A marketing brochure (C) is not an audit report and provides no independent assurance. A risk register (D) tracks an organization's internal identified risks, not third-party assurance reporting.",
+    "comptia_logic_note": "SOC 2 and SOC 3 cover similar subject matter (the Trust Services Criteria) but differ in audience and distribution: SOC 2 reports are detailed and restricted to specific parties (often under NDA), while SOC 3 reports are general-use, less detailed summaries intended for public distribution, such as posting on a company's website."
+  },
+  {
+    "id": "D5-067",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - SOC Report Types",
+    "format": "matching",
+    "difficulty": "medium",
+    "stem": "Match each compliance/audit report term to its correct description.",
+    "pairs": [
+      {
+        "term": "SOC 1",
+        "definition": "Focuses on controls relevant to a service organization's impact on its customers' financial reporting (internal controls over financial reporting)"
+      },
+      {
+        "term": "SOC 2",
+        "definition": "Addresses controls related to security, availability, processing integrity, confidentiality, and privacy, typically restricted to specific parties under NDA"
+      },
+      {
+        "term": "SOC 3",
+        "definition": "Covers similar subject matter to SOC 2 but is a general-use report with less detail, intended for public distribution"
+      },
+      {
+        "term": "Type I vs Type II",
+        "definition": "Type I evaluates whether controls are suitably designed at a single point in time, while Type II evaluates whether controls operated effectively over a period of time (such as 6-12 months)"
+      }
+    ],
+    "answer": "Each term matches the definition listed at the same position in the pairs array: SOC 1 -> definition 1, SOC 2 -> definition 2, SOC 3 -> definition 3, Type I vs Type II -> definition 4.",
+    "explanation": "SOC 1, SOC 2, and SOC 3 reports address different subject matter and audiences: SOC 1 focuses on financial reporting controls, SOC 2 addresses broader trust services criteria for a restricted audience, and SOC 3 provides a general-use summary of similar subject matter to SOC 2. Independently of which SOC report type, the Type I vs Type II distinction applies to whether the assessment evaluated control design at a point in time (Type I) or operating effectiveness over a period (Type II).",
+    "comptia_logic_note": "These SOC report distinctions are commonly tested together. Remember: SOC 1 = financial reporting controls, SOC 2 = detailed trust services report for restricted audiences, SOC 3 = public-facing summary of similar subject matter to SOC 2, and Type I (design, point in time) vs Type II (operating effectiveness, over a period) applies as an additional dimension to SOC 1 and SOC 2 reports."
+  },
+  {
+    "id": "D5-068",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - PCI DSS",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "Any organization that stores, processes, or transmits credit card information must comply with a set of security standards established by the major card brands, known by the acronym ____, which includes requirements such as network segmentation, encryption of cardholder data, and regular vulnerability scanning.",
+    "blank_answer": "PCI DSS",
+    "acceptable_answers": [
+      "PCI DSS",
+      "PCI-DSS",
+      "Payment Card Industry Data Security Standard",
+      "payment card industry data security standard"
+    ],
+    "answer": "PCI DSS",
+    "explanation": "PCI DSS (Payment Card Industry Data Security Standard) is a set of security requirements established by the major card brands that applies to any organization that stores, processes, or transmits cardholder data, covering areas such as network segmentation, encryption, access control, and regular vulnerability scanning and testing.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-069",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - HIPAA",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A healthcare clinic must comply with a United States federal law that establishes requirements for protecting the privacy and security of patients' medical records and other protected health information. This law is known as:",
+    "options": {
+      "A": "HIPAA (Health Insurance Portability and Accountability Act)",
+      "B": "GDPR (General Data Protection Regulation)",
+      "C": "PCI DSS (Payment Card Industry Data Security Standard)",
+      "D": "FERPA applied exclusively to financial institutions"
+    },
+    "answer": "A",
+    "explanation": "HIPAA (Health Insurance Portability and Accountability Act) is a United States federal law that establishes requirements for protecting the privacy and security of protected health information (PHI), applicable to healthcare providers, health plans, and their business associates. GDPR (B) is a European Union regulation governing personal data protection more broadly, not specific to U.S. healthcare. PCI DSS (C) governs payment card data, not health information. FERPA (D) is a U.S. law governing student education records, and the description in option D mischaracterizes it as applying to financial institutions, which is incorrect.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-070",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - Due Care vs Due Diligence",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "After learning about a new category of threat affecting organizations in its industry, a company's security team researches the threat, evaluates how it might affect the organization, and then implements appropriate controls to address it based on that research. The research and evaluation phase is an example of ___, while implementing the appropriate controls in response is an example of ___.",
+    "options": {
+      "A": "Due diligence; due care",
+      "B": "Due care; due diligence",
+      "C": "Risk avoidance; risk transfer",
+      "D": "Inherent risk; residual risk"
+    },
+    "answer": "A",
+    "explanation": "Due diligence refers to the research and investigation an organization performs to understand a risk or issue before acting, such as researching a new threat category and evaluating its potential impact. Due care refers to the reasonable steps taken in response to that understanding, such as implementing appropriate controls to address the identified threat. Reversing these terms (B) would be incorrect, as the research phase is due diligence and the action phase is due care. Risk avoidance and risk transfer (C) are specific risk response strategies, not descriptions of research versus action phases. Inherent and residual risk (D) describe risk levels before and after controls, a related but different concept from the due diligence/due care distinction.",
+    "comptia_logic_note": "Due diligence and due care are closely related and easily confused: due diligence is the investigative, research-oriented step ('doing your homework' to understand a risk), while due care is the resulting reasonable action taken in response ('acting on what you learned'). A useful mnemonic is that due diligence comes before due care in both the alphabet and in a typical sequence of events."
+  },
+  {
+    "id": "D5-071",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - Privacy Impact Assessment",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Before launching a new mobile application that will collect location data, contact lists, and biometric information from users, an organization conducts a formal evaluation of what personal data will be collected, why it is needed, how it will be protected, and what privacy risks the collection and processing of this data might create. This evaluation is BEST described as a:",
+    "options": {
+      "A": "Privacy impact assessment (PIA)",
+      "B": "Penetration test",
+      "C": "Business continuity plan",
+      "D": "Service level agreement"
+    },
+    "answer": "A",
+    "explanation": "A privacy impact assessment (PIA) evaluates what personal data a new system, product, or process will collect, the purpose and necessity of that collection, how the data will be protected, and what privacy risks may result, helping organizations identify and address privacy concerns before launch, often required by privacy regulations for higher-risk processing activities. A penetration test (B) is a technical security assessment unrelated to evaluating data collection practices and privacy risk. A business continuity plan (C) addresses how an organization continues operations during disruptions. A service level agreement (D) defines vendor performance commitments, neither of which describes a privacy-focused evaluation of a new data collection activity.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-072",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - ISO 27001",
+    "format": "fill_blank",
+    "difficulty": "medium",
+    "stem": "An organization seeks formal certification against an internationally recognized standard for establishing, implementing, maintaining, and continually improving an information security management system (ISMS). This standard is known as ISO/IEC ____.",
+    "blank_answer": "27001",
+    "acceptable_answers": [
+      "27001",
+      "ISO 27001",
+      "ISO/IEC 27001",
+      "iso 27001"
+    ],
+    "answer": "27001",
+    "explanation": "ISO/IEC 27001 is an internationally recognized standard that specifies requirements for establishing, implementing, maintaining, and continually improving an information security management system (ISMS). Organizations can be formally certified against ISO 27001 by an accredited third party, demonstrating that their ISMS meets the standard's requirements.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-073",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - GDPR Penalties",
+    "format": "true_false",
+    "difficulty": "medium",
+    "stem": "True or False: Under the General Data Protection Regulation (GDPR), organizations that violate certain requirements can face significant financial penalties, which can be calculated as a percentage of the organization's global annual revenue, in addition to or instead of a fixed monetary amount.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. GDPR establishes a tiered penalty structure for non-compliance, with the most serious violations potentially resulting in fines calculated as a percentage of the organization's total global annual revenue (or a fixed amount, whichever is higher), reflecting the regulation's intent to impose meaningful penalties proportional to an organization's size.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-074",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - Cross-Jurisdictional Compliance Monitoring (PBQ)",
+    "format": "pbq_scenario",
+    "difficulty": "hard",
+    "scenario": "A company operates in the European Union and several U.S. states, each with different data privacy requirements regarding breach notification timelines, data subject rights, and permitted data uses. The compliance team must ensure the company meets the strictest applicable requirement for each type of data activity, regardless of which jurisdiction's data is involved.",
+    "stem": "Which approach would BEST support the compliance team's goal of meeting the strictest applicable requirements across all jurisdictions in which the company operates?",
+    "options": {
+      "A": "Develop a unified compliance framework that maps each jurisdiction's specific requirements, identifies the most stringent requirement for each control area, and applies that stricter standard organization-wide where feasible",
+      "B": "Apply only the requirements of the jurisdiction where the company's headquarters is located, ignoring requirements elsewhere",
+      "C": "Apply a different, completely separate and uncoordinated set of controls for each jurisdiction with no central oversight or mapping",
+      "D": "Wait for a regulator in any jurisdiction to issue a violation notice before taking any compliance action"
+    },
+    "answer": "A",
+    "explanation": "When operating across multiple jurisdictions with varying requirements, a unified compliance framework that maps each jurisdiction's specific requirements and applies the most stringent applicable standard organization-wide (where feasible) simplifies compliance management, reduces the risk of inconsistent practices, and ensures the company meets or exceeds all applicable requirements. Applying only the headquarters jurisdiction's requirements (B) would leave the company non-compliant with requirements in other jurisdictions where it operates. Maintaining completely separate, uncoordinated controls per jurisdiction (C) increases complexity, the risk of gaps, and the difficulty of maintaining consistency, without the benefits of a unified, mapped approach. Waiting for a violation notice before taking action (D) is a reactive approach that exposes the company to penalties, reputational damage, and legal consequences that proactive compliance is intended to prevent.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-075",
+    "domain": 5,
+    "objective": "5.4",
+    "topic": "Compliance - Industry-Specific Regulations",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "An organization is identifying which regulatory frameworks may apply to different parts of its business. Which TWO of the following pairings of industry and applicable regulation/standard are correctly matched?",
+    "options": {
+      "A": "A hospital handling patient medical records is subject to HIPAA requirements regarding protected health information",
+      "B": "A retailer that processes credit card payments is subject to PCI DSS requirements",
+      "C": "A company that only sells houseplants is automatically subject to HIPAA regardless of what data it handles",
+      "D": "Any company with a company picnic must comply with GDPR regardless of its data processing activities",
+      "E": "A bakery is automatically PCI DSS certified simply because it sells baked goods, without handling any payment card data"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "HIPAA applies to entities handling protected health information, such as hospitals and their business associates, making the pairing of a hospital with HIPAA requirements correct. PCI DSS applies to organizations that store, process, or transmit credit card data, making the pairing of a retailer processing card payments with PCI DSS requirements correct. A houseplant retailer is not automatically subject to HIPAA (C) unless it handles protected health information, which is not indicated. Hosting a company picnic has no bearing on GDPR applicability (D); GDPR applicability depends on processing personal data of individuals in scope of the regulation, not on unrelated company events. A bakery is not automatically PCI DSS certified (E) simply by selling goods; PCI DSS applicability and certification depend on actually handling payment card data, and certification requires an actual assessment process, not automatic application.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-076",
+    "domain": 5,
+    "objective": "5.6",
+    "topic": "Security Awareness - Reporting Culture",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization promotes an environment where employees who accidentally click a phishing link or fall for a social engineering attempt are encouraged to report it immediately without fear of punishment, with the understanding that early reporting allows the security team to respond quickly and limit damage. This approach is an example of fostering a:",
+    "options": {
+      "A": "Positive reporting (or 'just') culture, where prompt disclosure of mistakes is encouraged to enable rapid response",
+      "B": "Zero-tolerance policy that immediately terminates any employee who clicks a phishing link",
+      "C": "Policy of never discussing security incidents with employees",
+      "D": "Culture that discourages all communication between employees and the security team"
+    },
+    "answer": "A",
+    "explanation": "A positive reporting culture, sometimes called a 'just culture,' encourages employees to promptly report mistakes, such as clicking a phishing link, without fear of punitive consequences, because early reporting allows the security team to respond quickly, often significantly limiting the damage from an incident. A zero-tolerance policy that punishes employees for honest mistakes (B) would discourage reporting, leading to delayed detection and potentially greater damage, the opposite of the intended outcome. Refusing to discuss incidents with employees (C) and discouraging communication with the security team (D) would both undermine the goal of prompt incident reporting and awareness.",
+    "comptia_logic_note": "A punitive culture toward security mistakes often backfires: employees who fear punishment may hide mistakes, such as clicking a phishing link, delaying detection and response and often making the resulting incident worse. A 'just culture' that encourages prompt, blame-free reporting of honest mistakes generally produces better security outcomes."
+  },
+  {
+    "id": "D5-077",
+    "domain": 5,
+    "objective": "5.6",
+    "topic": "Security Awareness - Gamification",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "To increase employee engagement with its security awareness program, an organization introduces a points-based system where employees earn points for completing training modules and correctly identifying simulated phishing emails, with leaderboards and small rewards for top performers each quarter. This approach to increasing engagement is known as:",
+    "options": {
+      "A": "Gamification",
+      "B": "Penetration testing",
+      "C": "Risk transfer",
+      "D": "Data minimization"
+    },
+    "answer": "A",
+    "explanation": "Gamification applies game-like elements, such as points, leaderboards, and rewards, to non-game activities like security awareness training, in order to increase engagement and motivation among participants. Penetration testing (B) is a technical security assessment activity, unrelated to training engagement techniques. Risk transfer (C) is a risk response strategy that shifts financial impact to another party. Data minimization (D) refers to collecting only the data necessary for a stated purpose, neither of which describes a training engagement technique.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-078",
+    "domain": 5,
+    "objective": "5.6",
+    "topic": "Security Awareness - Executive and Board Training",
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A security awareness program includes a tailored training module specifically for senior executives and board members, focusing on topics such as the financial and reputational impact of breaches, their oversight responsibilities for the security program, and the heightened risk that executives face as targets of highly customized social engineering attacks (such as targeted business email compromise). Compared to general employee awareness training, this executive-focused training is justified PRIMARILY because:",
+    "options": {
+      "A": "Executives have distinct oversight responsibilities and face elevated, targeted threats (such as highly customized BEC attempts) that warrant tailored content beyond general awareness topics",
+      "B": "Executives are immune to phishing attacks and do not need any training at all",
+      "C": "General employees should never receive any security training, only executives",
+      "D": "Tailored training for executives is required only if no general training program exists"
+    },
+    "answer": "A",
+    "explanation": "Executives and board members have distinct governance and oversight responsibilities for the security program and are often targeted with highly customized, sophisticated social engineering attacks (such as targeted BEC attempts impersonating other executives or board members) due to their level of access and authority, justifying tailored training content beyond general awareness topics. Executives are not immune to phishing (B); in fact, they are often higher-value targets precisely because of their access and authority, making targeted training particularly important. General employee training remains important and should not be eliminated (C); role-based training for executives supplements, rather than replaces, general awareness training. Tailored executive training is valuable regardless of whether a general program exists (D); the two serve complementary purposes addressing different audiences and risk profiles.",
+    "comptia_logic_note": "Role-based training, including executive-focused training, exists because different roles face different risks and have different responsibilities. Executives are frequently targeted by highly customized social engineering (their visibility and authority make them valuable targets), and they also hold oversight responsibilities for the security program itself, both of which justify tailored content beyond what general employees receive."
+  },
+  {
+    "id": "D5-079",
+    "domain": 5,
+    "objective": "5.6",
+    "topic": "Security Awareness - Credential Sharing",
+    "format": "true_false",
+    "difficulty": "easy",
+    "stem": "True or False: Security awareness training should explicitly address the risks of sharing login credentials with coworkers, even for seemingly convenient or well-intentioned reasons, since shared credentials undermine accountability and make it difficult to determine who performed a given action.",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This statement is true. Sharing login credentials, even for convenience or well-intentioned reasons such as covering for a coworker, undermines accountability because actions performed under a shared account cannot be reliably attributed to a specific individual, which can complicate investigations and violate the principle of individual accountability that security awareness training should reinforce.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D5-080",
+    "domain": 5,
+    "objective": "5.6",
+    "topic": "Security Awareness - Insider Threat Indicators",
+    "format": "multi_select",
+    "difficulty": "medium",
+    "stem": "As part of security awareness training on recognizing potential insider threats, employees are taught to be alert to certain behaviors that, while not definitive proof of malicious activity, may warrant a discreet report to the security team for further review. Which TWO of the following behaviors would be appropriate examples to include in such training?",
+    "options": {
+      "A": "A coworker repeatedly attempting to access systems or data well outside the scope of their normal job responsibilities, despite being told it is not needed",
+      "B": "A coworker downloading unusually large volumes of sensitive data shortly before announcing their resignation",
+      "C": "A coworker taking their scheduled lunch break at the usual time each day",
+      "D": "A coworker using their assigned parking space in the company parking lot",
+      "E": "A coworker arriving to work wearing the company-provided uniform"
+    },
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "Repeated attempts to access systems or data outside the scope of one's job, especially after being told access is not needed, and unusually large data downloads occurring shortly before a resignation, are both behaviors that, while not proof of wrongdoing on their own, are commonly cited as potential insider threat indicators worth a discreet review. Taking a scheduled lunch break at the usual time (C), using an assigned parking space (D), and wearing a company-provided uniform (E) are all entirely normal, expected behaviors with no connection to insider threat risk and would not be appropriate examples in such training.",
+    "comptia_logic_note": null
   }
 ]
