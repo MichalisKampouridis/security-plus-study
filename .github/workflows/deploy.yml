@@ -1,0 +1,156 @@
+name: Validate and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate Question Bank
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate JSON syntax
+        run: |
+          echo "Validating JSON syntax..."
+          for f in data/questions-*.json; do
+            python3 -c "
+          import json, sys
+          try:
+              data = json.load(open('$f'))
+              print(f'✓ {\"$f\"} — valid JSON ({len(data)} questions)')
+          except json.JSONDecodeError as e:
+              print(f'✗ {\"$f\"} — JSON ERROR: {e}')
+              sys.exit(1)
+          "
+          done
+
+      - name: Validate question schema
+        run: |
+          python3 << 'EOF'
+          import json, sys, os
+
+          REQUIRED_FIELDS = {"id", "domain", "objective", "topic", "format",
+                             "difficulty", "stem", "explanation"}
+          VALID_FORMATS = {"multiple_choice", "multi_select", "true_false",
+                           "fill_blank", "matching", "pbq_scenario"}
+          VALID_DIFFICULTIES = {"easy", "medium", "hard"}
+          VALID_DOMAINS = {1, 2, 3, 4, 5}
+
+          all_ids = []
+          errors = []
+          total = 0
+
+          for i in range(1, 6):
+              path = f"data/questions-{i}.json"
+              if not os.path.exists(path):
+                  errors.append(f"MISSING FILE: {path}")
+                  continue
+
+              data = json.load(open(path))
+              print(f"\n── {path} ({len(data)} questions) ──")
+
+              for q in data:
+                  total += 1
+                  qid = q.get("id", "NO_ID")
+
+                  # Check required fields
+                  missing = REQUIRED_FIELDS - set(q.keys())
+                  if missing:
+                      errors.append(f"{qid}: missing fields {missing}")
+
+                  # Check format
+                  fmt = q.get("format")
+                  if fmt not in VALID_FORMATS:
+                      errors.append(f"{qid}: invalid format '{fmt}'")
+
+                  # Check difficulty
+                  diff = q.get("difficulty")
+                  if diff not in VALID_DIFFICULTIES:
+                      errors.append(f"{qid}: invalid difficulty '{diff}'")
+
+                  # Check domain
+                  domain = q.get("domain")
+                  if domain not in VALID_DOMAINS:
+                      errors.append(f"{qid}: invalid domain '{domain}'")
+
+                  # Format-specific checks
+                  if fmt == "fill_blank":
+                      if "blank_answer" not in q:
+                          errors.append(f"{qid}: fill_blank missing 'blank_answer'")
+                      if "acceptable_answers" not in q:
+                          errors.append(f"{qid}: fill_blank missing 'acceptable_answers'")
+
+                  if fmt == "matching":
+                      if "pairs" not in q:
+                          errors.append(f"{qid}: matching missing 'pairs'")
+
+                  if fmt == "multi_select":
+                      ans = q.get("answer")
+                      if not isinstance(ans, list):
+                          errors.append(f"{qid}: multi_select answer must be array")
+
+                  # Track IDs for duplicate check
+                  all_ids.append(qid)
+
+          # Check for duplicate IDs
+          seen = set()
+          for qid in all_ids:
+              if qid in seen:
+                  errors.append(f"DUPLICATE ID: {qid}")
+              seen.add(qid)
+
+          print(f"\n── Summary ──")
+          print(f"Total questions: {total}")
+          print(f"Unique IDs: {len(seen)}")
+
+          if errors:
+              print(f"\n✗ {len(errors)} error(s) found:")
+              for e in errors:
+                  print(f"  • {e}")
+              sys.exit(1)
+          else:
+              print(f"✓ All {total} questions passed schema validation")
+          EOF
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
