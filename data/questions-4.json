@@ -104,7 +104,7 @@
     "topic": "Security Techniques - Hardening Constrained Devices",
     "format": "pbq_scenario",
     "difficulty": "medium",
-    "scenario": "A manufacturing company deploys internet-connected sensors on its factory floor to monitor equipment temperature and vibration. These embedded devices have limited processing power, cannot run traditional endpoint protection software, and rarely receive firmware updates from the manufacturer.",
+    "scenario": "A security architect at a manufacturing company is conducting a network security review of the operational technology (OT) environment. The factory floor runs 47 IoT sensors embedded in CNC machines and conveyor systems, monitoring temperature, vibration, and cycle counts in real time. The devices run a proprietary RTOS with no support for third-party software installation, 32 MB of RAM, no local encryption capability, and firmware update cycles averaging 18 months. The OEM's support contract expired two years ago, meaning patches for known CVEs are no longer being released. The devices currently share the same flat network as corporate workstations and the ERP system. The architect must recommend the single most impactful control to reduce the risk these devices pose to the broader corporate network without requiring changes to the devices themselves.",
     "stem": "Given these constraints, which of the following is the MOST appropriate way to reduce the risk these devices pose to the rest of the network?",
     "options": {
       "A": "Place the devices on an isolated network segment with restricted access to and from other systems",
@@ -199,7 +199,7 @@
     "topic": "Asset Management - Shadow IT",
     "format": "pbq_scenario",
     "difficulty": "medium",
-    "scenario": "During an audit, a security team discovers that several employees in the marketing department have been using a personal, unapproved cloud file-sharing service to store and share company marketing materials and customer contact lists, without the IT department's knowledge or approval.",
+    "scenario": "A security analyst conducts a quarterly review of DNS query logs and proxy logs for anomalous cloud service usage. The logs reveal that 23 employees in the marketing department have been regularly uploading files \u2014 including customer contact lists, campaign strategy documents marked CONFIDENTIAL, and a vendor contract \u2014 to a personal Google Drive account using consumer-tier credentials not managed by the company's Google Workspace tenant. The IT department has no record of these accounts, no visibility into what data was shared, no ability to enforce DLP policies or access controls on the files, and no contractual relationship with the storage location for data governance purposes. The analyst must classify this discovery using the correct security term.",
     "stem": "This discovery is BEST described as an example of which asset management concern?",
     "options": {
       "A": "Shadow IT",
@@ -252,16 +252,18 @@
     "domain": 4,
     "objective": "4.3",
     "topic": "Vulnerability Management - CVSS",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "The ___ is a standardized framework that assigns a numerical score, typically from 0 to 10, to a vulnerability based on factors such as attack vector, complexity, and impact, helping organizations prioritize remediation efforts.",
-    "blank_answer": "CVSS",
-    "acceptable_answers": [
-      "CVSS",
-      "Common Vulnerability Scoring System"
-    ],
-    "explanation": "The Common Vulnerability Scoring System (CVSS) provides a standardized numerical score representing the severity of a vulnerability, based on metrics covering exploitability and impact, allowing organizations to prioritize which vulnerabilities to remediate first.",
-    "comptia_logic_note": null
+    "stem": "A vulnerability scanner assigns a score of 9.8 to a discovered flaw in a web server, indicating it is critical and should be patched immediately. The score uses a standardized, vendor-neutral framework. Which framework provides this numerical severity scoring?",
+    "explanation": "The Common Vulnerability Scoring System (CVSS) is a standardized, vendor-neutral framework that assigns a numerical score from 0.0 to 10.0 to vulnerabilities based on exploitability, impact, and environmental factors, enabling organizations to prioritize remediation. CVE (A) is an identifier catalog for known vulnerabilities, not a scoring system. NVD (B) is a database that augments CVE data and often includes CVSS scores, but is not the scoring system itself. SCAP (D) is a framework of security standards including CVSS, but SCAP is the broader automation protocol, not the score.",
+    "comptia_logic_note": "CVE names a vulnerability (CVE-2023-XXXX). CVSS scores its severity (0-10). NVD hosts CVE entries with CVSS scores. These are different things that work together.",
+    "options": {
+      "A": "CVE (Common Vulnerabilities and Exposures)",
+      "B": "NVD (National Vulnerability Database)",
+      "C": "CVSS (Common Vulnerability Scoring System)",
+      "D": "SCAP (Security Content Automation Protocol)"
+    },
+    "answer": "C"
   },
   {
     "id": "D4-015",
@@ -345,16 +347,18 @@
     "domain": 4,
     "objective": "4.4",
     "topic": "Alerting and Monitoring - SNMP",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "Network devices such as routers and switches often send status information and alerts to a centralized monitoring system using a protocol that, in its older versions, used UDP ports 161 and 162. This monitoring protocol is ___.",
-    "blank_answer": "SNMP",
-    "acceptable_answers": [
-      "SNMP",
-      "Simple Network Management Protocol"
-    ],
-    "explanation": "SNMP (Simple Network Management Protocol) is used to monitor and manage network devices, with agents on devices sending status information to a central manager. SNMP traditionally uses UDP port 161 for queries and UDP port 162 for traps, which are alerts sent from devices to the manager.",
-    "comptia_logic_note": null
+    "stem": "A network operations center receives real-time notifications from routers, switches, and UPS units about status changes such as interface failures or high temperature alerts. These notifications are sent from devices to a central management station automatically. Which protocol is used for these device status notifications?",
+    "explanation": "SNMP traps and informs are messages sent proactively from network devices to an SNMP management station to notify it of status changes or threshold events such as interface up/down or high temperature alerts. Syslog (A) sends text-based log messages to a central collector but is separate from SNMP device management. NetFlow (B) collects network traffic flow metadata, not device health status alerts. ICMP (D) is a basic network diagnostic protocol (ping), not a device management notification protocol.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "Syslog",
+      "B": "NetFlow",
+      "C": "SNMP (Simple Network Management Protocol)",
+      "D": "ICMP"
+    },
+    "answer": "C"
   },
   {
     "id": "D4-020",
@@ -438,18 +442,18 @@
     "domain": 4,
     "objective": "4.5",
     "topic": "Enterprise Security Capabilities - Disabling Unnecessary Protocols",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "As part of hardening a server, an administrator disables the unencrypted remote administration protocol that traditionally operates on TCP port ___, in favor of SSH, which provides encrypted remote access.",
-    "blank_answer": "23",
-    "acceptable_answers": [
-      "23",
-      "Port 23",
-      "TCP 23",
-      "TCP/23"
-    ],
-    "explanation": "Telnet, an unencrypted remote terminal protocol, traditionally operates on TCP port 23. Because Telnet transmits all data, including credentials, in cleartext, it is commonly disabled and replaced with SSH (TCP port 22), which encrypts the session.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security hardening checklist requires administrators to disable all unencrypted remote terminal access. An administrator confirms the service runs on TCP port 23. Which protocol must be disabled to comply with this requirement?",
+    "explanation": "Telnet provides unencrypted command-line remote access on TCP port 23 and must be disabled in any security hardening effort because credentials and data are transmitted in plaintext. SSH (A) is the encrypted replacement for Telnet and should remain enabled. RDP (B) provides encrypted remote desktop access on port 3389, not port 23. SFTP (D) provides encrypted file transfer over SSH.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SSH (Secure Shell)",
+      "B": "RDP (Remote Desktop Protocol)",
+      "C": "Telnet",
+      "D": "SFTP (Secure File Transfer Protocol)"
+    },
+    "answer": "C"
   },
   {
     "id": "D4-025",
@@ -515,16 +519,18 @@
     "domain": 4,
     "objective": "4.6",
     "topic": "Identity and Access Management - Single Sign-On",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "A company allows its employees to log in once to a central identity provider and then access multiple cloud applications, such as email, file storage, and a CRM system, without having to log in separately to each one. This capability is known as ___.",
-    "blank_answer": "SSO",
-    "acceptable_answers": [
-      "SSO",
-      "Single Sign-On"
-    ],
-    "explanation": "Single Sign-On (SSO) allows a user to authenticate once with a central identity provider and gain access to multiple independent applications and systems without re-entering credentials for each one, often implemented using protocols such as SAML or OAuth.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization deploys a solution that allows employees to log in once with a single set of credentials at the start of their workday and then access all authorized internal applications \u2014 email, HR portal, ticketing system \u2014 without being prompted again during the session. This capability is called:",
+    "explanation": "Single Sign-On (SSO) allows a user to authenticate once and then access multiple applications and services without re-entering credentials, improving user experience and centralizing authentication management. MFA (A) is a method of authenticating with multiple factors, which can complement SSO but does not itself provide single-sign capability. PAM (B) manages privileged account access, not standard user SSO. LDAP (D) is a directory protocol often used as a backend for SSO, not the SSO capability itself.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "MFA (Multifactor Authentication)",
+      "B": "PAM (Privileged Access Management)",
+      "C": "SSO (Single Sign-On)",
+      "D": "LDAP (Lightweight Directory Access Protocol)"
+    },
+    "answer": "C"
   },
   {
     "id": "D4-029",
@@ -780,19 +786,18 @@
     "domain": 4,
     "objective": "4.9",
     "topic": "Investigation Data Sources - Indicators of Compromise",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "An analyst identifies a specific file hash, IP address, and registry key associated with a known malware family, and uses these artifacts to search across the environment for signs that other systems have also been compromised by the same malware. These artifacts are collectively known as ___.",
-    "blank_answer": "IoCs",
-    "acceptable_answers": [
-      "IoCs",
-      "IOC",
-      "IOCs",
-      "Indicators of Compromise",
-      "Indicator of Compromise"
-    ],
-    "explanation": "Indicators of Compromise (IoCs) are forensic artifacts, such as file hashes, IP addresses, domain names, or registry keys, that are associated with known malicious activity and can be used to detect whether the same threat has affected other systems.",
-    "comptia_logic_note": null
+    "stem": "A threat hunter investigating a potential compromise documents a suspicious IP used for C2 communication, a malware file hash, and a registry key created by the malware for persistence. These artifacts that confirm a system has been compromised are collectively called:",
+    "explanation": "Indicators of Compromise (IoCs) are forensic artifacts \u2014 such as IP addresses, file hashes, and registry keys \u2014 that indicate a system has been or is being compromised and support incident detection, investigation, and scoping. APTs (A) describe a category of sophisticated threat actor, not artifacts. TTPs (B) describe attacker behavioral patterns at a higher level than specific artifacts. CVEs (C) are identifiers for known software vulnerabilities, not investigation artifacts.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "APTs (Advanced Persistent Threats)",
+      "B": "TTPs (Tactics, Techniques, and Procedures)",
+      "C": "CVEs (Common Vulnerabilities and Exposures)",
+      "D": "IoCs (Indicators of Compromise)"
+    },
+    "answer": "D"
   },
   {
     "id": "D4-043",
@@ -1006,15 +1011,17 @@
     "domain": 4,
     "objective": "4.1",
     "topic": "Hardening - Patch Management Cadence",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Establishing a regular, defined patch management cadence (such as monthly patch cycles, with expedited processes for critical security patches) helps ensure that known vulnerabilities are addressed in a timely and predictable manner, rather than on an ad-hoc basis.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A CISO reviewing the vulnerability management program asks which practice MOST effectively reduces the time during which known vulnerabilities can be exploited on production systems?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Waiting until a vulnerability is actively exploited before prioritizing patching",
+      "B": "Patching only CVSS 9.0+ critical vulnerabilities and ignoring medium-severity findings",
+      "C": "Establishing a regular patch cadence (e.g., monthly cycles) with an emergency process for critical vulnerabilities",
+      "D": "Patching only external-facing systems and leaving internal servers for annual maintenance"
     },
-    "answer": "A",
-    "explanation": "This statement is true. A defined patch management cadence, with regular scheduled patching cycles and an expedited process for critical or actively exploited vulnerabilities, helps ensure that systems are kept up to date in a predictable, manageable way while still allowing urgent issues to be addressed quickly outside the normal cycle.",
+    "answer": "C",
+    "explanation": "A defined regular patch cadence combined with an emergency patching process for critical vulnerabilities minimizes the exposure window by ensuring patches are applied systematically rather than reactively. Waiting for active exploitation (A) maximizes the window of exposure. Ignoring medium-severity vulnerabilities (B) leaves attackers an avenue through chained exploits. Patching only external systems (D) ignores that most breaches involve internal lateral movement through unpatched internal systems.",
     "comptia_logic_note": null
   },
   {
@@ -1058,18 +1065,18 @@
     "domain": 4,
     "objective": "4.1",
     "topic": "Hardening - Wireless (Disabling WPS)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A feature on many consumer and small business wireless routers allows devices to join the network by pressing a physical button or entering a short PIN, but this feature has known vulnerabilities that allow attackers to brute-force the PIN and recover the network's password. As part of wireless hardening, this feature, known by the acronym ____, should be disabled.",
-    "blank_answer": "WPS",
-    "acceptable_answers": [
-      "WPS",
-      "Wi-Fi Protected Setup",
-      "wi-fi protected setup"
-    ],
-    "answer": "WPS",
-    "explanation": "WPS (Wi-Fi Protected Setup) allows easy device pairing via a button press or PIN, but its PIN-based authentication has well-known brute-force vulnerabilities that can allow an attacker to recover the wireless network's actual password, making it a recommended hardening step to disable WPS on wireless access points.",
-    "comptia_logic_note": null
+    "stem": "A wireless security audit identifies that company access points have an older feature enabled that allows clients to connect by entering a PIN rather than the full passphrase, and this feature has a known design flaw that allows attackers to brute-force the PIN in hours. Which feature should be disabled to mitigate this risk?",
+    "answer": "C",
+    "explanation": "WPS (Wi-Fi Protected Setup) was designed to simplify device pairing using a PIN but has a fundamental design flaw (CVE-2011-5053) where the PIN is verified in two separate halves, reducing the effective keyspace and allowing brute-force attacks to succeed in hours. Disabling WPS is a standard hardening step. WPA3-Enterprise (A) is a strong current authentication method that should remain enabled. 802.1X (B) is a port authentication standard that improves security. Disabling SSID broadcasting (D) is security theater that does not prevent attacks.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "WPA3-Enterprise mode",
+      "B": "802.1X port-based authentication",
+      "C": "WPS (Wi-Fi Protected Setup)",
+      "D": "SSID broadcasting"
+    }
   },
   {
     "id": "D4-058",
@@ -1078,7 +1085,7 @@
     "topic": "Hardening - Wireless Network Hardening (PBQ)",
     "format": "pbq_scenario",
     "difficulty": "hard",
-    "scenario": "A small business owner sets up a new wireless router for the office. The router is configured with its factory-default administrator password, the default SSID broadcasting the router's brand and model name, WPS enabled, and WPA2-Personal with a weak, easily guessable shared passphrase.",
+    "scenario": "A security consultant is conducting a wireless security assessment at a small dental office. Using a wireless scanner (Wireshark + airodump-ng), the consultant identifies the office's access point: SSID 'NETGEAR42' broadcasting on 2.4 GHz, WPS enabled with the default PIN, WPA2-Personal using the passphrase 'dental123', and the router's admin interface accessible over the LAN with credentials admin/password unchanged from factory defaults. The router model is identifiable from the SSID. The consultant must provide a prioritized list of configuration changes that together constitute a complete remediation of the wireless security posture.",
     "stem": "Which combination of changes would MOST improve the security of this wireless deployment?",
     "options": {
       "A": "Change the default administrator password, change the SSID to something that does not reveal the router model, disable WPS, and set a strong, unique WPA2 (or WPA3) passphrase",
@@ -1171,15 +1178,17 @@
     "domain": 4,
     "objective": "4.2",
     "topic": "Asset Management - Unauthorized Device Detection",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Regularly comparing the results of automated network discovery scans against the organization's official asset inventory can help identify unauthorized or unmanaged devices (rogue devices) connected to the network.",
+    "stem": "A security team wants to detect when unauthorized devices connect to the corporate network. Which asset management practice BEST supports this goal?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Relying solely on users to self-report any new devices they connect",
+      "B": "Auditing Active Directory user accounts quarterly for inactive accounts",
+      "C": "Regularly comparing automated network discovery scan results against the approved device inventory",
+      "D": "Encrypting all network traffic to prevent unauthorized device communication"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Automated network discovery scans identify devices actually present on the network, and comparing these results against the official asset inventory can reveal discrepancies, such as devices that are connected but not documented, which may represent unauthorized, rogue, or shadow IT devices that require investigation.",
+    "answer": "C",
+    "explanation": "Comparing automated network discovery results against an approved device inventory identifies devices on the network that are not in the inventory, revealing unauthorized or rogue devices. User self-reporting (A) is unreliable and easily missed. Auditing AD user accounts (B) identifies stale accounts, not rogue devices on the network. Encrypting traffic (D) secures communications but does not detect unauthorized devices.",
     "comptia_logic_note": null
   },
   {
@@ -1189,7 +1198,7 @@
     "topic": "Asset Management - End-of-Life Decommissioning (PBQ)",
     "format": "pbq_scenario",
     "difficulty": "hard",
-    "scenario": "A company is retiring a fleet of old desktop computers that were used in its accounting department to handle sensitive financial records and customer payment data. The IT manager plans to donate the computers to a local school after removing the company asset tags.",
+    "scenario": "An IT asset manager at a regional law firm is processing a batch of 40 Dell Optiplex desktops being retired from the litigation support team. These workstations were used to store and process client case files, attorney-client privileged communications, and court documents, some of which include sealed filings. The firm's retention schedule requires that client data be retained for seven years, but these specific workstations are being replaced with newer models and all data has been confirmed migrated to the firm's new DMS. The asset manager plans to donate the machines to a local nonprofit after removing asset tags. Legal is requiring written confirmation that data sanitization was performed to an appropriate standard before the machines leave the firm's custody.",
     "stem": "Before donating these computers, which step is MOST critical to perform to protect the company and its customers?",
     "options": {
       "A": "Perform certified data sanitization (such as cryptographic erasure or physical destruction of drives containing sensitive data) and update the asset inventory to reflect disposal",
@@ -1264,36 +1273,36 @@
     "domain": 4,
     "objective": "4.3",
     "topic": "Vulnerability Management - Static Application Security Testing",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A development team integrates a tool into its CI/CD pipeline that analyzes application source code for security weaknesses, such as hardcoded credentials or unsafe function calls, without executing the program. This type of analysis is known by the acronym ____.",
-    "blank_answer": "SAST",
-    "acceptable_answers": [
-      "SAST",
-      "Static Application Security Testing",
-      "static application security testing"
-    ],
-    "answer": "SAST",
-    "explanation": "SAST (Static Application Security Testing) analyzes an application's source code, byte code, or binaries for security vulnerabilities without executing the program, making it useful for catching issues such as hardcoded credentials, insecure coding patterns, or known vulnerable function calls early in the development lifecycle.",
-    "comptia_logic_note": null
+    "stem": "A development team integrates a tool into their CI/CD pipeline that automatically analyzes source code before it is compiled or run, scanning for vulnerability patterns such as SQL injection, buffer overflows, and hard-coded credentials, without executing the application. This tool is BEST described as:",
+    "answer": "B",
+    "explanation": "Static Application Security Testing (SAST) analyzes source code, bytecode, or binary without executing the application, identifying vulnerabilities by examining the code itself. Dynamic Application Security Testing (DAST) (A) tests the running application from the outside by sending crafted requests and observing responses. Fuzz testing (C) sends random or malformed inputs to a running application. Penetration testing frameworks (D) are used for active exploitation, not automated code analysis.",
+    "comptia_logic_note": "SAST = white-box, analyzes code without running it. DAST = black-box, tests the running application from outside. Both are used in secure development pipelines but at different stages.",
+    "options": {
+      "A": "DAST (Dynamic Application Security Testing)",
+      "B": "SAST (Static Application Security Testing)",
+      "C": "Fuzz testing tool",
+      "D": "Network penetration testing framework"
+    }
   },
   {
     "id": "D4-069",
     "domain": 4,
     "objective": "4.3",
     "topic": "Vulnerability Management - Dynamic Application Security Testing",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A security team uses a tool that tests a running web application by sending it various inputs, including malicious payloads, and observing its responses to identify vulnerabilities such as SQL injection or cross-site scripting, without access to the application's source code. This type of analysis is known by the acronym ____.",
-    "blank_answer": "DAST",
-    "acceptable_answers": [
-      "DAST",
-      "Dynamic Application Security Testing",
-      "dynamic application security testing"
-    ],
-    "answer": "DAST",
-    "explanation": "DAST (Dynamic Application Security Testing) tests an application from the outside while it is running, sending various inputs including malicious payloads and observing the application's behavior and responses, allowing it to identify vulnerabilities such as SQL injection or XSS without requiring access to source code.",
-    "comptia_logic_note": "SAST and DAST are complementary: SAST examines code internally (white-box, pre-execution) and can find issues anywhere in the code regardless of whether that code path is exercised, while DAST examines the application externally while it runs (black-box, post-deployment) and can find issues that only manifest at runtime, such as configuration or environment-related vulnerabilities. Many organizations use both."
+    "stem": "A security engineer uses a tool that actively tests a live, running web application by sending crafted HTTP requests including SQL injection payloads and XSS strings, and analyzes responses to identify real vulnerabilities \u2014 testing from the outside without access to source code. This approach is called:",
+    "answer": "C",
+    "explanation": "Dynamic Application Security Testing (DAST) tests a live, running application from the outside by sending crafted inputs and analyzing responses to find real, exploitable vulnerabilities, simulating how an attacker would interact with the application without source code access. SAST (A) analyzes source code without running the application. Manual source code review (B) is a static analysis method. Log analysis (D) reviews existing records of past activity, not active vulnerability testing.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SAST (Static Application Security Testing)",
+      "B": "Manual source code review",
+      "C": "DAST (Dynamic Application Security Testing)",
+      "D": "Log analysis"
+    }
   },
   {
     "id": "D4-070",
@@ -1318,15 +1327,17 @@
     "domain": 4,
     "objective": "4.3",
     "topic": "Vulnerability Management - Responsible Disclosure",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Responsible disclosure refers to the practice of a security researcher privately notifying a vendor about a discovered vulnerability and allowing a reasonable period of time for the vendor to develop and release a fix before any public disclosure of the details.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security researcher discovers a critical zero-day in a widely used VPN product. Following responsible disclosure principles, what should the researcher do FIRST?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Immediately publish full technical details and a working exploit to pressure the vendor",
+      "B": "Report the vulnerability to law enforcement before notifying the vendor",
+      "C": "Privately notify the vendor and allow a reasonable timeframe to develop and release a patch before public disclosure",
+      "D": "Sell the vulnerability details to the highest bidder on a grey market exchange"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Responsible disclosure involves privately reporting a discovered vulnerability to the affected vendor and providing a reasonable time frame for remediation before any public release of details, balancing the public's interest in being informed with the need to give the vendor time to fix the issue before attackers can exploit it.",
+    "answer": "C",
+    "explanation": "Responsible disclosure involves privately notifying the vendor first, giving them a reasonable period (typically 90 days) to develop and release a patch before any public disclosure, balancing the vendor's need to fix the issue with the researcher's right to eventually publish. Immediately publishing full details (A) creates an exploit available to attackers before a patch exists. Reporting to law enforcement first (B) is not the first step in responsible disclosure. Selling to grey markets (D) is irresponsible and in many jurisdictions illegal.",
     "comptia_logic_note": null
   },
   {
@@ -1425,18 +1436,18 @@
     "domain": 4,
     "objective": "4.4",
     "topic": "Monitoring - SCAP",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "hard",
-    "stem": "A government agency requires that vulnerability scanning and configuration assessment tools use a standardized framework of specifications for expressing and measuring security data, allowing different tools from different vendors to share results in a consistent, automatable format. This framework is known by the acronym ____.",
-    "blank_answer": "SCAP",
-    "acceptable_answers": [
-      "SCAP",
-      "Security Content Automation Protocol",
-      "security content automation protocol"
-    ],
-    "answer": "SCAP",
-    "explanation": "SCAP (Security Content Automation Protocol) is a standardized framework of specifications that enables automated vulnerability management, configuration assessment, and compliance checking, allowing security tools from different vendors to exchange results and findings in a consistent, machine-readable format.",
-    "comptia_logic_note": null
+    "stem": "A government contractor must demonstrate that their systems are configured according to federal security benchmarks using a framework that includes OVAL for vulnerability definitions and XCCDF for checklists to automate compliance assessment. Which framework are they required to use?",
+    "answer": "D",
+    "explanation": "SCAP (Security Content Automation Protocol) is a suite of standards that includes OVAL (Open Vulnerability and Assessment Language) for machine-readable vulnerability definitions and XCCDF (Extensible Configuration Checklist Description Format) for security configuration checklists, enabling automated, standardized compliance and vulnerability assessments. CVE (A) is a vulnerability naming catalog. CVSS (B) is a scoring system. NIST CSF (C) is a high-level cybersecurity framework, not a configuration assessment protocol.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "CVE",
+      "B": "CVSS",
+      "C": "NIST CSF",
+      "D": "SCAP (Security Content Automation Protocol)"
+    }
   },
   {
     "id": "D4-078",
@@ -1501,15 +1512,17 @@
     "domain": 4,
     "objective": "4.4",
     "topic": "Monitoring - Log Retention",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Many regulatory and compliance frameworks require organizations to retain security logs for a minimum specified period, which can support both compliance audits and forensic investigations of incidents discovered after the fact.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A compliance officer informs the security team that their industry regulation requires security event logs be retained for a minimum of 12 months, with the most recent 90 days immediately accessible. What should the security team implement to ensure compliance?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Store only the last 30 days of logs to minimize storage costs",
+      "B": "Retain all logs indefinitely to avoid any compliance gaps",
+      "C": "Implement tiered log retention with 90 days of immediately accessible hot storage and archive for the remainder up to 12 months",
+      "D": "Log retention requirements apply only to organizations with more than 1,000 employees"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Many regulatory and compliance frameworks specify minimum log retention periods, which serve dual purposes: demonstrating compliance during audits and providing historical data needed for forensic investigations, particularly for incidents that are not discovered until long after they occurred.",
+    "answer": "C",
+    "explanation": "A tiered retention policy with 90 days of hot (immediately accessible) storage and archival for the remaining period up to 12 months meets both the availability requirement (recent logs accessible quickly for investigation) and the retention requirement (all logs kept for 12 months). Storing only 30 days (A) violates the 12-month retention requirement. Keeping all logs indefinitely (B) may exceed what is required and create unnecessary cost and data management burden. Log requirements apply based on industry regulation, not employee count (D).",
     "comptia_logic_note": null
   },
   {
@@ -1537,7 +1550,7 @@
     "topic": "Monitoring - SIEM Correlation Rule (PBQ)",
     "format": "pbq_scenario",
     "difficulty": "hard",
-    "scenario": "A SOC analyst wants to configure the SIEM to detect potential brute-force login attempts against the organization's VPN concentrator. The analyst has access to authentication logs that record every login attempt, including the source IP address, username, timestamp, and success or failure status.",
+    "scenario": "A Tier 2 SOC analyst at a financial services company is building a SIEM correlation rule to detect brute-force attacks against the organization's Palo Alto GlobalProtect VPN concentrator, which currently averages 850 successful authentications per day from 320 unique users across six countries. Authentication events are logged to the SIEM in real time with fields: src_ip, username, auth_result (success/failure), timestamp, and geo_location. A legitimate user typically fails authentication 1-2 times per month. The analyst needs a detection rule that will catch an attacker running automated credential-stuffing across multiple usernames from a single IP, without generating excessive false positives from normal user typos.",
     "stem": "Which correlation rule logic would MOST effectively detect a likely brute-force attack while minimizing false positives from normal user behavior?",
     "options": {
       "A": "Alert when a single source IP address generates more than a defined threshold (e.g., 10) of failed login attempts across multiple different usernames within a short time window (e.g., 5 minutes)",
@@ -1572,19 +1585,18 @@
     "domain": 4,
     "objective": "4.4",
     "topic": "Monitoring - NetFlow",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A network monitoring tool collects metadata about network traffic flows, including source and destination IP addresses, ports, protocols, and byte counts, without capturing the full packet payload, allowing analysts to identify unusual communication patterns at scale. This type of traffic metadata is commonly referred to by the name ____.",
-    "blank_answer": "NetFlow",
-    "acceptable_answers": [
-      "NetFlow",
-      "netflow",
-      "Net Flow",
-      "flow data"
-    ],
-    "answer": "NetFlow",
-    "explanation": "NetFlow (and similar flow-based protocols such as IPFIX or sFlow) collects metadata about network traffic flows, including source/destination addresses, ports, protocols, and volume, without capturing full packet contents, making it efficient for identifying unusual communication patterns, such as a host suddenly communicating with an unfamiliar external server, across large volumes of traffic.",
-    "comptia_logic_note": null
+    "stem": "A security analyst wants to analyze communication patterns between internal servers and external IP addresses without the overhead of full packet capture. She needs a data source providing metadata about network flows including source/destination IPs, ports, protocols, and byte counts. Which data source should she use?",
+    "answer": "C",
+    "explanation": "NetFlow records provide network traffic flow metadata \u2014 source/destination IPs, ports, protocols, byte counts, and timestamps \u2014 without capturing actual packet payloads, making them efficient for traffic pattern analysis and anomaly detection. Full PCAP (A) captures all packet contents, which is far more storage-intensive and often unnecessary for flow analysis. Syslog (B) captures application-level log events, not network flow data. IDS alerts (D) identify specific detected events but do not provide comprehensive traffic flow data.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "Full PCAP (packet capture) files",
+      "B": "Syslog messages from application servers",
+      "C": "NetFlow records from core network devices",
+      "D": "IDS signature match alerts"
+    }
   },
   {
     "id": "D4-086",
@@ -1667,15 +1679,17 @@
     "domain": 4,
     "objective": "4.5",
     "topic": "Enterprise Capabilities - Content Filtering",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: A web content filter can be configured to block access to websites based on predefined categories, such as gambling, social media, or known malicious sites, in addition to blocking individual URLs.",
+    "stem": "An IT administrator is asked to prevent employees from accessing gambling and adult content websites on company devices during work hours. Which security control MOST effectively enforces this policy for web browsing?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Host-based firewall configured with IP blocklists",
+      "B": "Antivirus software with real-time scanning",
+      "C": "Web content filter with URL categorization",
+      "D": "SIEM alert rules that trigger on web access logs"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Web content filters typically support category-based filtering, using databases that classify websites into categories such as gambling, social media, adult content, or known malicious sites, allowing administrators to block entire categories of content in addition to or instead of maintaining lists of individual URLs.",
+    "answer": "C",
+    "explanation": "A web content filter with URL categorization classifies websites by content type (gambling, adult content, social media, etc.) and enforces block policies in real time as users browse, directly preventing access to prohibited site categories. A host-based firewall with IP blocklists (A) cannot keep up with the constantly changing IPs of millions of websites and does not understand content categories. Antivirus (B) scans for malware, not content categories. SIEM alerts (D) detect policy violations after they occur but do not actively prevent browsing.",
     "comptia_logic_note": null
   },
   {
@@ -1683,32 +1697,36 @@
     "domain": 4,
     "objective": "4.5",
     "topic": "Enterprise Capabilities - Secure Protocol Ports (SMTP Submission)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "An organization configures its email clients to submit outgoing mail to the mail server using an encrypted connection over TCP port ____ (the standard SMTP submission port with TLS, sometimes referred to as SMTPS submission), rather than the older unencrypted port 25.",
-    "blank_answer": "587",
-    "acceptable_answers": [
-      "587"
-    ],
-    "answer": "587",
-    "explanation": "TCP port 587 is the standard port for SMTP message submission with STARTTLS encryption, used by mail clients to securely submit outgoing email to a mail server, in contrast to port 25, which is traditionally used for unencrypted server-to-server mail relay and is often blocked or restricted on client connections for security reasons.",
-    "comptia_logic_note": null
+    "stem": "An organization configures email clients to submit outgoing mail to the company mail server using SMTP with authentication and STARTTLS encryption, rather than using the legacy server-to-server relay port. Which port do the email clients use for this authenticated, encrypted submission?",
+    "answer": "C",
+    "explanation": "Port 587 is the SMTP Message Submission port, standardized for authenticated email client-to-server submission with STARTTLS encryption. Port 25 (A) is used for server-to-server (MTA) relay and many providers block outbound port 25 from end-user devices. Port 465 (B) is SMTPS with implicit TLS (older standard). Port 993 (D) is IMAPS for encrypted email retrieval.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "25",
+      "B": "465",
+      "C": "587",
+      "D": "993"
+    }
   },
   {
     "id": "D4-092",
     "domain": 4,
     "objective": "4.5",
     "topic": "Enterprise Capabilities - Secure Protocol Ports (HTTPS Alternate)",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "A web application is configured to use an alternate HTTPS port, TCP ____, often used for management interfaces or applications running alongside a primary website on the standard HTTPS port.",
-    "blank_answer": "8443",
-    "acceptable_answers": [
-      "8443"
-    ],
-    "answer": "8443",
-    "explanation": "TCP port 8443 is a commonly used alternate port for HTTPS traffic, often used by web application management interfaces, development servers, or applications running alongside a primary website that uses the standard HTTPS port 443, while still providing TLS encryption.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A developer deploys an internal management web application on a non-standard HTTPS port to avoid conflicting with the production site on port 443. The application uses HTTPS for encryption. Which port is commonly used as the HTTPS alternate for internal management interfaces?",
+    "answer": "B",
+    "explanation": "Port 8443 is the widely recognized alternate HTTPS port, commonly used for internal management interfaces and secondary web services that run HTTPS but cannot use the standard port 443. Port 8080 (A) is a well-known alternate HTTP port, not HTTPS. Ports 8888 (C) and 9090 (D) are sometimes used for development but are not the standard alternate HTTPS port tested by CompTIA.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "8080",
+      "B": "8443",
+      "C": "8888",
+      "D": "9090"
+    }
   },
   {
     "id": "D4-093",
@@ -1869,36 +1887,36 @@
     "domain": 4,
     "objective": "4.6",
     "topic": "IAM - LDAP",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "A company uses a centralized directory service to store information about users, groups, and computers, and applications query this directory using a standard protocol, typically over TCP port 389 (or 636 for the encrypted version), to look up user information and authenticate credentials. This protocol is known by the acronym ____.",
-    "blank_answer": "LDAP",
-    "acceptable_answers": [
-      "LDAP",
-      "Lightweight Directory Access Protocol",
-      "lightweight directory access protocol"
-    ],
-    "answer": "LDAP",
-    "explanation": "LDAP (Lightweight Directory Access Protocol) is a standard protocol used to access and query directory services, such as Active Directory, which store information about users, groups, and computers. LDAP traditionally operates over TCP port 389, while LDAPS (LDAP over TLS/SSL) operates over TCP port 636 to provide encrypted directory queries and authentication.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A company uses a centralized directory service to store information about users, computers, and groups, and applications use a standard network protocol to query user attributes and verify credentials against Active Directory. Which protocol do these applications use to communicate with the directory?",
+    "answer": "C",
+    "explanation": "LDAP (Lightweight Directory Access Protocol) is the standard network protocol used by applications to query and authenticate against directory services such as Active Directory \u2014 looking up user attributes, group memberships, and verifying credentials. RADIUS (A) is used for network device authentication and authorization (e.g., VPN, Wi-Fi). TACACS+ (B) is a Cisco proprietary protocol for device administration authentication. SAML (D) is an XML-based federation standard for web-based SSO, not a directory query protocol.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "RADIUS",
+      "B": "TACACS+",
+      "C": "LDAP (Lightweight Directory Access Protocol)",
+      "D": "SAML"
+    }
   },
   {
     "id": "D4-102",
     "domain": 4,
     "objective": "4.6",
     "topic": "IAM - PAM",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A solution that securely stores, manages, and rotates credentials for privileged accounts, requires administrators to check out credentials through an approval workflow, and records sessions for auditing is known by the acronym ____.",
-    "blank_answer": "PAM",
-    "acceptable_answers": [
-      "PAM",
-      "Privileged Access Management",
-      "privileged access management"
-    ],
-    "answer": "PAM",
-    "explanation": "PAM (Privileged Access Management) solutions secure, manage, and monitor access to privileged accounts and credentials, often including features such as credential vaulting, automatic password rotation, approval workflows for checking out credentials, and session recording for audit and accountability purposes.",
-    "comptia_logic_note": null
+    "stem": "A financial services company needs to control, monitor, and audit all IT administrator access to privileged accounts on production servers. The solution must provide just-in-time access, automatically rotate passwords after each session, and record all privileged sessions for review. Which solution type addresses these requirements?",
+    "answer": "C",
+    "explanation": "PAM (Privileged Access Management) specifically controls, monitors, and audits privileged account access with features including just-in-time access provisioning, automatic password rotation (password vaulting), and session recording for compliance and forensics. SSO (A) provides seamless access for standard users across multiple apps, not privileged account governance. MFA (B) adds authentication factors but does not manage privileged account workflows or session recording. NAC (D) controls network access based on device health, not privileged account management.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SSO (Single Sign-On)",
+      "B": "MFA (Multifactor Authentication)",
+      "C": "PAM (Privileged Access Management)",
+      "D": "NAC (Network Access Control)"
+    }
   },
   {
     "id": "D4-103",
@@ -1941,16 +1959,18 @@
     "domain": 4,
     "objective": "4.6",
     "topic": "IAM - Account Lockout Policy",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: An account lockout policy that temporarily disables an account after a defined number of consecutive failed login attempts helps mitigate brute-force and password-guessing attacks, but if set too aggressively, it can also be exploited by an attacker to intentionally lock out legitimate users (a denial-of-service condition).",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team implements an account lockout policy that disables an account after 5 failed login attempts. What is the PRIMARY security risk that must be considered when configuring this policy?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Attackers can completely bypass account lockout by using a VPN",
+      "B": "Locked accounts require manual administrator intervention to re-enable, preventing all automation",
+      "C": "Attackers can deliberately lock out legitimate users' accounts as a denial-of-service attack against those users",
+      "D": "Account lockout policies are entirely ineffective against password spraying because spraying uses only one attempt per account"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Account lockout policies help defend against brute-force and password-guessing attacks by limiting the number of attempts an attacker can make, but an overly aggressive threshold (such as locking an account after just one or two failed attempts) can be exploited by an attacker who deliberately enters incorrect credentials for a known username to lock out the legitimate user, creating a denial-of-service condition for that account.",
-    "comptia_logic_note": null
+    "answer": "C",
+    "explanation": "An overly aggressive lockout policy can be weaponized by attackers who deliberately submit failed login attempts for legitimate users' accounts, causing widespread account lockouts and denying access to authorized users \u2014 a form of DoS targeting authentication. This must be balanced against the brute-force protection the policy provides. Attackers cannot bypass lockout with a VPN (A); VPNs change source IP but the lockout is account-based. Manual re-enabling (B) is one implementation detail but not a risk of the policy itself. Account lockout does affect password spraying (D) by limiting attempts per account.",
+    "comptia_logic_note": "The balance: aggressive lockout thresholds stop brute force but enable lockout DoS attacks. Lower thresholds reduce DoS risk but allow more guesses. This trade-off is a common CompTIA scenario question."
   },
   {
     "id": "D4-106",
@@ -2142,15 +2162,17 @@
     "domain": 4,
     "objective": "4.7",
     "topic": "Automation - Automated Patch Deployment",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: While automated patch deployment can significantly reduce the time required to remediate vulnerabilities across a large fleet of systems, organizations should still test patches in a non-production environment before automated mass deployment to reduce the risk of a faulty patch causing widespread outages.",
+    "stem": "A security team is evaluating automated patch deployment tools for production systems. What is the PRIMARY risk that must be addressed before fully automating patch deployment?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Automated patching always requires a reboot, guaranteeing production downtime for every patch",
+      "B": "Automated patches may not carry valid digital signatures from the vendor",
+      "C": "Untested patches deployed automatically may introduce instability or break applications in production",
+      "D": "Automating patching eliminates the need for a vulnerability management program"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Automated patch deployment greatly improves the speed and consistency of remediation across large environments, but because a faulty or incompatible patch could cause widespread issues if deployed automatically to all systems at once, best practice is to test patches in a non-production environment first and often deploy in stages (such as a pilot group before the full fleet) to limit potential impact.",
+    "answer": "C",
+    "explanation": "The primary risk of fully automated patch deployment is that an incompatible or flawed patch could be deployed directly to production systems, causing application failures or instability before any human review occurs. This is why patches should be tested in a staging environment before automated deployment to production. Not all patches require reboots (A). Legitimate vendor patches are digitally signed (B), but verifying signatures is a check already included in patch management tools. Automation complements, not replaces, a vulnerability management program (D).",
     "comptia_logic_note": null
   },
   {
@@ -2234,17 +2256,18 @@
     "domain": 4,
     "objective": "4.8",
     "topic": "Incident Response - Order of Volatility",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "When collecting digital evidence during an incident, forensic investigators follow a principle called the order of ____, which dictates that the most fragile and quickly-changing data, such as the contents of RAM and active network connections, should be collected before more persistent data, such as data on a hard disk, which is less likely to be lost.",
-    "blank_answer": "volatility",
-    "acceptable_answers": [
-      "volatility",
-      "Volatility"
-    ],
-    "answer": "volatility",
-    "explanation": "The order of volatility is a principle in digital forensics that prioritizes the collection of evidence based on how quickly it can be lost or altered. Highly volatile data, such as CPU registers, cache, and RAM contents, should be collected first, followed by less volatile data such as network connections and process lists, and finally more persistent data such as disk contents, which will remain available longer.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "hard",
+    "stem": "A forensic investigator responds to a running server suspected of compromise. Following the principle of collecting the most volatile evidence first, which evidence source should she capture FIRST to preserve the most ephemeral data?",
+    "answer": "B",
+    "explanation": "The order of volatility places RAM and active network connections at the top because they are lost immediately when the system is powered off or restarted. This data includes running processes, decrypted keys, network sockets, and attacker artifacts that exist only in memory. USB drives (A) and hard drive data (D) persist after shutdown and can be captured later. Offsite tape archive data (C) is the least volatile source.",
+    "comptia_logic_note": "Order of volatility (most to least volatile): CPU registers/cache \u2192 RAM \u2192 Network connections \u2192 Running processes \u2192 Disk \u2192 Removable media \u2192 Remote/offsite backups. Always capture the most volatile first.",
+    "options": {
+      "A": "Data from attached USB drives",
+      "B": "The contents of RAM (system memory) and active network connections",
+      "C": "Backed-up data from the organization's offsite tape archive",
+      "D": "Data from the server's hard drive sectors"
+    }
   },
   {
     "id": "D4-122",
@@ -2269,15 +2292,17 @@
     "domain": 4,
     "objective": "4.8",
     "topic": "Incident Response - External Communications",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: An organization's incident response communication plan should define who is authorized to communicate with external parties, such as law enforcement, regulators, the media, and affected customers, to ensure consistent, accurate, and legally appropriate messaging during an incident.",
+    "stem": "During a ransomware incident at a publicly traded company, an IT technician posts about the breach on their personal social media account before any official statement is made. What incident response policy failure does this MOST directly illustrate?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "The technician failed to contain the ransomware before notifying any party",
+      "B": "The incident response plan did not define authorized spokespersons and external communication protocols",
+      "C": "The technician violated legal requirements by not reporting to law enforcement first",
+      "D": "Social media disclosure is required by SEC incident reporting rules within one hour"
     },
-    "answer": "A",
-    "explanation": "This statement is true. A well-defined communication plan specifies who is authorized to communicate with external parties during an incident, often involving legal counsel, public relations, and executive leadership, to ensure that messaging is consistent, accurate, complies with any applicable breach notification laws, and does not inadvertently disclose sensitive details that could complicate the investigation or create legal liability.",
+    "answer": "B",
+    "explanation": "A comprehensive incident response communication plan must define who is authorized to communicate externally about an incident \u2014 to the public, media, regulators, and stakeholders \u2014 and establish what can be disclosed and when. The technician's unauthorized disclosure bypassed this governance, which could create legal liability, inaccurate public information, and loss of control over the narrative. Containment before notification (A) is important but is a separate failure. There is no universal requirement to notify law enforcement first (C). The SEC has specific breach notification rules (D), but unauthorized personal social media posts are not a mandated disclosure method.",
     "comptia_logic_note": null
   },
   {
@@ -2398,15 +2423,17 @@
     "domain": 4,
     "objective": "4.8",
     "topic": "Incident Response - Evidence Preservation",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: When creating a forensic copy of a hard drive for investigation, using a hardware write blocker ensures that the original drive cannot be modified during the imaging process, helping preserve the integrity of the original evidence.",
+    "stem": "A digital forensics examiner needs to create an exact bit-for-bit copy of a suspect hard drive without altering any data on the original \u2014 including timestamps and file metadata. What device should be placed between the source drive and the forensic workstation to prevent any writes to the evidence drive?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "A USB hub",
+      "B": "A hardware write blocker",
+      "C": "A RAID controller",
+      "D": "An encrypted storage volume"
     },
-    "answer": "A",
-    "explanation": "This statement is true. A hardware write blocker allows an investigator to access and read data from a storage device without the possibility of writing to it, ensuring that the original evidence remains unmodified during the imaging process, which is critical for maintaining evidence integrity and admissibility.",
+    "answer": "B",
+    "explanation": "A hardware write blocker is placed between a forensic workstation and the evidence drive to allow reading while physically preventing any write commands from reaching the drive, preserving the integrity of the original evidence and ensuring the forensic copy is legally defensible. A USB hub (A) simply connects devices and does not block writes. A RAID controller (C) manages storage arrays and does not prevent writes. An encrypted storage volume (D) protects data on that volume but does not prevent writes to a source drive.",
     "comptia_logic_note": null
   },
   {
@@ -2490,19 +2517,18 @@
     "domain": 4,
     "objective": "4.8",
     "topic": "Incident Response - CSIRT Acronym",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The dedicated team within an organization responsible for coordinating the response to security incidents, from initial detection through lessons learned, is commonly referred to by the acronym ____.",
-    "blank_answer": "CSIRT",
-    "acceptable_answers": [
-      "CSIRT",
-      "Computer Security Incident Response Team",
-      "computer security incident response team",
-      "CIRT"
-    ],
-    "answer": "CSIRT",
-    "explanation": "CSIRT (Computer Security Incident Response Team), sometimes also abbreviated CIRT, is the dedicated team responsible for coordinating an organization's response to security incidents, including detection, containment, eradication, recovery, and post-incident lessons learned activities.",
-    "comptia_logic_note": null
+    "stem": "After suffering a major data breach, a company activates the dedicated internal team responsible for coordinating all technical response activities, communicating with stakeholders, and coordinating with external parties such as law enforcement. This team is called the:",
+    "answer": "C",
+    "explanation": "A CSIRT (Computer Security Incident Response Team) is the designated team responsible for managing and coordinating all aspects of incident response, including technical analysis, stakeholder communication, evidence preservation, and engagement with law enforcement. A SOC (A) is the ongoing operational team monitoring for threats; a major breach typically activates the CSIRT specifically for incident coordination. A Change Advisory Board (B) reviews and approves configuration changes. A Red Team (D) performs offensive security assessments, not incident response.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SOC (Security Operations Center)",
+      "B": "Change Advisory Board (CAB)",
+      "C": "CSIRT (Computer Security Incident Response Team)",
+      "D": "Red Team"
+    }
   },
   {
     "id": "D4-136",
@@ -2567,15 +2593,17 @@
     "domain": 4,
     "objective": "4.9",
     "topic": "Data Sources - Metadata Analysis",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Metadata, such as a file's creation date, author, and modification history embedded in a document, can provide useful investigative clues even when the actual content of the file does not directly reveal who created or modified it.",
+    "stem": "A digital forensics analyst examining a leaked sensitive document discovers the file's metadata reveals the original author's username, the internal network path where the file was saved, and the software version used to create it. How can this metadata assist the investigation?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Metadata can be used to decrypt the document's encrypted contents",
+      "B": "Metadata provides forensic artifacts that help identify the document's origin, creator, and creation history",
+      "C": "Document metadata contains a blockchain record of all previous edits",
+      "D": "Metadata analysis applies only to image files, not office documents"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Metadata embedded in files, such as creation and modification timestamps, author names, software used, and editing history, can provide valuable investigative clues about a file's origin and handling, even when this information is not visible in the file's displayed content, making metadata analysis a useful technique in digital investigations.",
+    "answer": "B",
+    "explanation": "File metadata embedded in office documents and other file types can reveal valuable forensic information including the original author's username, the organization's internal file share path where the document was saved, software version, creation and modification dates, and revision history \u2014 all of which help investigators trace the document's origin and potentially identify the source of a leak. Metadata cannot decrypt encrypted content (A). Documents do not contain blockchain records (C). Metadata analysis applies to many file types including office documents (D).",
     "comptia_logic_note": null
   },
   {
@@ -2594,6 +2622,186 @@
     },
     "answer": "A",
     "explanation": "This scenario illustrates the value of correlating data from multiple sources, in this case authentication logs, DNS logs, and EDR alerts, to build a more complete and conclusive picture of an incident than any single source could provide alone; this is a core capability that SIEM platforms are designed to support through correlation rules and unified analysis. Relying exclusively on a single data source (B) would have missed the broader pattern, as no individual alert alone was flagged as critical. DNS logs proved valuable in this scenario, contradicting the idea that they are rarely useful (C). Disabling EDR alerts (D) would remove one of the key data points that contributed to identifying this compromise.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-141",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Identity \u2014 privileged access management",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A large enterprise requires that IT administrators use a system where privileged credentials for production servers are stored in a vault, checked out for a limited time, automatically rotated after each use, and all privileged sessions are recorded for audit review. Which solution category provides all of these capabilities?",
+    "options": {
+      "A": "Password manager \u2014 stores user passwords in an encrypted vault with browser autofill",
+      "B": "PAM (Privileged Access Management) solution \u2014 vaults, rotates, and records privileged credentials and sessions",
+      "C": "SSO (Single Sign-On) system \u2014 provides seamless access to multiple applications with one login",
+      "D": "MFA push notification service \u2014 sends authentication approval prompts to mobile devices"
+    },
+    "answer": "B",
+    "explanation": "PAM (Privileged Access Management) solutions specifically address the lifecycle of privileged credentials: vaulting secrets, enabling time-limited check-out, rotating credentials automatically after use, and recording privileged sessions for audit and compliance purposes. Consumer password managers (A) lack credential rotation, time-limited check-out, and session recording. SSO (C) manages authentication across applications but does not vault or rotate privileged credentials. MFA (D) is an authentication factor, not credential management.",
+    "comptia_logic_note": "PAM = privileged accounts (service accounts, admin credentials). IAM = all user identities. PAM is a specialized subset of IAM focused on high-risk privileged access."
+  },
+  {
+    "id": "D4-142",
+    "domain": 4,
+    "objective": "4.3",
+    "topic": "Vulnerability scanning and penetration testing",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security manager is choosing between two assessment activities: (1) a tool that automatically identifies missing patches, open ports, and known CVEs across all systems without attempting exploitation; and (2) an engagement where a security professional attempts to actively exploit identified weaknesses to determine actual impact and gain unauthorized access. Which option correctly matches these descriptions to their activity types?",
+    "options": {
+      "A": "Activity 1 = Penetration test; Activity 2 = Vulnerability scan",
+      "B": "Activity 1 = Vulnerability scan; Activity 2 = Penetration test",
+      "C": "Both activities are equivalent and produce the same findings",
+      "D": "Activity 1 = Red team exercise; Activity 2 = Compliance audit"
+    },
+    "answer": "B",
+    "explanation": "A vulnerability scan (Activity 1) uses automated tools to identify known weaknesses \u2014 missing patches, open ports, misconfigurations, CVEs \u2014 without attempting exploitation. A penetration test (Activity 2) is a human-driven engagement where a tester actively attempts to exploit vulnerabilities to determine real-world impact, chain vulnerabilities, and demonstrate actual attack paths. They are complementary, not equivalent (C). A red team exercise (D) is a broader adversary simulation; a compliance audit checks against a standard.",
+    "comptia_logic_note": "Vulnerability scan = automated, identifies potential weaknesses, no exploitation. Pen test = manual, confirms exploitability, demonstrates impact. Pen test requires written authorization (rules of engagement)."
+  },
+  {
+    "id": "D4-143",
+    "domain": 4,
+    "objective": "4.8",
+    "topic": "Incident response \u2014 phases",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "During an incident response, the team has contained the ransomware infection, removed the malware from all affected systems, restored data from clean backups, and patched the exploited vulnerability. They are now documenting what occurred, analyzing how the attacker gained initial access, and updating response playbooks based on lessons learned. Which incident response phase does this MOST accurately represent?",
+    "options": {
+      "A": "Containment \u2014 limiting the spread of the incident",
+      "B": "Eradication \u2014 removing the threat from all systems",
+      "C": "Post-incident activity (lessons learned) \u2014 reviewing the incident to improve future response",
+      "D": "Preparation \u2014 developing capabilities before incidents occur"
+    },
+    "answer": "C",
+    "explanation": "Post-incident activity (also called lessons learned) occurs after recovery is complete. It involves documenting the incident timeline, analyzing root causes, reviewing what went well and what failed, and updating playbooks and controls to prevent recurrence. Containment (A) occurred earlier when the team isolated infected systems. Eradication (B) occurred when malware was removed and the vulnerability patched. Preparation (D) is proactive work done before incidents.",
+    "comptia_logic_note": "PICERL phases: Preparation \u2192 Identification \u2192 Containment \u2192 Eradication \u2192 Recovery \u2192 Lessons Learned (post-incident). Know the order and what happens in each phase."
+  },
+  {
+    "id": "D4-144",
+    "domain": 4,
+    "objective": "4.5",
+    "topic": "Firewall rules and ACLs",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security analyst reviewing firewall logs sees that inbound TCP connections to port 3389 from internet-routable IP addresses are reaching the company's Windows terminal servers. The company has no business requirement for employees to access these servers directly from the internet. Which action MOST effectively addresses this risk?",
+    "options": {
+      "A": "Block inbound TCP port 3389 from non-corporate IP ranges at the perimeter firewall and require employees to connect via VPN before accessing RDP",
+      "B": "Change the terminal servers from Windows to Linux, since Linux is not vulnerable to RDP exploitation",
+      "C": "Disable the Windows Firewall on the terminal servers to improve RDP connection reliability",
+      "D": "Monitor RDP connections for suspicious activity but make no configuration changes"
+    },
+    "answer": "A",
+    "explanation": "RDP (TCP 3389) exposed directly to the internet is a significant attack surface, frequently targeted by credential brute-force, BlueKeep-style exploits, and ransomware operators. Blocking the port at the perimeter and requiring VPN for remote access eliminates the exposure while preserving legitimate access. Changing to Linux (B) is not practical and Linux has its own RDP implementations. Disabling Windows Firewall (C) increases rather than decreases the attack surface. Monitoring only (D) does not reduce the exposure.",
+    "comptia_logic_note": "Internet-facing RDP is one of the top initial access vectors for ransomware. Default response: block at perimeter, require VPN + MFA for legitimate remote access."
+  },
+  {
+    "id": "D4-145",
+    "domain": 4,
+    "objective": "4.9",
+    "topic": "Digital forensics \u2014 chain of custody",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A forensic investigator seizes a hard drive from a workstation as part of a security incident investigation. Which actions are MOST important to ensure the evidence is admissible and defensible if the case proceeds to litigation?",
+    "options": {
+      "A": "Boot the drive in the suspect workstation to browse files and document findings",
+      "B": "Create a forensic image using a write-blocker, verify the hash of the original and image match, and document every person who handles the evidence",
+      "C": "Email the original drive contents to the legal team for their review",
+      "D": "Perform analysis directly on the original drive to avoid the time needed to create a forensic image"
+    },
+    "answer": "B",
+    "explanation": "Forensic best practices require: (1) a write-blocker to prevent any modification of the original evidence; (2) a forensic image (bit-for-bit copy) so analysis is done on the copy, not the original; (3) hash verification (MD5 or SHA-256) to prove the image is an exact copy and the original was not modified; and (4) chain of custody documentation tracking every person who handled the evidence. Booting (A) or analyzing directly on (D) the original drive risks modifying it, making it inadmissible. Emailing (C) a drive's contents destroys chain of custody.",
+    "comptia_logic_note": "Chain of custody + write-blocker + hash verification = forensic integrity triad. Any modification to original evidence can invalidate the case."
+  },
+  {
+    "id": "D4-146",
+    "domain": 4,
+    "objective": "4.4",
+    "topic": "SIEM and log analysis",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team deploys a SIEM solution that ingests logs from firewalls, endpoints, domain controllers, and cloud workloads. A junior analyst asks why the SIEM is generating alerts rather than just storing logs. Which BEST explains the security value of the SIEM's correlation and alerting capability?",
+    "options": {
+      "A": "The SIEM encrypts all collected logs to protect them from modification",
+      "B": "The SIEM correlates events across multiple data sources to identify patterns that indicate a threat, which would be invisible when examining any single log source",
+      "C": "The SIEM automatically quarantines endpoints when it detects any failed login attempt",
+      "D": "The SIEM replaces the need for a firewall by blocking network traffic directly"
+    },
+    "answer": "B",
+    "explanation": "The primary security value of a SIEM is its ability to correlate events across disparate sources \u2014 for example, combining a failed login alert from the domain controller, with a port scan from the firewall logs, and a new user account created from the endpoint log \u2014 to surface attack patterns that would be invisible when examining any single log source in isolation. Encryption of logs (A) is a storage integrity feature but not the primary value. Automatic quarantine on any failed login (C) would generate massive false positives. The SIEM is an analytics platform, not a network enforcement device (D).",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-147",
+    "domain": 4,
+    "objective": "4.1",
+    "topic": "Endpoint hardening \u2014 OS security",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A system administrator is hardening a new Windows server per CIS Benchmark recommendations. Which of the following is MOST consistent with OS hardening best practices?",
+    "options": {
+      "A": "Enable all optional Windows features to ensure maximum compatibility with future applications",
+      "B": "Disable unnecessary services, remove unneeded software, apply vendor security patches, and configure audit logging",
+      "C": "Install all available third-party utilities to give administrators maximum flexibility",
+      "D": "Disable Windows Update to prevent unplanned reboots during business hours"
+    },
+    "answer": "B",
+    "explanation": "OS hardening follows the principle of least functionality: disable unused services (each running service is a potential attack surface), remove unneeded software (reduces the attack surface further), apply all vendor patches (addresses known CVEs), and configure audit logging (enables detection and forensics). Enabling all optional features (A) expands the attack surface unnecessarily. Installing third-party utilities (C) increases attack surface and management complexity. Disabling Windows Update (D) leaves known vulnerabilities unpatched \u2014 one of the most common ransomware initial access vectors.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-148",
+    "domain": 4,
+    "objective": "4.6",
+    "topic": "Access control \u2014 least privilege",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An organization's HR system grants all HR department employees full read/write access to every employee's personnel file, compensation data, and performance review. A security audit identifies this as a violation of which security principle?",
+    "options": {
+      "A": "Separation of duties \u2014 ensuring no single person can complete a sensitive transaction alone",
+      "B": "Least privilege \u2014 users should have only the minimum access required for their specific job functions",
+      "C": "Defense in depth \u2014 layering multiple security controls to protect assets",
+      "D": "Non-repudiation \u2014 ensuring users cannot deny their actions"
+    },
+    "answer": "B",
+    "explanation": "The principle of least privilege requires that each user be granted the minimum access rights necessary to perform their specific job function, and no more. An HR clerk handling only benefits administration has no legitimate need to access performance reviews or executive compensation data. Granting all HR staff full access to all records violates this principle. Separation of duties (A) addresses who can authorize versus execute transactions. Defense in depth (C) is about layering controls. Non-repudiation (D) is about accountability.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D4-149",
+    "domain": 4,
+    "objective": "4.7",
+    "topic": "SOAR and automation",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A SOC team receives an average of 800 alerts per day, of which analysts estimate fewer than 5% are true positives. The team is experiencing alert fatigue, and response times for real incidents are increasing. Which technology category is specifically designed to address this problem by automating repetitive investigation steps and orchestrating response actions?",
+    "options": {
+      "A": "DLP (Data Loss Prevention) \u2014 monitors and controls data transfers",
+      "B": "SOAR (Security Orchestration, Automation, and Response) \u2014 automates alert triage and response playbooks",
+      "C": "CASB (Cloud Access Security Broker) \u2014 provides visibility into cloud application usage",
+      "D": "EDR (Endpoint Detection and Response) \u2014 detects and responds to endpoint threats"
+    },
+    "answer": "B",
+    "explanation": "SOAR platforms automate repetitive SOC analyst tasks \u2014 enriching alerts with threat intelligence, correlating related events, running triage playbooks, and executing response actions \u2014 reducing the manual workload per alert and dramatically cutting time-to-respond for real incidents. DLP (A) focuses on preventing unauthorized data transfers. CASB (C) provides cloud application visibility and control. EDR (D) handles endpoint-level detection, not SOC workflow automation across the broader environment.",
+    "comptia_logic_note": "SIEM = detection and visibility. SOAR = automation and response orchestration. They are complementary: SIEM feeds alerts into SOAR, which runs playbooks."
+  },
+  {
+    "id": "D4-150",
+    "domain": 4,
+    "objective": "4.2",
+    "topic": "Asset management \u2014 inventory",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A security team is implementing a vulnerability management program and discovers that their vulnerability scanner identifies 3,200 hosts, but the official asset inventory maintained by IT only lists 2,700 devices. What security concern does this discrepancy MOST directly represent?",
+    "options": {
+      "A": "The vulnerability scanner is misconfigured and generating duplicate results",
+      "B": "Unmanaged assets that are unknown to IT and therefore receiving no security monitoring, patching, or configuration management",
+      "C": "The asset inventory system uses a different counting method for virtual machines",
+      "D": "The discrepancy indicates the network has too many subnets for the scanner to enumerate"
+    },
+    "answer": "B",
+    "explanation": "A gap between discovered assets and the official inventory indicates unmanaged or shadow IT assets \u2014 devices that are connected to the network but unknown to IT. These assets receive no security management: no patching, no configuration enforcement, no endpoint protection deployment, and no monitoring. They represent a significant blind spot that attackers can exploit as unmonitored entry points. Scanner misconfiguration (A) could explain inflated counts but should be investigated, not assumed. Counting methods (C) and subnet count (D) would not cause a 500-device discrepancy.",
     "comptia_logic_note": null
   }
 ]

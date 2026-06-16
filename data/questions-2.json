@@ -22,15 +22,17 @@
     "domain": 2,
     "objective": "2.2",
     "topic": "Threat Vectors - Typosquatting",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Typosquatting involves an attacker registering a domain name that is a deliberate misspelling or close variation of a legitimate organization's domain, in order to capture users who accidentally mistype the legitimate URL.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security analyst receives an alert about a domain 'micros0ft-support.com' (using a zero instead of the letter 'o') hosting a site that mimics Microsoft's official support portal and harvests credentials. Which threat technique does this domain name represent?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Pharming",
+      "B": "Watering hole attack",
+      "C": "Typosquatting",
+      "D": "DNS sinkhole"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Typosquatting (also called URL hijacking) relies on registering domains that closely resemble legitimate ones (such as 'gooogle.com' instead of 'google.com') so that users who mistype a URL are redirected to a malicious or fraudulent site, often used for phishing or malware distribution.",
+    "answer": "C",
+    "explanation": "Typosquatting involves registering a domain that is a deliberate misspelling or character substitution of a legitimate domain (here, substituting '0' for 'o') to capture users who mistype or are deceived by the similar-looking name. Pharming (A) redirects users via DNS manipulation even when they type the correct URL. A watering hole attack (B) compromises a legitimate site the target group already visits. A DNS sinkhole (D) is a defensive tool that redirects malicious DNS queries to a controlled destination.",
     "comptia_logic_note": null
   },
   {
@@ -115,15 +117,17 @@
     "domain": 2,
     "objective": "2.1",
     "topic": "Threat Actors - Unskilled Attacker",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: An 'unskilled attacker' (sometimes called a script kiddie) typically has limited technical knowledge and relies on pre-existing tools or scripts written by others to carry out attacks.",
+    "stem": "A threat intelligence report describes an attacker who exploited a widely publicized vulnerability using a freely available exploit kit downloaded from an underground forum, with no evidence of custom tooling or advanced knowledge. Which threat actor category BEST describes this individual?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Nation-state actor",
+      "B": "Hacktivist with insider access",
+      "C": "Unskilled attacker (script kiddie)",
+      "D": "Advanced persistent threat (APT)"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Unskilled attackers generally lack the expertise to develop their own exploits and instead use freely available tools, scripts, or tutorials created by more skilled individuals, often motivated by curiosity, notoriety, or disruption rather than deep strategic goals.",
+    "answer": "C",
+    "explanation": "An unskilled attacker (script kiddie) uses pre-existing tools or scripts created by others without deep technical understanding, typically targeting easy-to-exploit vulnerabilities. A nation-state actor (A) has significant funding, custom tooling, and long-term strategic goals. A hacktivist (B) is motivated by ideology. An APT (D) conducts prolonged, sophisticated campaigns with custom malware and extensive reconnaissance.",
     "comptia_logic_note": null
   },
   {
@@ -225,15 +229,17 @@
     "domain": 2,
     "objective": "2.2",
     "topic": "Threat Vectors - Agentless Management",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: An 'agentless' approach to managing vulnerable software refers to assessing or managing systems without installing a dedicated software agent on the host, often relying on network-based scanning or APIs instead.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team needs to run vulnerability scans against 500 servers in a cloud environment where installing additional software on each host is prohibited by policy. Which scanning approach should they use?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Client-based scanning with agents installed on each server",
+      "B": "Agentless scanning using network-based probes or cloud APIs",
+      "C": "Physical inspection of each server's hardware configuration",
+      "D": "Manual log review on each server individually"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Agentless approaches assess or manage systems remotely, for example via network scans, APIs, or remote protocols, without requiring a persistent software agent to be installed on each host, in contrast to client-based (agent-based) approaches that do require locally installed software.",
+    "answer": "B",
+    "explanation": "Agentless scanning assesses systems remotely using network-based probes, cloud APIs, or remote protocols without requiring a persistent software agent installed on each host, making it ideal when software installation is restricted. Client-based (agent-based) scanning (A) requires installing software on each host. Physical inspection (C) and manual log review (D) do not provide automated vulnerability detection at scale.",
     "comptia_logic_note": null
   },
   {
@@ -341,15 +347,17 @@
     "domain": 2,
     "objective": "2.3",
     "topic": "Vulnerabilities - Zero-Day",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: A zero-day vulnerability is a flaw that has been publicly known and patched by the vendor for less than 24 hours.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security researcher discovers a critical flaw in a widely used VPN client. The vendor is not yet aware, no patch has been released, and attackers are actively exploiting it in the wild. This flaw is BEST described as:",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "An end-of-life vulnerability",
+      "B": "A known CVE with a pending patch deployment",
+      "C": "A zero-day vulnerability",
+      "D": "A misconfiguration vulnerability"
     },
-    "answer": "B",
-    "explanation": "This statement is false. A zero-day vulnerability is a flaw that is unknown to the vendor, or for which no patch yet exists, at the time it is discovered or exploited. 'Zero days' refers to the vendor having had zero days to develop and release a fix, not to the age of a patch.",
+    "answer": "C",
+    "explanation": "A zero-day vulnerability is a flaw unknown to the vendor or for which no patch yet exists at the time of discovery or exploitation \u2014 'zero days' refers to the vendor having had zero days to develop a fix. An end-of-life vulnerability (A) refers to a system the vendor no longer supports at all. A CVE with a pending patch (B) means the vendor is already aware. A misconfiguration (D) refers to an incorrectly configured setting on an otherwise supported system.",
     "comptia_logic_note": null
   },
   {
@@ -488,15 +496,17 @@
     "domain": 2,
     "objective": "2.4",
     "topic": "Malware - Keylogger",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: A keylogger is a type of malware that records every keystroke a user types, which can be used to capture usernames, passwords, and other sensitive information.",
+    "stem": "A forensic analyst examining a compromised workstation discovers a small background process that has been silently recording every key pressed on the keyboard to a hidden file, capturing banking credentials entered by the user. Which type of malware is this?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Rootkit",
+      "B": "Spyware",
+      "C": "Keylogger",
+      "D": "Logic bomb"
     },
-    "answer": "A",
-    "explanation": "This statement is true. A keylogger covertly captures and records keystrokes, allowing an attacker to later retrieve sensitive information such as login credentials, credit card numbers, or private messages that the user typed.",
+    "answer": "C",
+    "explanation": "A keylogger covertly records every keystroke typed by a user, allowing an attacker to retrieve sensitive information such as login credentials and account numbers. A rootkit (A) is designed to hide its presence and maintain persistent covert access by modifying OS-level reporting. Spyware (B) broadly monitors user activity but is not specifically defined by keystroke recording. A logic bomb (D) remains dormant until a trigger condition is met, then executes a payload.",
     "comptia_logic_note": null
   },
   {
@@ -515,7 +525,7 @@
     },
     "answer": "A",
     "explanation": "This scenario describes a user gaining access to data beyond their authorized permission level by manipulating a parameter that directly references an internal object, resulting in horizontal privilege escalation: accessing another user's data at the same privilege level without proper authorization checks. Directory traversal (B) involves manipulating file path input to access files outside an intended directory on the server's file system, not manipulating a record identifier in application logic. Cross-site scripting (C) involves injecting scripts into pages viewed by other users. Buffer overflow (D) involves overflowing a memory buffer, unrelated to parameter manipulation for data access.",
-    "comptia_logic_note": "Directory traversal and this scenario both involve manipulating an identifier in a request, which can cause confusion. Directory traversal specifically targets file system paths, such as '../../etc/passwd', while this scenario manipulates an application-level record identifier to access another user's data — a privilege escalation/broken access control issue rather than a file system path traversal."
+    "comptia_logic_note": "Directory traversal and this scenario both involve manipulating an identifier in a request, which can cause confusion. Directory traversal specifically targets file system paths, such as '../../etc/passwd', while this scenario manipulates an application-level record identifier to access another user's data \u03b2\u20ac\u201d a privilege escalation/broken access control issue rather than a file system path traversal."
   },
   {
     "id": "D2-029",
@@ -582,7 +592,7 @@
     "topic": "Mitigation Techniques - Isolation",
     "format": "pbq_scenario",
     "difficulty": "medium",
-    "scenario": "After detecting unusual outbound traffic from a workstation suspected of being compromised, an incident responder immediately disconnects the workstation's network cable and disables its switch port, ensuring the device can no longer communicate with any other system on the network while the investigation proceeds.",
+    "scenario": "A Tier 2 SOC analyst is investigating a SIEM alert triggered by unusual outbound traffic from workstation WIN-ACCT-047 in the finance department. The alert shows repeated DNS queries to recently registered domains and intermittent beaconing behavior consistent with C2 communication, at 30-second intervals. The analyst has correlated the traffic with an email attachment opened by the workstation's user four hours earlier. Per the incident response playbook, the analyst must immediately apply a containment measure that prevents the workstation from communicating with any internal or external systems while preserving forensic evidence and allowing offline analysis to continue.",
     "stem": "This immediate action is BEST described as which mitigation technique?",
     "options": {
       "A": "Segmentation",
@@ -599,15 +609,17 @@
     "domain": 2,
     "objective": "2.5",
     "topic": "Mitigation Techniques - Patching",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: Regularly applying vendor-released patches to operating systems and applications is a mitigation technique that addresses known vulnerabilities before they can be exploited.",
+    "stem": "The MOST effective way to reduce the risk of exploitation from a recently published vendor security advisory affecting a production web server is to:",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Enable full disk encryption on the server",
+      "B": "Move the server to a different network segment",
+      "C": "Apply the vendor's security patch after testing in a staging environment",
+      "D": "Disable all user accounts until the threat passes"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Patching applies vendor-supplied updates that fix known security vulnerabilities, reducing the window of opportunity for attackers to exploit those flaws.",
+    "answer": "C",
+    "explanation": "Patching applies the vendor's fix that directly remediates the vulnerability, which is the most effective way to eliminate the specific risk. Full disk encryption (A) protects data at rest but does not fix application or OS vulnerabilities. Moving the server to a different segment (B) reduces exposure but does not eliminate the underlying vulnerability. Disabling all user accounts (D) causes an availability outage without addressing the root cause.",
     "comptia_logic_note": null
   },
   {
@@ -864,7 +876,7 @@
     },
     "answer": "A",
     "explanation": "Pharming redirects users to a fraudulent website even when they enter the correct URL, typically by manipulating DNS records or a local hosts file, making it more dangerous than typical phishing because no user error (like clicking a malicious link) is required. Spear phishing (B) relies on a targeted email or message to trick a user into taking an action, not DNS manipulation. Vishing (C) uses phone calls. Tailgating (D) is a physical security concept involving unauthorized physical entry.",
-    "comptia_logic_note": "Phishing variants (spear phishing, vishing, smishing, whaling) all require some user action, such as clicking a link or answering a call. Pharming is distinct because it requires NO user error at all — even a security-conscious user typing the correct URL is redirected, because the underlying name resolution itself has been compromised."
+    "comptia_logic_note": "Phishing variants (spear phishing, vishing, smishing, whaling) all require some user action, such as clicking a link or answering a call. Pharming is distinct because it requires NO user error at all \u03b2\u20ac\u201d even a security-conscious user typing the correct URL is redirected, because the underlying name resolution itself has been compromised."
   },
   {
     "id": "D2-048",
@@ -930,16 +942,18 @@
     "domain": 2,
     "objective": "2.2",
     "topic": "Threat Vectors - Pretexting",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: Pretexting involves an attacker creating a fabricated scenario or false identity, such as posing as a vendor's technician, to convincingly justify a request for information or access from a victim.",
+    "stem": "An attacker calls an HR manager, claiming to be a new IT contractor from the company's managed service provider, and asks HR to reset a specific employee's account password so the contractor can 'perform scheduled maintenance.' The fabricated identity and scenario the attacker invented is an example of:",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Watering hole preparation",
+      "B": "Pretexting",
+      "C": "Tailgating",
+      "D": "Typosquatting"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Pretexting involves inventing a plausible false scenario or identity, such as claiming to be a vendor technician needing building access, in order to manipulate a victim into providing information or granting access they otherwise would not.",
-    "comptia_logic_note": null
+    "answer": "B",
+    "explanation": "Pretexting involves creating a fabricated scenario or false identity \u2014 in this case, impersonating an IT contractor from a trusted MSP \u2014 to manipulate a victim into providing information or taking an action they otherwise would not. A watering hole (A) involves compromising a website, not a phone call with a false identity. Tailgating (C) is physical entry following an authorized person. Typosquatting (D) involves registering misspelled domains.",
+    "comptia_logic_note": "Vishing (voice phishing) describes the phone-call channel used here, while pretexting describes the fabricated story or identity. When the question asks what the false scenario itself is called, pretexting is the answer regardless of channel."
   },
   {
     "id": "D2-052",
@@ -1076,15 +1090,17 @@
     "domain": 2,
     "objective": "2.2",
     "topic": "Threat Vectors - Unsecured Networks",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: Connecting a corporate laptop to a free, unencrypted public Wi-Fi network at a coffee shop poses a security risk because attackers on the same network can potentially intercept unencrypted traffic.",
+    "stem": "An employee at a hotel uses the lobby's free open Wi-Fi to check corporate email without a VPN. What is the PRIMARY security risk of this behavior?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "The hotel's wireless signal may interfere with GPS positioning on the laptop",
+      "B": "An attacker on the same network could potentially intercept unencrypted traffic",
+      "C": "The hotel's firewall will automatically block all corporate email traffic",
+      "D": "The employee's device will automatically install the hotel's certificates"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Open, unencrypted Wi-Fi networks allow any nearby attacker connected to the same network to potentially capture or intercept unencrypted traffic using techniques such as packet sniffing or on-path attacks, making such networks an unsecured threat vector for sensitive data.",
+    "answer": "B",
+    "explanation": "Open, unencrypted public Wi-Fi networks allow any nearby attacker connected to the same network to potentially capture traffic using packet sniffing or on-path attacks. Any unencrypted data, including credentials or session tokens, can be intercepted. GPS interference (A), firewall blocking (C), and automatic certificate installation (D) are not relevant or accurate risks specific to using open public Wi-Fi.",
     "comptia_logic_note": null
   },
   {
@@ -1255,7 +1271,7 @@
       "A",
       "B"
     ],
-    "explanation": "Jailbreaking (on iOS) or rooting (on Android) removes the operating system's built-in security restrictions, often allowing apps to gain elevated privileges and bypassing sandboxing protections, while sideloading installs apps from outside the official, vetted app store, increasing the risk of installing malicious software. Neither practice improves encryption (C) — in fact, jailbreaking can weaken built-in protections. Jailbreaking is not required for, and often interferes with, receiving standard manufacturer security patches (D is incorrect, often the opposite is true). Sideloaded apps are not vetted or guaranteed safe by the manufacturer (E is incorrect).",
+    "explanation": "Jailbreaking (on iOS) or rooting (on Android) removes the operating system's built-in security restrictions, often allowing apps to gain elevated privileges and bypassing sandboxing protections, while sideloading installs apps from outside the official, vetted app store, increasing the risk of installing malicious software. Neither practice improves encryption (C) \u03b2\u20ac\u201d in fact, jailbreaking can weaken built-in protections. Jailbreaking is not required for, and often interferes with, receiving standard manufacturer security patches (D is incorrect, often the opposite is true). Sideloaded apps are not vetted or guaranteed safe by the manufacturer (E is incorrect).",
     "comptia_logic_note": null
   },
   {
@@ -1317,15 +1333,17 @@
     "domain": 2,
     "objective": "2.3",
     "topic": "Vulnerabilities - OS-Based Vulnerabilities",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: An operating system that has not been updated with the latest security patches for several months is considered to have OS-based vulnerabilities, since known flaws that have already been fixed by the vendor remain exploitable on that system.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security assessment finds that a critical database server has not received OS security patches for 14 months due to application compatibility concerns. What is the PRIMARY risk associated with this finding?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "The database server will be automatically decommissioned by the OS vendor",
+      "B": "The server cannot be monitored by SIEM tools if patches are missing",
+      "C": "Unpatched OS vulnerabilities may be exploited by attackers to gain unauthorized access",
+      "D": "Missing patches slow server performance, which is the primary concern"
     },
-    "answer": "A",
-    "explanation": "This statement is true. OS-based vulnerabilities include known flaws for which the vendor has already released patches; if those patches are not applied, the system remains exposed to publicly known exploits targeting those unpatched flaws, making timely patch management a critical control.",
+    "answer": "C",
+    "explanation": "An unpatched OS accumulates known vulnerabilities over time. Each published CVE that goes unpatched is a potential entry point for attackers. This is the primary security risk. Vendor decommissioning (A) occurs at end-of-life, which is different from missing patches. SIEM monitoring (B) does not depend on patch status. Performance (D) is not the primary security concern \u2014 exploitability is.",
     "comptia_logic_note": null
   },
   {
@@ -1438,7 +1456,7 @@
       "A",
       "B"
     ],
-    "explanation": "Bloatware refers to unnecessary preinstalled software that consumes system resources without providing meaningful value to the user, while spyware covertly monitors user activity, such as browsing habits, and transmits that information without consent. Neither issue involves encrypting files for ransom (C is incorrect, that describes ransomware). Bloatware is not inherently a rootkit (D is incorrect) — it may simply be unwanted but legitimate software. Spyware can run on standard, non-jailbroken devices (E is incorrect); jailbreaking is unrelated to whether spyware can be installed.",
+    "explanation": "Bloatware refers to unnecessary preinstalled software that consumes system resources without providing meaningful value to the user, while spyware covertly monitors user activity, such as browsing habits, and transmits that information without consent. Neither issue involves encrypting files for ransom (C is incorrect, that describes ransomware). Bloatware is not inherently a rootkit (D is incorrect) \u03b2\u20ac\u201d it may simply be unwanted but legitimate software. Spyware can run on standard, non-jailbroken devices (E is incorrect); jailbreaking is unrelated to whether spyware can be installed.",
     "comptia_logic_note": null
   },
   {
@@ -1514,7 +1532,7 @@
       "A",
       "B"
     ],
-    "explanation": "A botnet is a network of compromised devices, often called 'zombies' or 'bots,' that are controlled centrally by an attacker (often via a command-and-control server) and can be directed to perform coordinated actions such as launching attacks. Botnets are not limited to desktop computers (C is incorrect) — IoT devices, servers, and mobile devices can all be recruited. Botnets are commonly used specifically to launch distributed denial-of-service (DDoS) attacks by overwhelming a target with traffic from many sources (D is incorrect). Infected devices can be cleaned and removed from a botnet through remediation such as malware removal or firmware resets (E is incorrect).",
+    "explanation": "A botnet is a network of compromised devices, often called 'zombies' or 'bots,' that are controlled centrally by an attacker (often via a command-and-control server) and can be directed to perform coordinated actions such as launching attacks. Botnets are not limited to desktop computers (C is incorrect) \u03b2\u20ac\u201d IoT devices, servers, and mobile devices can all be recruited. Botnets are commonly used specifically to launch distributed denial-of-service (DDoS) attacks by overwhelming a target with traffic from many sources (D is incorrect). Infected devices can be cleaned and removed from a botnet through remediation such as malware removal or firmware resets (E is incorrect).",
     "comptia_logic_note": null
   },
   {
@@ -1522,76 +1540,72 @@
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - APT (Advanced Persistent Threat)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A long-term, stealthy intrusion campaign typically conducted by a well-resourced and highly skilled threat actor, often a nation-state, that maintains persistent access to a target network over an extended period to achieve strategic goals such as espionage, is referred to by the acronym ____.",
-    "blank_answer": "APT",
-    "acceptable_answers": [
-      "APT",
-      "Advanced Persistent Threat",
-      "advanced persistent threat"
-    ],
-    "answer": "APT",
-    "explanation": "APT stands for Advanced Persistent Threat, describing a sophisticated, well-funded threat actor (often nation-state sponsored) that establishes long-term, stealthy access to a target's network to achieve strategic objectives such as data theft or espionage, rather than seeking quick, opportunistic gains.",
-    "comptia_logic_note": null
+    "stem": "A threat intelligence team identifies a group that has been operating inside a defense contractor's network for over two years, using custom malware and living-off-the-land techniques to steal intellectual property while evading detection. This type of campaign is BEST described as a(n):",
+    "answer": "C",
+    "explanation": "An Advanced Persistent Threat (APT) is characterized by a well-resourced, stealthy, long-term intrusion campaign \u2014 typically nation-state or organized crime \u2014 designed to maintain undetected access and achieve strategic objectives such as espionage. A DDoS attack (A) aims for disruption and availability impact, not long-term covert access. A script kiddie operation (B) uses existing tools without sophistication. An opportunistic phishing campaign (D) is a mass-targeted short-term attack, not a prolonged covert intrusion.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "DDoS attack",
+      "B": "Script kiddie operation",
+      "C": "Advanced Persistent Threat (APT)",
+      "D": "Opportunistic phishing campaign"
+    }
   },
   {
     "id": "D2-084",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - IOC (Indicator of Compromise)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "Forensic artifacts such as unusual outbound network connections, unexpected new user accounts, or known-malicious file hashes that suggest a system may have been breached are collectively referred to as an ____.",
-    "blank_answer": "IOC",
-    "acceptable_answers": [
-      "IOC",
-      "Indicator of Compromise",
-      "indicator of compromise",
-      "IOCs",
-      "Indicators of Compromise"
-    ],
-    "answer": "IOC",
-    "explanation": "An IOC (Indicator of Compromise) is forensic evidence, such as unusual network traffic, anomalous account activity, or known-malicious file signatures, that suggests a system or network has been compromised, and is commonly used by security teams and threat intelligence platforms to detect and respond to intrusions.",
-    "comptia_logic_note": null
+    "stem": "During an incident investigation, a SOC analyst documents an unusual outbound connection to an unknown IP, a new scheduled task created at 3 AM, and a specific malware file hash. These artifacts used to confirm a compromise are collectively called:",
+    "answer": "C",
+    "explanation": "Indicators of Compromise (IoCs) are forensic artifacts \u2014 such as file hashes, IP addresses, registry keys, and anomalous scheduled tasks \u2014 that indicate a system has been compromised and help investigators confirm and scope an incident. APTs (A) are a category of threat actor, not individual artifacts. CVEs (B) are identifiers for publicly known vulnerabilities, not evidence artifacts. TTPs (D) describe the behavioral patterns and methods used by a threat actor at a higher level of abstraction than individual artifacts.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "APTs (Advanced Persistent Threats)",
+      "B": "CVEs (Common Vulnerabilities and Exposures)",
+      "C": "IoCs (Indicators of Compromise)",
+      "D": "TTPs (Tactics, Techniques, and Procedures)"
+    }
   },
   {
     "id": "D2-085",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - TTPs (Tactics, Techniques, and Procedures)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "When threat intelligence analysts describe the overall strategies (tactics), specific methods (techniques), and detailed step-by-step actions (procedures) commonly used by a particular threat actor or group, they refer to this collectively using the acronym ____.",
-    "blank_answer": "TTPs",
-    "acceptable_answers": [
-      "TTPs",
-      "TTP",
-      "Tactics, Techniques, and Procedures",
-      "tactics, techniques, and procedures"
-    ],
-    "answer": "TTPs",
-    "explanation": "TTPs (Tactics, Techniques, and Procedures) describe the behavioral patterns of a threat actor: tactics represent the high-level goals, techniques represent the general methods used to achieve those goals, and procedures represent the specific, detailed implementation steps, and analyzing TTPs helps defenders attribute attacks and anticipate future behavior.",
-    "comptia_logic_note": null
+    "stem": "A threat intelligence report describes how a nation-state group establishes persistence via scheduled tasks (tactic), uses PowerShell obfuscation (technique), and exfiltrates data via HTTPS to cloud storage (procedure). The combination of these elements described in the report is referred to as the group's:",
+    "answer": "C",
+    "explanation": "TTPs (Tactics, Techniques, and Procedures) describe the high-level strategies (tactics), specific methods (techniques), and implementation details (procedures) that a threat actor uses to achieve their objectives. CVEs (A) are identifiers for specific software vulnerabilities. IoCs (B) are specific artifacts like file hashes or IP addresses found during an investigation. A BCP (D) is a business continuity planning document, completely unrelated.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "CVEs",
+      "B": "IoCs (Indicators of Compromise)",
+      "C": "TTPs (Tactics, Techniques, and Procedures)",
+      "D": "BCP (Business Continuity Plan)"
+    }
   },
   {
     "id": "D2-086",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - DDoS",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "An attack in which traffic from many distributed, often compromised, systems is directed simultaneously at a single target to overwhelm its resources and make a service unavailable to legitimate users is called a ____ attack.",
-    "blank_answer": "DDoS",
-    "acceptable_answers": [
-      "DDoS",
-      "Distributed Denial of Service",
-      "distributed denial of service",
-      "Distributed Denial-of-Service"
-    ],
-    "answer": "DDoS",
-    "explanation": "A DDoS (Distributed Denial of Service) attack uses many distributed sources, often a botnet of compromised devices, to flood a target with traffic or requests simultaneously, overwhelming its resources and denying service to legitimate users. The 'distributed' aspect distinguishes it from a simple DoS attack originating from a single source.",
-    "comptia_logic_note": null
+    "stem": "An e-commerce company's website becomes unavailable during a peak sales event. Investigation reveals thousands of compromised IoT devices worldwide are simultaneously sending HTTP requests to the site, overwhelming its servers. This is an example of a:",
+    "answer": "B",
+    "explanation": "A Distributed Denial of Service (DDoS) attack floods a target with traffic from many distributed, often compromised, systems to exhaust resources and make the service unavailable to legitimate users. SQL injection (A) targets database queries. A man-in-the-middle attack (C) intercepts communications between two parties. Credential stuffing (D) uses previously stolen credentials to attempt logins, not volumetric traffic floods.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SQL injection attack",
+      "B": "Distributed Denial of Service (DDoS) attack",
+      "C": "Man-in-the-middle attack",
+      "D": "Credential stuffing attack"
+    }
   },
   {
     "id": "D2-087",
@@ -1750,76 +1764,72 @@
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - XSS (Cross-Site Scripting)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A web application vulnerability that allows an attacker to inject malicious client-side scripts into web pages viewed by other users, which then execute in those users' browsers within the trust context of the vulnerable site, is known by the acronym ____.",
-    "blank_answer": "XSS",
-    "acceptable_answers": [
-      "XSS",
-      "Cross-Site Scripting",
-      "cross-site scripting",
-      "Cross Site Scripting"
-    ],
-    "answer": "XSS",
-    "explanation": "XSS (Cross-Site Scripting) is a web application vulnerability where an attacker injects malicious scripts into content delivered to other users, allowing the script to execute in the victim's browser with the same trust and permissions as the vulnerable site, often used to steal session cookies or redirect users.",
-    "comptia_logic_note": null
+    "stem": "A security developer finds that a web application's comment section directly renders user-submitted input as HTML in other users' browsers without sanitization. An attacker could post a malicious script that steals session cookies from every user who views the page. What type of vulnerability is this?",
+    "answer": "C",
+    "explanation": "Cross-Site Scripting (XSS) occurs when a web application accepts and renders unsanitized user input as HTML/JavaScript in other users' browsers, allowing an attacker to execute malicious scripts in victims' browser contexts to steal cookies or credentials. SQL injection (A) manipulates database queries. CSRF (B) tricks authenticated users' browsers into making unwanted requests. Directory traversal (D) manipulates file paths to access unauthorized files on the server.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SQL injection",
+      "B": "CSRF (Cross-Site Request Forgery)",
+      "C": "XSS (Cross-Site Scripting)",
+      "D": "Directory traversal"
+    }
   },
   {
     "id": "D2-096",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - CSRF (Cross-Site Request Forgery)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "An attack that tricks an authenticated user's browser into unknowingly submitting an unwanted request, such as transferring funds or changing an account email address, to a web application in which the user is currently logged in, is known by the acronym ____.",
-    "blank_answer": "CSRF",
-    "acceptable_answers": [
-      "CSRF",
-      "Cross-Site Request Forgery",
-      "cross-site request forgery",
-      "Cross Site Request Forgery"
-    ],
-    "answer": "CSRF",
-    "explanation": "CSRF (Cross-Site Request Forgery) exploits the trust a web application has in an authenticated user's browser by tricking that browser into submitting unauthorized requests, such as a state-changing transaction, while the user is logged in, often via a malicious link or hidden form on another site.",
-    "comptia_logic_note": "XSS and CSRF are often confused: XSS involves injecting and executing malicious SCRIPT CODE in a victim's browser, exploiting the site's failure to sanitize input. CSRF involves forging a REQUEST that rides on the victim's existing authenticated session, exploiting the site's failure to verify that a request was intentionally submitted by the user, without necessarily injecting any script at all."
+    "stem": "A security researcher discovers a banking application that doesn't validate the origin of form submissions. An attacker creates a webpage that silently submits a fund transfer to the bank on behalf of a logged-in customer visiting the attacker's page, using the customer's active session cookie. What type of attack is this?",
+    "answer": "C",
+    "explanation": "Cross-Site Request Forgery (CSRF) tricks an authenticated user's browser into unknowingly submitting a request to a trusted site using the user's existing session credentials, without the user's knowledge or intent. XSS (A) injects scripts that execute in other users' browsers. SQL injection (B) manipulates database queries. SSRF (D) manipulates a server into making requests to internal or external resources on behalf of the attacker.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "XSS (Cross-Site Scripting)",
+      "B": "SQL injection",
+      "C": "CSRF (Cross-Site Request Forgery)",
+      "D": "Server-Side Request Forgery (SSRF)"
+    }
   },
   {
     "id": "D2-097",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - SSRF (Server-Side Request Forgery)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "hard",
-    "stem": "A vulnerability in which an attacker manipulates a server-side application into making unauthorized HTTP requests on the attacker's behalf, potentially to internal systems that are not normally reachable from outside the network, is known by the acronym ____.",
-    "blank_answer": "SSRF",
-    "acceptable_answers": [
-      "SSRF",
-      "Server-Side Request Forgery",
-      "server-side request forgery",
-      "Server Side Request Forgery"
-    ],
-    "answer": "SSRF",
-    "explanation": "SSRF (Server-Side Request Forgery) occurs when an attacker manipulates a vulnerable server into making HTTP or other requests to arbitrary destinations, including internal-only systems such as cloud metadata services or internal management interfaces, that the attacker could not normally reach directly, often leading to information disclosure or further compromise.",
-    "comptia_logic_note": null
+    "stem": "A penetration tester finds a web application that fetches content from a URL parameter. By providing the internal cloud metadata URL 'http://169.254.169.254/latest/meta-data/', the tester retrieves IAM credentials. What type of vulnerability is this?",
+    "answer": "C",
+    "explanation": "Server-Side Request Forgery (SSRF) occurs when an attacker manipulates a server-side application into making HTTP requests to an unintended destination \u2014 here, the cloud instance metadata endpoint \u2014 allowing the attacker to access internal resources or credentials that should not be externally reachable. XSS (A) injects scripts into user browsers. CSRF (B) makes browsers submit requests on behalf of users. SQL injection (D) manipulates database queries.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "XSS",
+      "B": "CSRF",
+      "C": "SSRF (Server-Side Request Forgery)",
+      "D": "SQL injection"
+    }
   },
   {
     "id": "D2-098",
     "domain": 2,
     "objective": "2.4",
     "topic": "Acronyms - XXE (XML External Entity)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "hard",
-    "stem": "A vulnerability affecting applications that parse XML input, in which an attacker can define a malicious external entity reference within an XML document to read local files, perform server-side request forgery, or cause denial of service, is known by the acronym ____.",
-    "blank_answer": "XXE",
-    "acceptable_answers": [
-      "XXE",
-      "XML External Entity",
-      "xml external entity",
-      "XML External Entity Injection"
-    ],
-    "answer": "XXE",
-    "explanation": "An XXE (XML External Entity) vulnerability occurs when a poorly configured XML parser processes external entity references defined within an XML document, allowing an attacker to read arbitrary local files, trigger outbound requests from the server, or cause resource exhaustion, and is mitigated by disabling external entity processing in XML parsers.",
-    "comptia_logic_note": null
+    "stem": "A developer's web application accepts XML input and passes it to a standard parser. A tester sends an XML payload defining an external entity referencing '/etc/passwd' on the server, and the application returns the file's contents. What vulnerability is being exploited?",
+    "answer": "C",
+    "explanation": "XXE (XML External Entity) injection occurs when an XML parser processes external entity declarations in attacker-controlled input, allowing the attacker to read local files, perform SSRF, or conduct other attacks. CSRF (A) tricks users' browsers into submitting requests. Buffer overflow (B) involves writing data beyond allocated memory. Insecure deserialization (D) exploits unsafe handling of serialized data, not XML entity processing.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "CSRF",
+      "B": "Buffer overflow",
+      "C": "XXE (XML External Entity) injection",
+      "D": "Insecure deserialization"
+    }
   },
   {
     "id": "D2-099",
@@ -1862,15 +1872,17 @@
     "domain": 2,
     "objective": "2.5",
     "topic": "Mitigation - Data Backups",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Maintaining regular, tested, and isolated (offline or air-gapped) backups is an effective mitigation technique against ransomware, because it allows an organization to restore data without paying a ransom if files are encrypted by an attacker.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A healthcare organization's file server is encrypted by ransomware. Which backup strategy would MOST effectively support full recovery without paying the ransom?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Backups stored on the same server as production data",
+      "B": "Cloud backups continuously synchronized and always online",
+      "C": "Offline or air-gapped backups tested regularly and isolated from the production network",
+      "D": "Shadow copy snapshots stored on the same encrypted volume"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Regular, tested backups that are isolated from the production network, such as offline or air-gapped copies, ensure that ransomware cannot also encrypt or delete the backup data, allowing an organization to restore affected systems and data without needing to pay a ransom.",
+    "answer": "C",
+    "explanation": "Offline or air-gapped backups that are isolated from the production network cannot be reached by ransomware during an attack, ensuring a clean recovery point exists. Backups on the same server (A) will be encrypted along with production data. Continuously online cloud backups (B) may also be encrypted if the ransomware has cloud access. Shadow copies on the same encrypted volume (D) are commonly targeted and deleted by ransomware before or during encryption.",
     "comptia_logic_note": null
   },
   {
@@ -1936,19 +1948,18 @@
     "domain": 2,
     "objective": "2.5",
     "topic": "Acronyms - FIM (File Integrity Monitoring)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "A security tool that calculates and stores cryptographic hashes of critical system and configuration files, then periodically recalculates and compares these hashes to detect unauthorized changes, is known by the acronym ____.",
-    "blank_answer": "FIM",
-    "acceptable_answers": [
-      "FIM",
-      "File Integrity Monitoring",
-      "file integrity monitoring",
-      "File Integrity Monitor"
-    ],
-    "answer": "FIM",
-    "explanation": "FIM (File Integrity Monitoring) detects unauthorized changes to critical files, such as system binaries or configuration files, by comparing current cryptographic hashes against a known-good baseline, alerting administrators to potential tampering, malware, or misconfiguration.",
-    "comptia_logic_note": null
+    "stem": "A compliance requirement states that changes to critical system files such as /etc/passwd and /etc/sudoers on Linux servers must be detected and alerted upon within 15 minutes of any unauthorized modification. Which security tool category fulfills this requirement?",
+    "answer": "C",
+    "explanation": "File Integrity Monitoring (FIM) calculates and stores cryptographic hashes of critical system files and alerts when those hashes change, directly fulfilling the requirement to detect unauthorized modifications to specific files. DLP (A) detects and prevents data exfiltration, not file modification. SIEM (B) aggregates and correlates logs from many sources but does not itself perform file hash monitoring. EDR (D) monitors endpoint behavior broadly but FIM is the specific tool designed for file change detection.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "DLP (Data Loss Prevention)",
+      "B": "SIEM (Security Information and Event Management)",
+      "C": "FIM (File Integrity Monitoring)",
+      "D": "EDR (Endpoint Detection and Response)"
+    }
   },
   {
     "id": "D2-106",
@@ -1991,18 +2002,18 @@
     "domain": 2,
     "objective": "2.5",
     "topic": "Acronyms - EDR (Endpoint Detection and Response)",
-    "format": "fill_blank",
-    "difficulty": "easy",
-    "stem": "A security solution deployed on individual endpoints that continuously monitors for malicious activity, collects detailed telemetry for investigation, and can take automated response actions such as isolating a compromised host is known by the acronym ____.",
-    "blank_answer": "EDR",
-    "acceptable_answers": [
-      "EDR",
-      "Endpoint Detection and Response",
-      "endpoint detection and response"
-    ],
-    "answer": "EDR",
-    "explanation": "EDR (Endpoint Detection and Response) provides continuous monitoring, threat detection, investigation telemetry, and automated response capabilities directly on endpoint devices such as workstations and servers, extending beyond traditional antivirus signature-based detection.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A security team deploys a solution on all endpoints that continuously records process creation, network connections, file system changes, and registry modifications, and can automatically quarantine a device when behavioral indicators of compromise are detected. This solution is BEST described as:",
+    "answer": "C",
+    "explanation": "EDR (Endpoint Detection and Response) provides continuous behavioral monitoring of endpoints, recording process activity, network connections, file changes, and registry modifications, with the ability to automatically respond to threats by quarantining devices. Signature-based AV (A) only detects known malware by signature and lacks behavioral monitoring and automated response. FIM (B) monitors file hashes but not the broader set of endpoint behaviors. DLP (D) focuses on preventing data exfiltration, not endpoint behavioral monitoring.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "Signature-based antivirus (AV) only",
+      "B": "FIM (File Integrity Monitoring)",
+      "C": "EDR (Endpoint Detection and Response)",
+      "D": "DLP (Data Loss Prevention)"
+    }
   },
   {
     "id": "D2-109",
@@ -2044,5 +2055,149 @@
     "answer": "A",
     "explanation": "The previous compromise stemmed from multiple root causes: unnecessary running services (increasing attack surface), default credentials (an easily exploitable misconfiguration), and lack of host-level monitoring (delayed detection). Addressing all three directly through service/port reduction, credential changes, and deploying host-based firewall and EDR agents provides a layered hardening approach that addresses each identified weakness. Option B addresses only one of the three root causes, leaving the server still vulnerable to attack surface and detection gaps. Option C would increase risk by removing segmentation entirely. Option D would worsen the detection gap that contributed to the original compromise going unnoticed.",
     "comptia_logic_note": null
+  },
+  {
+    "id": "D2-111",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Indicators of compromise \u2014 network-based",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A SOC analyst notices that a workstation is generating DNS requests at exactly 60-second intervals to a subdomain that changes with each request (e.g., 3a7f2c.malware-c2.com, then 9d1b4e.malware-c2.com). The base domain was registered 12 hours ago. Which threat behavior does this MOST likely indicate?",
+    "options": {
+      "A": "SQL injection attack against the internal DNS resolver",
+      "B": "DNS-based C2 communication using domain generation algorithm (DGA) or DNS tunneling",
+      "C": "Normal Windows Update traffic checking for available patches",
+      "D": "ARP spoofing attack redirecting DNS traffic to a rogue server"
+    },
+    "answer": "B",
+    "explanation": "Periodic DNS requests to algorithmically generated or rapidly rotating subdomains of a newly registered domain are a strong indicator of malware using DNS-based C2 communication \u2014 either through a DGA (which generates many pseudo-random domains to evade blocklists) or DNS tunneling (encoding data in DNS queries). The beaconing pattern (fixed 60-second interval), recently registered domain, and changing subdomains are all characteristic IOCs. Normal Windows Update (C) queries Microsoft-owned domains, not newly registered random domains. SQL injection (A) and ARP spoofing (D) are unrelated to this pattern.",
+    "comptia_logic_note": "Key DNS C2/DGA indicators: recently registered domain, high entropy subdomains, regular beaconing intervals, high DNS query volume to a single domain, NXDomain responses for many queried domains."
+  },
+  {
+    "id": "D2-112",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerability types \u2014 injection",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A web application accepts a username parameter and constructs the following query: SELECT * FROM users WHERE username = '[user_input]'. An attacker enters: ' OR '1'='1 as the username. Which vulnerability type does this exploit, and what is the likely outcome?",
+    "options": {
+      "A": "XSS (Cross-Site Scripting) \u2014 the attacker injects script into the page returned to other users",
+      "B": "SQL injection \u2014 the attacker manipulates the query logic to bypass authentication or dump data",
+      "C": "CSRF (Cross-Site Request Forgery) \u2014 the attacker tricks a logged-in user into making unintended requests",
+      "D": "Buffer overflow \u2014 the attacker overwrites memory by exceeding input size limits"
+    },
+    "answer": "B",
+    "explanation": "SQL injection occurs when unsanitized user input is concatenated into a database query, allowing attackers to alter query logic. The input ' OR '1'='1 closes the initial string literal, adds an always-true condition, and causes the query to return all rows, commonly bypassing login checks. XSS (A) injects client-side scripts into web pages. CSRF (C) abuses authenticated sessions to make unauthorized requests. Buffer overflow (D) exploits memory management in native code, not SQL.",
+    "comptia_logic_note": "Prevention: parameterized queries (prepared statements) with bind variables. The key difference from other injection types: SQL injection targets the database layer."
+  },
+  {
+    "id": "D2-113",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Social engineering techniques",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "An attacker sends an email to a CFO that appears to come from the company's CEO, requesting an urgent wire transfer of $75,000 to a new vendor account. The email uses the CEO's name and writing style, references a real ongoing project, and claims the CEO is traveling and cannot be reached by phone. Which attack type does this BEST describe?",
+    "options": {
+      "A": "Vishing \u2014 voice-based social engineering via telephone",
+      "B": "Smishing \u2014 SMS-based social engineering via text message",
+      "C": "BEC (Business Email Compromise) / Whaling \u2014 targeted email fraud against a high-value executive",
+      "D": "Credential harvesting phishing \u2014 mass email collecting login credentials via a fake login page"
+    },
+    "answer": "C",
+    "explanation": "Business Email Compromise (BEC), also called whaling when targeting senior executives, involves highly targeted emails impersonating trusted authority figures to manipulate high-value targets into financial transactions or sensitive disclosures. The targeting of a CFO, impersonation of a CEO, urgency, and financial request are all defining characteristics. Vishing (A) is phone-based. Smishing (B) is SMS-based. Credential harvesting (D) typically uses a fake login page, not a financial transfer request.",
+    "comptia_logic_note": "Whaling = spear phishing targeting C-suite executives. BEC specifically involves impersonating executives or trusted parties to authorize fraudulent financial transactions \u2014 a major cause of wire fraud losses."
+  },
+  {
+    "id": "D2-114",
+    "domain": 2,
+    "objective": "2.5",
+    "topic": "Mitigation \u2014 patching and hardening",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A vulnerability scanner reports a critical CVE in a third-party library embedded in a custom web application. The vendor has released a patch. However, the application development team states the patch will take 8-10 weeks to test and deploy through the change management process. Which mitigation approach provides the MOST immediate risk reduction while the patch is being developed?",
+    "options": {
+      "A": "Decommission the web application immediately until the patch is deployed",
+      "B": "Deploy WAF rules that block the specific request patterns known to exploit this CVE",
+      "C": "Disable all antivirus scanning to reduce performance impact on the application servers",
+      "D": "Accept the risk in writing and take no action until the permanent patch is ready"
+    },
+    "answer": "B",
+    "explanation": "Deploying WAF (Web Application Firewall) rules targeting the specific exploitation patterns for a known CVE is a virtual patching technique that provides immediate risk reduction while the permanent patch goes through testing. It does not require modifying the application code and can be deployed rapidly. Decommissioning (A) eliminates availability. Disabling AV (C) increases rather than decreases risk. Accepting risk in writing (D) without any interim control is appropriate only when impact/likelihood is very low, which is contradicted by a critical CVE.",
+    "comptia_logic_note": "Virtual patching via WAF is a key interim mitigation strategy. It is compensating control for the time between vulnerability discovery and patch deployment. Know the difference from actual patching."
+  },
+  {
+    "id": "D2-115",
+    "domain": 2,
+    "objective": "2.2",
+    "topic": "Attack vectors \u2014 supply chain",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Attackers compromise a widely used open-source build tool and inject malicious code into the tool's official release package. Thousands of organizations that use the build tool in their CI/CD pipelines unknowingly incorporate the malicious code into their own software releases. Which type of attack does this represent?",
+    "options": {
+      "A": "Watering hole attack \u2014 compromising websites visited by the intended target",
+      "B": "Supply chain attack \u2014 compromising trusted software or hardware in the distribution chain",
+      "C": "Man-in-the-middle attack \u2014 intercepting communications between two parties",
+      "D": "Credential stuffing \u2014 using breached credentials to access multiple accounts"
+    },
+    "answer": "B",
+    "explanation": "A supply chain attack targets a trusted intermediary in the software distribution or development pipeline to reach a large number of downstream victims who trust the compromised component. Compromising a widely used build tool and distributing the malicious payload through official channels is a classic supply chain attack. A watering hole attack (A) compromises websites visited by targets. MITM (C) intercepts live communications. Credential stuffing (D) uses leaked password lists.",
+    "comptia_logic_note": "SolarWinds Orion (2020) and XZ Utils (2024) are real-world supply chain attack examples. Key characteristic: attackers compromise the distribution mechanism itself, not the target directly."
+  },
+  {
+    "id": "D2-116",
+    "domain": 2,
+    "objective": "2.3",
+    "topic": "Vulnerability types \u2014 misconfiguration",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A penetration tester runs an automated scan against a client's internet-facing network and discovers that an administrative web panel for a network device is accessible on TCP port 8080 with the default manufacturer credentials (admin/admin) unchanged from the factory defaults. Which vulnerability category does this MOST accurately represent?",
+    "options": {
+      "A": "Zero-day vulnerability \u2014 unpatched flaw unknown to the vendor",
+      "B": "Default credentials / misconfiguration \u2014 a hardening failure, not a software flaw",
+      "C": "Cryptographic vulnerability \u2014 weak encryption protecting the session",
+      "D": "Physical security vulnerability \u2014 requiring on-site access to exploit"
+    },
+    "answer": "B",
+    "explanation": "Unchanged default credentials are a misconfiguration vulnerability \u2014 the software has no inherent flaw, but the failure to change factory-set credentials during deployment leaves a widely known authentication bypass. This is one of the most common findings in penetration tests. A zero-day (A) is an unknown or unpatched vendor flaw. A cryptographic weakness (C) refers to weak protocols or ciphers, not authentication credentials. Physical access (D) is not required since the panel is internet-facing.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D2-117",
+    "domain": 2,
+    "objective": "2.4",
+    "topic": "Indicators of compromise \u2014 host-based",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A digital forensics analyst examining a potentially compromised Windows workstation finds: (1) a new scheduled task running powershell.exe with a base64-encoded command at system startup; (2) a registry Run key pointing to a file in %TEMP%; (3) a recently created file named svchost32.exe in C:\\Users\\Public. Which conclusion does this evidence MOST support?",
+    "options": {
+      "A": "The system has a legitimate Windows update pending restart",
+      "B": "The system shows multiple host-based persistence mechanisms consistent with malware implantation",
+      "C": "A developer installed a PowerShell automation script for application deployment",
+      "D": "The symptoms indicate a hardware failure in the storage subsystem"
+    },
+    "answer": "B",
+    "explanation": "The combination of a scheduled task with base64-encoded PowerShell (code obfuscation), a registry Run key pointing to the %TEMP% directory (a common malware staging location), and an executable mimicking a Windows system process name (svchost32.exe vs. svchost.exe) in a world-writable directory are all high-confidence indicators of malware persistence. Each mechanism independently is suspicious; together they strongly indicate deliberate compromise. None of these are normal Windows update or developer behaviors.",
+    "comptia_logic_note": "Persistence mechanisms to recognize: Scheduled tasks, Registry Run/RunOnce keys, Startup folder, DLL hijacking, WMI subscriptions, service installation. Base64 encoding in scheduled tasks almost always indicates malicious obfuscation."
+  },
+  {
+    "id": "D2-118",
+    "domain": 2,
+    "objective": "2.1",
+    "topic": "Threat actor motivations",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A group of attackers successfully encrypts a hospital's patient records and electronic health record systems, then demands a $4 million payment in cryptocurrency in exchange for the decryption key, threatening to publish the data publicly if payment is not received within 72 hours. Which threat actor motivation does this BEST represent?",
+    "options": {
+      "A": "Espionage \u2014 stealing sensitive data for political or competitive advantage",
+      "B": "Financial gain \u2014 extorting money through ransomware and threatened data leak",
+      "C": "Hacktivism \u2014 disrupting operations to make a political or ideological statement",
+      "D": "Chaos \u2014 causing maximum disruption for its own sake without financial motive"
+    },
+    "answer": "B",
+    "explanation": "The demand for cryptocurrency payment in exchange for restoring access and not leaking data is a clear financial motivation \u2014 specifically the double-extortion ransomware model. Espionage (A) involves covert data theft for intelligence purposes without financial demands. Hacktivism (C) typically involves a political message, not ransom demands. Chaos motivation (D) would involve destruction without financial demands.",
+    "comptia_logic_note": "Double extortion ransomware: encrypts data AND threatens to publish it to a leak site, increasing pressure to pay. This is now the dominant ransomware model."
   }
 ]

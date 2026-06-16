@@ -4,18 +4,18 @@
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known TCP port number used by LDAPS (LDAP over SSL/TLS) is ___.",
-    "blank_answer": "636",
-    "acceptable_answers": [
-      "636",
-      "Port 636",
-      "TCP 636",
-      "TCP/636"
-    ],
-    "explanation": "LDAPS, the secure variant of the Lightweight Directory Access Protocol that encrypts directory queries using SSL/TLS, operates on TCP port 636. This differs from standard unencrypted LDAP, which uses port 389.",
-    "comptia_logic_note": null
+    "stem": "A security engineer is configuring a firewall to allow encrypted LDAP authentication traffic from workstations to the domain controller while blocking unencrypted LDAP traffic. Which destination port should be allowed for encrypted LDAP (LDAPS)?",
+    "explanation": "LDAPS (LDAP over SSL/TLS) uses TCP port 636 for encrypted directory access. Unencrypted LDAP uses port 389 (A), which should be blocked per this requirement. Port 445 (B) is SMB (file sharing). Port 993 (D) is IMAPS (encrypted IMAP email retrieval).",
+    "comptia_logic_note": "389 vs 636 is a common exam pair. Remember: 389 is plain LDAP, 636 is LDAP over TLS (LDAPS). The S=Secure pattern applies: HTTP/HTTPS (80/443), IMAP/IMAPS (143/993), SMTP/SMTPS (25/465).",
+    "options": {
+      "A": "389",
+      "B": "445",
+      "C": "636",
+      "D": "993"
+    },
+    "answer": "C"
   },
   {
     "id": "D3-002",
@@ -135,16 +135,18 @@
     "domain": 3,
     "objective": "3.1",
     "topic": "Architecture Models - Containers vs Virtual Machines",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Containers share the host operating system's kernel, whereas virtual machines each run their own complete guest operating system on top of a hypervisor.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A development team wants to package microservices into isolated runtime environments that start in milliseconds, share the host operating system kernel rather than each running a separate OS, and can be easily moved between environments. Which technology should they use?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Virtual machines (VMs)",
+      "B": "Containers",
+      "C": "Type 1 hypervisors",
+      "D": "Physical bare-metal servers"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Containers are lightweight because multiple containers share the host OS kernel while isolating applications and their dependencies, whereas each virtual machine includes its own full guest operating system running on top of a hypervisor, making VMs heavier but more isolated.",
-    "comptia_logic_note": null
+    "answer": "B",
+    "explanation": "Containers share the host OS kernel, start in milliseconds, use far fewer resources than VMs, and are highly portable across environments. Virtual machines (A) each run their own full OS instance, consume more resources, and take longer to start. Type 1 hypervisors (C) enable VMs but do not themselves replace the container model. Physical servers (D) cannot provide the isolation and density that containers offer.",
+    "comptia_logic_note": "Containers share the host OS kernel (lighter, faster). VMs each have their own OS kernel (heavier, stronger isolation). CompTIA tests this distinction in the context of microservices and container security risks like container escape."
   },
   {
     "id": "D3-009",
@@ -169,18 +171,18 @@
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known TCP port number used by SSH (Secure Shell) for encrypted remote command-line access is ___.",
-    "blank_answer": "22",
-    "acceptable_answers": [
-      "22",
-      "Port 22",
-      "TCP 22",
-      "TCP/22"
-    ],
-    "explanation": "SSH provides encrypted remote terminal access and file transfer capabilities and operates on TCP port 22. It is commonly used as a secure replacement for unencrypted protocols such as Telnet.",
-    "comptia_logic_note": null
+    "stem": "A systems administrator must configure a firewall rule to allow encrypted command-line remote access to Linux servers while ensuring unencrypted Telnet access remains blocked. Which TCP port should be allowed?",
+    "explanation": "SSH (Secure Shell) uses TCP port 22 for encrypted remote terminal access to Linux and Unix systems. Telnet uses port 23 (B) and provides unencrypted access, which should remain blocked. Port 20 (A) is FTP data transfer. Port 443 (D) is HTTPS web traffic.",
+    "comptia_logic_note": "SSH (22) is the encrypted replacement for Telnet (23). The exam frequently presents scenarios where both ports appear and asks which to allow or block.",
+    "options": {
+      "A": "20",
+      "B": "23",
+      "C": "22",
+      "D": "443"
+    },
+    "answer": "C"
   },
   {
     "id": "D3-011",
@@ -229,7 +231,7 @@
     "topic": "Secure Protocols - VPN Tunneling",
     "format": "pbq_scenario",
     "difficulty": "medium",
-    "scenario": "A remote employee connects to the corporate VPN. Once connected, all of the employee's internet traffic, including general web browsing, is routed through the corporate network and inspected by corporate security tools, rather than going directly to the internet from the employee's home connection.",
+    "scenario": "A network engineer at a financial services firm is reviewing VPN configurations for the 600-person remote workforce. The current VPN client sends all traffic \u2014 including employee browsing of social media, streaming services, and general internet sites \u2014 through the corporate network and out through the company's internet gateway, where it is inspected by the corporate firewall, IDS, and web proxy. The CISO wants the engineer to document whether this configuration meets the firm's requirement that all internet-destined traffic from remote workers be inspected by corporate security tools before reaching the internet. The engineer is asked to identify the VPN tunnel mode currently in use.",
     "stem": "This VPN configuration is BEST described as which of the following?",
     "options": {
       "A": "Full tunnel",
@@ -322,47 +324,37 @@
     "domain": 3,
     "objective": "3.3",
     "topic": "Data Protection - Data Loss Prevention",
-    "format": "fill_blank",
-    "difficulty": "easy",
-    "stem": "___ is a set of tools and policies designed to detect and prevent unauthorized transmission or exfiltration of sensitive data, such as Social Security numbers or credit card numbers, outside of an organization.",
-    "blank_answer": "DLP",
-    "acceptable_answers": [
-      "DLP",
-      "Data Loss Prevention",
-      "Data Leak Prevention"
-    ],
-    "explanation": "Data Loss Prevention (DLP) systems monitor and control the movement of sensitive data, such as by inspecting outgoing emails, file transfers, and USB device usage, and can block or alert on transmissions that violate policy, such as sending unencrypted Social Security numbers outside the organization.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A healthcare organization needs a tool that can inspect outbound emails and file transfers to automatically detect and block messages containing patient Social Security numbers or medical record numbers being sent to personal email accounts. Which security technology BEST meets this need?",
+    "explanation": "Data Loss Prevention (DLP) tools inspect outbound communications and file transfers for sensitive data patterns such as SSNs and medical record numbers, and can automatically block or quarantine transmissions that violate policy. FIM (A) monitors file hash changes on the server, not outbound data transfers. EDR (C) monitors endpoint behavior broadly. SIEM (D) aggregates and analyzes logs but does not itself prevent data exfiltration in transit.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "FIM (File Integrity Monitoring)",
+      "B": "DLP (Data Loss Prevention)",
+      "C": "EDR (Endpoint Detection and Response)",
+      "D": "SIEM (Security Information and Event Management)"
+    },
+    "answer": "B"
   },
   {
     "id": "D3-019",
     "domain": 3,
     "objective": "3.3",
     "topic": "Data Protection - Techniques Overview",
-    "format": "matching",
+    "format": "pbq_scenario",
     "difficulty": "medium",
-    "stem": "Match each data protection technique on the left with its correct description on the right.",
-    "pairs": [
-      {
-        "term": "Hashing",
-        "definition": "A one-way mathematical function that produces a fixed-length output used to verify data integrity but cannot be reversed to retrieve the original input"
-      },
-      {
-        "term": "Masking",
-        "definition": "Hiding or obscuring part of a data value, such as displaying only the last four digits of an account number, while the rest remains in the same dataset"
-      },
-      {
-        "term": "Tokenization",
-        "definition": "Replacing sensitive data with a randomly generated substitute value that has no mathematical relationship to the original, with the original stored separately in a secure vault"
-      },
-      {
-        "term": "Encryption",
-        "definition": "Transforming data using a reversible algorithm and key so that it can only be read by parties possessing the correct decryption key"
-      }
-    ],
-    "answer": "Each term matches the definition listed at the same position in the pairs array: Hashing -> definition 1 (one-way integrity check), Masking -> definition 2 (partial display obfuscation), Tokenization -> definition 3 (vaulted random substitute), Encryption -> definition 4 (reversible algorithm and key).",
-    "explanation": "Each of these techniques protects sensitive data differently: hashing provides one-way integrity verification, masking conceals portions of data for display purposes, tokenization substitutes data with an unrelated token managed through a separate vault, and encryption provides reversible protection through cryptographic keys.",
-    "comptia_logic_note": "These four terms are frequently confused because they all 'protect' data in some way, but the key differentiator is reversibility and mechanism: hashing is one-way and used for integrity, encryption and tokenization are both reversible but through different mechanisms (mathematical keys vs. vault lookup), and masking simply conceals data for display without necessarily protecting the underlying stored value."
+    "stem": "Which assignment of data protection techniques to use cases is CORRECT?",
+    "answer": "A",
+    "explanation": "Tokenization replaces sensitive values like credit card numbers with non-sensitive tokens while allowing the original value to be retrieved via a secure vault, meeting PCI compliance for refund scenarios. Hashing produces a one-way digest ideal for verifying that a file has not changed by comparing hash values. Masking hides or obfuscates data values in non-production environments so developers can work without seeing real PII. Encryption transforms data using a reversible algorithm to protect confidentiality in transit, with decryption possible at the receiving end.",
+    "comptia_logic_note": "The key distinction: hashing is one-way (cannot recover original), tokenization is two-way (original retrievable via vault), masking is for test/display use, and encryption is the standard for data-in-transit protection.",
+    "scenario": "A data security architect at a retail company is designing data protection controls for four different use cases: (1) storing credit card numbers in a PCI-compliant database where the original values must be retrievable for refunds; (2) verifying that a downloaded software package has not been tampered with; (3) displaying customer SSNs in a test environment where developers should not see real values; (4) protecting customer data transmitted between the browser and the payment server. The architect must match each use case to the correct data protection technique.",
+    "options": {
+      "A": "Store credit card numbers for refunds=Tokenization; verify file integrity=Hashing; SSNs in test environment=Masking; protect data in transit=Encryption",
+      "B": "Store credit card numbers for refunds=Hashing; verify file integrity=Encryption; SSNs in test environment=Tokenization; protect data in transit=Masking",
+      "C": "Store credit card numbers for refunds=Masking; verify file integrity=Tokenization; SSNs in test environment=Encryption; protect data in transit=Hashing",
+      "D": "Store credit card numbers for refunds=Encryption; verify file integrity=Masking; SSNs in test environment=Hashing; protect data in transit=Tokenization"
+    }
   },
   {
     "id": "D3-020",
@@ -371,7 +363,7 @@
     "topic": "Data Protection - DLP Controls",
     "format": "pbq_scenario",
     "difficulty": "hard",
-    "scenario": "A data loss prevention (DLP) solution is configured to monitor outbound email and file transfers. An employee attempts to email a spreadsheet containing customer Social Security numbers to a personal Gmail account. The DLP system automatically blocks the email and generates an alert for the security team.",
+    "scenario": "A healthcare organization's DLP solution is deployed in active blocking mode on all outbound email gateways. A billing clerk attempts to email a spreadsheet named 'Q3-patient-AR.xlsx' containing 2,847 rows of patient records, including Social Security numbers and dates of birth, to their personal Gmail account (billing.work@gmail.com), citing that they want to work on it over the weekend from home. The DLP system, configured with HIPAA data patterns and a policy blocking all SSN-formatted content to non-corporate domains, intercepts the email, blocks delivery, generates a high-severity alert for the security team, and sends the clerk an automated notification explaining the policy violation. The security team must classify what type of control this DLP behavior represents.",
     "stem": "This DLP behavior is an example of which type of control?",
     "options": {
       "A": "Detective control only, with no preventive capability",
@@ -388,15 +380,17 @@
     "domain": 3,
     "objective": "3.3",
     "topic": "Data Protection - Encryption at Rest",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: Encrypting data at rest ensures that the data is protected even if an attacker gains physical possession of the storage device, as long as the attacker does not have the decryption key.",
+    "stem": "A server containing employee personnel records is stolen from an office. The hard drive was encrypted using AES-256 with a strong passphrase. What is the MOST likely outcome for the stolen data?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "The attacker can easily recover all data using standard disk recovery tools",
+      "B": "The data remains protected because the encryption key is required to access the plaintext",
+      "C": "Encryption at rest only protects data while the server is powered on",
+      "D": "The attacker can access the data by simply connecting the drive to a different server"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Encryption at rest renders stored data unreadable without the appropriate decryption key, so even if an attacker physically steals a hard drive or other storage media, the data remains protected as long as the key is not compromised along with it.",
+    "answer": "B",
+    "explanation": "Encryption at rest protects data on storage media even if the physical device is stolen, because the ciphertext is unintelligible without the decryption key. Standard disk recovery tools (A) cannot bypass strong encryption. Encryption at rest protects data regardless of whether the device is powered on (C). Connecting the drive to another server (D) does not provide the key needed to decrypt the data.",
     "comptia_logic_note": null
   },
   {
@@ -422,17 +416,18 @@
     "domain": 3,
     "objective": "3.4",
     "topic": "Resilience - Mean Time To Repair",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "After a server failure, the IT team restores the system to operation within 45 minutes. This 45-minute duration represents an actual measurement of the ___, the average time required to repair a failed system and return it to service.",
-    "blank_answer": "MTTR",
-    "acceptable_answers": [
-      "MTTR",
-      "Mean Time To Repair",
-      "Mean Time To Recovery"
-    ],
-    "explanation": "Mean Time To Repair (MTTR) is the average time required to detect, diagnose, and repair a failure and restore a system to normal operation. It is a key metric used to evaluate maintainability and recovery efficiency.",
-    "comptia_logic_note": null
+    "stem": "An organization tracks the average time required to restore a failed system to full operation, including detection, diagnosis, repair, and restoration. This metric measures IT operations and incident response efficiency. Which metric does this describe?",
+    "explanation": "MTTR (Mean Time to Repair) measures the average time required to restore a system from failure to full operation, encompassing detection, diagnosis, and repair. RPO (A) defines how much data loss is acceptable, measured in time. RTO (B) defines the maximum acceptable downtime before recovery must be complete, not the observed average. MTBF (C) measures the average time between failures, not repair duration.",
+    "comptia_logic_note": "RTO vs MTTR: RTO is a target (how long we are ALLOWED to be down), while MTTR is an observed metric (how long recovery actually TOOK on average). Both relate to recovery time but serve different purposes.",
+    "options": {
+      "A": "RPO (Recovery Point Objective)",
+      "B": "RTO (Recovery Time Objective)",
+      "C": "MTBF (Mean Time Between Failures)",
+      "D": "MTTR (Mean Time to Repair)"
+    },
+    "answer": "D"
   },
   {
     "id": "D3-024",
@@ -479,30 +474,19 @@
     "domain": 3,
     "objective": "3.4",
     "topic": "Resilience - Backup Types",
-    "format": "matching",
+    "format": "pbq_scenario",
     "difficulty": "medium",
-    "stem": "Match each backup type to its correct description.",
-    "pairs": [
-      {
-        "term": "Full backup",
-        "definition": "Copies all selected data in its entirety, regardless of whether it has changed since the last backup, resulting in the longest backup time but the simplest restoration process"
-      },
-      {
-        "term": "Incremental backup",
-        "definition": "Copies only the data that has changed since the last backup of any type (full or incremental), resulting in faster backups but requiring the full backup plus every incremental since to restore"
-      },
-      {
-        "term": "Differential backup",
-        "definition": "Copies all data that has changed since the last full backup, resulting in faster restoration than incremental backups because only the full backup plus the most recent differential are needed"
-      },
-      {
-        "term": "Snapshot",
-        "definition": "Captures the state of a system or virtual machine at a specific point in time, often used to quickly revert changes or as a point-in-time recovery option"
-      }
-    ],
-    "answer": "Each term matches the definition listed at the same position in the pairs array: Full backup -> definition 1, Incremental backup -> definition 2, Differential backup -> definition 3, Snapshot -> definition 4.",
-    "explanation": "Full backups copy everything and are the foundation for other backup types. Incremental backups are fast but require chaining multiple backups together for restoration. Differential backups balance speed and restoration simplicity by always referencing the last full backup. Snapshots provide point-in-time captures often used for quick rollback, particularly in virtualized environments.",
-    "comptia_logic_note": "Incremental and differential backups are commonly confused. The key distinction is what each one is measured against: incremental backups are based on changes since the last backup of ANY type, creating a chain, while differential backups are always based on changes since the last FULL backup, with no chain, making differential restoration simpler but the backups themselves larger over time."
+    "stem": "Which backup strategy BEST meets the administrator's constraints of a 2-hour backup window while still enabling recovery to the previous night's state?",
+    "answer": "A",
+    "explanation": "Incremental backups copy only data changed since the last backup (whether full or incremental), making each nightly run very short and fitting within the 2-hour window, while a weekly full backup provides the baseline. The trade-off is that recovery requires the full backup plus all incremental backups since the full. Differential backups (B) back up all changes since the last full backup and grow larger nightly, potentially exceeding the window. A nightly full backup (C) violates the 2-hour constraint. Snapshots alone (D) may not survive catastrophic storage failure as they typically reside on the same system.",
+    "comptia_logic_note": "Incremental: faster backups, slower and more complex recovery (need full + all incrementals). Differential: slower backups each night but faster recovery (need only full + latest differential). CompTIA tests this trade-off.",
+    "scenario": "A storage administrator is designing a backup strategy for a 2TB file server. A full backup takes 6 hours to complete. The backup window available each night is only 2 hours, which is insufficient for a nightly full backup. However, the business requires that systems can be restored from the previous night's backup if needed. The administrator is evaluating four backup types: full backup, incremental backup, differential backup, and snapshot.",
+    "options": {
+      "A": "Perform a full backup every Sunday and incremental backups on all other nights, accepting that recovery requires the Sunday full backup plus all subsequent incremental backups",
+      "B": "Perform a differential backup every night, which only backs up data changed since the last full backup",
+      "C": "Perform a full backup every night, extending the backup window as needed",
+      "D": "Use snapshots only, without any traditional backup, since snapshots can be used to restore to any point in time"
+    }
   },
   {
     "id": "D3-027",
@@ -668,7 +652,7 @@
       "D": "This risk is unique to on-premises environments and does not apply to cloud-provisioned infrastructure"
     },
     "answer": "A",
-    "explanation": "A core risk of infrastructure as code is that it enables rapid, consistent, large-scale deployment, which means any error or insecure default baked into a template will be replicated across every resource provisioned from it, turning a single mistake into a widespread vulnerability. IaC templates are typically stored in version control systems (B is incorrect, and version control actually helps trace such errors). IaC does not eliminate all configuration drift or guarantee correctness (C is incorrect) — it only ensures consistency with whatever the template specifies, including its flaws. This risk is especially relevant to cloud-provisioned infrastructure where IaC is heavily used, not unique to on-premises environments (D is incorrect).",
+    "explanation": "A core risk of infrastructure as code is that it enables rapid, consistent, large-scale deployment, which means any error or insecure default baked into a template will be replicated across every resource provisioned from it, turning a single mistake into a widespread vulnerability. IaC templates are typically stored in version control systems (B is incorrect, and version control actually helps trace such errors). IaC does not eliminate all configuration drift or guarantee correctness (C is incorrect) \u03b2\u20ac\u201d it only ensures consistency with whatever the template specifies, including its flaws. This risk is especially relevant to cloud-provisioned infrastructure where IaC is heavily used, not unique to on-premises environments (D is incorrect).",
     "comptia_logic_note": "IaC is generally a security BENEFIT because it enables consistency, repeatability, and peer review of infrastructure changes. However, that same consistency becomes a risk multiplier when a template itself contains an insecure setting, since the error is no longer isolated to one system but propagated everywhere the template is used."
   },
   {
@@ -676,15 +660,17 @@
     "domain": 3,
     "objective": "3.1",
     "topic": "Architecture - Edge and Fog Computing",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Edge computing involves processing data closer to where it is generated, such as on local IoT devices or nearby servers, rather than sending all data to a centralized cloud data center for processing.",
+    "stem": "A manufacturing company deploys autonomous quality-control sensors on the factory floor that must detect defects in real time with sub-millisecond latency. Routing all sensor data to a central cloud data center introduces unacceptable delays. Which architectural approach BEST addresses this requirement?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Serverless computing",
+      "B": "Centralized cloud processing only",
+      "C": "Edge computing",
+      "D": "Software-defined networking (SDN)"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Edge computing brings data processing closer to the source of data generation, such as IoT sensors or local edge servers, reducing latency and bandwidth usage compared to sending all raw data to a centralized cloud data center for processing.",
+    "answer": "C",
+    "explanation": "Edge computing processes data at or near the point where it is generated \u2014 in this case, on or near the factory floor sensors \u2014 eliminating the latency of sending data to a central cloud location. Serverless computing (A) is a cloud execution model that still requires internet connectivity and introduces cloud latency. Centralized cloud processing (B) is what creates the unacceptable delay in this scenario. SDN (D) is a network management approach that does not reduce processing latency for sensor data.",
     "comptia_logic_note": null
   },
   {
@@ -746,19 +732,18 @@
     "domain": 3,
     "objective": "3.1",
     "topic": "Acronyms - SDN",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "The architecture that decouples a network's control plane from its data plane, centralizing traffic management decisions in software rather than on individual physical devices, is known by the acronym ____.",
-    "blank_answer": "SDN",
-    "acceptable_answers": [
-      "SDN",
-      "Software-Defined Networking",
-      "software-defined networking",
-      "Software Defined Networking"
-    ],
-    "answer": "SDN",
-    "explanation": "SDN (Software-Defined Networking) separates the control plane, which makes decisions about traffic routing, from the data plane, which forwards traffic, centralizing control logic in software so the network can be managed, automated, and reconfigured programmatically rather than through individual device configuration.",
-    "comptia_logic_note": null
+    "stem": "A cloud network architect wants to manage network topology, routing, and access control policies through software APIs, with the control plane separated from the physical hardware forwarding plane and managed programmatically. Which networking approach does this describe?",
+    "answer": "C",
+    "explanation": "Software-Defined Networking (SDN) decouples the network control plane from the data (forwarding) plane, enabling centralized, programmatic management of network behavior through software interfaces and APIs rather than configuring individual hardware devices. VLAN trunking (A) is a method of carrying multiple VLANs over a single link, not a programmable management architecture. BGP (B) is a routing protocol for exchanging routing information between networks. NAC (D) controls device access to the network based on policy but does not represent the overall programmable network management model SDN provides.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "VLAN trunking",
+      "B": "Border Gateway Protocol (BGP)",
+      "C": "SDN (Software-Defined Networking)",
+      "D": "NAC (Network Access Control)"
+    }
   },
   {
     "id": "D3-041",
@@ -820,91 +805,90 @@
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (HTTPS)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known TCP port number used by HTTPS (HTTP Secure) for encrypted web traffic is ___.",
-    "blank_answer": "443",
-    "acceptable_answers": [
-      "443",
-      "Port 443",
-      "TCP 443",
-      "TCP/443"
-    ],
-    "explanation": "HTTPS encrypts web traffic using TLS and operates on TCP port 443, in contrast to standard unencrypted HTTP, which uses port 80.",
-    "comptia_logic_note": null
+    "stem": "A security analyst reviewing firewall logs wants to identify all traffic using the standard encrypted web protocol. Which destination port is associated with HTTPS?",
+    "explanation": "HTTPS (Hypertext Transfer Protocol Secure) uses TCP port 443 for encrypted web traffic secured by TLS. Port 80 (A) is unencrypted HTTP. Port 8080 (B) is an alternate HTTP port often used for development or proxy servers. Port 8443 (D) is an alternate HTTPS port often used for internal management interfaces or development.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "80",
+      "B": "8080",
+      "C": "443",
+      "D": "8443"
+    },
+    "answer": "C"
   },
   {
     "id": "D3-045",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (DNS)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known port number used by DNS for domain name resolution queries is ___.",
-    "blank_answer": "53",
-    "acceptable_answers": [
-      "53",
-      "Port 53",
-      "TCP/UDP 53",
-      "UDP 53",
-      "TCP 53"
-    ],
-    "explanation": "DNS uses port 53 for domain name resolution, typically over UDP for standard queries and over TCP for larger responses such as zone transfers or DNS over TCP fallback.",
-    "comptia_logic_note": null
+    "stem": "A network administrator troubleshooting DNS resolution failures needs to verify that the firewall allows DNS query traffic to the internal resolver. Which port number must be open for DNS queries?",
+    "explanation": "DNS (Domain Name System) uses port 53 for both UDP and TCP queries to resolve domain names to IP addresses. Port 25 (A) is SMTP email relay. Port 143 (C) is IMAP email retrieval. Port 389 (D) is LDAP directory access.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "25",
+      "B": "53",
+      "C": "143",
+      "D": "389"
+    },
+    "answer": "B"
   },
   {
     "id": "D3-046",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (SMTP)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The traditional well-known TCP port number used by SMTP for sending email between mail servers is ___.",
-    "blank_answer": "25",
-    "acceptable_answers": [
-      "25",
-      "Port 25",
-      "TCP 25",
-      "TCP/25"
-    ],
-    "explanation": "SMTP (Simple Mail Transfer Protocol) traditionally uses TCP port 25 for server-to-server email relay. Secure submission from mail clients typically uses port 587 with STARTTLS instead.",
-    "comptia_logic_note": null
+    "stem": "An email security administrator is configuring a firewall to allow server-to-server email relay between Mail Transfer Agents (MTAs) while blocking direct client-to-server mail submission on the same port. Which port is traditionally used for MTA-to-MTA email relay via SMTP?",
+    "explanation": "Port 25 is the traditional SMTP port used for server-to-server (MTA-to-MTA) email relay between mail servers. Port 110 (B) is POP3 for email retrieval. Port 465 (C) is SMTPS (SMTP over implicit TLS). Port 587 (D) is the submission port used by email clients to submit outgoing mail to their mail server with authentication.",
+    "comptia_logic_note": "Port 25 (relay), port 587 (client submission with AUTH), port 465 (SMTPS implicit TLS) \u2014 all three relate to SMTP but serve different roles. CompTIA tests distinguishing server-to-server relay (25) from client submission (587).",
+    "options": {
+      "A": "25",
+      "B": "110",
+      "C": "465",
+      "D": "587"
+    },
+    "answer": "A"
   },
   {
     "id": "D3-047",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (POP3)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known TCP port number used by the unencrypted version of POP3 for retrieving email from a mail server is ___.",
-    "blank_answer": "110",
-    "acceptable_answers": [
-      "110",
-      "Port 110",
-      "TCP 110",
-      "TCP/110"
-    ],
-    "explanation": "POP3 (Post Office Protocol version 3) uses TCP port 110 in its unencrypted form for retrieving email from a server. The encrypted version, POP3S, uses port 995.",
-    "comptia_logic_note": null
+    "stem": "A security team is auditing firewall rules and finds port 110 allowed inbound to an email server. Which unencrypted email retrieval protocol uses this port?",
+    "explanation": "POP3 (Post Office Protocol version 3) uses TCP port 110 for unencrypted email retrieval from a mail server. SMTP (A) is for sending email, not retrieving it. IMAP (B) also retrieves email but uses port 143 (unencrypted) or 993 (encrypted). SMTPS (D) is encrypted SMTP on port 465.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "SMTP",
+      "B": "IMAP",
+      "C": "POP3",
+      "D": "SMTPS"
+    },
+    "answer": "C"
   },
   {
     "id": "D3-048",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (IMAP)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "The well-known TCP port number used by the unencrypted version of IMAP for accessing email mailboxes on a server is ___.",
-    "blank_answer": "143",
-    "acceptable_answers": [
-      "143",
-      "Port 143",
-      "TCP 143",
-      "TCP/143"
-    ],
-    "explanation": "IMAP (Internet Message Access Protocol) uses TCP port 143 in its unencrypted form for accessing and managing email mailboxes on a server. The encrypted version, IMAPS, uses port 993.",
-    "comptia_logic_note": null
+    "stem": "A security engineer needs to block unencrypted email inbox access while allowing encrypted IMAPS (port 993). Which port should be blocked to stop unencrypted IMAP connections?",
+    "explanation": "Unencrypted IMAP (Internet Message Access Protocol) uses TCP port 143. Blocking port 143 while leaving port 993 (IMAPS) open enforces encrypted-only email access. Port 110 (A) is unencrypted POP3, a different email retrieval protocol. Port 389 (C) is LDAP. Port 445 (D) is SMB.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "110",
+      "B": "143",
+      "C": "389",
+      "D": "445"
+    },
+    "answer": "B"
   },
   {
     "id": "D3-049",
@@ -1023,55 +1007,54 @@
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (MS SQL)",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "The default TCP port number used by Microsoft SQL Server for database connections is ___.",
-    "blank_answer": "1433",
-    "acceptable_answers": [
-      "1433",
-      "Port 1433",
-      "TCP 1433",
-      "TCP/1433"
-    ],
-    "explanation": "Microsoft SQL Server listens for client connections on TCP port 1433 by default. Restricting access to this port is an important consideration when hardening database servers exposed on internal or external networks.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A database administrator is hardening firewall rules and needs to block external internet access to the organization's Microsoft SQL Server instances to prevent direct database attacks. Which destination port should be blocked from internet-facing traffic?",
+    "explanation": "Microsoft SQL Server listens on TCP port 1433 by default. Exposing this port to the internet is a critical misconfiguration. Port 3306 (A) is MySQL/MariaDB. Port 1521 (C) is Oracle Database. Port 5432 (D) is PostgreSQL.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "3306",
+      "B": "1433",
+      "C": "1521",
+      "D": "5432"
+    },
+    "answer": "B"
   },
   {
     "id": "D3-056",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (MySQL)",
-    "format": "fill_blank",
-    "difficulty": "medium",
-    "stem": "The default TCP port number used by MySQL and MariaDB database servers for client connections is ___.",
-    "blank_answer": "3306",
-    "acceptable_answers": [
-      "3306",
-      "Port 3306",
-      "TCP 3306",
-      "TCP/3306"
-    ],
-    "explanation": "MySQL and MariaDB database servers listen for client connections on TCP port 3306 by default, and this port should typically be restricted from public internet access and limited to trusted application servers.",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "During a penetration test, an assessor scans a web server and finds TCP port 3306 open and accessible from the internet. This is flagged as a critical finding. Which database service is directly exposed by this open port?",
+    "explanation": "MySQL (and MariaDB, its open-source fork) listens on TCP port 3306 by default. Exposing this port to the internet allows direct unauthenticated or brute-forced database access. Microsoft SQL Server (A and D) uses port 1433. Oracle Database (B) uses port 1521.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "Microsoft SQL Server",
+      "B": "Oracle Database",
+      "C": "MySQL",
+      "D": "Microsoft SQL Server Express"
+    },
+    "answer": "C"
   },
   {
     "id": "D3-057",
     "domain": 3,
     "objective": "3.2",
     "topic": "Secure Protocols - Port Numbers (SIP)",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "The default port number used by SIP (Session Initiation Protocol) for establishing Voice over IP (VoIP) call sessions is ___.",
-    "blank_answer": "5060",
-    "acceptable_answers": [
-      "5060",
-      "Port 5060",
-      "TCP/UDP 5060",
-      "UDP 5060",
-      "TCP 5060"
-    ],
-    "explanation": "SIP (Session Initiation Protocol), used to set up, manage, and tear down VoIP call sessions, uses port 5060 by default (over UDP or TCP). Encrypted SIP signaling typically uses port 5061.",
-    "comptia_logic_note": null
+    "stem": "A VoIP security engineer is configuring a session border controller and needs to identify the port associated with the SIP (Session Initiation Protocol) for VoIP call signaling in order to apply the correct firewall rules. Which port number is used for SIP?",
+    "explanation": "SIP (Session Initiation Protocol) uses port 5060 (UDP/TCP) for VoIP call signaling to establish, modify, and terminate voice and video sessions. Port 3389 (A) is RDP (Remote Desktop Protocol). Port 8080 (C) is an alternate HTTP port. Port 5900 (D) is VNC (Virtual Network Computing) remote desktop.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "3389",
+      "B": "5060",
+      "C": "8080",
+      "D": "5900"
+    },
+    "answer": "B"
   },
   {
     "id": "D3-058",
@@ -1089,7 +1072,7 @@
     },
     "answer": "A",
     "explanation": "A unified threat management (UTM) appliance bundles multiple security functions, such as firewall, antivirus, content filtering, VPN, and IPS, into a single consolidated device, prioritizing simplified management, which is well suited for smaller organizations with limited IT staff. An NGFW (B) also provides many advanced features but is generally associated with deep application-layer awareness and granular policy enforcement for larger, more complex environments. A standalone Layer 4 firewall (C) provides only basic IP/port filtering without the additional bundled security functions. A jump server (D) is a hardened intermediary host for administrative access, unrelated to this comparison.",
-    "comptia_logic_note": "UTM and NGFW overlap significantly in features, and vendors often blur the lines between them. For exam purposes, UTM is generally associated with all-in-one consolidation and simplicity for smaller environments, while NGFW is generally associated with deep application-layer inspection and granular policy control suited to larger, more complex environments — though both can include similar feature sets."
+    "comptia_logic_note": "UTM and NGFW overlap significantly in features, and vendors often blur the lines between them. For exam purposes, UTM is generally associated with all-in-one consolidation and simplicity for smaller environments, while NGFW is generally associated with deep application-layer inspection and granular policy control suited to larger, more complex environments \u03b2\u20ac\u201d though both can include similar feature sets."
   },
   {
     "id": "D3-059",
@@ -1115,15 +1098,17 @@
     "domain": 3,
     "objective": "3.2",
     "topic": "Network Appliances - Secure Web Gateway / Content Filtering",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "True or False: A secure web gateway (SWG) or content filter can be used to block employees from accessing known malicious websites and categories of content, such as gambling or social media, based on organizational policy.",
+    "stem": "A company wants to prevent employees from accessing social media and streaming video sites during work hours using a security tool that can inspect web traffic and categorize URLs in real time. Which security tool BEST accomplishes this?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "IDS (Intrusion Detection System)",
+      "B": "Stateful packet inspection firewall only",
+      "C": "Secure Web Gateway (SWG) with URL content categorization",
+      "D": "SIEM (Security Information and Event Management)"
     },
-    "answer": "A",
-    "explanation": "This statement is true. A secure web gateway or content filter inspects outbound web traffic and enforces policies that can block access to known malicious sites or specific categories of content based on the organization's acceptable use policy, helping reduce both security risk and productivity concerns.",
+    "answer": "C",
+    "explanation": "A Secure Web Gateway (SWG) with content categorization inspects outbound web traffic, categorizes URLs by type (social media, streaming, etc.), and enforces block rules based on configured policy, making it ideal for this use case. An IDS (A) detects intrusions and anomalies but does not enforce outbound web content policies. A stateful firewall (B) can block specific IPs and ports but lacks URL categorization for web content filtering. A SIEM (D) aggregates logs for analysis but does not actively block traffic.",
     "comptia_logic_note": null
   },
   {
@@ -1207,15 +1192,17 @@
     "domain": 3,
     "objective": "3.3",
     "topic": "Data Protection - Right to Be Forgotten",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Under GDPR's 'right to be forgotten' (right to erasure), an individual can, under certain circumstances, request that an organization delete their personal data, and the organization may be obligated to comply and ensure the data is removed from its systems.",
+    "stem": "An EU citizen contacts a company subject to GDPR requesting that all personal data collected about them \u2014 including purchase history and marketing preferences \u2014 be permanently deleted from the company's systems. Which right under GDPR is the citizen exercising?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Right to access (data portability)",
+      "B": "Right to data portability",
+      "C": "Right to be forgotten (right to erasure)",
+      "D": "Right to restrict processing"
     },
-    "answer": "A",
-    "explanation": "This statement is true. The right to be forgotten, also called the right to erasure, allows individuals to request deletion of their personal data under certain conditions, such as when the data is no longer necessary for the purpose it was collected, and organizations must have processes to honor valid requests, including removing data from backups and third-party processors where applicable.",
+    "answer": "C",
+    "explanation": "The right to be forgotten (also called the right to erasure) under GDPR Article 17 allows individuals to request permanent deletion of their personal data under certain conditions, such as when the data is no longer necessary for its original purpose or consent has been withdrawn. The right to access (A) allows individuals to obtain a copy of their data. The right to data portability (B) allows data to be transferred to another controller. The right to restrict processing (D) limits how data is used without requiring deletion.",
     "comptia_logic_note": null
   },
   {
@@ -1259,36 +1246,36 @@
     "domain": 3,
     "objective": "3.3",
     "topic": "Acronyms - PII",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "Information such as a person's name, Social Security number, address, or date of birth, which can be used on its own or combined with other information to identify a specific individual, is collectively referred to as ____.",
-    "blank_answer": "PII",
-    "acceptable_answers": [
-      "PII",
-      "Personally Identifiable Information",
-      "personally identifiable information"
-    ],
-    "answer": "PII",
-    "explanation": "PII (Personally Identifiable Information) refers to any data that can be used to identify a specific individual, either alone or when combined with other information, and is subject to various privacy regulations governing its collection, storage, and use.",
-    "comptia_logic_note": null
+    "stem": "A compliance officer classifying data stored in the HR system identifies which of the following sets as PII (Personally Identifiable Information) that must be protected under applicable regulations?",
+    "answer": "C",
+    "explanation": "PII (Personally Identifiable Information) includes information that can identify a specific individual, such as a full name combined with a Social Security number and home address. Aggregated anonymized statistics (A) cannot identify individuals. Server IP addresses and OS versions (B) are technical configuration data, not personal information. License keys and software versions (D) are system inventory data.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "Aggregated, anonymized salary band statistics with no individual identifiers",
+      "B": "Server IP addresses and operating system version numbers",
+      "C": "An employee's full name, Social Security number, and home address",
+      "D": "Software version numbers and application license keys"
+    }
   },
   {
     "id": "D3-069",
     "domain": 3,
     "objective": "3.3",
     "topic": "Acronyms - PHI",
-    "format": "fill_blank",
+    "format": "multiple_choice",
     "difficulty": "easy",
-    "stem": "Health-related information, such as medical records, diagnoses, and treatment history, that is linked to an identifiable individual and is subject to regulations such as HIPAA, is collectively referred to as ____.",
-    "blank_answer": "PHI",
-    "acceptable_answers": [
-      "PHI",
-      "Protected Health Information",
-      "protected health information"
-    ],
-    "answer": "PHI",
-    "explanation": "PHI (Protected Health Information) refers to individually identifiable health information, such as medical records, diagnoses, and treatment details, that is subject to regulatory protections such as HIPAA in the United States.",
-    "comptia_logic_note": null
+    "stem": "A healthcare organization is assessing which data in its systems falls under HIPAA protections. Which of the following would be classified as PHI (Protected Health Information)?",
+    "answer": "B",
+    "explanation": "PHI (Protected Health Information) under HIPAA includes individually identifiable health information \u2014 data that links a person's identity to their health conditions, treatment history, or medical records. An anonymized study (A) with no individual identifiers is not PHI. Device operational logs (C) without patient data are not PHI. Publicly available hospital information (D) is not PHI.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "An anonymized statistical study of regional flu rates with no individual identifiers",
+      "B": "A patient's name, diagnosis, and date of treatment linked together in a medical record",
+      "C": "Generic medical device operational log files containing no patient data",
+      "D": "Publicly available information about hospital visiting hours"
+    }
   },
   {
     "id": "D3-070",
@@ -1390,15 +1377,17 @@
     "domain": 3,
     "objective": "3.3",
     "topic": "Data Protection - Geographic Restrictions",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Geographic restrictions (geofencing or data residency requirements) can be used to ensure that certain data is only stored, processed, or accessed from within specific countries or regions, often to comply with data sovereignty laws.",
+    "stem": "An organization subject to EU data protection regulations must ensure customer data from EU residents is never stored or processed on servers outside the European Economic Area. Which data protection mechanism BEST helps enforce this requirement?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "Full disk encryption on all servers",
+      "B": "Data masking of all EU customer fields",
+      "C": "Geographic restrictions and data residency controls",
+      "D": "Tokenization of all EU customer records"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Geographic restrictions, such as geofencing access controls or data residency requirements built into cloud service configurations, can limit where data is stored, processed, or accessed from, helping organizations comply with data sovereignty laws that require certain data to remain within specific national or regional boundaries.",
+    "answer": "C",
+    "explanation": "Geographic restrictions and data residency controls enforce that data is stored and processed only in approved geographic locations, directly addressing the regulatory requirement that EU resident data must remain within the EEA. Full disk encryption (A) protects data confidentiality regardless of location but does not control where data resides. Data masking (B) and tokenization (D) protect data values but do not restrict data location.",
     "comptia_logic_note": null
   },
   {
@@ -1482,15 +1471,17 @@
     "domain": 3,
     "objective": "3.4",
     "topic": "Resilience - Backup Testing",
-    "format": "true_false",
-    "difficulty": "easy",
-    "stem": "True or False: Simply creating regular backups is not sufficient; organizations should also periodically perform test restorations to verify that backups are complete, uncorrupted, and can actually be restored successfully when needed.",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A disaster recovery audit reveals an organization has been creating daily backups for three years but has never performed a test restoration. What risk does this MOST directly present?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "The backups may be too large, consuming excessive storage capacity",
+      "B": "The backup software license may have expired, preventing future backups",
+      "C": "The backups may be corrupted or incomplete, rendering them unusable when actually needed for recovery",
+      "D": "Untested backups automatically expire after 90 days by industry standard"
     },
-    "answer": "A",
-    "explanation": "This statement is true. Backups that have never been tested may be incomplete, corrupted, or fail to restore properly when actually needed, so periodic test restorations are essential to verify that backups will function as expected during an actual recovery scenario, rather than discovering problems only during a real disaster.",
+    "answer": "C",
+    "explanation": "Backups that have never been tested may be silently corrupted, incomplete, or impossible to restore due to media failure, software incompatibility, or configuration errors \u2014 issues that only become apparent during an actual recovery attempt. Discovering this during a real disaster is catastrophic. Storage size (A) is a capacity concern, not a recovery risk. License expiration (B) is speculative and unrelated to the test gap. No universal 90-day expiration standard exists (D).",
     "comptia_logic_note": null
   },
   {
@@ -1516,36 +1507,36 @@
     "domain": 3,
     "objective": "3.4",
     "topic": "Acronyms - BCP",
-    "format": "fill_blank",
-    "difficulty": "easy",
-    "stem": "The overarching document and set of procedures that an organization develops to ensure critical business functions can continue during and after a disruptive event is known as a ____.",
-    "blank_answer": "BCP",
-    "acceptable_answers": [
-      "BCP",
-      "Business Continuity Plan",
-      "business continuity plan"
-    ],
-    "answer": "BCP",
-    "explanation": "A Business Continuity Plan (BCP) outlines how an organization will continue performing critical business functions during and after a disruptive event, encompassing personnel, processes, facilities, and technology considerations broader than just IT systems recovery.",
-    "comptia_logic_note": "BCP and DRP are related but distinct: a BCP addresses the continuity of the overall BUSINESS (people, processes, facilities, communications), while a DRP focuses specifically on restoring IT SYSTEMS and data. A DRP is often considered a subset or supporting component of the broader BCP."
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A storm causes significant damage to a company's headquarters. The organization activates its overarching plan that addresses how critical business operations will continue across all departments \u2014 including payroll, customer service, and logistics \u2014 during and after the disruption. This plan is called a:",
+    "answer": "C",
+    "explanation": "A Business Continuity Plan (BCP) is the overarching plan covering how the entire organization \u2014 across all departments \u2014 will maintain critical business functions during and after a major disruption. A DRP (A) is a subset of the BCP focused specifically on restoring IT systems and data. An IRP (B) covers the process for responding to security incidents. An SLA (D) is a contractual commitment about service performance, not a continuity plan.",
+    "comptia_logic_note": "BCP is broader (all business operations). DRP is IT-focused (restoring systems and data). The BCP encompasses the DRP.",
+    "options": {
+      "A": "DRP (Disaster Recovery Plan)",
+      "B": "IRP (Incident Response Plan)",
+      "C": "BCP (Business Continuity Plan)",
+      "D": "SLA (Service Level Agreement)"
+    }
   },
   {
     "id": "D3-083",
     "domain": 3,
     "objective": "3.4",
     "topic": "Acronyms - DRP",
-    "format": "fill_blank",
-    "difficulty": "easy",
-    "stem": "The specific plan focused on restoring an organization's IT systems, applications, and data following a disruptive event, such as a hardware failure or natural disaster, is known as a ____.",
-    "blank_answer": "DRP",
-    "acceptable_answers": [
-      "DRP",
-      "Disaster Recovery Plan",
-      "disaster recovery plan"
-    ],
-    "answer": "DRP",
-    "explanation": "A Disaster Recovery Plan (DRP) focuses specifically on the procedures and resources needed to restore IT systems, applications, and data after a disruptive event, often serving as a technical component supporting the broader organizational Business Continuity Plan (BCP).",
-    "comptia_logic_note": null
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "After a ransomware attack encrypts the majority of a company's servers, the IT team activates a specific plan focused on restoring IT systems, recovering data from backups, and bringing critical applications back online in priority order. This IT-focused recovery plan is called a:",
+    "answer": "B",
+    "explanation": "A Disaster Recovery Plan (DRP) specifically addresses restoring IT infrastructure, systems, and data after a disruptive event, including priority restoration sequences and RTO/RPO targets. A BCP (A) is the broader overarching plan that includes the DRP but also covers business-wide continuity across all departments. An IRP (C) covers the initial detection, containment, and investigation of the security incident. An MOA (D) is an agreement between parties about intent to cooperate.",
+    "comptia_logic_note": null,
+    "options": {
+      "A": "BCP (Business Continuity Plan)",
+      "B": "DRP (Disaster Recovery Plan)",
+      "C": "IRP (Incident Response Plan)",
+      "D": "MOA (Memorandum of Agreement)"
+    }
   },
   {
     "id": "D3-084",
@@ -1639,8 +1630,8 @@
       "A",
       "B"
     ],
-    "explanation": "A tabletop exercise is a low-risk, discussion-based walkthrough where participants talk through their responses to a hypothetical scenario without performing actual technical actions or affecting production systems, while a parallel processing test runs recovery systems alongside (in parallel with) production systems to validate functionality without disrupting normal operations, providing more realistic validation than a tabletop without the full risk of a complete failover. Tabletop exercises specifically do NOT require taking production offline (C is incorrect) — that is closer to a full interruption test. Parallel processing tests involve significantly more resource commitment and technical execution than tabletop exercises, so they are not identical (D is incorrect). Testing exercises remain valuable even after a written plan exists, since plans can become outdated or reveal gaps only when exercised (E is incorrect).",
-    "comptia_logic_note": "DR/BCP testing exercises exist on a spectrum of realism, cost, and risk: tabletop (discussion only, lowest cost/risk) → simulation (more interactive walkthrough) → parallel processing (recovery systems run alongside production) → full interruption/failover (production actually cut over, highest realism and risk). Each type catches different kinds of gaps."
+    "explanation": "A tabletop exercise is a low-risk, discussion-based walkthrough where participants talk through their responses to a hypothetical scenario without performing actual technical actions or affecting production systems, while a parallel processing test runs recovery systems alongside (in parallel with) production systems to validate functionality without disrupting normal operations, providing more realistic validation than a tabletop without the full risk of a complete failover. Tabletop exercises specifically do NOT require taking production offline (C is incorrect) \u03b2\u20ac\u201d that is closer to a full interruption test. Parallel processing tests involve significantly more resource commitment and technical execution than tabletop exercises, so they are not identical (D is incorrect). Testing exercises remain valuable even after a written plan exists, since plans can become outdated or reveal gaps only when exercised (E is incorrect).",
+    "comptia_logic_note": "DR/BCP testing exercises exist on a spectrum of realism, cost, and risk: tabletop (discussion only, lowest cost/risk) \u03b2\u2020\u2019 simulation (more interactive walkthrough) \u03b2\u2020\u2019 parallel processing (recovery systems run alongside production) \u03b2\u2020\u2019 full interruption/failover (production actually cut over, highest realism and risk). Each type catches different kinds of gaps."
   },
   {
     "id": "D3-089",
@@ -1665,15 +1656,125 @@
     "domain": 3,
     "objective": "3.4",
     "topic": "Resilience - Redundant Power Feeds",
-    "format": "true_false",
+    "format": "multiple_choice",
     "difficulty": "medium",
-    "stem": "True or False: Connecting a data center to two separate electrical substations, in addition to having an on-site UPS and generator, provides an additional layer of redundancy specifically against failures in the external utility power infrastructure itself.",
+    "stem": "A data center design requires the highest level of resilience against power-related outages. Which combination of power measures provides the GREATEST protection?",
     "options": {
-      "A": "True",
-      "B": "False"
+      "A": "A single utility feed with a very large UPS system",
+      "B": "Dual utility feeds from separate substations, plus an on-site generator and UPS",
+      "C": "A generator alone without UPS to save cost",
+      "D": "A battery backup system only, without a generator or dual utility feeds"
+    },
+    "answer": "B",
+    "explanation": "Maximum power resilience requires eliminating every single point of failure: dual feeds from separate substations protect against a single utility failure; a UPS provides instantaneous battery power during the switchover gap; and a generator provides long-term backup if both utility feeds fail. A single utility feed with UPS (A) still has the utility as a single point of failure. A generator alone (C) has a startup delay that UPS fills. Battery backup only (D) has limited duration and cannot sustain the facility if the outage is prolonged.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-091",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Cloud deployment models",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A government agency requires that all data remain within government-controlled facilities, that no resources be shared with any other organization, and that the agency maintain direct physical control over all hardware. Which cloud deployment model satisfies these requirements?",
+    "options": {
+      "A": "Public cloud \u2014 infrastructure shared among multiple tenants managed by a CSP",
+      "B": "Community cloud \u2014 shared among organizations with common interests such as government agencies",
+      "C": "Private cloud \u2014 dedicated infrastructure operated solely for one organization",
+      "D": "Hybrid cloud \u2014 combination of on-premises and public cloud resources"
+    },
+    "answer": "C",
+    "explanation": "A private cloud is deployed exclusively for one organization, provides dedicated resources with no sharing across tenants, and can be hosted on-premises to give the agency direct physical control over hardware. A public cloud (A) shares resources across many organizations. A community cloud (B) is shared among multiple organizations even if they share mission or regulations. Hybrid cloud (D) involves connecting to public cloud resources, violating the no-external-sharing requirement.",
+    "comptia_logic_note": null
+  },
+  {
+    "id": "D3-092",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Zero Trust architecture",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "An organization is implementing a Zero Trust architecture. The security team is deploying a component that evaluates every access request \u2014 considering user identity, device health posture, resource sensitivity, location, and time of day \u2014 and makes a dynamic access decision before allowing or denying the connection. Which Zero Trust component does this describe?",
+    "options": {
+      "A": "Policy Enforcement Point (PEP) \u2014 intercepts access requests and enforces decisions",
+      "B": "Policy Decision Point (PDP) / Policy Engine \u2014 evaluates requests and makes access decisions",
+      "C": "SIEM \u2014 aggregates and correlates security event logs",
+      "D": "Vulnerability scanner \u2014 identifies unpatched software across the environment"
+    },
+    "answer": "B",
+    "explanation": "In Zero Trust architecture, the Policy Decision Point (also called the Policy Engine) is the brain that evaluates each access request against policies, considers contextual signals (identity, device health, resource sensitivity, behavior), and makes the allow/deny decision. The Policy Enforcement Point (PEP) (A) is the gatekeeper that receives the PDP's decision and implements it by allowing or blocking the session. A SIEM (C) is a logging and analytics platform. A vulnerability scanner (D) assesses software patch status.",
+    "comptia_logic_note": "Zero Trust control plane: PDP (decides) \u2192 PEP (enforces). Think of PDP as the brain making judgments, PEP as the hands implementing those judgments at the resource gateway."
+  },
+  {
+    "id": "D3-093",
+    "domain": 3,
+    "objective": "3.3",
+    "topic": "Data states and protection",
+    "format": "multiple_choice",
+    "difficulty": "easy",
+    "stem": "A healthcare organization requires that patient records be encrypted while stored in an S3 bucket, encrypted when being transmitted over the internet, and also encrypted while being processed in memory by the analytics application. Which combination of data states is being addressed?",
+    "options": {
+      "A": "Data at rest, data in transit, and data in use",
+      "B": "Data in transit, data in use, and data sovereignty",
+      "C": "Data at rest, data in transit, and data classification",
+      "D": "Data masking, data tokenization, and data archival"
     },
     "answer": "A",
-    "explanation": "This statement is true. While a UPS and generator protect against a complete loss of incoming utility power, connecting to two separate substations provides redundancy against a failure or outage affecting one specific utility feed or substation, reducing the likelihood that the facility ever needs to rely solely on its UPS and generator due to an external utility-side failure.",
+    "explanation": "The three fundamental data states are: data at rest (stored in S3 bucket), data in transit (encrypted during internet transmission), and data in use (encrypted while being processed in memory). Protecting all three states is the comprehensive data protection model required by regulations like HIPAA for sensitive health information. Data sovereignty (B) refers to jurisdictional data location requirements. Data classification (C) is a categorization process. Data masking and tokenization (D) are specific techniques, not states.",
+    "comptia_logic_note": "Encryption at rest = AES-256, storage-layer encryption. Encryption in transit = TLS. Encryption in use = confidential computing, homomorphic encryption \u2014 the hardest state to protect. All three together = end-to-end protection."
+  },
+  {
+    "id": "D3-094",
+    "domain": 3,
+    "objective": "3.4",
+    "topic": "Resilience \u2014 site types",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A financial institution's business continuity plan specifies an alternate processing site where all production hardware, software, and network connectivity is mirrored and kept synchronized in real time, capable of assuming full production workloads within minutes of a primary site failure, but at significantly higher cost. Which site type does this describe?",
+    "options": {
+      "A": "Cold site \u2014 facility with power and connectivity but no hardware installed",
+      "B": "Warm site \u2014 facility with hardware pre-installed but requiring configuration and data restoration",
+      "C": "Hot site \u2014 fully operational mirror site with real-time synchronization",
+      "D": "Mobile site \u2014 portable temporary facility for emergency operations"
+    },
+    "answer": "C",
+    "explanation": "A hot site is a fully operational alternate facility with real-time data replication to production systems, capable of taking over operations within minutes (near-zero RTO). It is the most expensive option. A cold site (A) is just a physical space with utilities \u2014 no systems, no data, long recovery time. A warm site (B) has hardware pre-installed but requires data restoration from backup and configuration, taking hours. A mobile site (D) is a transportable facility used in physical disaster scenarios.",
+    "comptia_logic_note": "Hot/warm/cold are defined by their RTO: Hot = minutes, Warm = hours, Cold = days. Cost is inversely proportional to RTO. The higher the cost, the lower (faster) the RTO."
+  },
+  {
+    "id": "D3-095",
+    "domain": 3,
+    "objective": "3.1",
+    "topic": "Cloud service models \u2014 shared responsibility",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "Under the cloud shared responsibility model for a SaaS application, which of the following is the customer organization MOST responsible for?",
+    "options": {
+      "A": "Patching the underlying operating system that hosts the SaaS platform",
+      "B": "Managing access control, user provisioning, and data classification within the SaaS application",
+      "C": "Maintaining physical security of the data center where the SaaS platform runs",
+      "D": "Applying hypervisor security patches to the virtualization layer"
+    },
+    "answer": "B",
+    "explanation": "In the SaaS model, the cloud service provider manages everything from physical infrastructure through OS, middleware, and application software. The customer retains responsibility for managing who has access to the application, what data they store in it, how data is classified, and configuring the application's security settings. OS patching (A), physical security (C), and hypervisor maintenance (D) are all CSP responsibilities under SaaS.",
+    "comptia_logic_note": "SaaS: Customer owns DATA, ACCESS, and APPLICATION CONFIGURATION. IaaS: Customer also owns OS, runtime, middleware, and applications. PaaS: middle ground \u2014 customer owns applications and data."
+  },
+  {
+    "id": "D3-096",
+    "domain": 3,
+    "objective": "3.2",
+    "topic": "Network segmentation \u2014 DMZ",
+    "format": "multiple_choice",
+    "difficulty": "medium",
+    "stem": "A company wants to make its public-facing web servers accessible from the internet while preventing direct connections from the internet to the internal corporate network. The web servers need to communicate with application servers on the internal network. Which network design achieves this separation?",
+    "options": {
+      "A": "Place all servers on the same flat internal network with host-based firewalls only",
+      "B": "Place web servers in a DMZ between two firewalls; application servers remain on the internal network",
+      "C": "Connect web servers directly to the internet without any firewall",
+      "D": "Place all servers in the cloud and eliminate the on-premises network entirely"
+    },
+    "answer": "B",
+    "explanation": "A DMZ (Demilitarized Zone) is a network segment between the internet and the internal network, typically bounded by two firewalls. The outer firewall allows internet traffic to reach the DMZ web servers; the inner firewall restricts DMZ-to-internal traffic to only the specific ports required for application communication. This ensures that a compromised web server cannot directly reach internal systems. A flat network (A) eliminates this separation. No firewall (C) provides no protection. Moving everything to cloud (D) doesn't inherently create the segmentation described.",
     "comptia_logic_note": null
   }
 ]

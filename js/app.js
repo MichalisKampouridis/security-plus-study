@@ -62,9 +62,6 @@ const OBJECTIVES = {
 const FORMAT_LABELS = {
   multiple_choice: "Multiple Choice",
   multi_select: "Multi-Select",
-  true_false: "True/False",
-  fill_blank: "Fill in the Blank",
-  matching: "Matching",
   pbq_scenario: "Scenario (PBQ)"
 };
 
@@ -251,11 +248,25 @@ function renderQuestion() {
   badge.textContent = q.difficulty;
   card.appendChild(badge);
 
-  if (q.format === 'pbq_scenario' && q.scenario) {
-    const scenarioBox = document.createElement('div');
-    scenarioBox.className = 'scenario-box';
-    scenarioBox.textContent = q.scenario;
-    card.appendChild(scenarioBox);
+  if (q.format === 'pbq_scenario') {
+    const pbqBadge = document.createElement('span');
+    pbqBadge.className = 'badge badge-pbq';
+    pbqBadge.textContent = 'Performance-Based Question';
+    card.appendChild(pbqBadge);
+
+    if (q.scenario) {
+      const scenarioBox = document.createElement('div');
+      scenarioBox.className = 'scenario-box';
+      const scenarioLabel = document.createElement('div');
+      scenarioLabel.className = 'scenario-label';
+      scenarioLabel.textContent = '📋 SCENARIO';
+      scenarioBox.appendChild(scenarioLabel);
+      const scenarioText = document.createElement('p');
+      scenarioText.className = 'scenario-text';
+      scenarioText.textContent = q.scenario;
+      scenarioBox.appendChild(scenarioText);
+      card.appendChild(scenarioBox);
+    }
   }
 
   const stem = document.createElement('p');
@@ -274,17 +285,8 @@ function renderQuestion() {
 
 function renderAnswerInput(q, container) {
   switch (q.format) {
-    case 'true_false':
-      renderMultipleChoice(q, container);
-      break;
     case 'multi_select':
       renderMultiSelect(q, container);
-      break;
-    case 'fill_blank':
-      renderFillBlank(q, container);
-      break;
-    case 'matching':
-      renderMatching(q, container);
       break;
     case 'multiple_choice':
     case 'pbq_scenario':
@@ -387,96 +389,6 @@ function renderMultiSelect(q, container) {
   container.appendChild(submitBtn);
 }
 
-function renderFillBlank(q, container) {
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'fill-blank-input';
-  input.placeholder = 'Type your answer...';
-  container.appendChild(input);
-
-  const submitBtn = document.createElement('button');
-  submitBtn.className = 'submit-btn';
-  submitBtn.textContent = 'Submit Answer';
-  submitBtn.addEventListener('click', () => {
-    input.disabled = true;
-    submitBtn.disabled = true;
-
-    const userVal = input.value.trim().toLowerCase();
-    const acceptable = (q.acceptable_answers && q.acceptable_answers.length
-      ? q.acceptable_answers
-      : [q.blank_answer]
-    ).map(a => String(a).trim().toLowerCase());
-
-    const correct = acceptable.includes(userVal);
-    input.classList.add(correct ? 'correct' : 'incorrect');
-
-    finishAnswer(q, input.value, correct, container);
-  });
-
-  container.appendChild(submitBtn);
-}
-
-function renderMatching(q, container) {
-  const defs = q.pairs.map((p, i) => ({ text: p.definition, idx: i }));
-  const shuffledDefs = fisherYatesShuffle(defs);
-
-  const table = document.createElement('div');
-  table.className = 'matching-table';
-
-  const selects = [];
-  q.pairs.forEach((pair) => {
-    const row = document.createElement('div');
-    row.className = 'matching-row';
-
-    const termEl = document.createElement('div');
-    termEl.className = 'matching-term';
-    termEl.textContent = pair.term;
-    row.appendChild(termEl);
-
-    const select = document.createElement('select');
-    const placeholder = document.createElement('option');
-    placeholder.value = '';
-    placeholder.textContent = '-- Select a definition --';
-    select.appendChild(placeholder);
-
-    shuffledDefs.forEach(d => {
-      const opt = document.createElement('option');
-      opt.value = String(d.idx);
-      opt.textContent = d.text;
-      select.appendChild(opt);
-    });
-
-    selects.push(select);
-    row.appendChild(select);
-    table.appendChild(row);
-  });
-
-  container.appendChild(table);
-
-  const submitBtn = document.createElement('button');
-  submitBtn.className = 'submit-btn';
-  submitBtn.textContent = 'Submit Answer';
-  submitBtn.addEventListener('click', () => {
-    selects.forEach(s => (s.disabled = true));
-    submitBtn.disabled = true;
-
-    let allCorrect = true;
-    const userAnswer = selects.map((s, i) => {
-      const chosen = s.value;
-      if (chosen !== '' && parseInt(chosen, 10) === i) {
-        s.classList.add('correct');
-      } else {
-        s.classList.add('incorrect');
-        allCorrect = false;
-      }
-      return chosen;
-    });
-
-    finishAnswer(q, userAnswer, allCorrect, container);
-  });
-
-  container.appendChild(submitBtn);
-}
 
 function finishAnswer(q, userAnswer, correct, container) {
   window.APP.currentAnswers.push({
@@ -496,6 +408,13 @@ function finishAnswer(q, userAnswer, correct, container) {
   feedback.className = `feedback ${correct ? 'feedback-correct' : 'feedback-incorrect'}`;
   feedback.textContent = correct ? '✅ Correct!' : '❌ Incorrect';
   container.appendChild(feedback);
+
+  if (q.format === 'pbq_scenario') {
+    const whyLabel = document.createElement('div');
+    whyLabel.className = 'why-label';
+    whyLabel.textContent = '💡 Why this is correct:';
+    container.appendChild(whyLabel);
+  }
 
   const explanation = document.createElement('div');
   explanation.className = 'explanation';
@@ -588,12 +507,6 @@ function computeResults(answers) {
 }
 
 function formatCorrectAnswer(q) {
-  if (q.format === 'fill_blank') {
-    return escapeHtml(q.blank_answer);
-  }
-  if (q.format === 'matching') {
-    return q.pairs.map(p => `${p.term} → ${p.definition}`).join('; ');
-  }
   if (Array.isArray(q.answer)) {
     return q.answer.map(k => `${k}. ${q.options[k]}`).join(', ');
   }
@@ -601,22 +514,6 @@ function formatCorrectAnswer(q) {
 }
 
 function formatUserAnswer(q, userAnswer) {
-  if (q.format === 'fill_blank') {
-    return userAnswer ? escapeHtml(userAnswer) : '(no answer)';
-  }
-  if (q.format === 'matching') {
-    if (!Array.isArray(userAnswer)) return '(no answer)';
-    return q.pairs
-      .map((p, i) => {
-        const idx = userAnswer[i];
-        const defText =
-          idx !== '' && idx !== undefined && idx !== null
-            ? q.pairs[parseInt(idx, 10)].definition
-            : '(none)';
-        return `${p.term} → ${defText}`;
-      })
-      .join('; ');
-  }
   if (Array.isArray(userAnswer)) {
     if (userAnswer.length === 0) return '(no selection)';
     return userAnswer.map(k => `${k}. ${q.options[k]}`).join(', ');

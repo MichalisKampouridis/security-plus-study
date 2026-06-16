@@ -191,8 +191,28 @@ button:disabled {
   border-radius: 6px;
   padding: 0.85rem 1rem;
   margin-bottom: 1rem;
-  font-style: italic;
   color: var(--text-muted);
+}
+
+.scenario-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.scenario-text {
+  font-style: italic;
+  margin: 0;
+}
+
+.why-label {
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .question-stem {
@@ -422,6 +442,13 @@ button:disabled {
   background-color: rgba(231, 76, 60, 0.15);
   color: var(--red);
   border: 1px solid var(--red);
+}
+
+.badge-pbq {
+  background-color: rgba(155, 89, 182, 0.15);
+  color: #b388ff;
+  border: 1px solid #b388ff;
+  margin-left: 0.5rem;
 }
 
 /* ---------- Results View ---------- */
