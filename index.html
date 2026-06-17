@@ -8,15 +8,19 @@
   <script src="js/app.js" defer></script>
 </head>
 <body>
+  <div id="toast-container" aria-live="polite"></div>
   <header>
     <nav>
       <div class="nav-title">Security+ SY0-701 Study App</div>
       <div class="nav-links">
         <a href="#" data-view="home" class="nav-link active">Home</a>
         <a href="#" data-view="test" class="nav-link">Take Test</a>
+        <a href="#" data-view="exam-sim" class="nav-link">Exam Sim</a>
         <a href="#" data-view="drill" class="nav-link">Drill Mode</a>
+        <a href="#" data-view="bookmarks" class="nav-link">Bookmarks</a>
         <a href="#" data-view="progress" class="nav-link">Progress</a>
       </div>
+      <button id="btn-color-mode" class="color-mode-toggle" title="Toggle dark/light mode">🌙</button>
     </nav>
   </header>
 
@@ -26,6 +30,9 @@
     <section id="view-results" class="view" style="display:none"></section>
     <section id="view-progress" class="view" style="display:none"></section>
     <section id="view-drill" class="view" style="display:none"></section>
+    <section id="view-exam-sim" class="view" style="display:none"></section>
+    <section id="view-exam-results" class="view" style="display:none"></section>
+    <section id="view-bookmarks" class="view" style="display:none"></section>
   </main>
 
   <footer>

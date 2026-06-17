@@ -1,5 +1,5 @@
 // =====================================================================
-// Security+ SY0-701 Study App — Core Engine (Phase 2 + Phase 3)
+// Security+ SY0-701 Study App — Enhanced Edition
 // =====================================================================
 
 window.APP = {
@@ -7,8 +7,10 @@ window.APP = {
   currentTest: [],
   currentAnswers: [],
   currentIndex: 0,
-  mode: 'test', // 'test' | 'drill'
-  drillNotice: null
+  mode: 'test', // 'test' | 'drill' | 'exam-sim'
+  drillNotice: null,
+  keyboardSelected: null,
+  examSim: null
 };
 
 const DOMAIN_NAMES = {
@@ -27,7 +29,6 @@ const DOMAIN_WEIGHTS = {
   5: 0.20
 };
 
-// Objective titles, derived from the SY0-701 blueprint objective headings.
 const OBJECTIVES = {
   "1.1": { domain: 1, title: "Security Controls" },
   "1.2": { domain: 1, title: "Fundamental Security Concepts" },
@@ -68,9 +69,9 @@ const FORMAT_LABELS = {
 const PASS_THRESHOLD = 83;
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // A. DATA LOADING
-// ---------------------------------------------------------------------
+// =====================================================================
 
 async function loadQuestions() {
   const files = [1, 2, 3, 4, 5].map(n => `data/questions-${n}.json`);
@@ -84,9 +85,9 @@ async function loadQuestions() {
   window.ALL_QUESTIONS = window.APP.questions;
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // B. DAILY TEST GENERATOR
-// ---------------------------------------------------------------------
+// =====================================================================
 
 function fisherYatesShuffle(arr) {
   const a = arr.slice();
@@ -128,7 +129,6 @@ function generateDailyTest(numQuestions = 25) {
   const seen = getSeenIds();
   const now = Date.now();
 
-  // Compute per-domain quotas based on blueprint weights, scaled to `total`.
   const domainIds = [1, 2, 3, 4, 5];
   const quotas = {};
   let runningSum = 0;
@@ -138,7 +138,6 @@ function generateDailyTest(numQuestions = 25) {
       runningSum += quotas[d];
     }
   });
-  // Last bucket absorbs the rounding remainder so quotas sum exactly to `total`.
   quotas[domainIds[domainIds.length - 1]] = total - runningSum;
 
   const selected = [];
@@ -146,25 +145,16 @@ function generateDailyTest(numQuestions = 25) {
 
   domainIds.forEach(d => {
     const domainQuestions = all.filter(q => q.domain === d);
-
-    // Exclude questions seen within the last 7 days.
     let pool = domainQuestions.filter(q => {
       const ts = seen[q.id];
       return !ts || (now - new Date(ts).getTime()) > SEVEN_DAYS_MS;
     });
-
-    // If the pool is too small for this domain's quota, relax the 7-day window.
-    if (pool.length < quotas[d]) {
-      pool = domainQuestions;
-    }
-
+    if (pool.length < quotas[d]) pool = domainQuestions;
     const picks = fisherYatesShuffle(pool).slice(0, quotas[d]);
     picks.forEach(q => usedIds.add(q.id));
     selected.push(...picks);
   });
 
-  // If shortages occurred (a domain didn't have enough questions), fill the
-  // remaining slots from any unused questions across all domains.
   if (selected.length < total) {
     const leftover = fisherYatesShuffle(all.filter(q => !usedIds.has(q.id)));
     for (const q of leftover) {
@@ -177,9 +167,9 @@ function generateDailyTest(numQuestions = 25) {
   return declusterFormats(fisherYatesShuffle(selected));
 }
 
-// ---------------------------------------------------------------------
-// C. TEST RUNNER (shared by Daily Test and Drill Mode)
-// ---------------------------------------------------------------------
+// =====================================================================
+// C. TEST RUNNER (Daily Test and Drill Mode)
+// =====================================================================
 
 function startTest() {
   window.APP.mode = 'test';
@@ -187,6 +177,7 @@ function startTest() {
   window.APP.currentTest = generateDailyTest(25);
   window.APP.currentAnswers = [];
   window.APP.currentIndex = 0;
+  window.APP.keyboardSelected = null;
   setActiveNav('test');
   showView('test');
   renderQuestion();
@@ -224,6 +215,7 @@ function renderQuestion() {
   const q = test[idx];
   const container = document.getElementById(runnerContainerId());
   container.innerHTML = '';
+  window.APP.keyboardSelected = null;
 
   addBackLink(container);
 
@@ -242,6 +234,19 @@ function renderQuestion() {
 
   const card = document.createElement('div');
   card.className = 'question-card';
+
+  // Bookmark button
+  const bmBtn = document.createElement('button');
+  bmBtn.className = `bookmark-btn${isBookmarked(q.id) ? ' bookmarked' : ''}`;
+  bmBtn.title = isBookmarked(q.id) ? 'Remove Bookmark' : 'Bookmark this question';
+  bmBtn.textContent = isBookmarked(q.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
+  bmBtn.addEventListener('click', () => {
+    toggleBookmark(q.id);
+    bmBtn.className = `bookmark-btn${isBookmarked(q.id) ? ' bookmarked' : ''}`;
+    bmBtn.textContent = isBookmarked(q.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
+    bmBtn.title = isBookmarked(q.id) ? 'Remove Bookmark' : 'Bookmark this question';
+  });
+  card.appendChild(bmBtn);
 
   const badge = document.createElement('span');
   badge.className = `badge badge-${q.difficulty}`;
@@ -281,6 +286,22 @@ function renderQuestion() {
   container.appendChild(card);
 
   renderAnswerInput(q, answerArea);
+
+  // Keyboard hint
+  if (!localStorage.getItem('keyboard_hint_dismissed')) {
+    const hint = document.createElement('div');
+    hint.className = 'keyboard-hint';
+    hint.innerHTML = `<span>⌨️ Tip: Press A–D to select, Enter to confirm, Esc to quit</span>`;
+    const dismissBtn = document.createElement('button');
+    dismissBtn.className = 'dismiss-hint';
+    dismissBtn.textContent = 'Dismiss';
+    dismissBtn.addEventListener('click', () => {
+      localStorage.setItem('keyboard_hint_dismissed', '1');
+      hint.remove();
+    });
+    hint.appendChild(dismissBtn);
+    container.appendChild(hint);
+  }
 }
 
 function renderAnswerInput(q, container) {
@@ -311,7 +332,7 @@ function renderMultipleChoice(q, container) {
     btn.textContent = `${key}. ${text}`;
     btn.addEventListener('click', () => {
       const allBtns = list.querySelectorAll('.option-btn');
-      allBtns.forEach(b => (b.disabled = true));
+      allBtns.forEach(b => { b.disabled = true; b.classList.remove('keyboard-focus'); });
 
       const correct = key === q.answer;
       btn.classList.add(correct ? 'correct' : 'incorrect');
@@ -321,6 +342,7 @@ function renderMultipleChoice(q, container) {
         if (correctBtn) correctBtn.classList.add('correct');
       }
 
+      window.APP.keyboardSelected = null;
       finishAnswer(q, key, correct, container);
     });
     list.appendChild(btn);
@@ -389,7 +411,6 @@ function renderMultiSelect(q, container) {
   container.appendChild(submitBtn);
 }
 
-
 function finishAnswer(q, userAnswer, correct, container) {
   window.APP.currentAnswers.push({
     question_id: q.id,
@@ -399,8 +420,11 @@ function finishAnswer(q, userAnswer, correct, container) {
     objective: q.objective,
     topic: q.topic,
     format: q.format,
-    difficulty: q.difficulty
+    difficulty: q.difficulty,
+    confidence: null
   });
+
+  const answerIdx = window.APP.currentAnswers.length - 1;
 
   markSeen(q.id);
 
@@ -427,6 +451,36 @@ function finishAnswer(q, userAnswer, correct, container) {
     note.textContent = `💡 CompTIA Logic: ${q.comptia_logic_note}`;
     container.appendChild(note);
   }
+
+  // Report Issue button
+  renderReportButton(container, q);
+
+  // Confidence rating (daily test and drill only)
+  const confidenceRow = document.createElement('div');
+  confidenceRow.className = 'confidence-row';
+
+  const confLabel = document.createElement('span');
+  confLabel.className = 'confidence-label';
+  confLabel.textContent = 'How confident were you?';
+  confidenceRow.appendChild(confLabel);
+
+  [
+    { key: 'guessed', label: '😰 Guessed' },
+    { key: 'unsure', label: '🤔 Unsure' },
+    { key: 'confident', label: '😊 Confident' }
+  ].forEach(({ key, label }) => {
+    const btn = document.createElement('button');
+    btn.className = `confidence-btn ${key}`;
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      window.APP.currentAnswers[answerIdx].confidence = key;
+      confidenceRow.querySelectorAll('.confidence-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+    confidenceRow.appendChild(btn);
+  });
+
+  container.appendChild(confidenceRow);
 
   const isLast = window.APP.currentIndex === window.APP.currentTest.length - 1;
 
@@ -457,9 +511,12 @@ function finishRun() {
     showView('drill');
     renderDrillResults(result, answers);
   } else {
-    saveSession(result);
+    saveSession(result, answers);
     const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
-    const previousPct = sessions.length >= 2 ? sessions[sessions.length - 2].pct : null;
+    const regularSessions = sessions.filter(s => !s.mode || s.mode === 'test');
+    const previousPct = regularSessions.length >= 2
+      ? regularSessions[regularSessions.length - 2].pct
+      : null;
     const streak = parseInt(localStorage.getItem('streak') || '0', 10);
 
     setActiveNav(null);
@@ -468,9 +525,9 @@ function finishRun() {
   }
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // D. SCORING + RESULTS VIEW
-// ---------------------------------------------------------------------
+// =====================================================================
 
 function computeResults(answers) {
   const total = answers.length;
@@ -524,9 +581,6 @@ function formatUserAnswer(q, userAnswer) {
   return userAnswer || '(no answer)';
 }
 
-// Builds the "Missed Questions Review" section shared by the daily test
-// results view and the drill results view. Returns null if there are no
-// misses.
 function buildMissedSection(answers) {
   const missed = answers.filter(a => !a.correct);
   if (!missed.length) return null;
@@ -555,6 +609,10 @@ function buildMissedSection(answers) {
     }
 
     card.innerHTML = html;
+
+    // Report issue button (appended as DOM node after innerHTML)
+    renderReportButton(card, q);
+
     missedSection.appendChild(card);
   });
 
@@ -565,7 +623,6 @@ function renderResults(result, answers, context) {
   const container = document.getElementById('view-results');
   container.innerHTML = '';
 
-  // --- Score summary ---
   const summary = document.createElement('div');
   summary.className = `score-summary ${result.pass ? 'pass' : 'fail'}`;
   summary.innerHTML = `
@@ -575,7 +632,6 @@ function renderResults(result, answers, context) {
   `;
   container.appendChild(summary);
 
-  // --- Domain breakdown ---
   const domainSection = document.createElement('div');
   domainSection.className = 'domain-breakdown';
   domainSection.innerHTML = '<h3>Domain Breakdown</h3>';
@@ -612,16 +668,13 @@ function renderResults(result, answers, context) {
   domainSection.appendChild(table);
   container.appendChild(domainSection);
 
-  // --- Missed questions review ---
   const missedSection = buildMissedSection(answers);
   if (missedSection) container.appendChild(missedSection);
 
-  // --- Study tips ---
   const tips = generateTips(result, answers, context);
   const tipsCard = document.createElement('div');
   tipsCard.className = 'tips-card';
   tipsCard.innerHTML = '<h3>\u{1F4CB} Study Tips for This Session</h3>';
-
   const ul = document.createElement('ul');
   tips.forEach(t => {
     const li = document.createElement('li');
@@ -631,7 +684,6 @@ function renderResults(result, answers, context) {
   tipsCard.appendChild(ul);
   container.appendChild(tipsCard);
 
-  // --- Action buttons ---
   const btnRow = document.createElement('div');
   btnRow.className = 'results-actions';
 
@@ -664,44 +716,32 @@ function renderResults(result, answers, context) {
   container.appendChild(btnRow);
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // E. PERFORMANCE TIPS ENGINE
-// ---------------------------------------------------------------------
+// =====================================================================
 
 function generateTips(result, answers, context) {
   context = context || {};
   const candidates = [];
 
-  // 1. Streak tip
   if (context.streak >= 3) {
-    candidates.push(
-      `\u{1F525} ${context.streak}-day streak — consistency is your biggest advantage. Keep it going.`
-    );
+    candidates.push(`\u{1F525} ${context.streak}-day streak — consistency is your biggest advantage. Keep it going.`);
   }
 
-  // 2. Improvement / regression tip vs. previous session
   if (context.previousPct !== null && context.previousPct !== undefined) {
     const diff = result.pct - context.previousPct;
     if (diff >= 5) {
-      candidates.push(
-        `\u{1F4C8} You improved ${diff.toFixed(0)} points since last session — great momentum.`
-      );
+      candidates.push(`\u{1F4C8} You improved ${diff.toFixed(0)} points since last session — great momentum.`);
     } else if (diff <= -5) {
-      candidates.push(
-        `\u{1F4C9} Score dipped ${Math.abs(diff).toFixed(0)} points from last session. Check if you're rushing answers.`
-      );
+      candidates.push(`\u{1F4C9} Score dipped ${Math.abs(diff).toFixed(0)} points from last session. Check if you're rushing answers.`);
     }
   }
 
-  // 3. Near-pass tip
   if (result.pct >= 79 && result.pct <= 82) {
     const diff = PASS_THRESHOLD - result.pct;
-    candidates.push(
-      `You are within ${diff.toFixed(0)}% of passing. One or two more correct answers would have passed this test.`
-    );
+    candidates.push(`You are within ${diff.toFixed(0)}% of passing. One or two more correct answers would have passed this test.`);
   }
 
-  // 4. Weakest domain tip
   let weakestDomain = null;
   let weakestScore = Infinity;
   Object.entries(result.domainScores).forEach(([d, score]) => {
@@ -711,12 +751,9 @@ function generateTips(result, answers, context) {
     }
   });
   if (weakestDomain !== null) {
-    candidates.push(
-      `Your weakest domain this session was Domain ${weakestDomain} — ${DOMAIN_NAMES[weakestDomain]}. Focus your next study block there.`
-    );
+    candidates.push(`Your weakest domain this session was Domain ${weakestDomain} — ${DOMAIN_NAMES[weakestDomain]}. Focus your next study block there.`);
   }
 
-  // 5. Objective miss tip (2+ misses on the same objective)
   const objCounts = {};
   const objTopics = {};
   answers.filter(a => !a.correct).forEach(a => {
@@ -725,13 +762,10 @@ function generateTips(result, answers, context) {
   });
   Object.entries(objCounts).forEach(([obj, count]) => {
     if (count >= 2) {
-      candidates.push(
-        `You missed multiple questions on objective ${obj} (${objTopics[obj]}). Review that sub-topic specifically.`
-      );
+      candidates.push(`You missed multiple questions on objective ${obj} (${objTopics[obj]}). Review that sub-topic specifically.`);
     }
   });
 
-  // 6. Format struggle tip (<50% on a format with >=2 questions of that type)
   const formatStats = {};
   answers.forEach(a => {
     if (!formatStats[a.format]) formatStats[a.format] = { total: 0, correct: 0 };
@@ -740,25 +774,29 @@ function generateTips(result, answers, context) {
   });
   Object.entries(formatStats).forEach(([fmt, stats]) => {
     if (stats.total >= 2 && stats.correct / stats.total < 0.5) {
-      candidates.push(
-        `You struggled with ${fmt.replace(/_/g, ' ')} questions. Practice that question style more.`
-      );
+      candidates.push(`You struggled with ${fmt.replace(/_/g, ' ')} questions. Practice that question style more.`);
     }
   });
 
-  // 7. Difficulty tip (missed all or most hard questions)
   const hardAnswers = answers.filter(a => a.difficulty === 'hard');
   if (hardAnswers.length) {
     const hardCorrect = hardAnswers.filter(a => a.correct).length;
     if (hardCorrect / hardAnswers.length <= 0.5) {
       const domainForDrill = weakestDomain !== null ? weakestDomain : hardAnswers[0].domain;
-      candidates.push(
-        `Hard questions are a gap — try the Drill Mode on Domain ${domainForDrill} set to hard only.`
-      );
+      candidates.push(`Hard questions are a gap — try the Drill Mode on Domain ${domainForDrill} set to hard only.`);
     }
   }
 
-  // Always-present general reinforcement tip (last priority slot).
+  // Confidence-based tips
+  const guessedRight = answers.filter(a => a.confidence === 'guessed' && a.correct).length;
+  const confidentWrong = answers.filter(a => a.confidence === 'confident' && !a.correct).length;
+  if (guessedRight >= 1) {
+    candidates.push(`You guessed correctly on ${guessedRight} question${guessedRight > 1 ? 's' : ''} — review those topics to make sure the knowledge is solid, not lucky.`);
+  }
+  if (confidentWrong >= 1) {
+    candidates.push(`You were confident but wrong on ${confidentWrong} question${confidentWrong > 1 ? 's' : ''} — these are dangerous blind spots. Review them carefully.`);
+  }
+
   let reinforcement;
   if (result.pct >= PASS_THRESHOLD) {
     reinforcement = 'Great job — you passed! Keep reviewing misses to push toward 90%+.';
@@ -768,30 +806,43 @@ function generateTips(result, answers, context) {
     reinforcement = "Don't worry — consistent daily practice builds retention. Review your misses and try again tomorrow.";
   }
 
-  // Cap at 5 tips total: top 4 prioritized candidates + the reinforcement tip.
   const tips = candidates.slice(0, 4);
   tips.push(reinforcement);
   return tips;
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // F. PROGRESS PERSISTENCE
-// ---------------------------------------------------------------------
+// =====================================================================
 
-function saveSession(result) {
+function saveSession(result, answers) {
   const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
-  sessions.push({
+  const sessionData = {
     date: result.date,
     score: result.score,
     total: result.total,
     pct: result.pct,
     domain_scores: result.domainScores,
     domain_stats: result.domainStats,
-    misses: result.misses
-  });
+    misses: result.misses,
+    mode: result.mode || 'test',
+    answers: (answers || []).map(a => ({
+      question_id: a.question_id,
+      correct: a.correct,
+      domain: a.domain,
+      objective: a.objective,
+      confidence: a.confidence || null
+    }))
+  };
+  if (result.time_taken !== undefined) {
+    sessionData.time_taken = result.time_taken;
+  }
+  sessions.push(sessionData);
   localStorage.setItem('sessions', JSON.stringify(sessions));
 
-  updateStreak();
+  if (!result.mode || result.mode === 'test') {
+    updateStreak();
+  }
   recordMisses(result.misses);
 }
 
@@ -811,27 +862,22 @@ function updateStreak() {
   const todayStr = today.toDateString();
 
   if (lastDateStr === todayStr) {
-    // Already completed a session today; streak unchanged.
+    // Already completed a session today
   } else if (!lastDateStr) {
     streak = 1;
   } else {
     const last = new Date(lastDateStr);
     const diffDays = Math.round((new Date(todayStr) - new Date(last.toDateString())) / (1000 * 60 * 60 * 24));
-    if (diffDays === 1) {
-      streak += 1;
-    } else {
-      // Last session was more than one day ago: reset, then count today.
-      streak = 1;
-    }
+    streak = diffDays === 1 ? streak + 1 : 1;
   }
 
   localStorage.setItem('streak', String(streak));
   localStorage.setItem('last_session_date', todayStr);
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // G. HOME VIEW
-// ---------------------------------------------------------------------
+// =====================================================================
 
 function renderHome() {
   const container = document.getElementById('view-home');
@@ -855,12 +901,17 @@ function renderHome() {
     </p>
     <div class="home-actions">
       <button id="btn-start-test" class="primary-btn">Start Today's Test</button>
+      <div class="home-exam-block">
+        <button id="btn-start-exam-sim" class="exam-sim-btn">🎯 Exam Simulation</button>
+        <div class="exam-sim-subtitle">90 questions · 90 minutes · No feedback until the end</div>
+      </div>
       <button id="btn-drill-home" class="secondary-btn">Drill Mode</button>
       <button id="btn-progress-home" class="secondary-btn">View Progress</button>
     </div>
   `;
 
   document.getElementById('btn-start-test').addEventListener('click', () => startTest());
+  document.getElementById('btn-start-exam-sim').addEventListener('click', () => startExamSim());
   document.getElementById('btn-drill-home').addEventListener('click', () => {
     setActiveNav('drill');
     showView('drill');
@@ -873,9 +924,9 @@ function renderHome() {
   });
 }
 
-// ---------------------------------------------------------------------
-// H. PROGRESS VIEW (full dashboard)
-// ---------------------------------------------------------------------
+// =====================================================================
+// H. PROGRESS VIEW
+// =====================================================================
 
 function renderProgress() {
   const container = document.getElementById('view-progress');
@@ -889,7 +940,6 @@ function renderProgress() {
   heading.textContent = 'Progress';
   container.appendChild(heading);
 
-  // 1. Header stat cards
   const avgPct = sessions.length
     ? sessions.reduce((sum, s) => sum + s.pct, 0) / sessions.length
     : 0;
@@ -912,19 +962,16 @@ function renderProgress() {
   `;
   container.appendChild(statsRow);
 
-  // 2. Score history chart
+  // Domain Mastery Badges (above mastery table per spec)
+  container.appendChild(buildDomainMasteryBadges(sessions));
+
   container.appendChild(buildScoreChart(sessions));
-
-  // 3. Domain mastery table
   container.appendChild(buildDomainMasteryTable(sessions));
-
-  // 4. Focus areas (weakest objectives)
+  container.appendChild(buildConfidenceAccuracyTable(sessions));
   container.appendChild(buildFocusAreasTable(missCounts));
-
-  // 5. Session history
   container.appendChild(buildSessionHistoryTable(sessions));
+  container.appendChild(buildReportsSection());
 
-  // 6. Reset progress
   const resetWrap = document.createElement('div');
   resetWrap.className = 'reset-section';
   const resetBtn = document.createElement('button');
@@ -939,7 +986,6 @@ function renderProgress() {
   resetWrap.appendChild(resetBtn);
   container.appendChild(resetWrap);
 
-  // Back to home
   const backRow = document.createElement('div');
   backRow.className = 'results-actions';
   const homeBtn = document.createElement('button');
@@ -960,14 +1006,13 @@ function buildScoreChart(sessions) {
   wrap.innerHTML = '<h3>Score History</h3>';
 
   if (!sessions.length) {
-    const p = document.createElement('p');
-    p.textContent = 'No sessions yet — complete a test to start building your score history.';
-    wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'No sessions yet — complete a test to start building your score history.'
+    }));
     return wrap;
   }
 
   const recent = sessions.slice(-10);
-
   const chart = document.createElement('div');
   chart.className = 'bar-chart';
 
@@ -999,7 +1044,6 @@ function buildScoreChart(sessions) {
     barCol.appendChild(bar);
     chart.appendChild(barCol);
 
-    // Trigger the grow animation after layout.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         bar.style.height = `${Math.max(s.pct, 2)}%`;
@@ -1017,13 +1061,12 @@ function buildDomainMasteryTable(sessions) {
   wrap.innerHTML = '<h3>Domain Mastery</h3>';
 
   if (!sessions.length) {
-    const p = document.createElement('p');
-    p.textContent = 'Complete a test to see your domain mastery breakdown.';
-    wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'Complete a test to see your domain mastery breakdown.'
+    }));
     return wrap;
   }
 
-  // Aggregate totals across ALL sessions.
   const totals = {};
   [1, 2, 3, 4, 5].forEach(d => (totals[d] = { total: 0, correct: 0 }));
   sessions.forEach(s => {
@@ -1083,9 +1126,9 @@ function buildDomainMasteryTable(sessions) {
   wrap.appendChild(tableWrap);
 
   if (!anyRows) {
-    const p = document.createElement('p');
-    p.textContent = 'Complete a test to see your domain mastery breakdown.';
-    wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'Complete a test to see your domain mastery breakdown.'
+    }));
   }
 
   return wrap;
@@ -1098,9 +1141,9 @@ function buildFocusAreasTable(missCounts) {
 
   const entries = Object.entries(missCounts).sort((a, b) => b[1] - a[1]).slice(0, 8);
   if (!entries.length) {
-    const p = document.createElement('p');
-    p.textContent = 'No missed questions yet. Keep up the great work!';
-    wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'No missed questions yet. Keep up the great work!'
+    }));
     return wrap;
   }
 
@@ -1156,9 +1199,7 @@ function buildSessionHistoryTable(sessions) {
   wrap.innerHTML = '<h3>Session History</h3>';
 
   if (!sessions.length) {
-    const p = document.createElement('p');
-    p.textContent = 'No sessions yet.';
-    wrap.appendChild(p);
+    wrap.appendChild(Object.assign(document.createElement('p'), { textContent: 'No sessions yet.' }));
     return wrap;
   }
 
@@ -1166,14 +1207,16 @@ function buildSessionHistoryTable(sessions) {
   tableWrap.className = 'table-scroll';
   const table = document.createElement('table');
   table.className = 'domain-table';
-  table.innerHTML = '<thead><tr><th>Date</th><th>Score</th><th>Total</th><th>%</th><th>Pass/Fail</th></tr></thead>';
+  table.innerHTML = '<thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Total</th><th>%</th><th>Pass/Fail</th></tr></thead>';
   const tbody = document.createElement('tbody');
 
   sessions.slice(-10).reverse().forEach(s => {
     const pass = s.pct >= PASS_THRESHOLD;
+    const modeLabel = s.mode === 'exam_sim' ? '🎯 Exam Sim' : '📝 Daily Test';
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${escapeHtml(new Date(s.date).toLocaleString())}</td>
+      <td>${modeLabel}</td>
       <td>${s.score}</td>
       <td>${s.total}</td>
       <td>${s.pct.toFixed(0)}%</td>
@@ -1188,9 +1231,9 @@ function buildSessionHistoryTable(sessions) {
   return wrap;
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // I. DRILL MODE
-// ---------------------------------------------------------------------
+// =====================================================================
 
 function filterQuestionsByConfig(config) {
   let pool = window.ALL_QUESTIONS.slice();
@@ -1205,10 +1248,10 @@ function filterQuestionsByConfig(config) {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 20)
       .map(([obj]) => obj);
-    if (top20.length) {
-      pool = pool.filter(q => top20.includes(q.objective));
-    }
-    // If there's no miss history yet, fall through and use the full pool.
+    if (top20.length) pool = pool.filter(q => top20.includes(q.objective));
+  } else if (config.scope === 'bookmarks') {
+    const bm = getBookmarks();
+    pool = pool.filter(q => bm.has(q.id));
   }
 
   if (config.difficulties && config.difficulties.length) {
@@ -1231,6 +1274,7 @@ function startDrill(config) {
   window.APP.currentTest = questions;
   window.APP.currentAnswers = [];
   window.APP.currentIndex = 0;
+  window.APP.keyboardSelected = null;
   window.APP.drillNotice = (pool.length > 0 && pool.length < requested)
     ? `Only ${pool.length} question(s) matched your filters — showing all of them.`
     : null;
@@ -1371,7 +1415,6 @@ function renderDrillConfig() {
 
   container.appendChild(panel);
 
-  // Toggle domain/objective dropdowns based on scope selection.
   const domainGroup = panel.querySelector('#drill-domain-group');
   const objectiveGroup = panel.querySelector('#drill-objective-group');
   panel.querySelectorAll('input[name="drill-scope"]').forEach(radio => {
@@ -1382,12 +1425,9 @@ function renderDrillConfig() {
     });
   });
 
-  // Slider label
   const countSlider = panel.querySelector('#drill-count');
   const countLabel = panel.querySelector('#drill-count-label');
-  countSlider.addEventListener('input', () => {
-    countLabel.textContent = countSlider.value;
-  });
+  countSlider.addEventListener('input', () => { countLabel.textContent = countSlider.value; });
 
   panel.querySelector('#btn-start-drill').addEventListener('click', () => {
     const scope = panel.querySelector('input[name="drill-scope"]:checked').value;
@@ -1408,9 +1448,1325 @@ function renderDrillConfig() {
   });
 }
 
-// ---------------------------------------------------------------------
-// Navigation / view switching
-// ---------------------------------------------------------------------
+// =====================================================================
+// J. COLOR MODE
+// =====================================================================
+
+function applyColorMode(mode) {
+  if (mode === 'light') {
+    document.body.classList.add('light-mode');
+    const btn = document.getElementById('btn-color-mode');
+    if (btn) btn.textContent = '☀️';
+  } else {
+    document.body.classList.remove('light-mode');
+    const btn = document.getElementById('btn-color-mode');
+    if (btn) btn.textContent = '🌙';
+  }
+}
+
+function toggleColorMode() {
+  const current = localStorage.getItem('color_mode') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('color_mode', next);
+  applyColorMode(next);
+}
+
+// =====================================================================
+// K. TOAST SYSTEM
+// =====================================================================
+
+function showToast(message, duration) {
+  duration = duration === undefined ? 5000 : duration;
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<span>${escapeHtml(message)}</span>`;
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'toast-close';
+  closeBtn.textContent = '✕';
+  closeBtn.addEventListener('click', () => dismissToast(toast));
+  toast.appendChild(closeBtn);
+
+  container.appendChild(toast);
+
+  if (duration > 0) {
+    setTimeout(() => dismissToast(toast), duration);
+  }
+}
+
+function dismissToast(toast) {
+  if (!toast.parentNode) return;
+  toast.classList.add('toast-out');
+  setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 280);
+}
+
+// =====================================================================
+// L. KEYBOARD NAVIGATION
+// =====================================================================
+
+function initKeyboardNav() {
+  document.addEventListener('keydown', handleKeydown);
+}
+
+function handleKeydown(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+
+  const mode = window.APP.mode;
+
+  if (mode === 'test' || mode === 'drill') {
+    handleTestKeydown(e, mode);
+  } else if (mode === 'exam-sim') {
+    handleExamSimKeydown(e);
+  }
+}
+
+function handleTestKeydown(e, mode) {
+  const key = e.key.toUpperCase();
+  const viewId = mode === 'drill' ? 'view-drill' : 'view-test';
+  const container = document.getElementById(viewId);
+  if (!container) return;
+
+  if (['A', 'B', 'C', 'D'].includes(key)) {
+    e.preventDefault();
+    const allBtns = container.querySelectorAll('.option-btn:not(:disabled)');
+    if (!allBtns.length) return;
+
+    allBtns.forEach(b => b.classList.remove('keyboard-focus'));
+    const target = container.querySelector(`.option-btn[data-key="${key}"]:not(:disabled)`);
+    if (target) {
+      target.classList.add('keyboard-focus');
+      window.APP.keyboardSelected = key;
+    }
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (window.APP.keyboardSelected) {
+      const target = container.querySelector(`.option-btn[data-key="${window.APP.keyboardSelected}"]:not(:disabled)`);
+      if (target) {
+        target.click();
+        window.APP.keyboardSelected = null;
+        return;
+      }
+    }
+    // If no option selected, try clicking next button
+    const nextBtn = container.querySelector('.next-btn:not(:disabled)');
+    if (nextBtn) nextBtn.click();
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    const backLink = container.querySelector('.back-link');
+    if (backLink) backLink.click();
+  }
+}
+
+function handleExamSimKeydown(e) {
+  const key = e.key.toUpperCase();
+
+  if (['A', 'B', 'C', 'D'].includes(key)) {
+    e.preventDefault();
+    selectExamSimOption(key);
+  } else if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    navigateExamSim(1);
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    navigateExamSim(-1);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    navigateExamSim(1);
+  } else if (e.key === 'b' || e.key === 'B') {
+    e.preventDefault();
+    if (window.APP.examSim) {
+      const q = window.APP.examSim.questions[window.APP.examSim.currentIndex];
+      if (q) {
+        toggleBookmark(q.id);
+        const nowBm = isBookmarked(q.id);
+        updateExamGrid();
+        updateExamBookmarkBtn(q.id);
+        saveExamSimProgress();
+        showToast(nowBm ? '🔖 Bookmarked' : '🔖 Bookmark removed', 2000);
+      }
+    }
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    if (confirm('Quit exam? Your progress is saved and you can resume later.')) {
+      stopExamTimer();
+      setActiveNav('home');
+      showView('home');
+      renderHome();
+    }
+  }
+}
+
+// =====================================================================
+// M. CONFIDENCE RATING (helpers already in finishAnswer above)
+// =====================================================================
+
+// =====================================================================
+// N. BOOKMARKING
+// =====================================================================
+
+function getBookmarks() {
+  const raw = localStorage.getItem('bookmarked_questions');
+  return new Set(raw ? JSON.parse(raw) : []);
+}
+
+function saveBookmarks(set) {
+  localStorage.setItem('bookmarked_questions', JSON.stringify([...set]));
+}
+
+function isBookmarked(qId) {
+  return getBookmarks().has(qId);
+}
+
+function toggleBookmark(qId) {
+  const bm = getBookmarks();
+  if (bm.has(qId)) {
+    bm.delete(qId);
+  } else {
+    bm.add(qId);
+  }
+  saveBookmarks(bm);
+}
+
+function renderBookmarks() {
+  const container = document.getElementById('view-bookmarks');
+  container.innerHTML = '';
+
+  const heading = document.createElement('h2');
+  heading.textContent = '📚 Bookmarked Questions';
+  container.appendChild(heading);
+
+  const bm = getBookmarks();
+  const bookmarkedQs = window.ALL_QUESTIONS
+    ? window.ALL_QUESTIONS.filter(q => bm.has(q.id))
+    : [];
+
+  const actionsRow = document.createElement('div');
+  actionsRow.className = 'bookmarks-actions';
+
+  if (bookmarkedQs.length) {
+    const drillBtn = document.createElement('button');
+    drillBtn.className = 'primary-btn';
+    drillBtn.textContent = '📚 Drill Bookmarks';
+    drillBtn.addEventListener('click', () => {
+      setActiveNav('drill');
+      showView('drill');
+      startDrill({
+        scope: 'bookmarks',
+        difficulties: ['easy', 'medium', 'hard'],
+        formats: Object.keys(FORMAT_LABELS),
+        count: bookmarkedQs.length
+      });
+    });
+    actionsRow.appendChild(drillBtn);
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'secondary-btn reset-btn';
+    clearBtn.textContent = 'Clear All Bookmarks';
+    clearBtn.addEventListener('click', () => {
+      if (confirm('Remove all bookmarks?')) {
+        saveBookmarks(new Set());
+        renderBookmarks();
+      }
+    });
+    actionsRow.appendChild(clearBtn);
+  }
+
+  container.appendChild(actionsRow);
+
+  if (!bookmarkedQs.length) {
+    const p = document.createElement('p');
+    p.textContent = 'No bookmarks yet. Bookmark questions during tests by clicking 🔖 Bookmark on any question card.';
+    container.appendChild(p);
+    return;
+  }
+
+  bookmarkedQs.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'bookmark-card';
+
+    const header = document.createElement('div');
+    header.className = 'bookmark-card-header';
+
+    const stem = document.createElement('div');
+    stem.className = 'bookmark-card-stem';
+    stem.title = q.stem;
+    stem.textContent = q.stem;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'secondary-btn';
+    toggleBtn.style.fontSize = '0.8rem';
+    toggleBtn.style.padding = '0.3rem 0.7rem';
+    toggleBtn.style.flexShrink = '0';
+    toggleBtn.textContent = '▼ Expand';
+
+    const body = document.createElement('div');
+    body.className = 'bookmark-card-body';
+    body.style.display = 'none';
+
+    // Fill body with question details
+    let html = '';
+    if (q.scenario) {
+      html += `<div class="scenario-box">${escapeHtml(q.scenario)}</div>`;
+    }
+    html += `<p class="question-stem">${escapeHtml(q.stem)}</p>`;
+    if (q.options) {
+      html += `<div class="options-list">`;
+      Object.entries(q.options).forEach(([k, v]) => {
+        const isCorrect = Array.isArray(q.answer)
+          ? q.answer.includes(k)
+          : q.answer === k;
+        html += `<div class="option-btn${isCorrect ? ' correct' : ''}" style="pointer-events:none">${escapeHtml(k)}. ${escapeHtml(v)}</div>`;
+      });
+      html += `</div>`;
+    }
+    html += `<div class="explanation">${escapeHtml(q.explanation)}</div>`;
+
+    body.innerHTML = html;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-bookmark-btn';
+    removeBtn.textContent = '🗑 Remove';
+    removeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleBookmark(q.id);
+      renderBookmarks();
+    });
+    body.appendChild(removeBtn);
+
+    toggleBtn.addEventListener('click', () => {
+      const expanded = body.style.display !== 'none';
+      body.style.display = expanded ? 'none' : 'block';
+      toggleBtn.textContent = expanded ? '▼ Expand' : '▲ Collapse';
+    });
+
+    header.addEventListener('click', () => toggleBtn.click());
+
+    header.appendChild(stem);
+    header.appendChild(toggleBtn);
+    card.appendChild(header);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
+}
+
+// =====================================================================
+// O. EXAM SIMULATION
+// =====================================================================
+
+const EXAM_SIM_TOTAL = 90;
+const EXAM_SIM_DURATION = 5400; // 90 minutes in seconds
+const EXAM_SIM_SESSION_KEY = 'exam_sim_state';
+
+function generateExamSimTest() {
+  const all = window.ALL_QUESTIONS;
+  const eligible = all.filter(q =>
+    ['multiple_choice', 'multi_select', 'pbq_scenario'].includes(q.format)
+  );
+
+  const total = Math.min(EXAM_SIM_TOTAL, eligible.length);
+  const domainIds = [1, 2, 3, 4, 5];
+  const quotas = {};
+  let runningSum = 0;
+  domainIds.forEach((d, i) => {
+    if (i < domainIds.length - 1) {
+      quotas[d] = Math.round(DOMAIN_WEIGHTS[d] * total);
+      runningSum += quotas[d];
+    }
+  });
+  quotas[domainIds[domainIds.length - 1]] = total - runningSum;
+
+  const pbqs = [];
+  const nonPbqs = [];
+  const usedIds = new Set();
+
+  domainIds.forEach(d => {
+    const domainQ = eligible.filter(q => q.domain === d);
+    const picks = fisherYatesShuffle(domainQ).slice(0, quotas[d]);
+    picks.forEach(q => {
+      usedIds.add(q.id);
+      if (q.format === 'pbq_scenario') pbqs.push(q);
+      else nonPbqs.push(q);
+    });
+  });
+
+  // Fill shortages
+  if (pbqs.length + nonPbqs.length < total) {
+    const leftover = fisherYatesShuffle(eligible.filter(q => !usedIds.has(q.id)));
+    for (const q of leftover) {
+      if (pbqs.length + nonPbqs.length >= total) break;
+      if (q.format === 'pbq_scenario') pbqs.push(q);
+      else nonPbqs.push(q);
+    }
+  }
+
+  return [...pbqs, ...fisherYatesShuffle(nonPbqs)].slice(0, total);
+}
+
+function saveExamSimProgress() {
+  if (!window.APP.examSim) return;
+  const state = {
+    questionIds: window.APP.examSim.questions.map(q => q.id),
+    answers: window.APP.examSim.answers,
+    currentIndex: window.APP.examSim.currentIndex,
+    timerRemaining: window.APP.examSim.timerRemaining,
+    warningShown30: window.APP.examSim.warningShown30,
+    warningShown10: window.APP.examSim.warningShown10,
+    startTime: window.APP.examSim.startTime
+  };
+  sessionStorage.setItem(EXAM_SIM_SESSION_KEY, JSON.stringify(state));
+}
+
+function loadExamSimProgress() {
+  const raw = sessionStorage.getItem(EXAM_SIM_SESSION_KEY);
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
+function clearExamSimProgress() {
+  sessionStorage.removeItem(EXAM_SIM_SESSION_KEY);
+}
+
+function startExamSim(forceNew) {
+  const saved = forceNew ? null : loadExamSimProgress();
+
+  if (saved && !forceNew) {
+    const resume = confirm(
+      `You have an exam in progress (${Object.keys(saved.answers).length}/${saved.questionIds.length} answered, ` +
+      `${Math.floor(saved.timerRemaining / 60)}:${String(saved.timerRemaining % 60).padStart(2, '0')} remaining).\n\n` +
+      `Click OK to resume, or Cancel to start a fresh exam.`
+    );
+    if (resume) {
+      const questions = saved.questionIds.map(id =>
+        window.ALL_QUESTIONS.find(q => q.id === id)
+      ).filter(Boolean);
+
+      window.APP.examSim = {
+        questions,
+        answers: saved.answers,
+        currentIndex: saved.currentIndex || 0,
+        timerRemaining: saved.timerRemaining,
+        timerInterval: null,
+        warningShown30: saved.warningShown30 || false,
+        warningShown10: saved.warningShown10 || false,
+        startTime: saved.startTime || Date.now(),
+        submitted: false
+      };
+      window.APP.mode = 'exam-sim';
+      setActiveNav('exam-sim');
+      showView('exam-sim');
+      renderExamSimQuestion(window.APP.examSim.currentIndex);
+      startExamTimer();
+      return;
+    }
+  }
+
+  // Start fresh
+  const questions = generateExamSimTest();
+  window.APP.examSim = {
+    questions,
+    answers: {},
+    currentIndex: 0,
+    timerRemaining: EXAM_SIM_DURATION,
+    timerInterval: null,
+    warningShown30: false,
+    warningShown10: false,
+    startTime: Date.now(),
+    submitted: false
+  };
+  window.APP.mode = 'exam-sim';
+  clearExamSimProgress();
+  setActiveNav('exam-sim');
+  showView('exam-sim');
+  renderExamSimQuestion(0);
+  startExamTimer();
+}
+
+function startExamTimer() {
+  if (window.APP.examSim.timerInterval) clearInterval(window.APP.examSim.timerInterval);
+  window.APP.examSim.timerInterval = setInterval(tickExamTimer, 1000);
+}
+
+function stopExamTimer() {
+  if (window.APP.examSim && window.APP.examSim.timerInterval) {
+    clearInterval(window.APP.examSim.timerInterval);
+    window.APP.examSim.timerInterval = null;
+  }
+}
+
+function tickExamTimer() {
+  if (!window.APP.examSim || window.APP.examSim.submitted) return;
+
+  window.APP.examSim.timerRemaining = Math.max(0, window.APP.examSim.timerRemaining - 1);
+  saveExamSimProgress();
+
+  const remaining = window.APP.examSim.timerRemaining;
+  updateExamTimerDisplay(remaining);
+
+  if (remaining <= 0) {
+    stopExamTimer();
+    showToast("⏰ Time's up! Your exam has been auto-submitted.");
+    executeExamSubmit();
+    return;
+  }
+
+  if (remaining <= 600 && !window.APP.examSim.warningShown10) {
+    window.APP.examSim.warningShown10 = true;
+    showToast('🚨 10 minutes remaining — consider submitting soon');
+  } else if (remaining <= 1800 && !window.APP.examSim.warningShown30) {
+    window.APP.examSim.warningShown30 = true;
+    showToast('⚠️ 30 minutes remaining');
+  }
+}
+
+function updateExamTimerDisplay(remaining) {
+  const el = document.getElementById('exam-timer');
+  if (!el) return;
+
+  const mins = Math.floor(remaining / 60);
+  const secs = remaining % 60;
+  el.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+  el.className = 'exam-timer';
+  if (remaining <= 600) {
+    el.classList.add('timer-danger');
+  } else if (remaining <= 1800) {
+    el.classList.add('timer-warning');
+  }
+}
+
+// Pause timer when tab is hidden
+document.addEventListener('visibilitychange', () => {
+  if (!window.APP.examSim || window.APP.examSim.submitted) return;
+
+  if (document.hidden) {
+    stopExamTimer();
+    saveExamSimProgress();
+  } else {
+    if (window.APP.examSim.timerRemaining > 0) {
+      startExamTimer();
+    }
+  }
+});
+
+function renderExamSimQuestion(idx) {
+  const sim = window.APP.examSim;
+  if (!sim) return;
+
+  sim.currentIndex = idx;
+  const q = sim.questions[idx];
+  const container = document.getElementById('view-exam-sim');
+  container.innerHTML = '';
+
+  // Exam header
+  const header = document.createElement('div');
+  header.className = 'exam-header';
+
+  const progressLabel = document.createElement('div');
+  progressLabel.className = 'exam-progress-label';
+  progressLabel.textContent = `Question ${idx + 1} of ${sim.questions.length}`;
+
+  const bookmarkBtn = document.createElement('button');
+  bookmarkBtn.id = 'exam-bookmark-btn';
+  bookmarkBtn.className = `bookmark-btn${isBookmarked(q.id) ? ' bookmarked' : ''}`;
+  bookmarkBtn.textContent = isBookmarked(q.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
+  bookmarkBtn.addEventListener('click', () => {
+    toggleBookmark(q.id);
+    updateExamBookmarkBtn(q.id);
+    updateExamGrid();
+    saveExamSimProgress();
+  });
+
+  const timerEl = document.createElement('div');
+  timerEl.id = 'exam-timer';
+  timerEl.className = 'exam-timer';
+  const rem = sim.timerRemaining;
+  timerEl.textContent = `${String(Math.floor(rem / 60)).padStart(2, '0')}:${String(rem % 60).padStart(2, '0')}`;
+  if (rem <= 600) timerEl.classList.add('timer-danger');
+  else if (rem <= 1800) timerEl.classList.add('timer-warning');
+
+  header.appendChild(progressLabel);
+  header.appendChild(bookmarkBtn);
+  header.appendChild(timerEl);
+  container.appendChild(header);
+
+  // Question grid (collapsible)
+  const gridPanel = document.createElement('details');
+  gridPanel.className = 'exam-grid-panel';
+  const gridSummary = document.createElement('summary');
+  const answeredCount = Object.keys(sim.answers).length;
+  gridSummary.textContent = `Question Navigator (${answeredCount}/${sim.questions.length} answered) — Click to expand`;
+  gridPanel.appendChild(gridSummary);
+
+  const grid = document.createElement('div');
+  grid.className = 'exam-grid';
+  sim.questions.forEach((gq, gIdx) => {
+    const btn = document.createElement('button');
+    btn.className = 'grid-btn';
+    btn.textContent = String(gIdx + 1);
+    btn.dataset.gridIdx = gIdx;
+
+    if (isBookmarked(gq.id)) {
+      btn.classList.add('grid-bookmarked');
+    } else if (sim.answers[gIdx] !== undefined) {
+      btn.classList.add('grid-answered');
+    }
+    if (gIdx === idx) btn.classList.add('grid-current');
+
+    btn.addEventListener('click', () => {
+      saveExamSimProgress();
+      renderExamSimQuestion(gIdx);
+    });
+    grid.appendChild(btn);
+  });
+  gridPanel.appendChild(grid);
+  container.appendChild(gridPanel);
+
+  // Question card
+  const card = document.createElement('div');
+  card.className = 'question-card';
+
+  const diffBadge = document.createElement('span');
+  diffBadge.className = `badge badge-${q.difficulty}`;
+  diffBadge.textContent = q.difficulty;
+  card.appendChild(diffBadge);
+
+  if (q.format === 'pbq_scenario') {
+    const pbqBadge = document.createElement('span');
+    pbqBadge.className = 'badge badge-pbq';
+    pbqBadge.textContent = 'Performance-Based Question';
+    card.appendChild(pbqBadge);
+
+    if (q.scenario) {
+      const scenarioBox = document.createElement('div');
+      scenarioBox.className = 'scenario-box';
+      const scenarioLabel = document.createElement('div');
+      scenarioLabel.className = 'scenario-label';
+      scenarioLabel.textContent = '📋 SCENARIO';
+      scenarioBox.appendChild(scenarioLabel);
+      const scenarioText = document.createElement('p');
+      scenarioText.className = 'scenario-text';
+      scenarioText.textContent = q.scenario;
+      scenarioBox.appendChild(scenarioText);
+      card.appendChild(scenarioBox);
+    }
+  }
+
+  const stem = document.createElement('p');
+  stem.className = 'question-stem';
+  stem.textContent = q.stem;
+  card.appendChild(stem);
+
+  // Answer area
+  const answerArea = document.createElement('div');
+  answerArea.className = 'answer-area';
+
+  const savedAnswer = sim.answers[idx];
+  const isMulti = Array.isArray(q.answer) || q.format === 'multi_select';
+
+  if (isMulti) {
+    renderExamSimMultiSelect(q, answerArea, idx, savedAnswer);
+  } else {
+    renderExamSimMultipleChoice(q, answerArea, idx, savedAnswer);
+  }
+
+  card.appendChild(answerArea);
+  container.appendChild(card);
+
+  // Keyboard hint (exam sim)
+  if (!localStorage.getItem('keyboard_hint_dismissed')) {
+    const hint = document.createElement('div');
+    hint.className = 'keyboard-hint';
+    hint.innerHTML = `<span>⌨️ Tip: A–D to select, ←→ to navigate, B to bookmark, Esc to quit</span>`;
+    const db = document.createElement('button');
+    db.className = 'dismiss-hint';
+    db.textContent = 'Dismiss';
+    db.addEventListener('click', () => {
+      localStorage.setItem('keyboard_hint_dismissed', '1');
+      hint.remove();
+    });
+    hint.appendChild(db);
+    container.appendChild(hint);
+  }
+
+  // Navigation footer
+  const navRow = document.createElement('div');
+  navRow.className = 'exam-nav-row';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'exam-prev-btn secondary-btn';
+  prevBtn.textContent = '← Previous';
+  prevBtn.disabled = idx === 0;
+  prevBtn.addEventListener('click', () => navigateExamSim(-1));
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'exam-next-btn secondary-btn';
+  nextBtn.textContent = 'Next →';
+  nextBtn.disabled = idx === sim.questions.length - 1;
+  nextBtn.addEventListener('click', () => navigateExamSim(1));
+
+  const submitExamBtn = document.createElement('button');
+  submitExamBtn.className = 'exam-submit-btn';
+  submitExamBtn.textContent = 'Submit Exam';
+  submitExamBtn.addEventListener('click', () => confirmSubmitExam());
+
+  navRow.appendChild(prevBtn);
+  navRow.appendChild(nextBtn);
+  navRow.appendChild(submitExamBtn);
+  container.appendChild(navRow);
+}
+
+function renderExamSimMultipleChoice(q, container, idx, savedAnswer) {
+  const sim = window.APP.examSim;
+  const list = document.createElement('div');
+  list.className = 'options-list';
+
+  Object.entries(q.options).forEach(([key, text]) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.key = key;
+    btn.textContent = `${key}. ${text}`;
+
+    if (savedAnswer === key) btn.classList.add('selected');
+
+    btn.addEventListener('click', () => {
+      list.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected', 'keyboard-focus'));
+      btn.classList.add('selected');
+      sim.answers[idx] = key;
+      saveExamSimProgress();
+      updateExamGrid();
+    });
+    list.appendChild(btn);
+  });
+
+  container.appendChild(list);
+}
+
+function renderExamSimMultiSelect(q, container, idx, savedAnswer) {
+  const sim = window.APP.examSim;
+  const savedArr = Array.isArray(savedAnswer) ? savedAnswer : [];
+
+  const instruction = document.createElement('p');
+  instruction.className = 'instruction';
+  const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  instruction.textContent = `Select ${correctAnswers.length === 2 ? 'TWO' : correctAnswers.length} option(s) that apply.`;
+  container.appendChild(instruction);
+
+  const list = document.createElement('div');
+  list.className = 'options-list';
+
+  const checkboxes = {};
+  Object.entries(q.options).forEach(([key, text]) => {
+    const label = document.createElement('label');
+    label.className = `checkbox-option${savedArr.includes(key) ? ' selected' : ''}`;
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = key;
+    cb.checked = savedArr.includes(key);
+    checkboxes[key] = cb;
+
+    cb.addEventListener('change', () => {
+      label.classList.toggle('selected', cb.checked);
+      const selected = Object.entries(checkboxes)
+        .filter(([, c]) => c.checked)
+        .map(([k]) => k);
+      sim.answers[idx] = selected;
+      saveExamSimProgress();
+      updateExamGrid();
+    });
+
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(` ${key}. ${text}`));
+    list.appendChild(label);
+  });
+
+  container.appendChild(list);
+}
+
+function selectExamSimOption(key) {
+  const sim = window.APP.examSim;
+  if (!sim) return;
+
+  const idx = sim.currentIndex;
+  const q = sim.questions[idx];
+  if (!q) return;
+
+  const container = document.getElementById('view-exam-sim');
+  const btn = container.querySelector(`.option-btn[data-key="${key}"]`);
+  if (btn) {
+    btn.click();
+    return;
+  }
+
+  // Multi-select: toggle the checkbox for that key
+  const cb = container.querySelector(`input[value="${key}"]`);
+  if (cb) {
+    cb.click();
+  }
+}
+
+function navigateExamSim(direction) {
+  const sim = window.APP.examSim;
+  if (!sim) return;
+
+  const newIdx = sim.currentIndex + direction;
+  if (newIdx < 0 || newIdx >= sim.questions.length) return;
+
+  saveExamSimProgress();
+  renderExamSimQuestion(newIdx);
+}
+
+function updateExamGrid() {
+  const sim = window.APP.examSim;
+  if (!sim) return;
+
+  const grid = document.querySelector('.exam-grid');
+  if (!grid) return;
+
+  const btns = grid.querySelectorAll('.grid-btn');
+  btns.forEach((btn, gIdx) => {
+    btn.className = 'grid-btn';
+    const gq = sim.questions[gIdx];
+    if (gq && isBookmarked(gq.id)) {
+      btn.classList.add('grid-bookmarked');
+    } else if (sim.answers[gIdx] !== undefined) {
+      btn.classList.add('grid-answered');
+    }
+    if (gIdx === sim.currentIndex) btn.classList.add('grid-current');
+  });
+
+  const answeredCount = Object.keys(sim.answers).length;
+  const summary = document.querySelector('.exam-grid-panel summary');
+  if (summary) {
+    summary.textContent = `Question Navigator (${answeredCount}/${sim.questions.length} answered) — Click to expand`;
+  }
+}
+
+function updateExamBookmarkBtn(qId) {
+  const btn = document.getElementById('exam-bookmark-btn');
+  if (!btn) return;
+  const active = isBookmarked(qId);
+  btn.className = `bookmark-btn${active ? ' bookmarked' : ''}`;
+  btn.textContent = active ? '🔖 Bookmarked' : '🔖 Bookmark';
+}
+
+function confirmSubmitExam() {
+  const sim = window.APP.examSim;
+  if (!sim) return;
+
+  const answered = Object.keys(sim.answers).length;
+  const unanswered = sim.questions.length - answered;
+  const msg = unanswered > 0
+    ? `You have ${unanswered} unanswered question(s). Submit anyway? You cannot change answers after submitting.`
+    : 'Submit your exam? You cannot change answers after submitting.';
+
+  if (confirm(msg)) {
+    executeExamSubmit();
+  }
+}
+
+function executeExamSubmit() {
+  const sim = window.APP.examSim;
+  if (!sim || sim.submitted) return;
+
+  sim.submitted = true;
+  stopExamTimer();
+  clearExamSimProgress();
+
+  const timeTaken = EXAM_SIM_DURATION - sim.timerRemaining;
+
+  // Build answers array for scoring
+  const answers = sim.questions.map((q, idx) => {
+    const userAnswer = sim.answers[idx];
+    const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+    let correct = false;
+
+    if (userAnswer === undefined || userAnswer === null) {
+      correct = false;
+    } else if (Array.isArray(userAnswer)) {
+      const correctSet = new Set(correctAnswers);
+      const selectedSet = new Set(userAnswer);
+      correct = correctSet.size === selectedSet.size && [...correctSet].every(k => selectedSet.has(k));
+    } else {
+      correct = userAnswer === q.answer;
+    }
+
+    return {
+      question_id: q.id,
+      user_answer: userAnswer,
+      correct,
+      domain: q.domain,
+      objective: q.objective,
+      topic: q.topic,
+      format: q.format,
+      difficulty: q.difficulty,
+      confidence: null
+    };
+  });
+
+  const result = computeResults(answers);
+  result.mode = 'exam_sim';
+  result.time_taken = timeTaken;
+
+  saveSession(result, answers);
+
+  const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+  const streak = parseInt(localStorage.getItem('streak') || '0', 10);
+
+  setActiveNav(null);
+  showView('exam-results');
+  renderExamSimResults(result, answers, sim.questions, timeTaken, streak);
+}
+
+function renderExamSimResults(result, answers, questions, timeTaken, streak) {
+  const container = document.getElementById('view-exam-results');
+  container.innerHTML = '';
+
+  const heading = document.createElement('h2');
+  heading.textContent = '🎯 Exam Simulation Results';
+  container.appendChild(heading);
+
+  const timeMins = Math.floor(timeTaken / 60);
+  const timeSecs = timeTaken % 60;
+
+  const summary = document.createElement('div');
+  summary.className = `score-summary ${result.pass ? 'pass' : 'fail'}`;
+  summary.innerHTML = `
+    <h2>${result.pass ? '✅ PASS' : '❌ FAIL'}</h2>
+    <p class="score-line">${result.score} / ${result.total} — ${result.pct.toFixed(0)}%</p>
+    <p class="threshold-note">Passing threshold: ${PASS_THRESHOLD}% &nbsp;|&nbsp; Time taken: ${timeMins}m ${timeSecs}s</p>
+  `;
+  container.appendChild(summary);
+
+  // Domain breakdown
+  const domainSection = document.createElement('div');
+  domainSection.className = 'domain-breakdown';
+  domainSection.innerHTML = '<h3>Domain Breakdown</h3>';
+
+  const table = document.createElement('table');
+  table.className = 'domain-table';
+  table.innerHTML = '<thead><tr><th>Domain</th><th>Questions</th><th>Correct</th><th>Score%</th><th>Pass/Fail</th></tr></thead>';
+  const tbody = document.createElement('tbody');
+
+  [1, 2, 3, 4, 5].forEach(d => {
+    const stats = result.domainStats[d];
+    if (stats.total === 0) return;
+    const score = result.domainScores[d];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>D${d} — ${escapeHtml(DOMAIN_NAMES[d])}</td>
+      <td>${stats.total}</td>
+      <td>${stats.correct}</td>
+      <td>${score.toFixed(0)}%</td>
+      <td class="${score >= PASS_THRESHOLD ? 'pass-text' : 'fail-text'}">${score >= PASS_THRESHOLD ? 'Pass' : 'Fail'}</td>
+    `;
+    tbody.appendChild(tr);
+
+    const barRow = document.createElement('tr');
+    const barCell = document.createElement('td');
+    barCell.colSpan = 5;
+    barCell.innerHTML = `<div class="progress-bar"><div class="progress-bar-fill" style="width:${score}%"></div></div>`;
+    barRow.appendChild(barCell);
+    tbody.appendChild(barRow);
+  });
+
+  table.appendChild(tbody);
+  domainSection.appendChild(table);
+  container.appendChild(domainSection);
+
+  // Missed questions review
+  const missedSection = buildMissedSection(answers);
+  if (missedSection) container.appendChild(missedSection);
+
+  // Tips
+  const tips = generateTips(result, answers, { streak });
+  const tipsCard = document.createElement('div');
+  tipsCard.className = 'tips-card';
+  tipsCard.innerHTML = '<h3>📋 Study Tips</h3>';
+  const ul = document.createElement('ul');
+  tips.forEach(t => {
+    const li = document.createElement('li');
+    li.textContent = t;
+    ul.appendChild(li);
+  });
+  tipsCard.appendChild(ul);
+  container.appendChild(tipsCard);
+
+  // Action buttons
+  const btnRow = document.createElement('div');
+  btnRow.className = 'results-actions';
+
+  const retakeBtn = document.createElement('button');
+  retakeBtn.className = 'exam-sim-btn';
+  retakeBtn.textContent = '🎯 Retake Exam';
+  retakeBtn.addEventListener('click', () => startExamSim(true));
+
+  const testBtn = document.createElement('button');
+  testBtn.className = 'primary-btn';
+  testBtn.textContent = 'Take Daily Test';
+  testBtn.addEventListener('click', () => startTest());
+
+  const progressBtn = document.createElement('button');
+  progressBtn.className = 'secondary-btn';
+  progressBtn.textContent = 'View Progress';
+  progressBtn.addEventListener('click', () => {
+    setActiveNav('progress');
+    showView('progress');
+    renderProgress();
+  });
+
+  const homeBtn = document.createElement('button');
+  homeBtn.className = 'secondary-btn';
+  homeBtn.textContent = 'Home';
+  homeBtn.addEventListener('click', () => {
+    setActiveNav('home');
+    showView('home');
+    renderHome();
+  });
+
+  btnRow.appendChild(retakeBtn);
+  btnRow.appendChild(testBtn);
+  btnRow.appendChild(progressBtn);
+  btnRow.appendChild(homeBtn);
+  container.appendChild(btnRow);
+}
+
+// =====================================================================
+// P. REPORT ISSUE
+// =====================================================================
+
+function getReports() {
+  return JSON.parse(localStorage.getItem('question_reports') || '[]');
+}
+
+function saveReport(report) {
+  const reports = getReports();
+  reports.push(report);
+  localStorage.setItem('question_reports', JSON.stringify(reports));
+}
+
+function renderReportButton(container, q) {
+  const reportBtn = document.createElement('button');
+  reportBtn.className = 'report-btn';
+  reportBtn.textContent = '⚑ Report Issue';
+
+  let formEl = null;
+
+  reportBtn.addEventListener('click', () => {
+    if (formEl) {
+      formEl.remove();
+      formEl = null;
+      return;
+    }
+
+    formEl = document.createElement('div');
+    formEl.className = 'report-form';
+
+    const title = document.createElement('div');
+    title.className = 'report-form-title';
+    title.textContent = `Report an issue with question ${q.id}`;
+    formEl.appendChild(title);
+
+    const issueTypes = [
+      { value: 'confusing', label: 'Question is confusing' },
+      { value: 'wrong_answer', label: 'Answer seems incorrect' },
+      { value: 'unclear_explanation', label: 'Explanation is unclear' },
+      { value: 'other', label: 'Other' }
+    ];
+
+    const radioRow = document.createElement('div');
+    radioRow.className = 'report-radio-row';
+
+    issueTypes.forEach(({ value, label }) => {
+      const lbl = document.createElement('label');
+      const inp = document.createElement('input');
+      inp.type = 'radio';
+      inp.name = `report-type-${q.id}`;
+      inp.value = value;
+      if (value === 'confusing') inp.checked = true;
+      lbl.appendChild(inp);
+      lbl.appendChild(document.createTextNode(` ${label}`));
+      radioRow.appendChild(lbl);
+    });
+
+    formEl.appendChild(radioRow);
+
+    const note = document.createElement('textarea');
+    note.className = 'report-note';
+    note.placeholder = 'Describe the issue (optional)...';
+    formEl.appendChild(note);
+
+    const actions = document.createElement('div');
+    actions.className = 'report-actions';
+
+    const submitBtn = document.createElement('button');
+    submitBtn.className = 'report-submit-btn';
+    submitBtn.textContent = 'Submit Report';
+    submitBtn.addEventListener('click', () => {
+      const issueType = formEl.querySelector(`input[name="report-type-${q.id}"]:checked`);
+      saveReport({
+        question_id: q.id,
+        question_stem: q.stem.slice(0, 100),
+        issue_type: issueType ? issueType.value : 'other',
+        note: note.value.trim(),
+        date: new Date().toISOString()
+      });
+      showToast('✅ Report submitted. Thanks for the feedback!', 3000);
+      formEl.remove();
+      formEl = null;
+    });
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'report-cancel-btn secondary-btn';
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.addEventListener('click', () => {
+      formEl.remove();
+      formEl = null;
+    });
+
+    actions.appendChild(submitBtn);
+    actions.appendChild(cancelBtn);
+    formEl.appendChild(actions);
+
+    container.appendChild(formEl);
+  });
+
+  container.appendChild(reportBtn);
+}
+
+function buildReportsSection() {
+  const wrap = document.createElement('div');
+  wrap.className = 'reports-section';
+  wrap.innerHTML = '<h3>⚑ Reported Questions</h3>';
+
+  const reports = getReports();
+  if (!reports.length) {
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'No reported questions yet. Use ⚑ Report Issue on any question card to flag issues.'
+    }));
+    return wrap;
+  }
+
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'table-scroll';
+  const table = document.createElement('table');
+  table.className = 'domain-table';
+  table.innerHTML = '<thead><tr><th>Q-ID</th><th>Issue</th><th>Date</th><th>Note</th></tr></thead>';
+  const tbody = document.createElement('tbody');
+
+  const ISSUE_LABELS = {
+    confusing: 'Confusing',
+    wrong_answer: 'Wrong Answer',
+    unclear_explanation: 'Unclear Explanation',
+    other: 'Other'
+  };
+
+  reports.slice(-20).reverse().forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${escapeHtml(r.question_id)}</strong></td>
+      <td>${escapeHtml(ISSUE_LABELS[r.issue_type] || r.issue_type)}</td>
+      <td>${escapeHtml(new Date(r.date).toLocaleDateString())}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${escapeHtml(r.note || '')}">${escapeHtml(r.note || '—')}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  tableWrap.appendChild(table);
+  wrap.appendChild(tableWrap);
+
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'secondary-btn reset-btn';
+  clearBtn.style.marginTop = '0.75rem';
+  clearBtn.textContent = 'Clear Reports';
+  clearBtn.addEventListener('click', () => {
+    if (confirm('Clear all reported questions?')) {
+      localStorage.removeItem('question_reports');
+      renderProgress();
+    }
+  });
+  wrap.appendChild(clearBtn);
+
+  return wrap;
+}
+
+// =====================================================================
+// Q. DOMAIN MASTERY BADGES
+// =====================================================================
+
+function buildDomainMasteryBadges(sessions) {
+  const wrap = document.createElement('div');
+  wrap.className = 'badges-section';
+  wrap.innerHTML = '<h3>Domain Mastery Badges</h3>';
+
+  if (!sessions.length) {
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'Complete tests to unlock domain mastery badges.'
+    }));
+    return wrap;
+  }
+
+  // Compute current mastery from all sessions
+  const currentTotals = {};
+  [1, 2, 3, 4, 5].forEach(d => (currentTotals[d] = { total: 0, correct: 0 }));
+  sessions.forEach(s => {
+    if (!s.domain_stats) return;
+    [1, 2, 3, 4, 5].forEach(d => {
+      const ds = s.domain_stats[d];
+      if (ds) {
+        currentTotals[d].total += ds.total;
+        currentTotals[d].correct += ds.correct;
+      }
+    });
+  });
+
+  // Compute previous mastery (all sessions except last) for unlock detection
+  const prevTotals = {};
+  [1, 2, 3, 4, 5].forEach(d => (prevTotals[d] = { total: 0, correct: 0 }));
+  if (sessions.length > 1) {
+    sessions.slice(0, -1).forEach(s => {
+      if (!s.domain_stats) return;
+      [1, 2, 3, 4, 5].forEach(d => {
+        const ds = s.domain_stats[d];
+        if (ds) {
+          prevTotals[d].total += ds.total;
+          prevTotals[d].correct += ds.correct;
+        }
+      });
+    });
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'badges-grid';
+
+  const unlocked = [];
+
+  [1, 2, 3, 4, 5].forEach(d => {
+    const t = currentTotals[d];
+    const mastery = t.total > 0 ? (t.correct / t.total) * 100 : 0;
+
+    const pt = prevTotals[d];
+    const prevMastery = pt.total > 0 ? (pt.correct / pt.total) * 100 : 0;
+
+    let state;
+    if (mastery >= PASS_THRESHOLD) state = 'mastered';
+    else if (mastery >= 70) state = 'progress';
+    else state = 'locked';
+
+    let icon;
+    if (state === 'mastered') icon = '✅';
+    else if (state === 'progress') icon = '🎯';
+    else icon = '🔒';
+
+    const card = document.createElement('div');
+    card.className = `domain-badge-card badge-${state}`;
+
+    const pct = t.total > 0 ? mastery : 0;
+    const barPct = Math.min((pct / PASS_THRESHOLD) * 100, 100);
+
+    card.innerHTML = `
+      <div class="domain-badge-icon">${icon}</div>
+      <div class="domain-badge-name">Domain ${d}</div>
+      <div class="domain-badge-pct">${pct.toFixed(0)}%</div>
+      <div class="domain-badge-state">${state === 'mastered' ? 'Mastered' : state === 'progress' ? 'In Progress' : 'Locked'}</div>
+      <div class="domain-badge-bar"><div class="domain-badge-bar-fill" style="width:${barPct}%"></div></div>
+    `;
+
+    grid.appendChild(card);
+
+    // Check for newly unlocked (prev < 83, current >= 83)
+    if (prevMastery < PASS_THRESHOLD && mastery >= PASS_THRESHOLD && t.total > 0) {
+      unlocked.push(d);
+    }
+  });
+
+  wrap.appendChild(grid);
+
+  // Show congratulations toast for each newly mastered domain (delayed to render first)
+  setTimeout(() => {
+    unlocked.forEach(d => {
+      showToast(`🎉 Domain ${d} Mastered! Great work on ${DOMAIN_NAMES[d]}!`, 7000);
+    });
+  }, 400);
+
+  return wrap;
+}
+
+// =====================================================================
+// R. CONFIDENCE VS ACCURACY (Progress Sub-section)
+// =====================================================================
+
+function buildConfidenceAccuracyTable(sessions) {
+  const wrap = document.createElement('div');
+  wrap.className = 'confidence-section';
+  wrap.innerHTML = '<h3>Confidence vs Accuracy</h3>';
+
+  const stats = {
+    guessed: { total: 0, correct: 0 },
+    unsure: { total: 0, correct: 0 },
+    confident: { total: 0, correct: 0 }
+  };
+
+  let hasData = false;
+  sessions.forEach(s => {
+    if (!s.answers) return;
+    s.answers.forEach(a => {
+      if (a.confidence && stats[a.confidence]) {
+        hasData = true;
+        stats[a.confidence].total++;
+        if (a.correct) stats[a.confidence].correct++;
+      }
+    });
+  });
+
+  if (!hasData) {
+    wrap.appendChild(Object.assign(document.createElement('p'), {
+      textContent: 'Rate your confidence after each question to see accuracy patterns here.'
+    }));
+    return wrap;
+  }
+
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'table-scroll';
+  const table = document.createElement('table');
+  table.className = 'domain-table';
+  table.innerHTML = '<thead><tr><th>Confidence Level</th><th>Total</th><th>Correct</th><th>Accuracy %</th></tr></thead>';
+  const tbody = document.createElement('tbody');
+
+  [
+    { key: 'guessed', label: '😰 Guessed' },
+    { key: 'unsure', label: '🤔 Unsure' },
+    { key: 'confident', label: '😊 Confident' }
+  ].forEach(({ key, label }) => {
+    const s = stats[key];
+    const acc = s.total > 0 ? (s.correct / s.total) * 100 : 0;
+    let cls = 'mastery-low';
+    if (acc >= PASS_THRESHOLD) cls = 'mastery-high';
+    else if (acc >= 70) cls = 'mastery-mid';
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${label}</td>
+      <td>${s.total}</td>
+      <td>${s.correct}</td>
+      <td class="${s.total > 0 ? cls : ''}">${s.total > 0 ? acc.toFixed(0) + '%' : '—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  tableWrap.appendChild(table);
+  wrap.appendChild(tableWrap);
+  return wrap;
+}
+
+// =====================================================================
+// Navigation / View Switching
+// =====================================================================
 
 function showView(name) {
   document.querySelectorAll('.view').forEach(s => (s.style.display = 'none'));
@@ -1429,30 +2785,61 @@ function initNav() {
     a.addEventListener('click', e => {
       e.preventDefault();
       const view = a.dataset.view;
+
+      // Warn if an exam sim is in progress
+      if (window.APP.mode === 'exam-sim' && window.APP.examSim && !window.APP.examSim.submitted) {
+        if (view !== 'exam-sim') {
+          if (!confirm('Leave the exam? Your progress is saved in this browser tab.')) return;
+          stopExamTimer();
+          saveExamSimProgress();
+          window.APP.mode = 'test';
+        }
+      }
+
       setActiveNav(view);
 
       if (view === 'test') {
         startTest();
+      } else if (view === 'exam-sim') {
+        if (window.APP.examSim && !window.APP.examSim.submitted) {
+          showView('exam-sim');
+        } else {
+          startExamSim();
+        }
       } else if (view === 'drill') {
         showView('drill');
         renderDrillConfig();
       } else if (view === 'progress') {
         showView('progress');
         renderProgress();
+      } else if (view === 'bookmarks') {
+        showView('bookmarks');
+        renderBookmarks();
       } else {
         showView('home');
         renderHome();
       }
     });
   });
+
+  const colorBtn = document.getElementById('btn-color-mode');
+  if (colorBtn) {
+    colorBtn.addEventListener('click', toggleColorMode);
+  }
 }
 
-// ---------------------------------------------------------------------
+// =====================================================================
 // Init
-// ---------------------------------------------------------------------
+// =====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Apply saved color mode before render (no flash)
+  const savedMode = localStorage.getItem('color_mode') || 'dark';
+  applyColorMode(savedMode);
+
   initNav();
+  initKeyboardNav();
+
   loadQuestions()
     .then(() => {
       showView('home');
