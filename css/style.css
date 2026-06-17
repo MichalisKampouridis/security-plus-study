@@ -1516,6 +1516,71 @@ body.light-mode .option-btn:hover:not(:disabled) {
   }
 }
 
+/* ---------- Share with Claude ---------- */
+
+.claude-share-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px dashed #7c3aed;
+  border-radius: 12px;
+  text-align: center;
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.claude-share-section p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.btn-claude {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-claude:hover {
+  opacity: 0.9;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+
+.btn-claude.copied {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.btn-claude.copied:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.claude-fallback-note {
+  color: var(--red);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.claude-fallback-textarea {
+  width: 100%;
+  height: 200px;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card-alt);
+  color: var(--text);
+  resize: vertical;
+  text-align: left;
+}
+
 /* ---------- Print ---------- */
 
 @media print {

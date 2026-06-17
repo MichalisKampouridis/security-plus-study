@@ -684,6 +684,9 @@ function renderResults(result, answers, context) {
   tipsCard.appendChild(ul);
   container.appendChild(tipsCard);
 
+  // Share with Claude
+  container.appendChild(buildClaudeShareSection(result, answers, { mode: 'daily', tips }));
+
   const btnRow = document.createElement('div');
   btnRow.className = 'results-actions';
 
@@ -2395,6 +2398,13 @@ function renderExamSimResults(result, answers, questions, timeTaken, streak) {
   tipsCard.appendChild(ul);
   container.appendChild(tipsCard);
 
+  // Share with Claude
+  container.appendChild(buildClaudeShareSection(result, answers, {
+    mode: 'exam_sim',
+    timeTaken,
+    tips
+  }));
+
   // Action buttons
   const btnRow = document.createElement('div');
   btnRow.className = 'results-actions';
@@ -2432,6 +2442,244 @@ function renderExamSimResults(result, answers, questions, timeTaken, streak) {
   btnRow.appendChild(progressBtn);
   btnRow.appendChild(homeBtn);
   container.appendChild(btnRow);
+}
+
+// =====================================================================
+// O-2. SHARE WITH CLAUDE — EXPORT SESSION RESULTS
+// =====================================================================
+
+function generateClaudeExport(result, answers, opts) {
+  opts = opts || {};
+  const mode = opts.mode || 'daily';
+  const timeTaken = (opts.timeTaken !== undefined && opts.timeTaken !== null) ? opts.timeTaken : null;
+  const tips = opts.tips || [];
+
+  const lines = [];
+
+  // ── Header ──
+  const dateStr = new Date(result.date).toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const modeLabel = mode === 'exam_sim' ? 'Exam Simulation' : 'Daily Practice Test';
+  const passLabel = result.pass ? 'PASS ✅' : 'FAIL ❌';
+
+  lines.push('## 📊 Security+ SY0-701 Study Session Results');
+  lines.push(`**Date:** ${dateStr}`);
+  lines.push(`**Mode:** ${modeLabel}`);
+  lines.push(`**Score:** ${result.score} / ${result.total} correct — ${result.pct.toFixed(0)}% — ${passLabel}`);
+
+  if (timeTaken !== null) {
+    const mins = Math.floor(timeTaken / 60);
+    const secs = timeTaken % 60;
+    lines.push(`**Time taken:** ${mins} minutes ${secs} seconds`);
+  }
+
+  lines.push('');
+  lines.push('---');
+  lines.push('');
+
+  // ── Domain breakdown ──
+  lines.push('## 📈 Domain Breakdown');
+  lines.push('| Domain | Name | Score | Pass/Fail |');
+  lines.push('|--------|------|-------|-----------|');
+
+  [1, 2, 3, 4, 5].forEach(d => {
+    const stats = result.domainStats[d];
+    if (!stats || stats.total === 0) return;
+    const score = result.domainScores[d];
+    const pf = score >= PASS_THRESHOLD ? '✅' : '❌';
+    lines.push(`| ${d} | ${DOMAIN_NAMES[d]} | ${stats.correct}/${stats.total} (${score.toFixed(0)}%) | ${pf} |`);
+  });
+
+  lines.push('');
+  lines.push('---');
+  lines.push('');
+
+  // ── Missed questions ──
+  const missed = answers.filter(a => !a.correct);
+  lines.push(`## ❌ Missed Questions (${missed.length} total)`);
+
+  if (missed.length === 0) {
+    lines.push('');
+    lines.push('🎉 No missed questions — perfect score!');
+  } else {
+    const cap = Math.min(missed.length, 30);
+
+    missed.slice(0, cap).forEach((a, i) => {
+      const q = window.ALL_QUESTIONS ? window.ALL_QUESTIONS.find(x => x.id === a.question_id) : null;
+      if (!q) return;
+
+      lines.push('');
+
+      // PBQ scenario prefix
+      if (q.format === 'pbq_scenario' && q.scenario) {
+        lines.push(`**Q${i + 1}.**`);
+        lines.push(`📋 Scenario: ${q.scenario}`);
+        lines.push(`Question: ${q.stem}`);
+      } else {
+        lines.push(`**Q${i + 1}. ${q.stem}**`);
+      }
+
+      // My answer
+      let myAnswer;
+      if (Array.isArray(a.user_answer)) {
+        if (!a.user_answer.length) {
+          myAnswer = '(no selection)';
+        } else {
+          myAnswer = a.user_answer
+            .map(k => (q.options && q.options[k]) ? `${k}. ${q.options[k]}` : k)
+            .join(', ');
+        }
+      } else if (a.user_answer && q.options && q.options[a.user_answer]) {
+        myAnswer = `${a.user_answer}. ${q.options[a.user_answer]}`;
+      } else {
+        myAnswer = a.user_answer || '(no answer)';
+      }
+
+      // Correct answer
+      let correctAnswer;
+      if (Array.isArray(q.answer)) {
+        correctAnswer = q.answer
+          .map(k => (q.options && q.options[k]) ? `${k}. ${q.options[k]}` : k)
+          .join(', ');
+      } else if (q.options && q.options[q.answer]) {
+        correctAnswer = `${q.answer}. ${q.options[q.answer]}`;
+      } else {
+        correctAnswer = String(q.answer);
+      }
+
+      lines.push(`- **My answer:** ${myAnswer}`);
+      lines.push(`- **Correct answer:** ${correctAnswer}`);
+
+      const objInfo = OBJECTIVES[q.objective];
+      const objTitle = objInfo ? `${q.objective} — ${objInfo.title}` : q.objective;
+      lines.push(`- **Objective:** ${objTitle}`);
+      lines.push(`- **Difficulty:** ${q.difficulty}`);
+      lines.push(`- **Explanation:** ${q.explanation}`);
+
+      if (q.comptia_logic_note) {
+        lines.push(`- 💡 **CompTIA Logic:** ${q.comptia_logic_note}`);
+      }
+    });
+
+    if (missed.length > 30) {
+      lines.push('');
+      lines.push(`[${missed.length - 30} more missed questions not shown — focus on the ones above first]`);
+    }
+  }
+
+  lines.push('');
+  lines.push('---');
+  lines.push('');
+
+  // ── Confidence breakdown (daily test only, when data exists) ──
+  const hasConfidence = answers.some(a => a.confidence !== null && a.confidence !== undefined);
+  if (hasConfidence) {
+    const confStats = {
+      guessed:   { total: 0, correct: 0 },
+      unsure:    { total: 0, correct: 0 },
+      confident: { total: 0, correct: 0 }
+    };
+    answers.forEach(a => {
+      if (a.confidence && confStats[a.confidence]) {
+        confStats[a.confidence].total++;
+        if (a.correct) confStats[a.confidence].correct++;
+      }
+    });
+
+    lines.push('## 😰 Confidence Breakdown');
+    lines.push('| Confidence | Total | Correct | Accuracy |');
+    lines.push('|------------|-------|---------|----------|');
+
+    [
+      { key: 'guessed',   label: 'Guessed 😰'   },
+      { key: 'unsure',    label: 'Unsure 🤔'     },
+      { key: 'confident', label: 'Confident 😊'  }
+    ].forEach(({ key, label }) => {
+      const s = confStats[key];
+      const acc = s.total > 0 ? `${((s.correct / s.total) * 100).toFixed(0)}%` : '—';
+      lines.push(`| ${label} | ${s.total} | ${s.correct} | ${acc} |`);
+    });
+
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+  }
+
+  // ── Study tips ──
+  lines.push('## 🎯 App Study Tips');
+  tips.forEach(t => lines.push(`- ${t}`));
+  lines.push('');
+
+  return lines.join('\n');
+}
+
+function buildClaudeShareSection(result, answers, opts) {
+  opts = opts || {};
+
+  const section = document.createElement('div');
+  section.className = 'claude-share-section';
+
+  const btn = document.createElement('button');
+  btn.className = 'btn-claude';
+  btn.textContent = '🤖 Share with Claude — Get Study Notes';
+
+  const subtitle = document.createElement('p');
+  subtitle.textContent = 'Copies a summary you can paste into Claude chat';
+
+  section.appendChild(btn);
+  section.appendChild(subtitle);
+
+  btn.addEventListener('click', () => {
+    const text = generateClaudeExport(result, answers, opts);
+
+    navigator.clipboard.writeText(text).then(() => {
+      // Success path
+      btn.textContent = '✅ Copied! Paste into Claude chat';
+      btn.classList.add('copied');
+      // Remove any fallback textarea that might exist
+      const existing = section.querySelector('.claude-fallback-textarea');
+      if (existing) existing.remove();
+      const existingNote = section.querySelector('.claude-fallback-note');
+      if (existingNote) existingNote.remove();
+
+      setTimeout(() => {
+        btn.textContent = '🤖 Share with Claude — Get Study Notes';
+        btn.classList.remove('copied');
+      }, 3000);
+    }).catch(() => {
+      // Failure path — show textarea fallback
+      const text2 = generateClaudeExport(result, answers, opts);
+
+      const note = document.createElement('p');
+      note.className = 'claude-fallback-note';
+      note.textContent = 'Clipboard access blocked — select all and copy manually (Ctrl+C)';
+
+      const label = document.createElement('p');
+      label.textContent = 'Copy this text and paste it into Claude chat:';
+      label.style.marginTop = '0.75rem';
+
+      const ta = document.createElement('textarea');
+      ta.className = 'claude-fallback-textarea';
+      ta.readOnly = true;
+      ta.value = text2;
+
+      // Remove previously appended fallback elements if re-clicked
+      section.querySelectorAll('.claude-fallback-note, .claude-fallback-textarea, .claude-fallback-label')
+        .forEach(el => el.remove());
+
+      label.className = 'claude-fallback-label';
+      section.appendChild(note);
+      section.appendChild(label);
+      section.appendChild(ta);
+
+      // Auto-select so student can Ctrl+C immediately
+      ta.focus();
+      ta.select();
+    });
+  });
+
+  return section;
 }
 
 // =====================================================================
