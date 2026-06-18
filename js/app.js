@@ -98,6 +98,30 @@ function fisherYatesShuffle(arr) {
   return a;
 }
 
+// Phase E: Runtime option shuffle.
+// Returns a shallow-cloned question with options in a new random order.
+// Only applies to multiple_choice and pbq_scenario single-answer questions.
+// Does NOT mutate window.ALL_QUESTIONS.
+function shuffleOptions(question) {
+  const fmt = question.format;
+  if (fmt !== 'multiple_choice' && fmt !== 'pbq_scenario') return question;
+  if (Array.isArray(question.answer)) return question;
+  if (!question.options || typeof question.answer !== 'string') return question;
+
+  const q = Object.assign({}, question, { options: Object.assign({}, question.options) });
+  const letters    = Object.keys(q.options);
+  const texts      = letters.map(l => q.options[l]);
+  const correctText = q.options[q.answer];
+
+  for (let i = texts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [texts[i], texts[j]] = [texts[j], texts[i]];
+  }
+  letters.forEach((l, i) => { q.options[l] = texts[i]; });
+  q.answer = letters.find(l => q.options[l] === correctText);
+  return q;
+}
+
 function getSeenIds() {
   return JSON.parse(localStorage.getItem('seen_question_ids') || '{}');
 }
@@ -183,6 +207,69 @@ function startTest() {
   renderQuestion();
 }
 
+// Hard Mode generator — difficulty:'hard' OR (difficulty:'medium' AND comptia_logic_note ≠ null)
+function generateHardTest(numQuestions = 25) {
+  const all  = window.ALL_QUESTIONS;
+  const seen = getSeenIds();
+  const now  = Date.now();
+
+  const hardPool = all.filter(q =>
+    q.difficulty === 'hard' ||
+    (q.difficulty === 'medium' && q.comptia_logic_note !== null)
+  );
+
+  const total    = Math.min(numQuestions, hardPool.length);
+  const domainIds = [1, 2, 3, 4, 5];
+  const quotas   = {};
+  let runningSum  = 0;
+  domainIds.forEach((d, i) => {
+    if (i < domainIds.length - 1) {
+      quotas[d] = Math.round(DOMAIN_WEIGHTS[d] * total);
+      runningSum += quotas[d];
+    }
+  });
+  quotas[domainIds[domainIds.length - 1]] = total - runningSum;
+
+  const selected = [];
+  const usedIds  = new Set();
+
+  domainIds.forEach(d => {
+    const domainPool = hardPool.filter(q => q.domain === d);
+    let pool = domainPool.filter(q => {
+      const ts = seen[q.id];
+      return !ts || (now - new Date(ts).getTime()) > SEVEN_DAYS_MS;
+    });
+    if (pool.length < quotas[d]) pool = domainPool;
+    if (!pool.length) return;
+    const picks = fisherYatesShuffle(pool).slice(0, quotas[d]);
+    picks.forEach(q => usedIds.add(q.id));
+    selected.push(...picks);
+  });
+
+  if (selected.length < total) {
+    const leftover = fisherYatesShuffle(hardPool.filter(q => !usedIds.has(q.id)));
+    for (const q of leftover) {
+      if (selected.length >= total) break;
+      selected.push(q);
+      usedIds.add(q.id);
+    }
+  }
+
+  return fisherYatesShuffle(selected);
+}
+
+function startHardMode() {
+  window.APP.mode = 'hard';
+  window.APP.drillNotice = null;
+  window.APP.currentTest = generateHardTest(25);
+  window.APP.currentAnswers = [];
+  window.APP.currentIndex = 0;
+  window.APP.keyboardSelected = null;
+  setActiveNav(null);
+  showView('hard');
+  renderQuestion();
+}
+
 function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str == null ? '' : String(str);
@@ -190,7 +277,9 @@ function escapeHtml(str) {
 }
 
 function runnerContainerId() {
-  return window.APP.mode === 'drill' ? 'view-drill' : 'view-test';
+  if (window.APP.mode === 'drill') return 'view-drill';
+  if (window.APP.mode === 'hard')  return 'view-hard';
+  return 'view-test';
 }
 
 function addBackLink(container) {
@@ -210,9 +299,11 @@ function addBackLink(container) {
 }
 
 function renderQuestion() {
-  const test = window.APP.currentTest;
-  const idx = window.APP.currentIndex;
-  const q = test[idx];
+  const test   = window.APP.currentTest;
+  const idx    = window.APP.currentIndex;
+  const origQ  = test[idx];
+  // Phase E: runtime shuffle — creates a new object; does NOT mutate test[idx]
+  const q      = shuffleOptions(origQ);
   const container = document.getElementById(runnerContainerId());
   container.innerHTML = '';
   window.APP.keyboardSelected = null;
@@ -235,16 +326,16 @@ function renderQuestion() {
   const card = document.createElement('div');
   card.className = 'question-card';
 
-  // Bookmark button
+  // Bookmark button (use origQ.id — bookmark state is by original id)
   const bmBtn = document.createElement('button');
-  bmBtn.className = `bookmark-btn${isBookmarked(q.id) ? ' bookmarked' : ''}`;
-  bmBtn.title = isBookmarked(q.id) ? 'Remove Bookmark' : 'Bookmark this question';
-  bmBtn.textContent = isBookmarked(q.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
+  bmBtn.className = `bookmark-btn${isBookmarked(origQ.id) ? ' bookmarked' : ''}`;
+  bmBtn.title = isBookmarked(origQ.id) ? 'Remove Bookmark' : 'Bookmark this question';
+  bmBtn.textContent = isBookmarked(origQ.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
   bmBtn.addEventListener('click', () => {
-    toggleBookmark(q.id);
-    bmBtn.className = `bookmark-btn${isBookmarked(q.id) ? ' bookmarked' : ''}`;
-    bmBtn.textContent = isBookmarked(q.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
-    bmBtn.title = isBookmarked(q.id) ? 'Remove Bookmark' : 'Bookmark this question';
+    toggleBookmark(origQ.id);
+    bmBtn.className = `bookmark-btn${isBookmarked(origQ.id) ? ' bookmarked' : ''}`;
+    bmBtn.textContent = isBookmarked(origQ.id) ? '🔖 Bookmarked' : '🔖 Bookmark';
+    bmBtn.title = isBookmarked(origQ.id) ? 'Remove Bookmark' : 'Bookmark this question';
   });
   card.appendChild(bmBtn);
 
@@ -252,6 +343,14 @@ function renderQuestion() {
   badge.className = `badge badge-${q.difficulty}`;
   badge.textContent = q.difficulty;
   card.appendChild(badge);
+
+  // Hard Mode badge
+  if (window.APP.mode === 'hard') {
+    const hardBadge = document.createElement('span');
+    hardBadge.className = 'badge badge-hard-mode';
+    hardBadge.textContent = '🔥 HARD MODE';
+    card.appendChild(hardBadge);
+  }
 
   if (q.format === 'pbq_scenario') {
     const pbqBadge = document.createElement('span');
@@ -278,6 +377,14 @@ function renderQuestion() {
   stem.className = 'question-stem';
   stem.textContent = q.stem;
   card.appendChild(stem);
+
+  // Hard Mode: show CompTIA trap warning BEFORE options if this question has a logic note
+  if (window.APP.mode === 'hard' && q.comptia_logic_note) {
+    const warn = document.createElement('div');
+    warn.className = 'trap-warning';
+    warn.textContent = '⚠️ CompTIA Trap — think carefully before answering';
+    card.appendChild(warn);
+  }
 
   const answerArea = document.createElement('div');
   answerArea.className = 'answer-area';
@@ -412,15 +519,29 @@ function renderMultiSelect(q, container) {
 }
 
 function finishAnswer(q, userAnswer, correct, container) {
+  // Translate runtime-shuffled letter back to the file-order letter so that
+  // the missed-review section (which reads from window.ALL_QUESTIONS) shows
+  // the correct option text for the user's selection.
+  let storedAnswer = userAnswer;
+  if (typeof userAnswer === 'string' && userAnswer.length === 1 && q.options) {
+    const selectedText = q.options[userAnswer];
+    const origQ = window.ALL_QUESTIONS.find(x => x.id === q.id);
+    if (origQ && origQ.options) {
+      const entry = Object.entries(origQ.options).find(([, v]) => v === selectedText);
+      if (entry) storedAnswer = entry[0];
+    }
+  }
+
   window.APP.currentAnswers.push({
     question_id: q.id,
-    user_answer: userAnswer,
+    user_answer: storedAnswer,
     correct: correct,
     domain: q.domain,
     objective: q.objective,
     topic: q.topic,
     format: q.format,
     difficulty: q.difficulty,
+    has_logic_note: q.comptia_logic_note !== null && q.comptia_logic_note !== undefined,
     confidence: null
   });
 
@@ -446,10 +567,18 @@ function finishAnswer(q, userAnswer, correct, container) {
   container.appendChild(explanation);
 
   if (q.comptia_logic_note) {
-    const note = document.createElement('div');
-    note.className = 'comptia-note';
-    note.textContent = `💡 CompTIA Logic: ${q.comptia_logic_note}`;
-    container.appendChild(note);
+    if (window.APP.mode === 'hard') {
+      // Hard Mode: distinct styled logic box revealed only after answering
+      const logicBox = document.createElement('div');
+      logicBox.className = 'comptia-logic-box';
+      logicBox.textContent = `🧠 CompTIA Logic: ${q.comptia_logic_note}`;
+      container.appendChild(logicBox);
+    } else {
+      const note = document.createElement('div');
+      note.className = 'comptia-note';
+      note.textContent = `💡 CompTIA Logic: ${q.comptia_logic_note}`;
+      container.appendChild(note);
+    }
   }
 
   // Report Issue button
@@ -503,22 +632,28 @@ function finishAnswer(q, userAnswer, correct, container) {
 
 function finishRun() {
   const answers = window.APP.currentAnswers;
-  const result = computeResults(answers);
+  const result  = computeResults(answers);
 
   if (window.APP.mode === 'drill') {
     recordMisses(result.misses);
     setActiveNav('drill');
     showView('drill');
     renderDrillResults(result, answers);
-  } else {
-    saveSession(result, answers);
+  } else if (window.APP.mode === 'hard') {
+    saveSession(result, answers, 'hard_mode');
     const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
-    const regularSessions = sessions.filter(s => !s.mode || s.mode === 'test');
+    const streak = parseInt(localStorage.getItem('streak') || '0', 10);
+    setActiveNav(null);
+    showView('results');
+    renderResults(result, answers, { streak, previousPct: null, hardMode: true });
+  } else {
+    saveSession(result, answers, 'daily_test');
+    const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+    const regularSessions = sessions.filter(s => !s.mode || s.mode === 'daily_test');
     const previousPct = regularSessions.length >= 2
       ? regularSessions[regularSessions.length - 2].pct
       : null;
     const streak = parseInt(localStorage.getItem('streak') || '0', 10);
-
     setActiveNav(null);
     showView('results');
     renderResults(result, answers, { streak, previousPct });
@@ -620,17 +755,37 @@ function buildMissedSection(answers) {
 }
 
 function renderResults(result, answers, context) {
+  context = context || {};
   const container = document.getElementById('view-results');
   container.innerHTML = '';
 
-  const summary = document.createElement('div');
-  summary.className = `score-summary ${result.pass ? 'pass' : 'fail'}`;
-  summary.innerHTML = `
-    <h2>${result.pass ? 'PASS' : 'FAIL'}</h2>
-    <p class="score-line">${result.score} / ${result.total} — ${result.pct.toFixed(0)}% — ${result.pass ? 'PASS' : 'FAIL'}</p>
-    <p class="threshold-note">Passing threshold: ${PASS_THRESHOLD}%</p>
-  `;
-  container.appendChild(summary);
+  if (context.hardMode) {
+    // Hard Mode: special header with trap stat
+    const trapAnswers = answers.filter(a => a.has_logic_note);
+    const trapCorrect = trapAnswers.filter(a => a.correct).length;
+    const trapPct     = trapAnswers.length ? Math.round(trapCorrect / trapAnswers.length * 100) : null;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'score-summary';
+    hdr.style.borderColor = '#991b1b';
+    hdr.innerHTML = `
+      <h2 class="hard-mode-score-header">🔥 Hard Mode Complete</h2>
+      <p class="score-line">${result.score} / ${result.total} — ${result.pct.toFixed(0)}%</p>
+      ${trapAnswers.length ? `<div class="trap-stat">
+        🪤 CompTIA Trap questions: ${trapCorrect} / ${trapAnswers.length} correct (${trapPct}%)
+      </div>` : ''}
+    `;
+    container.appendChild(hdr);
+  } else {
+    const summary = document.createElement('div');
+    summary.className = `score-summary ${result.pass ? 'pass' : 'fail'}`;
+    summary.innerHTML = `
+      <h2>${result.pass ? 'PASS' : 'FAIL'}</h2>
+      <p class="score-line">${result.score} / ${result.total} — ${result.pct.toFixed(0)}% — ${result.pass ? 'PASS' : 'FAIL'}</p>
+      <p class="threshold-note">Passing threshold: ${PASS_THRESHOLD}%</p>
+    `;
+    container.appendChild(summary);
+  }
 
   const domainSection = document.createElement('div');
   domainSection.className = 'domain-breakdown';
@@ -790,6 +945,20 @@ function generateTips(result, answers, context) {
     }
   }
 
+  // CompTIA trap accuracy tip (hard mode only)
+  if (context && context.hardMode) {
+    const trapAnswers = answers.filter(a => a.has_logic_note);
+    if (trapAnswers.length >= 2) {
+      const trapCorrect = trapAnswers.filter(a => a.correct).length;
+      if (trapCorrect / trapAnswers.length < 0.5) {
+        candidates.push(
+          `You struggled with CompTIA-style 'best answer' traps. These are the hardest questions on ` +
+          `the real exam. Study the CompTIA Logic notes carefully — they explain exactly how CompTIA thinks.`
+        );
+      }
+    }
+  }
+
   // Confidence-based tips
   const guessedRight = answers.filter(a => a.confidence === 'guessed' && a.correct).length;
   const confidentWrong = answers.filter(a => a.confidence === 'confident' && !a.correct).length;
@@ -818,7 +987,7 @@ function generateTips(result, answers, context) {
 // F. PROGRESS PERSISTENCE
 // =====================================================================
 
-function saveSession(result, answers) {
+function saveSession(result, answers, mode) {
   const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
   const sessionData = {
     date: result.date,
@@ -828,7 +997,7 @@ function saveSession(result, answers) {
     domain_scores: result.domainScores,
     domain_stats: result.domainStats,
     misses: result.misses,
-    mode: result.mode || 'test',
+    mode: mode || result.mode || 'daily_test',
     answers: (answers || []).map(a => ({
       question_id: a.question_id,
       correct: a.correct,
@@ -904,6 +1073,10 @@ function renderHome() {
     </p>
     <div class="home-actions">
       <button id="btn-start-test" class="primary-btn">Start Today's Test</button>
+      <button id="btn-hard-mode" class="hard-mode-btn">
+        <span>🔥 Hard Mode</span>
+        <span class="btn-subtitle">Hard questions only · CompTIA logic traps · 25 questions</span>
+      </button>
       <div class="home-exam-block">
         <button id="btn-start-exam-sim" class="exam-sim-btn">🎯 Exam Simulation</button>
         <div class="exam-sim-subtitle">90 questions · 90 minutes · No feedback until the end</div>
@@ -914,6 +1087,7 @@ function renderHome() {
   `;
 
   document.getElementById('btn-start-test').addEventListener('click', () => startTest());
+  document.getElementById('btn-hard-mode').addEventListener('click', () => startHardMode());
   document.getElementById('btn-start-exam-sim').addEventListener('click', () => startExamSim());
   document.getElementById('btn-drill-home').addEventListener('click', () => {
     setActiveNav('drill');

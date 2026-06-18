@@ -1581,6 +1581,71 @@ body.light-mode .option-btn:hover:not(:disabled) {
   text-align: left;
 }
 
+/* ---------- Hard Mode ---------- */
+
+.hard-mode-btn {
+  background: linear-gradient(135deg, #991b1b, #7f1d1d);
+  border-color: #991b1b;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.hard-mode-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  border-color: #b91c1c;
+}
+
+.hard-mode-btn .btn-subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.badge-hard-mode {
+  background-color: rgba(153, 27, 27, 0.25);
+  color: #ef4444;
+  border: 1px solid #991b1b;
+  margin-left: 0.5rem;
+}
+
+.trap-warning {
+  background-color: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.45);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.85rem;
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.comptia-logic-box {
+  background-color: rgba(180, 130, 0, 0.12);
+  border: 2px solid rgba(234, 179, 8, 0.65);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-top: 0.85rem;
+  color: #fcd34d;
+}
+
+.trap-stat {
+  background-color: rgba(153, 27, 27, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.hard-mode-score-header {
+  color: #ef4444;
+}
+
 /* ---------- Print ---------- */
 
 @media print {
@@ -1589,7 +1654,7 @@ body.light-mode .option-btn:hover:not(:disabled) {
   }
 
   #view-home, #view-test, #view-progress, #view-drill,
-  #view-exam-sim, #view-bookmarks {
+  #view-exam-sim, #view-bookmarks, #view-hard {
     display: none !important;
   }
 
